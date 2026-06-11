@@ -221,13 +221,7 @@ function buildOption(def){
   const opt={animation:false,color:colors,legend:{type:'scroll',top:2,left:'center',itemWidth:14,itemHeight:8,itemGap:10,textStyle:{fontSize:10,color:'#888'}},grid:{left:52,right:hasYoy?56:20,top:48,bottom:28},xAxis:{type:'category',data:weeks,boundaryGap:false,axisLine:{lineStyle:{color:'#c0b8a8'}},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',interval:labelInt,formatter:labelFn},splitLine:{show:false}},yAxis:[{type:'value',name:def.unit?'('+def.unit+')':'',nameTextStyle:{fontSize:10,color:'#999'},scale:true,axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',formatter:v=>fmtY(v,def.yFmt)},splitLine:{lineStyle:{color:'#ece8e0',type:'dashed'}}}],series:series,dataZoom:[{type:'slider',bottom:0,height:16,borderColor:'#ddd',fillerColor:'rgba(140,160,150,0.08)',handleStyle:{color:'#8cbaa0'},textStyle:{fontSize:9,color:'#999'}},{type:'inside'}]};
   if(hasYoy)opt.yAxis.push({type:'value',name:'同比(%)',nameTextStyle:{fontSize:10,color:'#999'},axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',formatter:v=>v.toFixed(0)+'%'},splitLine:{show:false}});
   const tooltipLabel=(idx)=>{const val=weeks[idx]||'';if(isSpread)return spreadLabels[idx]||val;if(isDaily)return dayToMD(idx+1);return val;};
-  opt.tooltip={trigger:'axis',confine:true,appendToBody:true,backgroundColor:'rgba(28,28,24,0.95)',borderColor:'#555',textStyle:{color:'#eee',fontSize:11},
-    position:function(point,params,dom,rect,size){
-      var x=point[0]+14,y=point[1]-rect.height-10;
-      if(y<4)y=point[1]+14;
-      if(x+rect.width>size.viewSize[0]-4)x=point[0]-rect.width-14;
-      return[Math.max(4,x),Math.max(4,y)];
-    },
+  opt.tooltip={trigger:'axis',confine:true,backgroundColor:'rgba(28,28,24,0.95)',borderColor:'#555',textStyle:{color:'#eee',fontSize:11},
     formatter:function(ps){if(!ps||ps.length===0)return'';const label=tooltipLabel(ps[0].dataIndex);let h='<div style="font-weight:600;margin-bottom:3px">'+def.title+' · '+label+'</div>';ps.filter(p=>p.seriesName!=='26vs25同比%').sort((a,b)=>parseInt(a.seriesName)-parseInt(b.seriesName)).forEach(p=>{h+='<div style="display:flex;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-top:5px;background:'+p.color+'"></span>'+p.seriesName+': <b>'+fmtTT(p.value,def.yFmt)+' '+def.unit+'</b></div>';});return h;}
   };
   return opt;
@@ -404,19 +398,27 @@ function buildSidebar(){
   const sb=document.getElementById('sidebar');if(!sb)return;
   sb.innerHTML='';sb.style.maxHeight='calc(100vh-120px)';sb.style.overflowY='auto';
   if(activeDim==='全部'){
-    ['焦煤','焦炭','铁矿','钢材','期货'].forEach(dim=>{
-      const secs=SECTIONS.filter(s=>s.dim===dim);
+    ['焦煤','焦炭','铁矿','钢材','期货'].forEach(function(dim,di){
+      const secs=SECTIONS.filter(function(s){return s.dim===dim;});
       if(secs.length===0)return;
       const dt=document.createElement('div');
-      dt.style.cssText='padding:4px 10px 2px;font-weight:700;font-size:10px;color:var(--accent);';
-      dt.textContent=dim;sb.appendChild(dt);
+      dt.style.cssText='padding:4px 10px 2px;font-weight:700;font-size:10px;color:var(--accent);cursor:pointer';
+      dt.textContent=(di===0?'▼ ':'▶ ')+dim;
+      const wrap=document.createElement('div');
+      wrap.style.display=di===0?'block':'none';
+      dt.onclick=function(){
+        wrap.style.display=wrap.style.display==='none'?'block':'none';
+        dt.textContent=(wrap.style.display==='none'?'▶ ':'▼ ')+dim;
+      };
+      sb.appendChild(dt);
       const metrics=new Set();
-      secs.forEach(s=>s.charts.forEach(ch=>{metrics.add(ch.title.split(' · ')[0]);}));
-      [...metrics].sort().forEach(m=>{
-        const a=document.createElement('a');a.textContent='  '+m;a.style.paddingLeft='14px';a.href='#';
-        a.onclick=function(e){e.preventDefault();const el=document.getElementById('sec_'+m.replace(/s+/g,'_'));if(el)el.scrollIntoView({behavior:'smooth',block:'start'});};
-        sb.appendChild(a);
+      secs.forEach(function(s){s.charts.forEach(function(ch){metrics.add(ch.title.split(' · ')[0]);});});
+      [...metrics].sort().forEach(function(m){
+        var a=document.createElement('a');a.textContent='  '+m;a.style.paddingLeft='14px';a.href='#';
+        a.onclick=function(e){e.preventDefault();sb.classList.remove('open');var el=document.getElementById('sec_'+m.replace(/s+/g,'_'));if(el)el.scrollIntoView({behavior:'smooth',block:'start'});};
+        wrap.appendChild(a);
       });
+      sb.appendChild(wrap);
     });
   }else{
     const seen=new Set();
