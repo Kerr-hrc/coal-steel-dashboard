@@ -234,18 +234,13 @@ function buildOption(def){
   const opt={animation:false,color:colors,legend:{type:'scroll',top:2,left:'center',itemWidth:14,itemHeight:8,itemGap:10,textStyle:{fontSize:10,color:'#888'}},grid:{left:52,right:hasYoy?56:20,top:48,bottom:28},xAxis:{type:'category',data:weeks,boundaryGap:false,axisLine:{lineStyle:{color:'#c0b8a8'}},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',interval:labelInt,formatter:labelFn},splitLine:{show:false}},yAxis:[{type:'value',name:def.unit?'('+def.unit+')':'',nameTextStyle:{fontSize:10,color:'#999'},scale:true,axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',formatter:v=>fmtY(v,def.yFmt)},splitLine:{lineStyle:{color:'#ece8e0',type:'dashed'}}}],series:series,dataZoom:[{type:'slider',bottom:0,height:16,borderColor:'#ddd',fillerColor:'rgba(140,160,150,0.08)',handleStyle:{color:'#8cbaa0'},textStyle:{fontSize:9,color:'#999'}},{type:'inside'}]};
   if(hasYoy)opt.yAxis.push({type:'value',name:'同比(%)',nameTextStyle:{fontSize:10,color:'#999'},axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',formatter:v=>v.toFixed(0)+'%'},splitLine:{show:false}});
   const tooltipLabel=(idx)=>{const val=weeks[idx]||'';if(isSpread)return spreadLabels[idx]||val;if(isDaily)return dayToMD(idx+1);const wk=idx+1;return weekToDate2026(wk)+' · W'+wk;};
-  opt.tooltip={trigger:'axis',confine:true,appendToBody:true,extraCssText:'max-width:300px;white-space:normal',backgroundColor:'rgba(40,40,36,0.93)',borderColor:'#555',textStyle:{color:'#eee',fontSize:11},
+  opt.tooltip={trigger:'axis',extraCssText:'max-width:280px;white-space:normal;border-radius:8px;padding:8px 12px',backgroundColor:'rgba(28,28,24,0.95)',borderColor:'#555',textStyle:{color:'#eee',fontSize:11},
     position:function(point,params,dom,rect,size){
-      var vw=size.viewSize[0],vh=size.viewSize[1];
-      var x=point[0]+8,y=point[1]-rect.height-8;
-      // 上方不够放，改下方
-      if(y<0)y=point[1]+8;
-      // 右边超出，改左边
-      if(x+rect.width>vw-8)x=point[0]-rect.width-8;
-      // 不超出视口
-      x=Math.max(8,Math.min(vw-rect.width-8,x));
-      y=Math.max(8,Math.min(vh-rect.height-8,y));
-      return[x,y];
+      // 紧凑跟随，偏移8px，不超出视口
+      var x=point[0]+12,y=point[1]-16;
+      if(y<8)y=point[1]+12;
+      if(x+rect.width>size.viewSize[0]-8)x=point[0]-rect.width-12;
+      return[Math.max(8,x),Math.max(8,y)];
     },
     formatter:function(ps){if(!ps||ps.length===0)return'';const label=tooltipLabel(ps[0].dataIndex);let h='<div style="font-weight:600;margin-bottom:3px">'+def.title+' · '+label+'</div>';ps.filter(p=>p.seriesName!=='26vs25同比%').sort((a,b)=>parseInt(a.seriesName)-parseInt(b.seriesName)).forEach(p=>{h+='<div style="display:flex;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-top:5px;background:'+p.color+'"></span>'+p.seriesName+': <b>'+fmtTT(p.value,def.yFmt)+' '+def.unit+'</b></div>';});return h;}
   };
