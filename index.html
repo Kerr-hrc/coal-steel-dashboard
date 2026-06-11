@@ -408,7 +408,7 @@ function buildSidebar(){
       sb.appendChild(dt);
       const metrics=new Set();
       secs.forEach(function(s){s.charts.forEach(function(ch){metrics.add(ch.title.split(' · ')[0]);});});
-      [...metrics].sort().forEach(function(m){
+      [...metrics].sort(function(a,b){return metricOrder(a)-metricOrder(b);}).forEach(function(m){
         var a=document.createElement('a');a.textContent='  '+m;a.style.paddingLeft='14px';a.href='#';
         a.onclick=function(e){e.preventDefault();sb.classList.remove('open');var el=document.getElementById('sec_'+m.replace(/s+/g,'_'));if(el)el.scrollIntoView({behavior:'smooth',block:'start'});};
         wrap.appendChild(a);
