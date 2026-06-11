@@ -398,27 +398,19 @@ function buildSidebar(){
   const sb=document.getElementById('sidebar');if(!sb)return;
   sb.innerHTML='';sb.style.maxHeight='calc(100vh-120px)';sb.style.overflowY='auto';
   if(activeDim==='全部'){
-    ['焦煤','焦炭','铁矿','钢材','期货'].forEach(function(dim,di){
+    ['焦煤','焦炭','铁矿','钢材','期货'].forEach(function(dim){
       const secs=SECTIONS.filter(function(s){return s.dim===dim;});
       if(secs.length===0)return;
       const dt=document.createElement('div');
-      dt.style.cssText='padding:4px 10px 2px;font-weight:700;font-size:10px;color:var(--accent);cursor:pointer';
-      dt.textContent=(di===0?'▼ ':'▶ ')+dim;
-      const wrap=document.createElement('div');
-      wrap.style.display=di===0?'block':'none';
-      dt.onclick=function(){
-        wrap.style.display=wrap.style.display==='none'?'block':'none';
-        dt.textContent=(wrap.style.display==='none'?'▶ ':'▼ ')+dim;
-      };
-      sb.appendChild(dt);
+      dt.style.cssText='padding:4px 10px 2px;font-weight:700;font-size:10px;color:var(--accent);';
+      dt.textContent=dim;sb.appendChild(dt);
       const metrics=new Set();
       secs.forEach(function(s){s.charts.forEach(function(ch){metrics.add(ch.title.split(' · ')[0]);});});
       [...metrics].sort().forEach(function(m){
         var a=document.createElement('a');a.textContent='  '+m;a.style.paddingLeft='14px';a.href='#';
         a.onclick=function(e){e.preventDefault();sb.classList.remove('open');var el=document.getElementById('sec_'+m.replace(/s+/g,'_'));if(el)el.scrollIntoView({behavior:'smooth',block:'start'});};
-        wrap.appendChild(a);
+        sb.appendChild(a);
       });
-      sb.appendChild(wrap);
     });
   }else{
     const seen=new Set();
