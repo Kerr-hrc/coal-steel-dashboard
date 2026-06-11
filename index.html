@@ -103,6 +103,8 @@ body{
 .sidebar{position:fixed;left:8px;top:80px;z-index:10;width:134px;max-height:calc(100vh-100px);overflow-y:auto;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:6px 0;box-shadow:var(--shadow);font-size:10px}
 .sidebar a{display:block;padding:4px 10px;color:var(--text2);text-decoration:none;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:2px solid transparent;}
 .sidebar a:hover,.sidebar a.active{color:var(--accent);border-left-color:var(--accent);background:var(--tag-bg);}
+.sb-btn{display:none;position:fixed;left:4px;top:4px;z-index:12;width:30px;height:30px;background:var(--card);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:16px;color:var(--text2);text-align:center;line-height:28px;box-shadow:var(--shadow)}
+@media(max-width:1100px){.sidebar{display:none}.sidebar.open{display:block}.sb-btn{display:block}body{padding-left:16px!important}}
 @media(min-width:901px){body{padding-left:160px}}
 .cat-header{font-size:13px;font-weight:700;color:var(--text);padding:8px 0 4px;margin-top:4px;border-bottom:2px solid var(--accent2);display:flex;align-items:center;gap:6px;scroll-margin-top:100px}
 .cat-header:first-child{margin-top:0}
@@ -132,6 +134,7 @@ body{
   </div>
 </div>
 
+<button class="sb-btn" id="sbBtn" onclick="var s=document.getElementById('sidebar');var o=s.classList.toggle('open');this.classList.toggle('open',o);this.textContent=o?'✕':'☰'">☰</button>
 <div class="sidebar" id="sidebar"></div>
 
 <div class="dim-bar" id="dimBar"></div>
@@ -378,7 +381,7 @@ function renderGrid(){
   window.addEventListener('scroll',onScroll,{passive:true});
 
   const total=filteredSections.reduce((a,s)=>a+s.charts.length,0);
-  document.getElementById('apWeek').textContent='📍 '+activeDim+'维度 · '+total+'张图（滚动加载中）';
+  document.getElementById('apWeek').textContent=''📍 '+activeDim+'维度'';
   document.getElementById('apText').textContent='按产量→开工率→产能利用率→库存→消费量→利润排列。左侧目录可快速跳转。';
   buildSidebar();
   // 期货维度显示数据快报表
@@ -410,7 +413,7 @@ function buildSidebar(){
       secs.forEach(function(s){s.charts.forEach(function(ch){metrics.add(ch.title.split(' · ')[0]);});});
       [...metrics].sort(function(a,b){return metricOrder(a)-metricOrder(b);}).forEach(function(m){
         var a=document.createElement('a');a.textContent='  '+m;a.style.paddingLeft='14px';a.href='#';
-        a.onclick=function(e){e.preventDefault();sb.classList.remove('open');var el=document.getElementById('sec_'+m.replace(/s+/g,'_'));if(el)el.scrollIntoView({behavior:'smooth',block:'start'});};
+        a.onclick=function(e){e.preventDefault();sb.classList.remove('open');var el=document.getElementById('sec_'+m.replace(/s+/g,'_'));if(el)sb.classList.remove("open");el.scrollIntoView({behavior:'smooth',block:'start'});};
         wrap.appendChild(a);
       });
       sb.appendChild(wrap);
@@ -421,7 +424,7 @@ function buildSidebar(){
       const label=el.textContent.replace('▸ ','');
       if(!seen.has(label)){seen.add(label);
         const a=document.createElement('a');a.textContent=label;a.href='#'+el.id;
-        a.onclick=function(e){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});};
+        a.onclick=function(e){e.preventDefault();sb.classList.remove("open");el.scrollIntoView({behavior:'smooth',block:'start'});};
         sb.appendChild(a);
       }
     });
@@ -540,8 +543,59 @@ function showAnalysis(W,def){
   updateInvestPanel(W);
 }
 
+// 期货数据快报
+function dayToMD2(doy){var md=[0,31,59,90,120,151,181,212,243,273,304,334,365];var m=1;while(m<13&&doy>md[m])m++;return m+'/'+(doy-md[m-1]);}
+function sparkLine(id){
+  var d=ALL_DATA[id];if(!d||!d['2026'])return'—';
+  var w={};Object.keys(d['2026']).forEach(function(day){var v=d['2026'][day];if(v!=null){var wk=Math.ceil(parseInt(day)/7);if(!w[wk])w[wk]=[];w[wk].push(v);}});
+  var r={};Object.keys(w).forEach(function(wk){var a=w[wk];r[wk]=Math.round(a.reduce(function(x,y){return x+y;},0)/a.length*100)/100;});
+  var weeks=Object.keys(r).map(Number).sort(function(a,b){return a-b;}).slice(-8);
+  if(weeks.length<2)return'—';
+  var vals=weeks.map(function(w){return r[w];});
+  var min=Math.min.apply(null,vals),max=Math.max.apply(null,vals),range=max-min||1;
+  var W=80,H=20,padL=2,padR=4,padT=2,padB=2;
+  var pts=vals.map(function(v,i){return Math.round((i/(weeks.length-1)*(W-padL-padR)+padL))+' '+Math.round((H-padB-(v-min)/range*(H-padT-padB)));}).join(',');
+  var up=vals[vals.length-1]>=vals[0],color=up?'#e63946':'#4a9b6e';
+  return '<svg width="'+W+'" height="'+H+'" style="display:block;margin:0 auto"><polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="1.4" stroke-linecap="round"/><circle cx="'+Math.round((vals.length-1)/(weeks.length-1)*(W-padL-padR)+padL)+'" cy="'+Math.round(H-padB-(vals[vals.length-1]-min)/range*(H-padT-padB))+'" r="2.2" fill="'+color+'"/></svg>';
+}
+function buildFutTable(){
+  var Y='2026';
+  var ref=ALL_DATA['fut_rb_主力'];if(!ref||!ref[Y]){document.getElementById('futTableContent').innerHTML='暂无数据';return;}
+  var allDays=Object.keys(ref[Y]).map(Number).sort(function(a,b){return b-a;});
+  var last5=allDays.slice(0,5).sort(function(a,b){return a-b;});
+  if(last5.length===0){document.getElementById('futTableContent').innerHTML='暂无数据';return;}
+  var latest=last5[last5.length-1],prevDay=last5.length>=2?last5[last5.length-2]:null,weekAgo=latest>7?latest-7:null;
+  function v(id,day){var d=ALL_DATA[id];return(d&&d[Y]&&d[Y][day]!=null)?d[Y][day]:null;}
+  function v25(id,day){var d=ALL_DATA[id];return(d&&d['2025']&&d['2025'][day]!=null)?d['2025'][day]:null;}
+  function f(val){return val!=null?Math.round(val).toLocaleString():'—';}
+  function pct(cur,prev){if(cur!=null&&prev!=null&&prev!==0)return((cur-prev)/Math.abs(prev)*100).toFixed(1)+'%';return'—';}
+  function clr(v){return v.indexOf('-')===0?'#4a9b6e':'#e63946';}
+  function row(label,id){
+    var vals=last5.map(function(d){return v(id,d);});
+    var cur=vals[vals.length-1],prv=prevDay?v(id,prevDay):null,wk=weekAgo?v(id,weekAgo):null,yr=v25(id,latest);
+    if(!vals.some(function(x){return x!=null;}))return'';
+    var td=last5.map(function(d,i){return'<td style="padding:2px 5px;text-align:right">'+(vals[i]!=null?f(vals[i]):'—')+'</td>';}).join('');
+    return'<tr style="border-top:1px solid var(--border)"><td style="padding:3px 6px;font-weight:600">'+label+'</td>'+td+'<td style="padding:2px 5px;text-align:right;color:'+clr(pct(cur,prv))+'">'+pct(cur,prv)+'</td><td style="padding:2px 5px;text-align:right;color:'+clr(pct(cur,wk))+'">'+pct(cur,wk)+'</td><td style="padding:2px 5px;text-align:right;color:'+clr(pct(cur,yr))+'">'+pct(cur,yr)+'</td><td style="padding:2px 5px;text-align:center">'+sparkLine(id)+'</td></tr>';
+  }
+  var cols=last5.length+4+1,body='';
+  var header='<table style="width:100%;border-collapse:collapse;font-size:10px"><thead><tr style="background:var(--tag-bg)"><th style="padding:3px 6px;text-align:left">品种/指标</th>'+last5.map(function(d){return'<th style="padding:3px 5px;text-align:right">'+dayToMD2(d)+'</th>';}).join('')+'<th style="padding:3px 5px;text-align:right">日环比</th><th style="padding:3px 5px;text-align:right">周环比</th><th style="padding:3px 5px;text-align:right">同比</th><th style="padding:3px 5px;text-align:center">周走势</th></tr></thead><tbody>';
+  body+='<tr style="background:var(--tag-bg)"><td colspan="'+cols+'" style="padding:3px 6px;font-weight:700;font-size:11px">📌 基差</td></tr>';
+  [['螺纹钢','rb',['主连','01','05','10']],['热卷','hc',['主力','01','05','10']],['焦煤(介休中硫)','jm',['主力','01','05','09']],['焦煤(蒙5精煤)','jm',['主力','01','05','09']],['焦炭(港口准一)','j',['主力','01','05','09']],['铁矿(青岛港PB)','i',['主力','01','05','09']]].forEach(function(b){
+    b[2].forEach(function(ct){var id=b[0].indexOf('介休')>=0?'fut_'+b[1]+'_basis_jx_'+ct:b[0].indexOf('蒙5')>=0?'fut_'+b[1]+'_basis_m5_'+ct:'fut_'+b[1]+'_basis_'+ct;body+=row(b[0]+' '+ct,id);});
+  });
+  body+='<tr style="background:var(--tag-bg)"><td colspan="'+cols+'" style="padding:3px 6px;font-weight:700;font-size:11px">📌 月间价差</td></tr>';
+  [['螺纹钢','rb',['1-5','5-10','10-1']],['热卷','hc',['1-5','5-10','10-1']],['焦煤','jm',['1-5','5-9','9-1']],['焦炭','j',['1-5','5-9','9-1']],['铁矿石','i',['1-5','5-9','9-1']]].forEach(function(s){
+    s[2].forEach(function(n){body+=row(s[0]+' '+n,'fut_'+s[1]+'_spread_'+n);});
+  });
+  body+='<tr style="background:var(--tag-bg)"><td colspan="'+cols+'" style="padding:3px 6px;font-weight:700;font-size:11px">📌 盘面利润</td></tr>';
+  [['螺纹钢','rb',['01','05','10']],['热卷','hc',['01','05','10']],['焦炭','j',['01','05','09']]].forEach(function(p){
+    p[2].forEach(function(n){body+=row(p[0]+' '+n,'fut_'+p[1]+'_profit_'+n);});
+  });
+  document.getElementById('futTableContent').innerHTML=header+body+'</tbody></table>';
+}
 // 基本面量化分析（参考 Mysteel 周报框架）
-function updateInvestPanel(W){
+function updateInvestPanel(W,dim){
+  dim=dim||activeDim||'全部';
   const Y='2026',prevW=W>1?W-1:null;
   function val(id,w){const d=ALL_DATA[id];return(d&&d[Y]&&d[Y][w]!=null)?d[Y][w]:null;}
   function val25(id,w){const d=ALL_DATA[id];return(d&&d['2025']&&d['2025'][w]!=null)?d['2025'][w]:null;}
@@ -641,7 +695,10 @@ function updateInvestPanel(W){
     products.push({name:'热轧',score:s,outlook:outLook,advice:advice,risk:risk,strategy:strat2});
   }
 
-  products.forEach(p=>{
+  var dimMap={"焦煤":["焦煤"],"焦炭":["焦炭"],"铁矿":["铁矿石"],"钢材":["螺纹钢","热轧"]};
+  var filteredProducts=dimMap[dim]?products.filter(function(p){return dimMap[dim].indexOf(p.name)>=0;}):products;
+  if(filteredProducts.length>0)html+='<div style="font-weight:700;margin:6px 0 2px">🎯 分品种投资建议</div>';
+  filteredProducts.forEach(function(p){
     const bg=p.score>=2?'#fef0f0':p.score>=0?'#fafaf8':'#f0faf4';
     html+='<div style="margin:3px 0;padding:4px 8px;background:'+bg+';border-radius:4px;font-size:11px">';
     html+='<b>'+p.name+'</b> · 评分<b>'+(p.score>=0?'+':'')+p.score+'</b> · <span style="color:'+(p.outlook.includes('强')?'#c44':p.outlook.includes('弱')?'#3a8':'#888')+'"><b>'+p.outlook+'</b></span>';
@@ -659,7 +716,7 @@ function toggleTheme(){
   allInsts.forEach(c=>{try{c.resize();}catch(e){}});
 }
 
-window.addEventListener('DOMContentLoaded',()=>{initDimBar();renderGrid();setTimeout(()=>updateInvestPanel(23),500);});
+window.addEventListener('DOMContentLoaded',()=>{initDimBar();renderGrid();setTimeout(function(){updateInvestPanel(23,activeDim);},500);});
 </script>
 </body>
 </html>
