@@ -140,11 +140,6 @@ body{
 <div class="dim-bar" id="dimBar"></div>
 </div>
 
-<div class="analysis-panel" id="ap">
-  <div class="ap-week" id="apWeek">选择维度查看产业链数据</div>
-  <div class="ap-text" id="apText">上方按钮可按维度筛选图表：焦煤→焦炭→铁矿→钢材。点击图表查看详情。</div>
-</div>
-
 <div class="analysis-panel" id="invest" style="border-left:3px solid var(--accent);">
   <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:4px">📈 基本面量化 · 投资参考</div>
   <div style="font-size:12px;color:var(--text2);line-height:1.8" id="investText">加载中...</div>
@@ -381,8 +376,6 @@ function renderGrid(){
   window.addEventListener('scroll',onScroll,{passive:true});
 
   const total=filteredSections.reduce((a,s)=>a+s.charts.length,0);
-  document.getElementById('apWeek').textContent='📍 '+activeDim+'维度';
-  document.getElementById('apText').textContent='按产量→开工率→产能利用率→库存→消费量→利润排列。左侧目录可快速跳转。';
   buildSidebar();
   if(activeDim!=='期货')setTimeout(function(){updateInvestPanel(23,activeDim);},300);
   const ft=document.getElementById('futTable');
@@ -534,12 +527,6 @@ function showAnalysis(W,def){
     analysisText+='<br><span style="font-size:10px;color:var(--text3)">环比变化：'+analyses.join(' &nbsp;|&nbsp; ')+'</span>';
   }
 
-  document.getElementById('apWeek').textContent='📍 第'+W+'周 · '+Y+'年 · '+def.title;
-  if(parts.length>0){
-    document.getElementById('apText').innerHTML='<b>产业链快照：</b>'+parts.join(' &nbsp;|&nbsp; ')+analysisText;
-  }else{
-    document.getElementById('apText').textContent='该周暂无最新年份数据';
-  }
   updateInvestPanel(W,activeDim);
 }
 
