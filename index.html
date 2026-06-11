@@ -235,7 +235,7 @@ function buildOption(def){
   if(hasYoy)opt.yAxis.push({type:'value',name:'同比(%)',nameTextStyle:{fontSize:10,color:'#999'},axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',formatter:v=>v.toFixed(0)+'%'},splitLine:{show:false}});
   const tooltipLabel=(idx)=>{const val=weeks[idx]||'';if(isSpread)return spreadLabels[idx]||val;if(isDaily)return dayToMD(idx+1);const wk=idx+1;return weekToDate2026(wk)+' · W'+wk;};
   opt.tooltip={trigger:'axis',confine:true,appendToBody:true,backgroundColor:'rgba(28,28,24,0.95)',borderColor:'#555',textStyle:{color:'#eee',fontSize:11},
-    position:function(point){if(point[0]<window.innerWidth*.35)return[point[0]+18,point[1]];},
+    position:function(point){if(point[0]<window.innerWidth*.55)return[point[0]+18,point[1]];},
     formatter:function(ps){if(!ps||ps.length===0)return'';const label=tooltipLabel(ps[0].dataIndex);let h='<div style="font-weight:600;margin-bottom:3px">'+def.title+' · '+label+'</div>';ps.filter(p=>p.seriesName!=='26vs25同比%').sort((a,b)=>parseInt(a.seriesName)-parseInt(b.seriesName)).forEach(p=>{h+='<div style="display:flex;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-top:5px;background:'+p.color+'"></span>'+p.seriesName+': <b>'+fmtTT(p.value,def.yFmt)+' '+def.unit+'</b></div>';});return h;}
   };
   return opt;
