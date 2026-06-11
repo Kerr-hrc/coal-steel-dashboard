@@ -372,7 +372,7 @@ function renderGrid(){
       if(item.done)return;
       const rect=item.dom.getBoundingClientRect();
       const inView=rect.top<vh+600&&rect.bottom>-300;
-      const force=firstBatch&&count<8; // 首批强制加载8个
+      const force=firstBatch&&count<8;
       if(inView||force||rect.top===0){
         try{
           const inst=echarts.init(item.dom);
@@ -384,10 +384,7 @@ function renderGrid(){
           var r=item.dom.getBoundingClientRect();
           window._cb[item.ch.id]={left:r.left,width:r.width};
           if(!force&&count>=8)return;
-          item.done=true;count++;
-          if(!window._cb)window._cb={};
-          var r=item.dom.getBoundingClientRect();
-          window._cb[item.ch.id]={left:r.left,width:r.width};
+        }catch(e){item.done=true;count++;}
       }
     });
     firstBatch=false;
