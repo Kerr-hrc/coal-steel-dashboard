@@ -57,7 +57,7 @@ body{
 .sidebar{position:fixed;left:8px;top:80px;z-index:10;width:110px;max-height:calc(100vh-100px);overflow-y:auto;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:6px 0;box-shadow:var(--shadow);font-size:10px;transition:transform .2s}
 .sidebar a{display:block;padding:4px 10px;color:var(--text2);text-decoration:none;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:2px solid transparent;}
 .sidebar a:hover,.sidebar a.active{color:var(--accent);border-left-color:var(--accent);background:var(--tag-bg);}
-.sidebar-toggle{display:none;position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:11;width:24px;height:48px;background:var(--card);border:1px solid var(--border);border-left:0;border-radius:0 8px 8px 0;cursor:pointer;font-size:16px;color:var(--text2);text-align:center;line-height:48px;box-shadow:var(--shadow)}
+.sidebar-toggle{display:none;position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:11;width:22px;height:44px;background:var(--card);border:1px solid var(--border);border-left:0;border-radius:0 8px 8px 0;cursor:pointer;font-size:14px;color:var(--text2);text-align:center;line-height:44px;box-shadow:var(--shadow)}
 @media(max-width:900px){
   .sidebar{transform:translateX(-120px)}
   .sidebar.open{transform:translateX(0)}
@@ -93,7 +93,7 @@ body{
   </div>
 </div>
 
-<div class="sidebar-toggle" id="sbToggle" onclick="document.getElementById('sidebar').classList.toggle('open')">目录</div>
+<div class="sidebar-toggle" id="sbToggle" onclick="var s=document.getElementById('sidebar');s.classList.toggle('open');this.textContent=s.classList.contains('open')?'✕':'☰'">☰</div>
 <div class="sidebar" id="sidebar"></div>
 
 <div class="dim-bar" id="dimBar"></div>
@@ -234,7 +234,7 @@ function buildOption(def){
   const opt={animation:false,color:colors,legend:{type:'scroll',top:2,left:'center',itemWidth:14,itemHeight:8,itemGap:10,textStyle:{fontSize:10,color:'#888'}},grid:{left:52,right:hasYoy?56:20,top:48,bottom:28},xAxis:{type:'category',data:weeks,boundaryGap:false,axisLine:{lineStyle:{color:'#c0b8a8'}},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',interval:labelInt,formatter:labelFn},splitLine:{show:false}},yAxis:[{type:'value',name:def.unit?'('+def.unit+')':'',nameTextStyle:{fontSize:10,color:'#999'},scale:true,axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',formatter:v=>fmtY(v,def.yFmt)},splitLine:{lineStyle:{color:'#ece8e0',type:'dashed'}}}],series:series,dataZoom:[{type:'slider',bottom:0,height:16,borderColor:'#ddd',fillerColor:'rgba(140,160,150,0.08)',handleStyle:{color:'#8cbaa0'},textStyle:{fontSize:9,color:'#999'}},{type:'inside'}]};
   if(hasYoy)opt.yAxis.push({type:'value',name:'同比(%)',nameTextStyle:{fontSize:10,color:'#999'},axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',formatter:v=>v.toFixed(0)+'%'},splitLine:{show:false}});
   const tooltipLabel=(idx)=>{const val=weeks[idx]||'';if(isSpread)return spreadLabels[idx]||val;if(isDaily)return dayToMD(idx+1);const wk=idx+1;return weekToDate2026(wk)+' · W'+wk;};
-  opt.tooltip={trigger:'axis',confine:true,appendToBody:true,backgroundColor:'rgba(40,40,36,0.93)',borderColor:'#555',textStyle:{color:'#eee',fontSize:11},
+  opt.tooltip={trigger:'axis',confine:true,appendToBody:true,extraCssText:'max-width:300px;white-space:normal',backgroundColor:'rgba(40,40,36,0.93)',borderColor:'#555',textStyle:{color:'#eee',fontSize:11},
     formatter:function(ps){if(!ps||ps.length===0)return'';const label=tooltipLabel(ps[0].dataIndex);let h='<div style="font-weight:600;margin-bottom:3px">'+def.title+' · '+label+'</div>';ps.filter(p=>p.seriesName!=='26vs25同比%').sort((a,b)=>parseInt(a.seriesName)-parseInt(b.seriesName)).forEach(p=>{h+='<div style="display:flex;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-top:5px;background:'+p.color+'"></span>'+p.seriesName+': <b>'+fmtTT(p.value,def.yFmt)+' '+def.unit+'</b></div>';});return h;}
   };
   return opt;
