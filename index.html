@@ -659,7 +659,7 @@ function toggleTheme(){
   allInsts.forEach(c=>{try{c.resize();}catch(e){}});
 }
 
-window.addEventListener('DOMContentLoaded',()=>{initDimBar();renderGrid();});
+window.addEventListener('DOMContentLoaded',()=>{initDimBar();renderGrid();setTimeout(()=>updateInvestPanel(23),500);});
 </script>
 </body>
 </html>
