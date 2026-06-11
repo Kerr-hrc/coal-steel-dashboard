@@ -33,7 +33,7 @@ body{
   background-image:radial-gradient(ellipse at 15% 10%,rgba(140,160,150,0.05) 0%,transparent 60%);
   background-attachment:fixed;
 }
-.sticky-header{position:sticky;top:0;z-index:6;background:var(--bg);max-width:1500px;margin:0 auto 10px;padding:4px 0;border-bottom:1px solid var(--border);}.top-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.sticky-header{position:sticky;top:0;z-index:6;background:var(--bg);max-width:1300px;margin:0 auto 10px;padding:4px 0;border-bottom:1px solid var(--border);}.top-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
 .top-bar h1{font-size:20px;font-weight:700}
 .top-bar .update-time{font-size:11px;color:var(--text3)}
 .top-bar .theme-btn{background:var(--card);border:1px solid var(--border);color:var(--text2);padding:4px 10px;border-radius:5px;cursor:pointer;font-size:11px;font-family:inherit;}
@@ -47,12 +47,12 @@ body{
 .dim-count{font-size:10px;opacity:0.7;margin-left:2px}
 
 /* 分析面板 */
-.analysis-panel{position:relative;z-index:1;max-width:1500px;margin:0 auto 10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 16px;box-shadow:var(--shadow);}
+.analysis-panel{position:relative;z-index:1;max-width:1300px;margin:0 auto 10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 16px;box-shadow:var(--shadow);}
 .analysis-panel .ap-week{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:3px}
 .analysis-panel .ap-text{font-size:12px;color:var(--text2);line-height:1.7}
 
 /* 图表网格 */
-.chart-grid-wrap{position:relative;z-index:1;max-width:1500px;margin:0 auto;}
+.chart-grid-wrap{position:relative;z-index:1;max-width:1300px;margin:0 auto;}
 /* 侧边目录 */
 .sidebar{position:fixed;left:8px;top:80px;z-index:10;width:134px;max-height:calc(100vh-100px);overflow-y:auto;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:6px 0;box-shadow:var(--shadow);font-size:10px;transition:transform .2s}
 .sidebar a{display:block;padding:4px 10px;color:var(--text2);text-decoration:none;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:2px solid transparent;}
@@ -69,15 +69,14 @@ body{
 .cat-header:first-child{margin-top:0}
 .cat-header .cat-badge{font-size:10px;font-weight:400;color:var(--text3);background:var(--tag-bg);padding:1px 8px;border-radius:8px}
 .chart-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px;}
-.chart-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 10px 6px;box-shadow:var(--shadow);overflow:visible;max-width:480px}
-@media(max-width:1300px){.chart-row{grid-template-columns:repeat(2,1fr)}.chart-card{max-width:none}}
-@media(max-width:750px){.chart-row{grid-template-columns:1fr}.chart-card{max-width:none}}
+@media(max-width:1300px){.chart-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:750px){.chart-row{grid-template-columns:1fr}}
 .chart-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 10px 6px;box-shadow:var(--shadow);overflow:visible}
 .chart-card .cc-title{font-size:11px;font-weight:600;color:var(--text);margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .chart-card .cc-chart{width:100%;height:230px;overflow:visible}
 
-.footer{position:relative;z-index:1;max-width:1500px;margin:14px auto 0;text-align:center;font-size:10px;color:var(--text3);}
-.data-notice{position:relative;z-index:1;max-width:1500px;margin:10px auto 0;background:var(--card2);border:1px dashed var(--border);border-radius:6px;padding:10px 14px;font-size:11px;color:var(--text3)}
+.footer{position:relative;z-index:1;max-width:1300px;margin:14px auto 0;text-align:center;font-size:10px;color:var(--text3);}
+.data-notice{position:relative;z-index:1;max-width:1300px;margin:10px auto 0;background:var(--card2);border:1px dashed var(--border);border-radius:6px;padding:10px 14px;font-size:11px;color:var(--text3)}
 .data-notice strong{color:var(--accent)}
 </style>
 </head>
