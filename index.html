@@ -235,6 +235,18 @@ function buildOption(def){
   if(hasYoy)opt.yAxis.push({type:'value',name:'同比(%)',nameTextStyle:{fontSize:10,color:'#999'},axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',formatter:v=>v.toFixed(0)+'%'},splitLine:{show:false}});
   const tooltipLabel=(idx)=>{const val=weeks[idx]||'';if(isSpread)return spreadLabels[idx]||val;if(isDaily)return dayToMD(idx+1);const wk=idx+1;return weekToDate2026(wk)+' · W'+wk;};
   opt.tooltip={trigger:'axis',confine:true,appendToBody:true,extraCssText:'max-width:300px;white-space:normal',backgroundColor:'rgba(40,40,36,0.93)',borderColor:'#555',textStyle:{color:'#eee',fontSize:11},
+    position:function(point,params,dom,rect,size){
+      var vw=size.viewSize[0],vh=size.viewSize[1];
+      var x=point[0],y=point[1];
+      // 水平：鼠标偏右则tooltip放左边
+      if(x>vw/2)x=x-rect.width-16;else x=x+16;
+      // 垂直：鼠标偏上则tooltip放下方，偏下则放上方
+      if(y<vh/2)y=y+20;else y=y-rect.height-20;
+      // 不超出视口
+      x=Math.max(8,Math.min(vw-rect.width-8,x));
+      y=Math.max(8,Math.min(vh-rect.height-8,y));
+      return[x,y];
+    },
     formatter:function(ps){if(!ps||ps.length===0)return'';const label=tooltipLabel(ps[0].dataIndex);let h='<div style="font-weight:600;margin-bottom:3px">'+def.title+' · '+label+'</div>';ps.filter(p=>p.seriesName!=='26vs25同比%').sort((a,b)=>parseInt(a.seriesName)-parseInt(b.seriesName)).forEach(p=>{h+='<div style="display:flex;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-top:5px;background:'+p.color+'"></span>'+p.seriesName+': <b>'+fmtTT(p.value,def.yFmt)+' '+def.unit+'</b></div>';});return h;}
   };
   return opt;
