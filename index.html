@@ -100,14 +100,10 @@ body{
 /* 图表网格 */
 .chart-grid-wrap{position:relative;z-index:1;max-width:1500px;margin:0 auto;}
 /* 侧边目录 */
-.sidebar{position:fixed;left:8px;top:80px;z-index:10;width:134px;max-height:calc(100vh-100px);overflow-y:auto;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:6px 0;box-shadow:var(--shadow);font-size:10px;transition:transform .25s}
-.sidebar.collapsed{transform:translateX(-144px)}
+.sidebar{position:fixed;left:8px;top:80px;z-index:10;width:134px;max-height:calc(100vh-100px);overflow-y:auto;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:6px 0;box-shadow:var(--shadow);font-size:10px}
 .sidebar a{display:block;padding:4px 10px;color:var(--text2);text-decoration:none;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:2px solid transparent;}
 .sidebar a:hover,.sidebar a.active{color:var(--accent);border-left-color:var(--accent);background:var(--tag-bg);}
-.sidebar-toggle{position:fixed;left:144px;top:50%;transform:translateY(-50%);z-index:11;width:22px;height:44px;background:var(--card);border:1px solid var(--border);border-left:0;border-radius:0 8px 8px 0;cursor:pointer;font-size:11px;color:var(--text2);text-align:center;line-height:44px;box-shadow:var(--shadow);transition:left .25s}
-.sidebar-toggle.shifted{left:0}
 @media(min-width:901px){body{padding-left:160px}}
-body.sb-collapsed{padding-left:16px!important}
 .cat-header{font-size:13px;font-weight:700;color:var(--text);padding:8px 0 4px;margin-top:4px;border-bottom:2px solid var(--accent2);display:flex;align-items:center;gap:6px;scroll-margin-top:100px}
 .cat-header:first-child{margin-top:0}
 .cat-header .cat-badge{font-size:10px;font-weight:400;color:var(--text3);background:var(--tag-bg);padding:1px 8px;border-radius:8px}
@@ -136,7 +132,6 @@ body.sb-collapsed{padding-left:16px!important}
   </div>
 </div>
 
-<div class="sidebar-toggle" id="sbToggle" onclick="var s=document.getElementById('sidebar');var t=this;s.classList.toggle('collapsed');t.classList.toggle('shifted');document.body.classList.toggle('sb-collapsed');t.textContent=s.classList.contains('collapsed')?'▶':'◀'">◀</div>
 <div class="sidebar" id="sidebar"></div>
 
 <div class="dim-bar" id="dimBar"></div>
@@ -398,19 +393,27 @@ function buildSidebar(){
   const sb=document.getElementById('sidebar');if(!sb)return;
   sb.innerHTML='';sb.style.maxHeight='calc(100vh-120px)';sb.style.overflowY='auto';
   if(activeDim==='全部'){
-    ['焦煤','焦炭','铁矿','钢材','期货'].forEach(function(dim){
+    ['焦煤','焦炭','铁矿','钢材','期货'].forEach(function(dim,di){
       const secs=SECTIONS.filter(function(s){return s.dim===dim;});
       if(secs.length===0)return;
       const dt=document.createElement('div');
-      dt.style.cssText='padding:4px 10px 2px;font-weight:700;font-size:10px;color:var(--accent);';
-      dt.textContent=dim;sb.appendChild(dt);
+      dt.style.cssText='padding:4px 10px 2px;font-weight:700;font-size:10px;color:var(--accent);cursor:pointer';
+      dt.textContent=(di===0?'▼ ':'▶ ')+dim;
+      const wrap=document.createElement('div');
+      wrap.style.display=di===0?'block':'none';
+      dt.onclick=function(){
+        wrap.style.display=wrap.style.display==='none'?'block':'none';
+        dt.textContent=(wrap.style.display==='none'?'▶ ':'▼ ')+dim;
+      };
+      sb.appendChild(dt);
       const metrics=new Set();
       secs.forEach(function(s){s.charts.forEach(function(ch){metrics.add(ch.title.split(' · ')[0]);});});
       [...metrics].sort().forEach(function(m){
         var a=document.createElement('a');a.textContent='  '+m;a.style.paddingLeft='14px';a.href='#';
         a.onclick=function(e){e.preventDefault();sb.classList.remove('open');var el=document.getElementById('sec_'+m.replace(/s+/g,'_'));if(el)el.scrollIntoView({behavior:'smooth',block:'start'});};
-        sb.appendChild(a);
+        wrap.appendChild(a);
       });
+      sb.appendChild(wrap);
     });
   }else{
     const seen=new Set();
