@@ -679,11 +679,11 @@ function updateInvestPanel(W,dim){
   let html="";
   html+='<div style="background:var(--tag-bg);padding:6px 10px;border-radius:6px;margin-bottom:6px;font-size:11px">';
   html+='<b>📊 W'+W+' 产业链快照</b> ';
-  html+='<span style="color:#e88">⚠暴雨四级响应(6.12) 西南/华东/华南强降雨</span><br>';
+  html+='<span style="color:#e88">⚠山西沁源停产整顿(约5000万吨产能) | 暴雨四级响应(6.12)</span><br>';
   html+='焦煤：原煤库存'+(yk!=null?Math.round(yk):'—')+'万吨(同比'+fmtC(ykY,'%')+') | 精煤库存'+(jk!=null?Math.round(jk):'—')+'万吨 | 产量'+(yc!=null?Math.round(yc):'—')+'万吨 | 口岸库存'+(ganqmd!=null?Math.round(ganqmd):'—')+'万吨';
-  html+='<br>焦炭：吨焦利润'+fmtC(jp,'int')+'元 | 产能利用率'+fmtC(jmCap,'%')+' | 焦化厂库存'+(jtSt!=null?Math.round(jtSt):'—')+'万吨 | 第七轮提涨6.12提出/6.15落地(50-55元)';
-  html+='<br>铁矿：港口库存'+(io!=null?(io/10000).toFixed(2)+'亿':'—')+'吨(同比'+fmtC(ioY,'%')+') | 疏港量'+(iod!=null?Math.round(iod):'—')+'万吨 | 铁水日产'+(st!=null?st.toFixed(1):'—')+'万吨 | 发运高位+47港预计累库';
-  html+='<br>钢材：钢厂盈利率'+fmtC(pr,'%')+' | 螺纹产量'+(s5p!=null?Math.round(s5p):'—')+' 库存'+(s5s!=null?Math.round(s5s):'—')+' 消费'+(s5c!=null?Math.round(s5c):'—')+' | 总库存连续增加 淡季需求疲弱</div>';
+  html+='<br>焦炭：吨焦利润'+fmtC(jp,'int')+'元 | 产能利用率'+fmtC(jmCap,'%')+' | 焦化厂库存'+(jtSt!=null?Math.round(jtSt):'—')+'万吨 | 第七轮全面落地(6.15)，第八轮即将启动';
+  html+='<br>铁矿：港口库存'+(io!=null?(io/10000).toFixed(2)+'亿':'—')+'吨(同比'+fmtC(ioY,'%')+') | 疏港量'+(iod!=null?Math.round(iod):'—')+'万吨 | 铁水日产'+(st!=null?st.toFixed(1):'—')+'万吨 | 47港周累库95.5万吨 供给过剩';
+  html+='<br>钢材：钢厂盈利率'+fmtC(pr,'%')+' | 螺纹产量'+(s5p!=null?Math.round(s5p):'—')+' 库存'+(s5s!=null?Math.round(s5s):'—')+' 消费'+(s5c!=null?Math.round(s5c):'—')+' | 盈利率周降3.5pct 淡季供需双弱</div>';
 
   // ===== 分品种投资建议 =====
   let products=[];
@@ -695,13 +695,14 @@ function updateInvestPanel(W,dim){
     let s=0,advice=[],risk=[];
     if(invDown)s+=2,advice.push('原煤库存同比大幅去库，供应端持续偏紧');
     if(supTight)s+=2,advice.push('精煤库存处于绝对低位，坑口库存加速去化，部分煤种累计涨幅近400元/吨');
+    s+=2,advice.push('山西沁源地区全面停产整顿，约5000万吨产能停产，供应端持续收紧');
     if(yc!=null&&ycP!=null&&yc<ycP)s+=1,advice.push('煤矿安检偏严，产量恢复有限，短期安检难以放松');
-    if(st!=null&&st>240)s+=1,advice.push('铁水维持240万吨上方，焦煤刚需支撑强劲');
-    if(jp!=null&&jp>0)s+=1,advice.push('焦炭第七轮提涨部分落地，下游补库积极性较高');
+    if(st!=null&&st>240)s+=1,advice.push('铁水维持240.86万吨(+0.14)，焦煤刚需支撑强劲');
+    if(jp!=null&&jp>0)s+=1,advice.push('焦炭第七轮已全面落地+第八轮预期，下游补库积极性较高');
     if(ganqmdHigh)s-=1,risk.push('甘其毛都口岸库存超470万吨，蒙煤下游询盘低迷，成交冷清（内紧外松分化）');
     if(io!=null&&io>15000)s-=1,risk.push('铁矿库存高企可能拖累黑色系整体情绪');
-    const outLook=s>=4?'偏强':s>=2?'震荡偏强':s>=0?'中性':'偏弱';
-    const strat2=s>=4?'焦煤供应偏紧格局未改+下游补库积极+安检难放松，建议逢低做多，关注山西安监政策和进口煤变化。短期价格预计维持偏强运行。':s>=2?'国内煤供需偏紧但蒙煤库存高位形成分化，建议区间偏多交易，关注进口煤冲击和下游利润空间。':s>=0?'供需平衡，短期驱动不强，建议观望。':'供应宽松+需求疲软，建议偏空或观望。';
+    const outLook=s>=5?'偏强':s>=3?'震荡偏强':s>=0?'中性':'偏弱';
+    const strat2=s>=5?'焦煤供应端多重收紧(沁源停产+安检偏严)+铁水高位+焦炭提涨传导，建议逢低做多，关注山西安监政策和进口煤变化。短期价格预计维持偏强运行。':s>=3?'国内煤供需偏紧但蒙煤库存高位形成分化，建议区间偏多交易，关注进口煤冲击和下游利润空间。':s>=0?'供需平衡，短期驱动不强，建议观望。':'供应宽松+需求疲软，建议偏空或观望。';
     products.push({name:'焦煤',score:s,outlook:outLook,advice:advice,risk:risk,strategy:strat2});
   }
   // --- 焦炭 ---
@@ -712,8 +713,8 @@ function updateInvestPanel(W,dim){
     if(st!=null&&st>240)s+=1,advice.push('铁水高位+钢厂焦炭库存偏低，刚性需求较为强劲');
     if(pr!=null&&pr>50)s+=1,advice.push('钢厂盈利状况良好，生产意愿较强，采购积极');
     else if(pr!=null&&pr<40)s-=1,risk.push('钢厂盈利率偏低，焦炭继续提涨难度加大');
-    s+=1,advice.push('第七轮提涨(6.12提出/6.15落地)涨幅50-55元，部分地区钢厂已接受，第八轮提涨预期');
-    if(jp!=null&&jp<30)risk.push('吨焦利润偏低('+Math.round(jp)+'元)，提涨落地后将改善利润；后续关注钢厂利润及煤矿复产进度');
+    s+=1,advice.push('第七轮提涨已全面落地(6.15)涨幅50-55元，第八轮提涨即将启动，广发期货建议逢低做多2609合约');
+    if(jp!=null&&jp<30)risk.push('吨焦利润偏低('+Math.round(jp)+'元)，提涨落地后有望改善；后续关注钢厂利润及煤矿复产进度');
     if(s>=5)advice.push('部分地区发运不畅+钢厂采购积极，短期焦炭供应偏紧格局延续');
     const outLook=s>=5?'偏强':s>=3?'震荡偏强':s>=0?'中性':'偏弱';
     const strat2=s>=5?'焦炭供需偏紧+第七轮落地+第八轮预期，成本与需求双驱动，建议偏多交易，关注钢厂补库节奏和煤矿复产进度。':s>=3?'焦炭供需偏紧但利润偏低，提涨预期支撑较强，建议逢低布局多单。':s>=0?'焦炭多空交织，建议观望或波段操作。':'焦炭供需宽松+利润承压，建议偏空对待。';
@@ -730,7 +731,7 @@ function updateInvestPanel(W,dim){
     else if(st!=null&&st<230)s-=1,risk.push('铁水产量偏低，铁矿需求不足');
     if(io>16000)s-=1,risk.push('港口库存绝对量偏高，供应压力持续');
     if(pr!=null&&pr<50)s-=1,risk.push('钢厂盈利率走低，原料采购节奏或放缓');
-    s-=1,risk.push('全球发运高位波动+到港环比下降，但47港库存预计累库，矿价承压');
+    s-=1,risk.push('全球发运旺季+到港维持高位，47港库存周累库95.5万吨至17290万吨，供给过剩趋势不变');
     const outLook=s>=2?'偏强':s>=0?'震荡':'偏弱';
     const strat2=s>=2?'铁矿供应偏紧+铁水高位，建议偏多交易，关注发运量和钢厂补库。':s>=0?'铁矿供需平衡但累库预期渐起，港口库存是关键变量，建议区间操作。':'铁矿供应过剩+累库压力+需求预期走弱，建议偏空或观望，关注钢厂减产力度。';
     products.push({name:'铁矿石',score:s,outlook:outLook,advice:advice,risk:risk,strategy:strat2});
@@ -744,8 +745,9 @@ function updateInvestPanel(W,dim){
     if(s5s!=null){const s5s25=val25('s5_stock_螺纹钢',W);if(s5s25&&s5s<s5s25*0.9)s+=2,advice.push('螺纹库存同比低位，价格支撑较强');else if(s5s25&&s5s>s5s25*1.15)s-=1,risk.push('螺纹库存同比偏高，去库压力大');}
     if(pr!=null&&pr>60)s+=1,advice.push('钢厂盈利面好，供给端有增产动力');
     if(st!=null&&st>240)s-=1,risk.push('铁水产量高位，螺纹供给潜在压力较大');
-    s-=1,risk.push('南方强降雨(暴雨四级响应6.12)+高温淡季+项目资金占比下降，6月需求疲弱格局难改');
-    if(jp!=null&&jp>0)advice.push('焦炭第七轮提涨落地+继续提涨预期，成本支撑较强');
+    s-=1,risk.push('南方强降雨(暴雨四级响应6.12)+高温淡季，6月需求疲弱格局难改');
+    s-=1,risk.push('钢厂盈利率降至55.84%(-3.47pct)，盈利收窄挤压原料空间');
+    if(jp!=null&&jp>0)advice.push('焦炭第七轮全面落地+第八轮即将启动，成本支撑较强');
     const outLook=s>=3?'偏强':s>=1?'震荡偏强':s>=-1?'中性':'偏弱';
     const strat2=s>=3?'螺纹供需偏紧+库存低位，建议偏多交易，关注消费旺季兑现。':s>=1?'螺纹供需基本平衡，建议逢低布局多单，关注去库速度。':s>=-1?'淡季供需双弱+暴雨压制+成本支撑，多空交织，预计短期震荡偏弱，建议区间短线操作，关注天气转好后的需求回补。':'螺纹供给过剩+库存累积+需求疲弱，建议偏空或观望，等待消费启动信号。';
     products.push({name:'螺纹钢',score:s,outlook:outLook,advice:advice,risk:risk,strategy:strat2});
