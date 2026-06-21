@@ -210,6 +210,13 @@ function buildOption(def){
   const yoyMax=isDaily?366:52;
   if(!isSpread&&raw['2025']&&raw['2026']&&!def.id.startsWith('wr_')){hasYoy=true;for(let w=1;w<=yoyMax;w++){const v25=raw['2025'][w],v26=raw['2026'][w];if(v25!=null&&v26!=null&&v25!==0)yoyData.push(Math.round((v26-v25)/Math.abs(v25)*10000)/100);else yoyData.push(null);}}
   const series=years.map(y=>{const st=yearStyle(y);return{name:y+'年',type:'line',yAxisIndex:0,data:weeks.map((_,wi)=>(raw[y]&&raw[y][wi+1]!=null)?raw[y][wi+1]:null),smooth:false,symbol:'none',showSymbol:false,emphasis:{symbolSize:3},lineStyle:{width:st.lw,opacity:st.opacity},itemStyle:{color:YEAR_COLORS[y]||'#999',opacity:st.opacity},connectNulls:isDaily&&!isSpread,z:st.z};});
+  // 通关车数日度数据：添加2026年月均线
+  if(isDaily&&def.id.startsWith('mc_')&&raw['2026']){
+    var monthDays=[0,31,59,90,120,151,181,212,243,273,304,334,365];
+    var monthlyAvg=[];for(var m=1;m<=12;m++){var sum=0,cnt=0;for(var d=monthDays[m-1]+1;d<=monthDays[m];d++){if(raw['2026'][d]!=null){sum+=raw['2026'][d];cnt++;}}monthlyAvg.push(cnt>0?Math.round(sum/cnt):null);}
+    var avgData=[];for(var d=1;d<=366;d++){var mo=1;while(mo<12&&d>monthDays[mo])mo++;avgData.push(monthlyAvg[mo-1]);}
+    series.push({name:'2026月均',type:'line',yAxisIndex:0,data:avgData,smooth:false,symbol:'none',lineStyle:{width:2,color:'#e88',type:'solid'},itemStyle:{color:'#e88'},z:11});
+  }
   if(hasYoy)series.push({name:'25→26同比',type:'bar',yAxisIndex:1,data:yoyData,itemStyle:{color:'#c8c8c8',opacity:0.5},barWidth:'50%',z:-1,tooltip:{formatter:function(p){return'同比: <b>'+(p.value>=0?'+':'')+p.value.toFixed(1)+'%</b>';}}});
   const colors=years.map(y=>YEAR_COLORS[y]||'#999');
   const opt={animation:false,color:colors,legend:{type:'scroll',top:2,left:'center',itemWidth:14,itemHeight:8,itemGap:10,textStyle:{fontSize:10,color:'#888'}},grid:{left:52,right:hasYoy?56:20,top:48,bottom:28},xAxis:{type:'category',data:weeks,boundaryGap:false,axisLine:{lineStyle:{color:'#c0b8a8'}},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',interval:labelInt,formatter:labelFn},splitLine:{show:false}},yAxis:[{type:'value',name:def.unit?'('+def.unit+')':'',nameTextStyle:{fontSize:10,color:'#999'},scale:true,axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',formatter:v=>fmtY(v,def.yFmt)},splitLine:{lineStyle:{color:'#ece8e0',type:'dashed'}}}],series:series,dataZoom:[{type:'slider',bottom:0,height:16,borderColor:'#ddd',fillerColor:'rgba(140,160,150,0.08)',handleStyle:{color:'#8cbaa0'},textStyle:{fontSize:9,color:'#999'}},{type:'inside'}]};
