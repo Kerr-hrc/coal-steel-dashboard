@@ -682,45 +682,39 @@ function updateInvestPanel(W,dim){
   let html="";
   html+='<div style="background:var(--tag-bg);padding:6px 10px;border-radius:6px;margin-bottom:6px;font-size:11px">';
   html+='<b>📊 W'+W+' 产业链快照</b> ';
-  html+='<span style="color:#e88">⚠山西停产煤矿产能仍超6000万吨 | 沁源一矿复产但产量仅恢复40%</span><br>';
+  html+='<span style="color:#e88">⚠沁源煤矿提前复产+其余陆续验收 | 复产进度快于预期 盘面已提前交易</span><br>';
   html+='焦煤：原煤库存'+(yk!=null?Math.round(yk):'—')+'万吨(同比'+fmtC(ykY,'%')+') | 精煤库存'+(jk!=null?Math.round(jk):'—')+'万吨 | 产量'+(yc!=null?Math.round(yc):'—')+'万吨 | 口岸库存'+(ganqmd!=null?Math.round(ganqmd):'—')+'万吨';
-  html+='<br>焦炭：吨焦利润'+fmtC(jp,'int')+'元 | 产能利用率'+fmtC(jmCap,'%')+' | 焦化厂库存'+(jtSt!=null?Math.round(jtSt):'—')+'万吨 | 第八轮提涨(6.22落地+50/55)，第九轮存在预期';
+  html+='<br>焦炭：吨焦利润'+fmtC(jp,'int')+'元 | 产能利用率'+fmtC(jmCap,'%')+' | 焦化厂库存'+(jtSt!=null?Math.round(jtSt):'—')+'万吨 | 第八轮部分已接受(6.22落地+50/55)，利润转负至-7元';
   html+='<br>铁矿：港口库存'+(io!=null?(io/10000).toFixed(2)+'亿':'—')+'吨(同比'+fmtC(ioY,'%')+') | 疏港量'+(iod!=null?Math.round(iod):'—')+'万吨 | 铁水日产'+(st!=null?st.toFixed(1):'—')+'万吨 | 发运旺季+供给过剩 成本支撑边际弱化';
-  html+='<br>钢材：钢厂盈利率'+fmtC(pr,'%')+' | 螺纹产量'+(s5p!=null?Math.round(s5p):'—')+' 库存'+(s5s!=null?Math.round(s5s):'—')+' 消费'+(s5c!=null?Math.round(s5c):'—')+' | 表需反弹但非趋势反转 供强需弱格局延续</div>';
+  html+='<br>钢材：钢厂盈利率'+fmtC(pr,'%')+' | 螺纹产量'+(s5p!=null?Math.round(s5p):'—')+' 库存'+(s5s!=null?Math.round(s5s):'—')+' 消费'+(s5c!=null?Math.round(s5c):'—')+' | 供强需弱格局延续 盘整偏弱</div>';
 
   // ===== 分品种投资建议 =====
   let products=[];
   // --- 焦煤 ---
   {
-    const supTight=jk!=null&&jk<150;
-    const invDown=ykY!=null&&ykY<-10;
-    const ganqmdHigh=ganqmd!=null&&ganqmd>450;
     let s=0,advice=[],risk=[];
-    s+=3,advice.push('山西停产煤矿产能仍超6000万吨，已复产煤矿日产较停产前下降35.64%，变相减产明确且持续');
-    if(supTight)s+=2,advice.push('精煤库存降至105万吨绝对低位，焦企焦煤库存大降56.86万吨，可用天数降至12.7天');
-    if(st!=null&&st>240)s+=1,advice.push('铁水升至242.24万吨，第八轮提涨已落地，刚性需求形成强势支撑');
-    s+=1,advice.push('临汾安泽低硫主焦涨至2040元/吨出厂含税，突破前期报价，供应偏紧格局延续');
-    if(ganqmdHigh)s-=1,risk.push('甘其毛都口岸库存469万吨，蒙煤成交低迷（内紧外松分化）');
-    s-=1,risk.push('焦煤价格快速拉涨后高位风险加剧，涨幅已有收窄；煤炭运费下行限制上方空间');
-    s-=1,risk.push('长治沁源一煤矿复产(150万吨/年)，其余煤矿验收尚需时间，短期实质冲击有限');
-    const outLook=s>=6?'偏强':s>=3?'震荡偏强':s>=0?'中性':'偏弱';
-    const strat2=s>=6?'焦煤供应端多重收紧(停产6000万吨+复产变相减产35%)+焦企库存急降+铁水新高，三层面共振，建议逢低做多。关注煤矿复产进度和下游承接能力。':s>=3?'国内煤供需偏紧但蒙煤库存高位+高位风险加剧，建议区间偏多交易。':'供需平衡，短期驱动不强，建议观望。';
+    s+=2,advice.push('焦煤结构性短缺严重，停产产能仍超6000万吨，产量回升路径不明确');
+    if(st!=null&&st>240)s+=1,advice.push('铁水242.24万吨(+1.38万)，焦煤刚需仍存');
+    s-=2,risk.push('沁源煤矿提前复产+其余近日陆续验收，复产进度快于预期，盘面已提前交易大幅下行');
+    s-=2,risk.push('盘面对标的蒙煤供应充足(甘其毛都通关日均1507车+14.25%)，内部结构性短缺矛盾凸显');
+    s-=1,risk.push('下游对高价谨慎，煤价涨幅及涨价范围均收窄；煤矿利润高达730元/吨，保供政策压力');
+    const outLook=s>=3?'偏强':s>=0?'震荡偏强':s>=-2?'中性':'偏弱';
+    const strat2=s>=3?'焦煤供应偏紧+铁水高位，建议逢低做多。':s>=0?'国内煤供需偏紧但蒙煤库存高位形成分化，建议区间偏多交易。':s>=-2?'焦煤结构性短缺vs复产预期+蒙煤充足，操作难度增大，单边建议观望为主。建议回调多焦炭替代焦煤。':'供应宽松+需求疲软，建议偏空或观望。';
     products.push({name:'焦煤',score:s,outlook:outLook,advice:advice,risk:risk,strategy:strat2});
   }
   // --- 焦炭 ---
   {
     let s=0,advice=[],risk=[];
-    s+=2,advice.push('焦煤供应持续偏紧+价格不断上行(临汾低硫主焦涨至2040元)，焦炭成本支撑坚固');
-    s+=2,advice.push('第八轮提涨已落实(6.22 +50/55)，焦企通过持续提涨传导成本压力');
-    if(jp!=null&&jp>50)s+=1,advice.push('吨焦利润恢复至'+Math.round(jp)+'元，焦企利润改善但仍受焦煤涨价挤压');
-    else if(jp!=null&&jp<30)s-=1,risk.push('吨焦利润偏低('+Math.round(jp)+'元)，焦煤涨价持续挤压焦化利润');
-    if(st!=null&&st>240)s+=1,advice.push('铁水升至242.24万吨，钢厂刚需稳定');
-    if(jtSt!=null&&jtSt<95)advice.push('焦企库存94万吨小幅累积但港口库存去化，资源向终端转移态势延续');
-    s+=1,advice.push('第九轮存在提涨预期，但落地需观察市场情绪走向及钢厂利润变化');
-    if(pr!=null&&pr<60)risk.push('钢厂盈利率55.84%(环比-3.47pct)，抵触情绪增强；现金流未亏损前不会主动限产');
-    risk.push('核心负反馈风险：若焦炭持续提涨挤压钢厂利润至现金流由盈转亏，负反馈可能下月触发');
+    s+=2,advice.push('焦煤成本压制供应减量：焦企利润转负至-7元/吨(环比-28)，供应连续四周减量(日均111.91万吨,-0.68万)');
+    s+=2,advice.push('第八轮提涨部分钢厂已接受(6.22落地+50/55)，出厂仓单成本涨至2090元/吨，仍有第九轮提涨可能');
+    if(st!=null&&st>240)s+=1,advice.push('铁水242.24万吨(+1.38万)，高铁水预计能维持12周，刚需仍有保证');
+    advice.push('基本面供需偏紧：成本压制供应+刚需高位波动，下游原料采购困难');
+    if(jp!=null&&jp<0)risk.push('独立焦企利润转负至-7元/吨，入炉成本增速快于提涨速度，焦企经营压力加大');
+    else if(jp!=null&&jp<30)risk.push('吨焦利润偏低('+Math.round(jp)+'元)');
+    risk.push('向下风险：政策保供+煤矿快速复产将削弱焦煤成本支撑');
+    risk.push('钢厂利润空间持续被压缩，若现金流转负可能触发负反馈');
     const outLook=s>=5?'偏强':s>=3?'震荡偏强':s>=0?'中性':'偏弱';
-    const strat2=s>=5?'焦炭三重共振：焦煤供应偏紧+焦化利润受挤提涨意愿强+铁水高位刚需支撑，第八轮已落地+第九轮预期，建议偏多交易。密切关注钢厂利润边际变化。':s>=3?'焦炭供需偏紧+ninth轮预期，成本与需求双驱动，建议逢低布局多单。':'焦炭多空交织，建议观望或波段操作。';
+    const strat2=s>=5?'焦炭供需偏紧+成本推动提涨+铁水高位，现货持续提涨未结束，建议单边回调买入。':s>=3?'焦炭供需偏紧但利润承压，提涨预期支撑，建议逢低布局多单。':'焦炭多空交织，建议观望或波段操作。';
     products.push({name:'焦炭',score:s,outlook:outLook,advice:advice,risk:risk,strategy:strat2});
   }
   // --- 铁矿石 ---
