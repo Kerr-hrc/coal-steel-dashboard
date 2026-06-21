@@ -215,7 +215,7 @@ function buildOption(def){
     var monthDays=[0,31,59,90,120,151,181,212,243,273,304,334,365];
     var monthlyAvg=[];for(var m=1;m<=12;m++){var sum=0,cnt=0;for(var d=monthDays[m-1]+1;d<=monthDays[m];d++){if(raw['2026'][d]!=null){sum+=raw['2026'][d];cnt++;}}monthlyAvg.push(cnt>0?Math.round(sum/cnt):null);}
     var avgData=[];for(var d=1;d<=366;d++){var mo=1;while(mo<12&&d>monthDays[mo])mo++;avgData.push(monthlyAvg[mo-1]);}
-    series.push({name:'2026月均',type:'line',yAxisIndex:0,data:avgData,smooth:false,symbol:'none',lineStyle:{width:2,color:'#e88',type:'solid'},itemStyle:{color:'#e88'},z:11});
+    series.push({name:'2026月均',type:'line',yAxisIndex:0,data:avgData,smooth:false,symbol:'none',lineStyle:{width:2,color:'#e06000',type:'solid'},itemStyle:{color:'#e06000'},z:11});
   }
   if(hasYoy)series.push({name:'25→26同比',type:'bar',yAxisIndex:1,data:yoyData,itemStyle:{color:'#c8c8c8',opacity:0.5},barWidth:'50%',z:-1,tooltip:{formatter:function(p){return'同比: <b>'+(p.value>=0?'+':'')+p.value.toFixed(1)+'%</b>';}}});
   const colors=years.map(y=>YEAR_COLORS[y]||'#999');
