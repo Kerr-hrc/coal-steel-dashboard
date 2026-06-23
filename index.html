@@ -52,22 +52,22 @@ var po={},fo={};var go,vo=function(){function t(t,e,n){var i=this;this._sleepAft
 </script>
 <style>
 :root {
-  --bg: #f4f2ee; --card: #ffffff; --card2: #fafaf8; --text: #2c2c2c;
-  --text2: #555; --text3: #888; --border: #e2ded6;
+  --bg: #f4f2ee; --card: #ffffff; --card2: #fafaf8; --text: #1a1a1a;
+  --text2: #3a3a3a; --text3: #5a5a5a; --border: #e2ded6;
   --shadow: 0 1px 8px rgba(0,0,0,0.05); --accent: #5a7a6a; --accent2: #8cbaa0;
   --tag-bg: #e8f0ec; --active-bg: #5a7a6a; --active-text: #fff;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1a1d1b; --card: #242824; --card2: #2a2e2a; --text: #e0dcd4;
-    --text2: #b0aca0; --text3: #888478; --border: #3a3d36;
+    --bg: #1a1d1b; --card: #242824; --card2: #2a2e2a; --text: #ede8e0;
+    --text2: #d5d0c5; --text3: #b5b0a5; --border: #3a3d36;
     --shadow: 0 1px 10px rgba(0,0,0,0.3); --accent: #8cbaa0; --accent2: #5a8a6a;
     --tag-bg: #2a3830; --active-bg: #8cbaa0; --active-text: #1a1d1b;
   }
 }
 html[data-theme="dark"] {
-  --bg: #1a1d1b; --card: #242824; --card2: #2a2e2a; --text: #e0dcd4;
-  --text2: #b0aca0; --text3: #888478; --border: #3a3d36;
+  --bg: #1a1d1b; --card: #242824; --card2: #2a2e2a; --text: #ede8e0;
+  --text2: #d5d0c5; --text3: #b5b0a5; --border: #3a3d36;
   --shadow: 0 1px 10px rgba(0,0,0,0.3); --accent: #8cbaa0; --accent2: #5a8a6a;
   --tag-bg: #2a3830; --active-bg: #8cbaa0; --active-text: #1a1d1b;
 }
@@ -215,8 +215,8 @@ function buildOption(def){
   series.forEach(function(s){if(s.name==='2026月均年'){s.lineStyle={width:2.5,color:'#e06000',type:'solid'};s.itemStyle={color:'#e06000'};s.z=11;}});
   if(hasYoy)series.push({name:'25→26同比',type:'bar',yAxisIndex:1,data:yoyData,itemStyle:{color:'#c8c8c8',opacity:0.5},barWidth:'50%',z:-1,tooltip:{formatter:function(p){return'同比: <b>'+(p.value>=0?'+':'')+p.value.toFixed(1)+'%</b>';}}});
   const colors=years.map(y=>YEAR_COLORS[y]||'#999');
-  const opt={animation:false,color:colors,legend:{type:'scroll',top:2,left:'center',itemWidth:14,itemHeight:8,itemGap:10,textStyle:{fontSize:10,color:'#888'}},grid:{left:52,right:hasYoy?56:20,top:48,bottom:28},xAxis:{type:'category',data:weeks,boundaryGap:false,axisLine:{lineStyle:{color:'#c0b8a8'}},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',interval:labelInt,formatter:labelFn},splitLine:{show:false}},yAxis:[{type:'value',name:def.unit?'('+def.unit+')':'',nameTextStyle:{fontSize:10,color:'#999'},scale:true,axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',formatter:v=>fmtY(v,def.yFmt)},splitLine:{lineStyle:{color:'#ece8e0',type:'dashed'}}}],series:series,dataZoom:[{type:'slider',bottom:0,height:16,borderColor:'#ddd',fillerColor:'rgba(140,160,150,0.08)',handleStyle:{color:'#8cbaa0'},textStyle:{fontSize:9,color:'#999'}},{type:'inside'}]};
-  if(hasYoy)opt.yAxis.push({type:'value',name:'同比(%)',nameTextStyle:{fontSize:10,color:'#999'},axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#999',formatter:v=>v.toFixed(0)+'%'},splitLine:{show:false}});
+  const opt={animation:false,color:colors,legend:{type:'scroll',top:2,left:'center',itemWidth:14,itemHeight:8,itemGap:10,textStyle:{fontSize:10,color:'#666'}},grid:{left:52,right:hasYoy?56:20,top:48,bottom:28},xAxis:{type:'category',data:weeks,boundaryGap:false,axisLine:{lineStyle:{color:'#c0b8a8'}},axisTick:{show:false},axisLabel:{fontSize:10,color:'#666',interval:labelInt,formatter:labelFn},splitLine:{show:false}},yAxis:[{type:'value',name:def.unit?'('+def.unit+')':'',nameTextStyle:{fontSize:10,color:'#666'},scale:true,axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#666',formatter:v=>fmtY(v,def.yFmt)},splitLine:{lineStyle:{color:'#ece8e0',type:'dashed'}}}],series:series,dataZoom:[{type:'slider',bottom:0,height:16,borderColor:'#ddd',fillerColor:'rgba(140,160,150,0.08)',handleStyle:{color:'#8cbaa0'},textStyle:{fontSize:9,color:'#666'}},{type:'inside'}]};
+  if(hasYoy)opt.yAxis.push({type:'value',name:'同比(%)',nameTextStyle:{fontSize:10,color:'#666'},axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#666',formatter:v=>v.toFixed(0)+'%'},splitLine:{show:false}});
   const tooltipLabel=(idx)=>{const val=weeks[idx]||'';if(isSpread)return spreadLabels[idx]||val;if(isDaily)return dayToMD(idx+1);return val;};
   opt.tooltip={trigger:'axis',confine:true,backgroundColor:'rgba(28,28,24,0.95)',borderColor:'#555',textStyle:{color:'#eee',fontSize:11},
     formatter:function(ps){if(!ps||ps.length===0)return'';const label=tooltipLabel(ps[0].dataIndex);let h='<div style="font-weight:600;margin-bottom:3px">'+def.title+' · '+label+'</div>';ps.filter(p=>p.seriesName!=='26vs25同比%').sort((a,b)=>parseInt(a.seriesName)-parseInt(b.seriesName)).forEach(p=>{h+='<div style="display:flex;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-top:5px;background:'+p.color+'"></span>'+p.seriesName+': <b>'+fmtTT(p.value,def.yFmt)+' '+def.unit+'</b></div>';});return h;}
