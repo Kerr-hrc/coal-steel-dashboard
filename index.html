@@ -52,22 +52,22 @@ var po={},fo={};var go,vo=function(){function t(t,e,n){var i=this;this._sleepAft
 </script>
 <style>
 :root {
-  --bg: #f4f2ee; --card: #ffffff; --card2: #fafaf8; --text: #1a1a1a;
-  --text2: #3a3a3a; --text3: #5a5a5a; --border: #e2ded6;
-  --shadow: 0 1px 8px rgba(0,0,0,0.05); --accent: #5a7a6a; --accent2: #8cbaa0;
-  --tag-bg: #e8f0ec; --active-bg: #5a7a6a; --active-text: #fff;
+  --bg: #f4f2ee; --card: #ffffff; --card2: #fafaf8; --text: #000000;
+  --text2: #1a1a1a; --text3: #3a3a3a; --border: #d5d0c8;
+  --shadow: 0 1px 8px rgba(0,0,0,0.08); --accent: #3d6b4f; --accent2: #5a8a6a;
+  --tag-bg: #e8f0ec; --active-bg: #3d6b4f; --active-text: #fff;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1a1d1b; --card: #242824; --card2: #2a2e2a; --text: #ede8e0;
-    --text2: #d5d0c5; --text3: #b5b0a5; --border: #3a3d36;
-    --shadow: 0 1px 10px rgba(0,0,0,0.3); --accent: #8cbaa0; --accent2: #5a8a6a;
-    --tag-bg: #2a3830; --active-bg: #8cbaa0; --active-text: #1a1d1b;
+    --bg: #121412; --card: #1c201c; --card2: #222622; --text: #ffffff;
+    --text2: #e8e4dc; --text3: #c8c4b8; --border: #444840;
+    --shadow: 0 1px 10px rgba(0,0,0,0.5); --accent: #9cceb0; --accent2: #6a9a7a;
+    --tag-bg: #263028; --active-bg: #9cceb0; --active-text: #121412;
   }
 }
 html[data-theme="dark"] {
-  --bg: #1a1d1b; --card: #242824; --card2: #2a2e2a; --text: #ede8e0;
-  --text2: #d5d0c5; --text3: #b5b0a5; --border: #3a3d36;
+  --bg: #121412; --card: #1c201c; --card2: #222622; --text: #ffffff;
+  --text2: #e8e4dc; --text3: #c8c4b8; --border: #444840;
   --shadow: 0 1px 10px rgba(0,0,0,0.3); --accent: #8cbaa0; --accent2: #5a8a6a;
   --tag-bg: #2a3830; --active-bg: #8cbaa0; --active-text: #1a1d1b;
 }
@@ -215,8 +215,8 @@ function buildOption(def){
   series.forEach(function(s){if(s.name==='2026月均年'){s.lineStyle={width:2.5,color:'#e06000',type:'solid'};s.itemStyle={color:'#e06000'};s.z=11;}});
   if(hasYoy)series.push({name:'25→26同比',type:'bar',yAxisIndex:1,data:yoyData,itemStyle:{color:'#c8c8c8',opacity:0.5},barWidth:'50%',z:-1,tooltip:{formatter:function(p){return'同比: <b>'+(p.value>=0?'+':'')+p.value.toFixed(1)+'%</b>';}}});
   const colors=years.map(y=>YEAR_COLORS[y]||'#999');
-  const opt={animation:false,color:colors,legend:{type:'scroll',top:2,left:'center',itemWidth:14,itemHeight:8,itemGap:10,textStyle:{fontSize:10,color:'#666'}},grid:{left:52,right:hasYoy?56:20,top:48,bottom:28},xAxis:{type:'category',data:weeks,boundaryGap:false,axisLine:{lineStyle:{color:'#c0b8a8'}},axisTick:{show:false},axisLabel:{fontSize:10,color:'#666',interval:labelInt,formatter:labelFn},splitLine:{show:false}},yAxis:[{type:'value',name:def.unit?'('+def.unit+')':'',nameTextStyle:{fontSize:10,color:'#666'},scale:true,axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#666',formatter:v=>fmtY(v,def.yFmt)},splitLine:{lineStyle:{color:'#ece8e0',type:'dashed'}}}],series:series,dataZoom:[{type:'slider',bottom:0,height:16,borderColor:'#ddd',fillerColor:'rgba(140,160,150,0.08)',handleStyle:{color:'#8cbaa0'},textStyle:{fontSize:9,color:'#666'}},{type:'inside'}]};
-  if(hasYoy)opt.yAxis.push({type:'value',name:'同比(%)',nameTextStyle:{fontSize:10,color:'#666'},axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#666',formatter:v=>v.toFixed(0)+'%'},splitLine:{show:false}});
+  const opt={animation:false,color:colors,legend:{type:'scroll',top:2,left:'center',itemWidth:14,itemHeight:8,itemGap:10,textStyle:{fontSize:10,color:'#333'}},grid:{left:52,right:hasYoy?56:20,top:48,bottom:28},xAxis:{type:'category',data:weeks,boundaryGap:false,axisLine:{lineStyle:{color:'#aaa'}},axisTick:{show:false},axisLabel:{fontSize:10,color:'#333',interval:labelInt,formatter:labelFn},splitLine:{show:false}},yAxis:[{type:'value',name:def.unit?'('+def.unit+')':'',nameTextStyle:{fontSize:10,color:'#333'},scale:true,axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#333',formatter:v=>fmtY(v,def.yFmt)},splitLine:{lineStyle:{color:'#e0dcd0',type:'dashed'}}}],series:series,dataZoom:[{type:'slider',bottom:0,height:16,borderColor:'#ccc',fillerColor:'rgba(100,140,120,0.1)',handleStyle:{color:'#5a8a6a'},textStyle:{fontSize:9,color:'#333'}},{type:'inside'}]};
+  if(hasYoy)opt.yAxis.push({type:'value',name:'同比(%)',nameTextStyle:{fontSize:10,color:'#333'},axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#333',formatter:v=>v.toFixed(0)+'%'},splitLine:{show:false}});
   const tooltipLabel=(idx)=>{const val=weeks[idx]||'';if(isSpread)return spreadLabels[idx]||val;if(isDaily)return dayToMD(idx+1);return val;};
   opt.tooltip={trigger:'axis',confine:true,backgroundColor:'rgba(28,28,24,0.95)',borderColor:'#555',textStyle:{color:'#eee',fontSize:11},
     formatter:function(ps){if(!ps||ps.length===0)return'';const label=tooltipLabel(ps[0].dataIndex);let h='<div style="font-weight:600;margin-bottom:3px">'+def.title+' · '+label+'</div>';ps.filter(p=>p.seriesName!=='26vs25同比%').sort((a,b)=>parseInt(a.seriesName)-parseInt(b.seriesName)).forEach(p=>{h+='<div style="display:flex;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-top:5px;background:'+p.color+'"></span>'+p.seriesName+': <b>'+fmtTT(p.value,def.yFmt)+' '+def.unit+'</b></div>';});return h;}
@@ -788,7 +788,7 @@ function updateInvestPanel(W,dim){
   filteredProducts.forEach(function(p){
     const bg=p.score>=2?'#fef0f0':p.score>=0?'#fafaf8':'#f0faf4';
     html+='<div style="margin:3px 0;padding:4px 8px;background:'+bg+';border-radius:4px;font-size:11px">';
-    html+='<b>'+p.name+'</b> · 评分<b>'+(p.score>=0?'+':'')+p.score+'</b> · <span style="color:'+(p.outlook.includes('强')?'#c44':p.outlook.includes('弱')?'#3a8':'#888')+'"><b>'+p.outlook+'</b></span>';
+    html+='<b>'+p.name+'</b> · 评分<b>'+(p.score>=0?'+':'')+p.score+'</b> · <span style="color:'+(p.outlook.includes('强')?'#c44':p.outlook.includes('弱')?'#2a6':'#555')+'"><b>'+p.outlook+'</b></span>';
     html+='<div style="color:var(--text2)">'+p.advice.map(a=>'✅ '+a).join('；')+(p.risk.length>0?'；⚠️ '+p.risk.join('；⚠️ '):'')+'</div>';
     html+='<div style="margin-top:2px">📌 '+p.strategy+'</div>';
     html+='</div>';
