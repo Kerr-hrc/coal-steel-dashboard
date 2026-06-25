@@ -53,7 +53,7 @@ var po={},fo={};var go,vo=function(){function t(t,e,n){var i=this;this._sleepAft
 <style>
 :root {
   --bg: #f4f2ee; --card: #ffffff; --card2: #fafaf8; --text: #000000;
-  --text2: #1a1a1a; --text3: #3a3a3a; --border: #d5d0c8;
+  --text2: #000000; --text3: #1a1a1a; --border: #d5d0c8;
   --shadow: 0 1px 8px rgba(0,0,0,0.08); --accent: #3d6b4f; --accent2: #5a8a6a;
   --tag-bg: #e8f0ec; --active-bg: #3d6b4f; --active-text: #fff;
 }
@@ -81,44 +81,44 @@ body{
 }
 .sticky-header{position:sticky;top:0;z-index:6;background:var(--bg);max-width:1500px;margin:0 auto 10px;padding:4px 0;border-bottom:1px solid var(--border);}.top-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
 .top-bar h1{font-size:20px;font-weight:700}
-.top-bar .update-time{font-size:11px;color:var(--text3)}
-.top-bar .theme-btn{background:var(--card);border:1px solid var(--border);color:var(--text2);padding:4px 10px;border-radius:5px;cursor:pointer;font-size:11px;font-family:inherit;}
+.top-bar .update-time{font-size:12px;color:var(--text3)}
+.top-bar .theme-btn{background:var(--card);border:1px solid var(--border);color:var(--text2);padding:4px 10px;border-radius:5px;cursor:pointer;font-size:12px;font-family:inherit;}
 .top-bar .theme-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 
 /* 维度筛选 */
 .dim-bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:8px 0;}
-.dim-btn{padding:6px 16px;border:1px solid var(--border);border-radius:20px;background:var(--card);color:var(--text2);cursor:pointer;font-size:12px;font-family:inherit;transition:all .2s;}
+.dim-btn{padding:6px 16px;border:1px solid var(--border);border-radius:20px;background:var(--card);color:var(--text2);cursor:pointer;font-size:13px;font-family:inherit;transition:all .2s;}
 .dim-btn:hover{border-color:var(--accent);color:var(--accent)}
 .dim-btn.active{background:var(--active-bg);color:var(--active-text);border-color:var(--active-bg);font-weight:600}
-.dim-count{font-size:10px;opacity:0.7;margin-left:2px}
+.dim-count{font-size:11px;opacity:0.7;margin-left:2px}
 
 /* 分析面板 */
 .analysis-panel{position:relative;z-index:1;max-width:1500px;margin:0 auto 10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 16px;box-shadow:var(--shadow);}
-.analysis-panel .ap-week{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:3px}
-.analysis-panel .ap-text{font-size:12px;color:var(--text2);line-height:1.7}
+.analysis-panel .ap-week{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:3px}
+.analysis-panel .ap-text{font-size:13px;color:var(--text2);line-height:1.7}
 
 /* 图表网格 */
 .chart-grid-wrap{position:relative;z-index:1;max-width:1500px;margin:0 auto;}
 /* 侧边目录 */
-.sidebar{position:fixed;left:8px;top:80px;z-index:10;width:134px;max-height:calc(100vh-100px);overflow-y:auto;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:6px 0;box-shadow:var(--shadow);font-size:10px}
+.sidebar{position:fixed;left:8px;top:80px;z-index:10;width:134px;max-height:calc(100vh-100px);overflow-y:auto;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:6px 0;box-shadow:var(--shadow);font-size:11px}
 .sidebar a{display:block;padding:4px 10px;color:var(--text2);text-decoration:none;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:2px solid transparent;}
 .sidebar a:hover,.sidebar a.active{color:var(--accent);border-left-color:var(--accent);background:var(--tag-bg);}
 .sb-btn{display:none;position:fixed;left:4px;top:4px;z-index:12;width:30px;height:30px;background:var(--card);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:16px;color:var(--text2);text-align:center;line-height:28px;box-shadow:var(--shadow)}
 @media(max-width:1100px){.sidebar{display:none}.sidebar.open{display:block}.sb-btn{display:block}body{padding-left:16px!important}}
 @media(min-width:901px){body{padding-left:160px}}
-.cat-header{font-size:13px;font-weight:700;color:var(--text);padding:8px 0 4px;margin-top:4px;border-bottom:2px solid var(--accent2);display:flex;align-items:center;gap:6px;scroll-margin-top:100px}
+.cat-header{font-size:14px;font-weight:700;color:var(--text);padding:8px 0 4px;margin-top:4px;border-bottom:2px solid var(--accent2);display:flex;align-items:center;gap:6px;scroll-margin-top:100px}
 .cat-header:first-child{margin-top:0}
-.cat-header .cat-badge{font-size:10px;font-weight:400;color:var(--text3);background:var(--tag-bg);padding:1px 8px;border-radius:8px}
+.cat-header .cat-badge{font-size:11px;font-weight:400;color:var(--text3);background:var(--tag-bg);padding:1px 8px;border-radius:8px}
 .chart-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px;}
 @media(max-width:1100px){.chart-row{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.chart-row{grid-template-columns:1fr}}
 .chart-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 10px 6px;box-shadow:var(--shadow);}
-.chart-card .cc-title{font-size:11px;font-weight:600;color:var(--text);margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.chart-card .cc-analysis{font-size:9px;color:var(--text3);margin-bottom:2px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.chart-card .cc-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.chart-card .cc-analysis{font-size:11px;color:var(--text3);margin-bottom:2px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .chart-card .cc-chart{width:100%;height:230px}
 
-.footer{position:relative;z-index:1;max-width:1500px;margin:14px auto 0;text-align:center;font-size:10px;color:var(--text3);}
-.data-notice{position:relative;z-index:1;max-width:1500px;margin:10px auto 0;background:var(--card2);border:1px dashed var(--border);border-radius:6px;padding:10px 14px;font-size:11px;color:var(--text3)}
+.footer{position:relative;z-index:1;max-width:1500px;margin:14px auto 0;text-align:center;font-size:11px;color:var(--text3);}
+.data-notice{position:relative;z-index:1;max-width:1500px;margin:10px auto 0;background:var(--card2);border:1px dashed var(--border);border-radius:6px;padding:10px 14px;font-size:12px;color:var(--text3)}
 .data-notice strong{color:var(--accent)}
 </style>
 </head>
@@ -142,8 +142,8 @@ body{
 </div>
 
 <div class="analysis-panel" id="invest" style="border-left:3px solid var(--accent);">
-  <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:4px">📈 基本面量化 · 投资参考</div>
-  <div style="font-size:12px;color:var(--text2);line-height:1.8" id="investText">加载中...</div>
+  <div style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:4px">📈 基本面量化 · 投资参考</div>
+  <div style="font-size:13px;color:var(--text2);line-height:1.8" id="investText">加载中...</div>
 </div>
 
 <div class="analysis-panel" id="futTable" style="display:none">
