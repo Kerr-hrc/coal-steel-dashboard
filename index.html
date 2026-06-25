@@ -836,7 +836,7 @@ function updateInvestPanel(W,dim){
     products.push({name:'中厚板',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
 
-  var dimMap={"观点":["焦煤","焦炭","铁矿石","螺纹钢","热轧","冷轧","中厚板"],"焦煤":["焦煤"],"焦炭":["焦炭"],"铁矿":["铁矿石"],"钢材":["螺纹钢","热轧","冷轧","中厚板"],"价格":[],"期货":[],"仓单":[]};
+  var dimMap={"观点":["焦煤","焦炭","铁矿石","螺纹钢","热轧","冷轧","中厚板"],"焦煤":["焦煤"],"焦炭":["焦炭"],"铁矿":["铁矿石"],"钢材":["螺纹钢","热轧"],"价格":[],"期货":[],"仓单":[]};
   var filteredProducts=dimMap[dim]?products.filter(function(p){return dimMap[dim].indexOf(p.name)>=0;}):products;
   if(filteredProducts.length>0)html+='';
   filteredProducts.forEach(function(p){
