@@ -250,25 +250,28 @@ function initDimBar(){
 // 指标排序权重
 function metricOrder(title){
   const t=title;
+  // 钢材基础指标（铁水/盈利率）放在最前
+  if(t==='日均铁水产量'||t==='钢厂盈利率'||t==='高炉产能利用率'||t==='独立电炉产能利用率')return 0;
   // 钢材品种排序
   const productOrder={'合计':1,'螺纹钢':2,'线材':3,'热轧':4,'冷轧':5,'中厚板':6};
   if(productOrder[t])return productOrder[t];
   // 钢材指标排序（在品种下）
   const steelMetric={'产量':50,'日均产量':50,'消费':51,'表需':51,'总库存':52,'钢厂库存':53,'厂库':53,'社会库存':54,'社库':54,'社库比':55,'开工率':56,'产能利用率':56,'利用率':56,'分地区':57};
   if(steelMetric[t])return steelMetric[t];
-  const exact={'焦煤价格':18,'蒙煤价格':19,'焦炭价格':20,'螺纹价格':21,'冷轧价格':22,'中厚板价格':23,'钢坯成本':24,'螺纹高炉利润':25,'热卷高炉利润':26,'冷轧毛利':27,'废钢价差':28,'焦煤基差':29,'焦炭基差':30,'铁矿基差':31,'螺纹基差':32,'热卷基差':33,'盘面利润':34};
+  // 价格/利润放各看板最前方
+  const exact={'焦煤价格':2,'蒙煤价格':3,'焦炭价格':4,'螺纹价格':5,'冷轧价格':6,'中厚板价格':7,'钢坯成本':8,'螺纹高炉利润':9,'热卷高炉利润':10,'冷轧毛利':11,'废钢价差':12,'焦煤基差':13,'焦炭基差':14,'铁矿基差':15,'螺纹基差':16,'热卷基差':17,'盘面利润':18};
   if(exact[t])return exact[t];
-  if(t.includes('产量')||t.includes('日均产量')||t.includes('发货量'))return 11;
-  if(t.includes('通关'))return 12;
-  if(t.includes('开工率'))return 13;
-  if(t.includes('产能利用率')||t.includes('利用率'))return 14;
-  if(t.includes('库存')||t.includes('港存')||t.includes('厂库')||t.includes('口岸'))return 15;
-  if(t.includes('可用天数'))return 16;
-  if(t.includes('消费')||t.includes('疏港量'))return 17;
-  if(t.includes('成本'))return 35;
-  if(t.includes('利润')||t.includes('盈利')||t.includes('毛利'))return 36;
-  if(t.includes('价差'))return 37;
-  if(t.includes('仓单'))return 38;
+  if(t.includes('产量')||t.includes('日均产量')||t.includes('发货量'))return 20;
+  if(t.includes('通关'))return 21;
+  if(t.includes('开工率'))return 22;
+  if(t.includes('产能利用率')||t.includes('利用率'))return 23;
+  if(t.includes('库存')||t.includes('港存')||t.includes('厂库')||t.includes('口岸'))return 24;
+  if(t.includes('可用天数'))return 25;
+  if(t.includes('消费')||t.includes('疏港量'))return 26;
+  if(t.includes('成本'))return 27;
+  if(t.includes('利润')||t.includes('盈利')||t.includes('毛利'))return 28;
+  if(t.includes('价差'))return 29;
+  if(t.includes('仓单'))return 30;
   return 99;
 }
 // 短数据源标签
