@@ -474,11 +474,11 @@ function buildFutTable(){
   function fmtCh(v){
     if(v==null)return'<span style="color:#999">—</span>';
     var c=v>=0?'#c44':'#3a8',s=v>=0?'+':'';
-    return'<span style="color:'+c+';font-size:10px">'+s+v.toFixed(0)+'</span>';
+    return'<span style="color:'+c+';font-size:12px">'+s+v.toFixed(0)+'</span>';
   }
-  var td='style="padding:2px 3px;text-align:center"';
-  var html='<table style="width:100%;border-collapse:collapse;font-size:10px">';
-  html+='<tr style="background:var(--tag-bg)"><th style="padding:2px 4px;text-align:left">品种</th><th style="padding:2px 4px;text-align:left">指标</th><th '+td+'>'+dateLabels[0]+'</th><th '+td+'>'+dateLabels[1]+'</th><th '+td+'>'+dateLabels[2]+'</th><th '+td+'>'+dateLabels[3]+'</th><th '+td+'>'+dateLabels[4]+'</th><th '+td+'>日环比</th><th '+td+'>周环比</th><th '+td+'>同比</th><th '+td+'>5日趋势</th></tr>';
+  var td='style="padding:4px 6px;text-align:center;font-size:12px"';
+  var html='<table style="width:100%;border-collapse:collapse;font-size:12px">';
+  html+='<tr style="background:var(--tag-bg)"><th style="padding:4px 6px;text-align:left;font-size:12px">品种</th><th style="padding:4px 6px;text-align:left;font-size:12px">指标</th><th '+td+'>'+dateLabels[0]+'</th><th '+td+'>'+dateLabels[1]+'</th><th '+td+'>'+dateLabels[2]+'</th><th '+td+'>'+dateLabels[3]+'</th><th '+td+'>'+dateLabels[4]+'</th><th '+td+'>日环比</th><th '+td+'>周环比</th><th '+td+'>同比</th><th '+td+'>5日趋势</th></tr>';
   var cid=0;
   products.forEach(function(p){
     var isFirst=true;
@@ -486,17 +486,17 @@ function buildFutTable(){
       var days=lastNDays(r.id,5);
       html+='<tr>';
       if(isFirst){
-        html+='<td style="padding:2px 4px;font-weight:700;text-align:left" rowspan="'+p.rows.length+'">'+p.emoji+' '+p.name+'</td>';
+        html+='<td style="padding:4px 8px;font-weight:700;text-align:left;font-size:13px" rowspan="'+p.rows.length+'">'+p.emoji+' '+p.name+'</td>';
         isFirst=false;
       }
-      html+='<td style="padding:2px 4px;color:var(--text2);text-align:left">'+r.label+'</td>';
+      html+='<td style="padding:4px 6px;color:var(--text2);text-align:left;font-size:12px">'+r.label+'</td>';
       if(days.length===0){
-        html+='<td colspan="8" style="color:#999;text-align:center">—</td>';
+        html+='<td colspan="8" style="color:#999;text-align:center;font-size:12px">—</td>';
       }else{
         var dvals=days.slice().reverse(); // oldest→newest (D1→D5)
         var pad=5-dvals.length;
         for(var i=0;i<5;i++){
-          if(i<pad)html+='<td style="padding:2px 3px;text-align:center;color:#999">—</td>';
+          if(i<pad)html+='<td style="padding:4px 6px;text-align:center;color:#999;font-size:12px">—</td>';
           else html+='<td '+td+'><b>'+fmtV(dvals[i-pad].val,r.fmt)+'</b></td>';
         }
         var dod=days.length>1?days[0].val-days[1].val:null;
