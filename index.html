@@ -304,7 +304,7 @@ function renderGrid(){
     return;
   }
   if(filteredSections.length===0){
-    grid.innerHTML='<div style="text-align:center;padding:40px;color:var(--text3)">该维度暂无图表</div>';
+    grid.innerHTML='';
     return;
   }
 
@@ -719,7 +719,7 @@ function updateInvestPanel(W,dim){
 
   // ===== 产业链快照 =====
   let html="";
-  html+='<div style="background:var(--tag-bg);padding:6px 10px;border-radius:6px;margin-bottom:6px;font-size:11px">';
+  html+='<div style="background:var(--tag-bg);padding:8px 10px;border-radius:6px;margin-bottom:6px;font-size:12px">';
   html+='<b>📊 W'+W+' 产业链快照</b> ';
   html+='<span style="color:#e88">⚠铁矿主力跌破700关口 | 五大材全面累库消费骤降 | 焦煤产能利用率大降3pct</span><br>';
   html+='焦煤：精煤库存'+(jk!=null?Math.round(jk):'—')+'万吨(绝对低位) | 矿山产能利用率68.17%↓3.04pct | 焦化厂库存'+(jtSt!=null?Math.round(jtSt):'—')+'→'+(jtSt!=null&&jtStP!=null?Math.round(jtSt):'—')+'万吨(↓19.66) | 全面去库供给收缩';
@@ -818,45 +818,22 @@ function updateInvestPanel(W,dim){
     const outLook=s>=2?'偏强':s>=0?'震荡':'偏弱';
     products.push({name:'热轧',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
-  // --- 冷轧 ---
-  {
-    const l5p=val('s5_prod_冷轧',W),l5c=val('s5_consume_冷轧',W);
-    let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('产量'+l5p+'↓0.28万吨，产能利用率微降');
-    stock.push('库存'+l5c+'↑2.57万吨，社会库存与钢厂库存同步小增');
-    demand.push('消费84.88↓2.01万吨，汽车冷轧步入传统淡季');
-    demand.push('终端刚需采购，贸易商暗降出货');
-    s=-1; strat='冷轧淡季+需求边际走弱+库存小增，预计窄幅偏弱运行。建议观望。';
-    const outLook=s>=1?'震荡偏强':s>=-1?'窄幅偏弱':'偏弱';
-    products.push({name:'冷轧',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
-  }
-  // --- 中厚板 ---
-  {
-    const mp=val('s5_prod_中厚板',W),ms=val('s5_stock_中厚板',W),mc=val('s5_consume_中厚板',W);
-    let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('产量'+mp+'↓0.51万吨，长流程钢厂保障高附加值订单，普板资源偏紧');
-    stock.push('库存'+ms+'↑1.43万吨，小幅累库');
-    demand.push('消费'+mc+'↓5.7万吨，基建+机械制造订单偏少，淡季效应持续');
-    price.push('价格震荡趋弱，多数市场小幅下跌');
-    s=-2; strat='中厚板供需两弱+淡季累库，弱势窄幅震荡。建议观望或区间操作。';
-    const outLook=s>=1?'震荡偏强':s>=-1?'窄幅偏弱':'偏弱';
-    products.push({name:'中厚板',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
-  }
+  // --- 冷轧/中厚板已移除 ---
 
-  var dimMap={"观点":["焦煤","焦炭","铁矿石","螺纹钢","热轧","冷轧","中厚板"],"焦煤":["焦煤"],"焦炭":["焦炭"],"铁矿":["铁矿石"],"钢材":["螺纹钢","热轧"],"价格":[],"期货":[],"仓单":[]};
+  var dimMap={"观点":["焦煤","焦炭","铁矿石","螺纹钢","热轧"],"焦煤":["焦煤"],"焦炭":["焦炭"],"铁矿":["铁矿石"],"钢材":["螺纹钢","热轧"],"价格":[],"期货":[],"仓单":[]};
   var filteredProducts=dimMap[dim]?products.filter(function(p){return dimMap[dim].indexOf(p.name)>=0;}):products;
   if(filteredProducts.length>0)html+='';
   filteredProducts.forEach(function(p){
     var bg=p.score>=2?'#fef0f0':p.score>=0?'#fafaf8':'#f0faf4';
-    html+='<div style="margin:4px 0;padding:6px 8px;background:'+bg+';border-radius:5px;font-size:11px">';
-    html+='<b style="font-size:12px">'+p.name+'</b> · 评分<b>'+(p.score>=0?'+':'')+p.score+'</b> · <span style="color:'+(p.outlook.includes('强')?'#c44':p.outlook.includes('弱')?'#2a6':'#555')+'"><b>'+p.outlook+'</b></span>';
-    html+='<div style="margin-top:3px;color:var(--text2);line-height:1.6">';
+    html+='<div style="margin:4px 0;padding:8px 10px;background:'+bg+';border-radius:5px;font-size:13px">';
+    html+='<b style="font-size:14px">'+p.name+'</b> · 评分<b>'+(p.score>=0?'+':'')+p.score+'</b> · <span style="color:'+(p.outlook.includes('强')?'#c44':p.outlook.includes('弱')?'#2a6':'#555')+'"><b>'+p.outlook+'</b></span>';
+    html+='<div style="margin-top:4px;color:var(--text2);line-height:1.7;font-size:13px">';
     if(p.supply&&p.supply.length)html+='<div>🏭 供给：'+p.supply.join('；')+'</div>';
     if(p.demand&&p.demand.length)html+='<div>📊 需求：'+p.demand.join('；')+'</div>';
     if(p.stock&&p.stock.length)html+='<div>📦 库存：'+p.stock.join('；')+'</div>';
-    if(p.price&&p.price.length)html+='<div>💰 价格/利润：'+p.price.join('；')+'</div>';
+    if(p.price&&p.price.length)html+='<div>💰 价格/价差/分位：'+p.price.join('；')+'</div>';
     if(p.risk&&p.risk.length)html+='<div>⚠️ 风险：'+p.risk.join('；')+'</div>';
-    html+='<div style="margin-top:2px;font-weight:600">📌 '+p.strategy+'</div>';
+    html+='<div style="margin-top:3px;font-weight:600;font-size:13px">📌 '+p.strategy+'</div>';
     html+='</div></div>';
   });
 
