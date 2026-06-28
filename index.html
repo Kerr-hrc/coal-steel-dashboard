@@ -721,75 +721,75 @@ function updateInvestPanel(W,dim){
   let html="";
   html+='<div style="background:var(--tag-bg);padding:6px 10px;border-radius:6px;margin-bottom:6px;font-size:11px">';
   html+='<b>📊 W'+W+' 产业链快照</b> ';
-  html+='<span style="color:#e88">⚠美伊停战+宏观缓和 | 沁源煤矿6.18复产快于预期 | 螺纹主力跌至3131新低</span><br>';
-  html+='焦煤：原煤库存'+(yk!=null?Math.round(yk):'—')+'万吨(同比'+fmtC(ykY,'%')+') | 精煤库存'+(jk!=null?Math.round(jk):'—')+'万吨 | 产量'+(yc!=null?Math.round(yc):'—')+'万吨 | 口岸库存'+(ganqmd!=null?Math.round(ganqmd):'—')+'万吨';
-  html+='<br>焦炭：吨焦利润'+fmtC(jp,'int')+'元 | 产能利用率'+fmtC(jmCap,'%')+' | 焦化厂库存'+(jtSt!=null?Math.round(jtSt):'—')+'万吨 | 第八轮落地(6.22)但期货已跌至落地前 继续提涨难度加大';
-  html+='<br>铁矿：港口库存'+(io!=null?(io/10000).toFixed(2)+'亿':'—')+'吨(同比'+fmtC(ioY,'%')+') | 疏港量'+(iod!=null?Math.round(iod):'—')+'万吨 | 铁水日产'+(st!=null?st.toFixed(1):'—')+'万吨 | PB粉719已连跌六周 700元附近强支撑';
-  html+='<br>钢材：钢厂盈利率'+fmtC(pr,'%')+' | 螺纹产量'+(s5p!=null?Math.round(s5p):'—')+' 库存'+(s5s!=null?Math.round(s5s):'—')+' 消费'+(s5c!=null?Math.round(s5c):'—')+' | 厂库累库加速(4.4%) 五大材累库拐点提前两周</div>';
+  html+='<span style="color:#e88">⚠铁矿主力跌破700关口 | 五大材全面累库消费骤降 | 焦煤产能利用率大降3pct</span><br>';
+  html+='焦煤：精煤库存'+(jk!=null?Math.round(jk):'—')+'万吨(绝对低位) | 矿山产能利用率68.17%↓3.04pct | 焦化厂库存'+(jtSt!=null?Math.round(jtSt):'—')+'→'+(jtSt!=null&&jtStP!=null?Math.round(jtSt):'—')+'万吨(↓19.66) | 全面去库供给收缩';
+  html+='<br>焦炭：吨焦利润'+fmtC(jp,'int')+'元 | 产能利用率'+fmtC(jmCap,'%')+' | 日均产量'+(jmProd!=null?jmProd.toFixed(2):'—')+'万吨 | 铁水'+(st!=null?st.toFixed(1):'—')+'万吨(+0.71) | 第八轮已落地 第九轮预期升温但期货贴水';
+  html+='<br>铁矿：港口库存'+(io!=null?(io/10000).toFixed(2)+'亿':'—')+'吨(同比'+fmtC(ioY,'%')+') | 疏港量'+(iod!=null?Math.round(iod):'—')+'万吨 | 主力跌破700至696(-16) | PB粉700附近博弈关键位';
+  html+='<br>钢材：螺纹产量'+(s5p!=null?Math.round(s5p):'—')+'↓5.5 库存'+(s5s!=null?Math.round(s5s):'—')+'↑24.5 消费'+(s5c!=null?Math.round(s5c):'—')+'↓32 | 五大材消费全面下降 累库幅度扩大</div>';
 
   // ===== 分品种投资建议 =====
   let products=[];
   // --- 焦煤 ---
   {
     let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('停产产能仍超6000万吨，沁源6.18复产但产量仅恢复40%，安检加严下产量慢速回升');
-    supply.push('蒙煤通关日均1507车(+14.25%)，口岸库存'+(ganqmd!=null?Math.round(ganqmd):'—')+'万吨，进口供应充足');
-    stock.push('煤矿端库存同比-78%，焦企焦煤库存环比-31万吨，全样本库存环比-83.8万吨');
-    stock.push('精煤库存'+(jk!=null?Math.round(jk):'—')+'万吨处于绝对低位，可用天数降至12.7天');
-    demand.push('铁水'+(st!=null?st.toFixed(0):'—')+'万吨高位，焦炭第八轮落地支撑焦煤刚需');
-    demand.push('下游对高价谨慎，涨价范围及涨幅均收窄');
-    price.push('低硫主焦>2000元/吨（现货偏强），但期货已跌至仓单成本1265元附近，期现严重分化');
-    price.push('煤矿利润730元/吨（+62），估值偏高；保供政策压力');
-    risk.push('复产进度快于预期→市场情绪降温；蒙煤充足→价格反弹乏力');
-    s=0; strat='焦煤结构性短缺vs复产预期+蒙煤充足+期现分化，操作难度增大。单边建议观望，回调多焦炭替代焦煤。';
+    supply.push('矿山产能利用率68.17%↓3.04pct，精煤产量191↓1.3万吨，安检加严下供给明显收缩');
+    supply.push('蒙煤通关日均仍维持高位，口岸库存充足，进口补充持续');
+    stock.push('煤矿端精煤库存284↓4.3万吨历史低位，焦化厂库存885.56↓19.66万吨大幅去库');
+    stock.push('全样本焦煤库存连续下降，可用天数降至低位，结构性紧张加剧');
+    demand.push('铁水242.95↑0.71万吨高位，焦炭产量45.39↑0.8万，焦煤刚需强劲');
+    demand.push('下游对高价焦煤接受度有限，涨价范围收窄');
+    price.push('低硫主焦2050↑10元稳中偏强，但期货主力1248.5一周跌27元，期现严重分化');
+    price.push('煤矿利润高位，复产预期+蒙煤充足压制期货上行空间');
+    risk.push('复产进度持续推进→供给边际宽松；蒙煤通关高位→进口替代压制');
+    s=1; strat='焦煤供给收缩+库存低位提供现货支撑，但期现巨大贴水+复产预期压制期货。单边观望，焦煤/焦炭比价处于低位可关注多焦炭空焦煤。';
     const outLook=s>=3?'偏强':s>=0?'震荡偏强':s>=-2?'中性':'偏弱';
     products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
   // --- 焦炭 ---
   {
     let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('焦企利润转负至-7元/吨(环比-28)，供应连续四周减量(日均111.91万吨,-0.68万)');
-    supply.push('焦煤成本压制+部分地区环保限产，焦企开工积极性回落');
-    stock.push('焦企库存+3.5万吨低位波动，钢厂库存+9.92万吨，总库存-1.52万吨同比+6%');
-    stock.push('港口库存去化，资源向终端转移态势延续');
-    demand.push('铁水'+(st!=null?st.toFixed(0):'—')+'万吨(+1.38万)，高铁水预计维持12周，刚需强劲');
-    demand.push('钢厂盈利率'+(pr!=null?pr.toFixed(1):'—')+'%持稳，利润空间持续压缩但大规模减产条件尚不具备');
-    price.push('第八轮落地(6.22 +50/55)，港口准一级焦1767元/吨(+50)，出厂仓单成本2090元/吨');
-    price.push('期货已跌至第八轮落地前水平，现货继续提涨难度加大；第九轮存在预期但需观察');
-    risk.push('煤矿复产→焦煤成本支撑转弱；钢厂利润持续压缩→负反馈风险');
-    s=4; strat='焦炭供需偏紧+成本推动+铁水高位，第八轮已落地，建议回调买入。关注焦煤复产节奏和钢厂利润变化。';
+    supply.push('焦企产能利用率73.35%↑0.09pct，日均产量45.39↑0.8万吨，供应微增');
+    supply.push('吨焦利润75.05元微降0.27，利润持稳，焦企仍有生产动力');
+    stock.push('焦化厂库存81.92持平，钢厂库存88.93↑0.88万吨，港口58.76↑0.27万吨');
+    stock.push('总库存低位波动，资源向终端转移态势延续');
+    demand.push('铁水242.95↑0.71万吨(+0.29%)，钢厂盈利率91.08%高位，刚需强劲');
+    demand.push('高铁水预计维持，焦炭需求端支撑牢固');
+    price.push('第八轮提涨已落地，第九轮预期升温但期货贴水-35.5元显示市场分歧');
+    price.push('期货主力1946 5日累计下跌，盘面已隐含不涨/跌价预期');
+    risk.push('焦煤复产→成本支撑边际转弱；钢厂利润持续压缩→负反馈风险累积');
+    s=3; strat='焦炭供需偏紧+铁水高位+低库存，基本面支撑较强。但期货贴水反映市场悲观预期，建议等待回调做多，关注第九轮落地情况。';
     const outLook=s>=5?'偏强':s>=3?'震荡偏强':s>=0?'中性':'偏弱';
     products.push({name:'焦炭',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
   // --- 铁矿石 ---
   {
     let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('全球发运旺季+到港维持高位，供给过剩趋势不变');
-    supply.push('月底矿山冲量后将步入检修周期，供需最宽松阶段临近尾声');
-    stock.push('港口库存'+(io!=null?(io/10000).toFixed(2):'—')+'亿吨，绝对量偏高，累库持续');
-    demand.push('铁水'+(st!=null?st.toFixed(0):'—')+'万吨高位，钢厂暂无大面积减产安排，刚需支撑');
-    demand.push('钢厂按需采购，盈利率收窄下补库意愿有限');
-    price.push('PB粉719元/吨已连跌六周，跌至去年6月以来最低，700元附近强支撑');
-    price.push('9-1月差约10元/吨(近三年10%分位)，预计回升至20-40元');
-    risk.push('油价回落+海运费下行→成本支撑边际弱化');
-    s=0; strat='铁矿底部震荡但下跌空间有限(700元支撑)，中长期降息预期利多。建议区间操作，9-1月差低位可关注正套。';
+    supply.push('全球发运高峰持续+到港高位，供给过剩格局未改');
+    supply.push('港口库存~1.68亿吨绝对量偏高，累库压力仍在');
+    stock.push('港口库存'+(io!=null?(io/10000).toFixed(2):'—')+'亿吨，45港库存结构：澳洲矿占比52%，巴西矿28%');
+    demand.push('铁水242.95↑0.71万吨高位，钢厂暂无大规模减产安排');
+    demand.push('钢厂盈利率91.08%但利润空间收窄，按需采购补库意愿有限');
+    price.push('主力合约696跌破700关口(-16)，PB粉现货700元附近博弈关键位');
+    price.push('9-1月差低位，远月贴水结构，正套逻辑仍在');
+    risk.push('油价回落+海运费下行→成本支撑弱化；钢厂利润持续压缩→负反馈风险');
+    s=-1; strat='铁矿跌破700关口弱势明显，但铁水高位提供底部支撑。建议690-720区间操作，下破690止损。9-1月差低位可关注正套机会。';
     const outLook=s>=2?'偏强':s>=0?'震荡':'偏弱';
     products.push({name:'铁矿石',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
   // --- 螺纹钢 ---
   {
     let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('产量'+(s5p!=null?Math.round(s5p):'—')+'万吨(+4.1万,+3%yoy)，长流程+电炉均有复产，供给压力累积');
-    supply.push('长流程钢厂接近亏损但短期减产意愿不足，产量预计窄幅波动');
-    demand.push('表需'+(s5c!=null?Math.round(s5c):'—')+'万吨，高考后修复性反弹但持续性不足');
-    demand.push('预计本周表需回落至210万吨(端午+中考+强降雨)，1-5月地产投资降幅扩大');
-    demand.push('新增专项债发行进度38%(慢0.4pct)，资金端边际改善但累计同比仍为负');
-    stock.push('总库存'+(s5s!=null?Math.round(s5s):'—')+'万吨(-0.31%)微弱去库，厂库累库加速(4.4%)');
-    stock.push('五大材厂库连续3周累库，拐点较近三年提前约两周，去库稳定性差');
-    price.push('主力合约跌至3131元/吨(4月16日以来新低)，"下有底、上无势"格局延续');
-    price.push('焦炭第八轮落地提供成本支撑，但铁矿走弱+煤焦预期转弱削弱支撑');
-    risk.push('供强需弱矛盾加速累积+淡季需求难有增量+成本支撑边际递减');
-    s=-2; strat='淡季供需矛盾加速累积+累库拐点提前，弱势磨底阶段。建议区间交易+品种间强弱对冲。中长期降息利多但需等基本面矛盾缓解。';
+    supply.push('产量'+(s5p!=null?Math.round(s5p):'—')+'↓5.5万吨，长流程利润压缩下产量边际回落');
+    supply.push('高炉产能利用率仍处高位，供给端压力未根本缓解');
+    demand.push('表需'+(s5c!=null?Math.round(s5c):'—')+'↓32万吨大幅回落，梅雨+高温淡季压制明显');
+    demand.push('贸易商心态偏弱，终端刚需采购为主，投机需求低迷');
+    demand.push('新增专项债发行边际改善，但资金落地仍需时间');
+    stock.push('总库存'+(s5s!=null?Math.round(s5s):'—')+'↑24.5万吨，厂库↑11.33社会库存↑13.17，全面累库');
+    stock.push('五大材连续累库，累库拐点较往年提前，去库稳定性差');
+    price.push('主力合约3200一周跌20，弱势磨底格局延续');
+    price.push('焦炭第八轮提供成本支撑，但铁矿走弱削弱原料端支撑');
+    risk.push('供强需弱加速累积+淡季需求无增量+累库幅度扩大→价格承压');
+    s=-2; strat='淡季供需矛盾加速累积+全面累库，弱势磨底阶段。建议3200附近轻仓试空，止损3250，目标3100。中长期等待淡季拐点后做多。';
     const outLook=s>=3?'偏强':s>=1?'震荡偏强':s>=-1?'中性':'偏弱';
     products.push({name:'螺纹钢',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
@@ -797,15 +797,15 @@ function updateInvestPanel(W,dim){
   {
     const h5p=val('s5_prod_热轧',W),h5s=val('s5_stock_热轧',W),h5c=val('s5_consume_热轧',W);
     let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('产量持续爬升，生产仍有利润(华北吨钢毛利70元)，供应继续扩张');
-    supply.push('利润收窄下产量增速或边际放缓');
-    stock.push('库存延续紧平衡，短期供需矛盾尚不突出');
-    stock.push('下游订单放缓，厂库开启累增，总库存或加速累积');
-    demand.push('梅雨+高温淡季压制施工，汽车冷轧步入传统淡季');
+    supply.push('产量'+h5p+'↓2.14万吨，利润收窄下产量边际回落');
+    supply.push('但绝对产量仍偏高，供给压力未根本缓解');
+    stock.push('库存'+h5s+'↑8.41万吨，连续累库，供需矛盾累积中');
+    stock.push('下游订单放缓，厂库+社库同步增加');
+    demand.push('消费'+h5c+'↓9.72万吨，梅雨+高温淡季压制');
     demand.push('贸易商心态较弱，终端刚需采购为主');
-    price.push('上海热卷均价3385元/吨(环比+7)，弱势持稳');
-    risk.push('产量增至高位+淡季需求走弱→供需矛盾累积中；钢厂降价保订单→价格承压');
-    s=-1; strat='热卷库存紧平衡但供需矛盾正在累积，利润收窄+淡季需求走弱，预计弱势下跌。建议观望或区间操作。';
+    price.push('上海热卷主力3350一周跌30，弱势下行');
+    risk.push('产量高位+淡季需求走弱+库存连续累积→价格承压加重');
+    s=-1; strat='热卷供需矛盾加速累积，库存连续增加，预计弱势下跌。建议3350附近逢高轻仓试空，关注钢厂减产信号。';
     const outLook=s>=2?'偏强':s>=0?'震荡':'偏弱';
     products.push({name:'热轧',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
@@ -813,12 +813,11 @@ function updateInvestPanel(W,dim){
   {
     const l5p=val('s5_prod_冷轧',W),l5c=val('s5_consume_冷轧',W);
     let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('产能利用率小幅回升，产量微增');
-    stock.push('社会库存持续下降，钢厂库存略升，整体库存压力不大');
-    demand.push('汽车冷轧步入传统淡季，终端刚需采购，贸易商暗降出货');
-    demand.push('5月钢材出口环比+9%，但反倾销政策可能带来压力');
-    price.push('期货震荡下现货价格走弱，交投氛围清淡');
-    s=-1; strat='冷轧淡季+库存压力不大+出口韧性，预计窄幅偏弱运行、波动有限。建议观望。';
+    supply.push('产量'+l5p+'↓0.28万吨，产能利用率微降');
+    stock.push('库存'+l5c+'↑2.57万吨，社会库存与钢厂库存同步小增');
+    demand.push('消费84.88↓2.01万吨，汽车冷轧步入传统淡季');
+    demand.push('终端刚需采购，贸易商暗降出货');
+    s=-1; strat='冷轧淡季+需求边际走弱+库存小增，预计窄幅偏弱运行。建议观望。';
     const outLook=s>=1?'震荡偏强':s>=-1?'窄幅偏弱':'偏弱';
     products.push({name:'冷轧',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
@@ -826,12 +825,11 @@ function updateInvestPanel(W,dim){
   {
     const mp=val('s5_prod_中厚板',W),ms=val('s5_stock_中厚板',W),mc=val('s5_consume_中厚板',W);
     let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('长流程钢厂重点保障高附加值订单，普板资源外放放缓，货源偏紧');
-    stock.push('社会库存小幅下降');
-    demand.push('基建+房地产资金承压，机械制造订单偏少，终端仅维持刚需采购');
-    demand.push('南方降雨+施工管控+淡季效应持续，消费量环比减少');
+    supply.push('产量'+mp+'↓0.51万吨，长流程钢厂保障高附加值订单，普板资源偏紧');
+    stock.push('库存'+ms+'↑1.43万吨，小幅累库');
+    demand.push('消费'+mc+'↓5.7万吨，基建+机械制造订单偏少，淡季效应持续');
     price.push('价格震荡趋弱，多数市场小幅下跌');
-    s=-2; strat='中厚板供需两弱+货源偏紧+淡季，预计弱势窄幅震荡，难有单边行情。建议观望或区间操作。';
+    s=-2; strat='中厚板供需两弱+淡季累库，弱势窄幅震荡。建议观望或区间操作。';
     const outLook=s>=1?'震荡偏强':s>=-1?'窄幅偏弱':'偏弱';
     products.push({name:'中厚板',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
