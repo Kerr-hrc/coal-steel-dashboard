@@ -721,11 +721,11 @@ function updateInvestPanel(W,dim){
   let html="";
   html+='<div style="background:var(--tag-bg);padding:8px 10px;border-radius:6px;margin-bottom:6px;font-size:12px">';
   html+='<b>📊 W'+W+' 产业链快照</b> ';
-  html+='<span style="color:#e88">⚠铁矿主力跌破700关口 | 五大材全面累库消费骤降 | 焦煤产能利用率大降3pct</span><br>';
-  html+='焦煤：精煤库存'+(jk!=null?Math.round(jk):'—')+'万吨(绝对低位) | 矿山产能利用率68.17%↓3.04pct | 焦化厂库存'+(jtSt!=null?Math.round(jtSt):'—')+'→'+(jtSt!=null&&jtStP!=null?Math.round(jtSt):'—')+'万吨(↓19.66) | 全面去库供给收缩';
-  html+='<br>焦炭：吨焦利润'+fmtC(jp,'int')+'元 | 产能利用率'+fmtC(jmCap,'%')+' | 日均产量'+(jmProd!=null?jmProd.toFixed(2):'—')+'万吨 | 铁水'+(st!=null?st.toFixed(1):'—')+'万吨(+0.71) | 第八轮已落地 第九轮预期升温但期货贴水';
-  html+='<br>铁矿：港口库存'+(io!=null?(io/10000).toFixed(2)+'亿':'—')+'吨(同比'+fmtC(ioY,'%')+') | 疏港量'+(iod!=null?Math.round(iod):'—')+'万吨 | 主力跌破700至696(-16) | PB粉700附近博弈关键位';
-  html+='<br>钢材：螺纹产量'+(s5p!=null?Math.round(s5p):'—')+'↓5.5 库存'+(s5s!=null?Math.round(s5s):'—')+'↑24.5 消费'+(s5c!=null?Math.round(s5c):'—')+'↓32 | 五大材消费全面下降 累库幅度扩大</div>';
+  html+='<span style="color:#e88">⚠铁矿主力跌破700关口 | 螺纹消费↓32万吨全面累库 | 焦煤产能利用率↓3pct</span><br>';
+  html+='焦煤：精煤库存<b>'+(jk!=null?Math.round(jk):'—')+'</b>(↓4.3)万吨绝对低位 | 矿山产能利用率<b>68.17%</b>(↓3.04pct) | 焦化厂库存<b>885.56</b>(↓19.66)万吨 | <b>全链条去库供给收缩</b>';
+  html+='<br>焦炭：吨焦利润<b>'+fmtC(jp,'int')+'</b>(↓0.27)元 | 产能利用率<b>'+fmtC(jmCap,'%')+'</b>(↑0.09pct) | 日均产量<b>'+(jmProd!=null?jmProd.toFixed(2):'—')+'</b>(↑0.8)万吨 | 铁水<b>'+(st!=null?st.toFixed(1):'—')+'</b>(↑0.71) | 第九轮预期升温';
+  html+='<br>铁矿：港口库存<b>'+(io!=null?(io/10000).toFixed(2)+'亿':'—')+'</b>吨(同比'+fmtC(ioY,'%')+') | PB粉<b>696</b>跌至700关口 | 主力09=<b>748</b> | <b>现货贴水期货52元</b>';
+  html+='<br>钢材：螺纹产<b>'+(s5p!=null?Math.round(s5p):'—')+'</b>(↓5.5) 库<b>'+(s5s!=null?Math.round(s5s):'—')+'</b>(<b>↑24.5</b>) 消<b>'+(s5c!=null?Math.round(s5c):'—')+'</b>(<b>↓32</b>) | <b>五大材消费全面下降累库扩大</b></div>';
 
   // ===== 分品种投资建议 =====
   let products=[];
