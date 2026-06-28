@@ -825,12 +825,12 @@ function updateInvestPanel(W,dim){
     html+='<div style="margin:4px 0;padding:8px 10px;background:'+bg+';border-radius:5px;font-size:13px">';
     html+='<b style="font-size:14px">'+p.name+'</b> · 评分<b>'+(p.score>=0?'+':'')+p.score+'</b> · <span style="color:'+(p.outlook.includes('强')?'#c44':p.outlook.includes('弱')?'#2a6':'#555')+'"><b>'+p.outlook+'</b></span>';
     html+='<div style="margin-top:4px;color:var(--text2);line-height:1.7;font-size:13px">';
-    if(p.supply&&p.supply.length)html+='<div>🏭 供给：'+p.supply.join('；')+'</div>';
-    if(p.demand&&p.demand.length)html+='<div>📊 需求：'+p.demand.join('；')+'</div>';
-    if(p.stock&&p.stock.length)html+='<div>📦 库存：'+p.stock.join('；')+'</div>';
-    if(p.price&&p.price.length)html+='<div>💰 价格/价差/分位：'+p.price.join('；')+'</div>';
-    if(p.risk&&p.risk.length)html+='<div>⚠️ 风险：'+p.risk.join('；')+'</div>';
-    html+='<div style="margin-top:3px;font-weight:600;font-size:13px">📌 '+p.strategy+'</div>';
+    if(p.supply&&p.supply.length)html+='<div><b>🏭 供给：</b>'+p.supply.join('；')+'</div>';
+    if(p.demand&&p.demand.length)html+='<div><b>📊 需求：</b>'+p.demand.join('；')+'</div>';
+    if(p.stock&&p.stock.length)html+='<div><b>📦 库存：</b>'+p.stock.join('；')+'</div>';
+    if(p.price&&p.price.length)html+='<div><b>💰 价格/价差/分位：</b>'+p.price.join('；')+'</div>';
+    if(p.risk&&p.risk.length)html+='<div><b>⚠️ 风险：</b>'+p.risk.join('；')+'</div>';
+    html+='<div style="margin-top:3px;font-weight:600;font-size:13px"><b>📌 策略：</b>'+p.strategy+'</div>';
     html+='</div></div>';
   });
 
