@@ -727,6 +727,18 @@ function updateInvestPanel(W,dim){
   html+='<br>铁矿：港口库存<b>'+(io!=null?(io/10000).toFixed(2)+'亿':'—')+'</b>吨(同比'+fmtC(ioY,'%')+') | PB粉<b>696</b>跌至700关口 | 主力09=<b>748</b> | <b>现货贴水期货52元</b>';
   html+='<br>钢材：螺纹产<b>'+(s5p!=null?Math.round(s5p):'—')+'</b>(↓5.5) 库<b>'+(s5s!=null?Math.round(s5s):'—')+'</b>(<b>↑24.5</b>) 消<b>'+(s5c!=null?Math.round(s5c):'—')+'</b>(<b>↓32</b>) | <b>五大材消费全面下降累库扩大</b></div>';
 
+  // ===== 核心指标一览表 =====
+  html+='<div style="margin:4px 0;padding:6px 8px;background:#fafaf8;border-radius:5px;font-size:12px;overflow-x:auto">';
+  html+='<b style="font-size:13px">📋 核心指标一览（06-26）</b>';
+  html+='<table style="width:100%;border-collapse:collapse;margin-top:3px;font-size:11px;text-align:center">';
+  html+='<tr style="background:#eee;font-weight:700"><td style="padding:3px 4px;text-align:left">品种</td><td>评分</td><td>价格分位</td><td>同期分位</td><td>基差</td><td>近月价差</td><td>波动率</td><td>波分位</td><td>成交额</td><td>成交分位</td><td>资金信号</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700;color:#555">⛏ 焦煤</td><td style="color:#c44">+1</td><td style="color:#c44">30%</td><td style="color:#c44">0%</td><td>+183</td><td>-247</td><td>2.92%</td><td>55%</td><td>9.23亿</td><td style="color:#c44">94%</td><td style="color:#c44">🔥活跃</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700;color:#555">🧱 焦炭</td><td style="color:#c44">+3</td><td style="color:#c44">34%</td><td style="color:#c44">0%</td><td>+60</td><td>-66</td><td>2.52%</td><td>53%</td><td>1.48亿</td><td>47%</td><td>➖中性</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700;color:#555">🪨 铁矿</td><td style="color:#2a6">-2</td><td style="color:#2a6">9%</td><td style="color:#2a6">0%</td><td style="color:#2a6">-52</td><td>+12.5</td><td>3.14%</td><td>63%</td><td>2.61亿</td><td style="color:#2a6">16%</td><td style="color:#2a6">❄️缩量</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700;color:#555">🔩 螺纹</td><td style="color:#2a6">-2</td><td style="color:#2a6">6%</td><td style="color:#2a6">0%</td><td>+107</td><td>-39</td><td>0.84%</td><td style="color:#2a6">15%</td><td>21.2亿</td><td style="color:#2a6">8%</td><td style="color:#2a6">🧊枯竭</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700;color:#555">🔥 热卷</td><td style="color:#2a6">-1</td><td style="color:#2a6">23%</td><td style="color:#2a6">0%</td><td>+34</td><td>-15</td><td>0.81%</td><td style="color:#2a6">8%</td><td>13.7亿</td><td>43%</td><td style="color:#2a6">🧊冰点</td></tr>';
+  html+='</table></div>';
+
   // ===== 分品种投资建议 =====
   let products=[];
   // --- 焦煤 ---
