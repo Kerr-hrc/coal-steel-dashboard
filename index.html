@@ -734,7 +734,7 @@ function updateInvestPanel(W,dim){
   html+='<b style="font-size:13px">📋 核心指标一览（W'+W+' · '+tblDate+'）</b>';
   html+='<table style="width:100%;border-collapse:collapse;margin-top:3px;font-size:11px;text-align:center">';
   html+='<tr style="background:#eee;font-weight:700"><td style="padding:3px 4px;text-align:left">品种</td><td>评分</td><td>价格分位</td><td>同期分位</td><td>基差</td><td>近月价差</td><td>波动率</td><td>波分位</td><td>成交额</td><td>成交分位</td><td>资金信号</td><td style="text-align:left;min-width:140px">核心逻辑</td><td style="text-align:left;min-width:160px">策略</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td style="color:#c44">+1</td><td style="color:#c44">30%</td><td style="color:#c44">0%</td><td>+183</td><td>-247</td><td>4.02%</td><td style="color:#c44">77%</td><td>9.20亿</td><td style="color:#c44">94%</td><td style="color:#c44">🔥活跃</td><td style="text-align:left;font-size:10px">供给收缩+库存低位，波动率飙升(↑1.1pct)</td><td style="text-align:left;font-size:10px">空09多01反套；单边观望</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td style="color:#c44">+1</td><td style="color:#c44">30%</td><td style="color:#c44">0%</td><td>+183</td><td>-247</td><td>4.02%</td><td style="color:#c44">77%</td><td>9.20亿</td><td style="color:#c44">94%</td><td style="color:#c44">🔥活跃</td><td style="text-align:left;font-size:10px">供给收缩+库存低位，波动率飙升(↑1.1pct)</td><td style="text-align:left;font-size:10px">多09空01正套；单边观望</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🧱 焦炭</td><td style="color:#c44">+3</td><td style="color:#c44">34%</td><td style="color:#c44">0%</td><td>+60</td><td>-66</td><td>2.67%</td><td>58%</td><td>4.16亿</td><td>13%</td><td>➖中性</td><td style="text-align:left;font-size:10px">利润回升+铁水高位+低库存，基本面最强</td><td style="text-align:left;font-size:10px">回调做多09；关注第九轮</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🪨 铁矿</td><td style="color:#2a6">-2</td><td style="color:#2a6">9%</td><td style="color:#2a6">0%</td><td style="color:#2a6">-52</td><td>+12.5</td><td>1.21%</td><td>6%</td><td>0.66亿</td><td style="color:#2a6">2%</td><td style="color:#2a6">❄️缩量</td><td style="text-align:left;font-size:10px">估值极低+波动骤降(↓1.9pct)，资金撤离</td><td style="text-align:left;font-size:10px">690-720区间，破690止损</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🔩 螺纹</td><td style="color:#2a6">-2</td><td style="color:#2a6">6%</td><td style="color:#2a6">0%</td><td>+107</td><td>-39</td><td>0.52%</td><td style="color:#2a6">2%</td><td>0.69亿</td><td style="color:#2a6">16%</td><td style="color:#2a6">🧊枯竭</td><td style="text-align:left;font-size:10px">全面累库+波动冰点2%分位，资金已放弃</td><td style="text-align:left;font-size:10px">3200试空→3100；减产离场</td></tr>';
@@ -755,11 +755,11 @@ function updateInvestPanel(W,dim){
     demand.push('下游对高价焦煤接受度有限，涨价范围收窄');
     price.push('低硫主焦<b>2050</b>(↑10)元稳中偏强，期货09=<b>1248.5</b>，蒙5精煤仓单1432→基差≈<b>183</b>(期货贴水)');
     price.push('【分位】近7年<b>30%</b>分位（同期0%→历史同期最低），估值偏低但非极端');
-    price.push('【价差】09-01=<b>-246.5</b>深度contango，近月承压反映复产+蒙煤悲观预期');
+    price.push('【价差】09-01=<b>-246.5</b>深度contango，供给收缩+低库存→近月09受支撑更强→<b>contango应收窄（正套）</b>');
     price.push('【资金】日成交额<b>9.20</b>亿(分位94%)，波动率<b>4.02%</b>(分位77%)，<b>波动率飙升↑1.1pct</b>，资金高度活跃');
     price.push('【季节】6→7月焦煤季节性偏弱，复产+蒙煤进口压制09合约');
     risk.push('复产进度持续推进→供给边际宽松；蒙煤通关高位→进口替代压制');
-    s=1; strat='<b>30%分位+基差183+资金活跃</b>，期货已充分定价悲观但流动性充裕。<b>反套逻辑清晰（空09多01）</b>，单边观望等基差收窄至100以内。';
+    s=1; strat='<b>供给收缩+低库存+contango极端(-247)</b>，近月09受现货紧缺支撑更强，contango应收窄。<b>正套逻辑：多09空01</b>。单边观望等基差收窄至100以内。';
     const outLook=s>=3?'偏强':s>=0?'震荡偏强':s>=-2?'中性':'偏弱';
     products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
