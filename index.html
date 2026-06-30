@@ -721,7 +721,7 @@ function updateInvestPanel(W,dim){
   let html="";
   html+='<div style="background:var(--tag-bg);padding:8px 10px;border-radius:6px;margin-bottom:6px;font-size:12px">';
   html+='<b>📊 W'+W+' 产业链快照</b> ';
-  html+='<span style="color:#e88">⚠铁矿跌破700 | 螺纹消费↓32累库 | 黑色板块波动率36%分位+成交21%分位→市场情绪低迷</span><br>';
+  html+='<span style="color:#e88">⚠焦煤波动率飙升↑1.1pct | 螺纹/热卷波动冰点 | 铁矿资金撤离</span><br>';
   html+='焦煤：矿山产能利用率<b>68.17%</b>(↓3.04pct) | 523精煤日产<b>67.07</b>(↓1.41)万吨 | 523精煤库存<b>173.88</b>万吨 | 焦化厂库存<b>885.56</b>(↓19.66)万吨 | <b>全链条去库供给收缩</b>';
   html+='<br>焦炭：吨焦利润<b>'+fmtC(jp,'int')+'</b>(↑15)元 | 全样本产能利用率<b>74.67%</b>(↑0.10pct) | 日产<b>64.13</b>(↓0.08)万吨 | 铁水<b>'+(st!=null?st.toFixed(1):'—')+'</b>(↑0.71) | <b>利润大幅回升，第九轮预期升温</b>';
   html+='<br>铁矿：港口库存<b>'+(io!=null?(io/10000).toFixed(2)+'亿':'—')+'</b>吨(同比'+fmtC(ioY,'%')+') | PB粉<b>696</b>跌至700关口 | 主力09=<b>748</b> | <b>现货贴水期货52元</b>';
@@ -734,11 +734,11 @@ function updateInvestPanel(W,dim){
   html+='<b style="font-size:13px">📋 核心指标一览（W'+W+' · '+tblDate+'）</b>';
   html+='<table style="width:100%;border-collapse:collapse;margin-top:3px;font-size:11px;text-align:center">';
   html+='<tr style="background:#eee;font-weight:700"><td style="padding:3px 4px;text-align:left">品种</td><td>评分</td><td>价格分位</td><td>同期分位</td><td>基差</td><td>近月价差</td><td>波动率</td><td>波分位</td><td>成交额</td><td>成交分位</td><td>资金信号</td><td style="text-align:left;min-width:140px">核心逻辑</td><td style="text-align:left;min-width:160px">策略</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td style="color:#c44">+1</td><td style="color:#c44">30%</td><td style="color:#c44">0%</td><td>+183</td><td>-247</td><td>2.92%</td><td>55%</td><td>9.23亿</td><td style="color:#c44">94%</td><td style="color:#c44">🔥活跃</td><td style="text-align:left;font-size:10px">供给收缩+库存低位，但期现贴水+复产预期压制</td><td style="text-align:left;font-size:10px">空09多01反套；单边观望</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">🧱 焦炭</td><td style="color:#c44">+3</td><td style="color:#c44">34%</td><td style="color:#c44">0%</td><td>+60</td><td>-66</td><td>2.52%</td><td>53%</td><td>1.48亿</td><td>47%</td><td>➖中性</td><td style="text-align:left;font-size:10px">利润回升+铁水高位+低库存，基本面最强</td><td style="text-align:left;font-size:10px">回调做多09；关注第九轮</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">🪨 铁矿</td><td style="color:#2a6">-2</td><td style="color:#2a6">9%</td><td style="color:#2a6">0%</td><td style="color:#2a6">-52</td><td>+12.5</td><td>3.14%</td><td>63%</td><td>2.61亿</td><td style="color:#2a6">16%</td><td style="color:#2a6">❄️缩量</td><td style="text-align:left;font-size:10px">估值极低+现货贴水期货，PB粉700博弈</td><td style="text-align:left;font-size:10px">690-720区间，破690止损</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">🔩 螺纹</td><td style="color:#2a6">-2</td><td style="color:#2a6">6%</td><td style="color:#2a6">0%</td><td>+107</td><td>-39</td><td>0.84%</td><td style="color:#2a6">15%</td><td>21.2亿</td><td style="color:#2a6">8%</td><td style="color:#2a6">🧊枯竭</td><td style="text-align:left;font-size:10px">全面累库+消费↓32+盘利-177(2%分位)</td><td style="text-align:left;font-size:10px">3200试空→3100；减产离场</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">🔥 热卷</td><td style="color:#2a6">-1</td><td style="color:#2a6">23%</td><td style="color:#2a6">0%</td><td>+34</td><td>-15</td><td>0.81%</td><td style="color:#2a6">8%</td><td>13.7亿</td><td>43%</td><td style="color:#2a6">🧊冰点</td><td style="text-align:left;font-size:10px">累库持续+波动冰点，卷螺差-39低位</td><td style="text-align:left;font-size:10px">3350逢高试空；关注减产</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td style="color:#c44">+1</td><td style="color:#c44">30%</td><td style="color:#c44">0%</td><td>+183</td><td>-247</td><td>4.02%</td><td style="color:#c44">77%</td><td>9.20亿</td><td style="color:#c44">94%</td><td style="color:#c44">🔥活跃</td><td style="text-align:left;font-size:10px">供给收缩+库存低位，波动率飙升(↑1.1pct)</td><td style="text-align:left;font-size:10px">空09多01反套；单边观望</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">🧱 焦炭</td><td style="color:#c44">+3</td><td style="color:#c44">34%</td><td style="color:#c44">0%</td><td>+60</td><td>-66</td><td>2.67%</td><td>58%</td><td>4.16亿</td><td>13%</td><td>➖中性</td><td style="text-align:left;font-size:10px">利润回升+铁水高位+低库存，基本面最强</td><td style="text-align:left;font-size:10px">回调做多09；关注第九轮</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">🪨 铁矿</td><td style="color:#2a6">-2</td><td style="color:#2a6">9%</td><td style="color:#2a6">0%</td><td style="color:#2a6">-52</td><td>+12.5</td><td>1.21%</td><td>6%</td><td>0.66亿</td><td style="color:#2a6">2%</td><td style="color:#2a6">❄️缩量</td><td style="text-align:left;font-size:10px">估值极低+波动骤降(↓1.9pct)，资金撤离</td><td style="text-align:left;font-size:10px">690-720区间，破690止损</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">🔩 螺纹</td><td style="color:#2a6">-2</td><td style="color:#2a6">6%</td><td style="color:#2a6">0%</td><td>+107</td><td>-39</td><td>0.52%</td><td style="color:#2a6">2%</td><td>0.69亿</td><td style="color:#2a6">16%</td><td style="color:#2a6">🧊枯竭</td><td style="text-align:left;font-size:10px">全面累库+波动冰点2%分位，资金已放弃</td><td style="text-align:left;font-size:10px">3200试空→3100；减产离场</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">🔥 热卷</td><td style="color:#2a6">-1</td><td style="color:#2a6">23%</td><td style="color:#2a6">0%</td><td>+34</td><td>-15</td><td>0.54%</td><td style="color:#2a6">1%</td><td>3.59亿</td><td>11%</td><td style="color:#2a6">🧊冰点</td><td style="text-align:left;font-size:10px">累库持续+波动率1%分位冰点</td><td style="text-align:left;font-size:10px">3350逢高试空；关注减产</td></tr>';
   html+='</table></div>';
 
   // ===== 分品种投资建议 =====
@@ -756,7 +756,7 @@ function updateInvestPanel(W,dim){
     price.push('低硫主焦<b>2050</b>(↑10)元稳中偏强，期货09=<b>1248.5</b>，蒙5精煤仓单1432→基差≈<b>183</b>(期货贴水)');
     price.push('【分位】近7年<b>30%</b>分位（同期0%→历史同期最低），估值偏低但非极端');
     price.push('【价差】09-01=<b>-246.5</b>深度contango，近月承压反映复产+蒙煤悲观预期');
-    price.push('【资金】日成交额<b>9.23</b>亿(分位93.9%)，波动率2.92%(分位55.5%)，<b>资金高度活跃</b>，黑色中关注度最高');
+    price.push('【资金】日成交额<b>9.20</b>亿(分位94%)，波动率<b>4.02%</b>(分位77%)，<b>波动率飙升↑1.1pct</b>，资金高度活跃');
     price.push('【季节】6→7月焦煤季节性偏弱，复产+蒙煤进口压制09合约');
     risk.push('复产进度持续推进→供给边际宽松；蒙煤通关高位→进口替代压制');
     s=1; strat='<b>30%分位+基差183+资金活跃</b>，期货已充分定价悲观但流动性充裕。<b>反套逻辑清晰（空09多01）</b>，单边观望等基差收窄至100以内。';
@@ -793,7 +793,7 @@ function updateInvestPanel(W,dim){
     price.push('主力09=<b>748</b>，PB粉现货<b>696</b>，基差09=<b>-52</b>（现货贴水期货→期货升水，特殊结构）');
     price.push('【分位】近7年<b>9%</b>分位（同期0%→历史最低），低于2025同期700、2024同期793');
     price.push('【价差】09-01=<b>+12.5</b> backwardation（09升水01→近强远弱），近端结构反转');
-    price.push('【资金】日成交额<b>2.61</b>亿(分位16.3%极低)，波动率3.14%(分位62.6%)，<b>缩量博弈</b>资金参与度低');
+    price.push('【资金】日成交额<b>0.66</b>亿(分位2%极低)，波动率<b>1.21%</b>(分位6%)，<b>波动骤降↓1.9pct，资金大幅撤离</b>');
     price.push('【季节】6→8月铁矿季节性走弱，但<b>9%分位已定价悲观</b>');
     risk.push('<b>PB粉有效跌破700</b>→成本支撑瓦解；钢厂利润压缩→负反馈；海运费下行');
     s=-2; strat='<b>9%分位+同期最低+缩量</b>，估值极低但资金不认可。<b>690-720区间操作，下破690止损</b>。若PB粉企稳700+放量→做多近月。';
@@ -812,7 +812,7 @@ function updateInvestPanel(W,dim){
     price.push('【分位】主力10=<b>3093</b>(↓20)，近7年<b>6%</b>分位（同期0%→历史最低），均价4389(22)→<b>3251(26)企稳</b>');
     price.push('现货基差<b>107</b>(现货升水)，10-01=<b>-39</b> contango(持仓换月成本39元)');
     price.push('盘面利润<b>-177</b>(<b>2%分位</b>，仅高于历史最低-268)，<b>钢厂亏损面扩大或触发减产</b>');
-    price.push('【资金】日成交额<b>21.17</b>亿(分位7.8%极低)，波动率0.84%(分位14.6%冰点)，<b>流动性枯竭</b>，市场极度观望');
+    price.push('【资金】日成交额<b>0.69</b>亿(分位16%)，波动率<b>0.52%</b>(分位2%冰点)，<b>流动性枯竭加剧</b>');
     risk.push('供强需弱加速累积+淡季需求无增量+累库幅度扩大→价格承压；<b>盘面亏损扩大→减产预期升温</b>');
     s=-2; strat='<b>6%分位+盘面利润2%分位(-177)+流动性枯竭</b>，估值极低但资金已放弃。基差107有收敛需求→短线或有反弹。<b>3200附近轻仓试空，止损3250，目标3100</b>。减产信号出现则离场。';
     const outLook=s>=3?'偏强':s>=1?'震荡偏强':s>=-1?'中性':'偏弱';
@@ -828,7 +828,7 @@ function updateInvestPanel(W,dim){
     price.push('主力10=<b>3316</b>(↓30)，基差≈34(现货平水)，10-01=<b>-15</b> contango(持仓成本15元)');
     price.push('【分位】近7年<b>23%</b>分位（同期0%→历史最低），盘面利润-54(<b>4%分位</b>)，全线亏损');
     price.push('卷螺差=<b>-39</b>低位(螺纹>热卷)，跨品种价差异常但无明确修复驱动');
-    price.push('【资金】日成交额<b>13.70</b>亿(分位42.7%)，波动率0.81%(分位7.8%冰点)，<b>波动率冰点但成交尚可</b>');
+    price.push('【资金】日成交额<b>3.59</b>亿(分位11%)，波动率<b>0.54%</b>(分位1%冰点)，<b>波动率触底</b>');
     risk.push('产量高位+淡季需求走弱+库存连续累积→<b>价格承压加重</b>');
     s=-1; strat='<b>23%分位+波动率冰点+盘面利润4%分位+累库</b>。卷螺差-39偏低但驱动不明。<b>3350附近逢高轻仓试空</b>，关注钢厂减产信号。';
     const outLook=s>=2?'偏强':s>=0?'震荡':'偏弱';
