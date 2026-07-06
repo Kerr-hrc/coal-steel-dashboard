@@ -817,10 +817,10 @@ function updateInvestPanel(W,dim){
     price.push('【分位】主力10=<b>3093</b>(↓20)，近7年<b>6%</b>分位（同期0%→历史最低），均价4389(22)→<b>3251(26)企稳</b>');
     price.push('现货基差<b>107</b>(现货升水)，10-01=<b>-39</b> contango(持仓换月成本39元)');
     price.push('盘面利润<b>-190</b>(<b>1%分位</b>，距历史最低-268仅78元)，<b>现货高炉已亏损(-8~-18)</b>');
-    price.push('【减产已启动】10座高炉检修+吨钢亏损-36元(近三年同期最低)+厂库同比<b>+7.05%</b>');
+    price.push('【减产已启动】10座高炉检修+吨钢亏损<b>-61</b>元(近三年最低)+厂库同比<b>+7.05%</b>');
     price.push('【资金】日成交额<b>0.10</b>亿(分位89%)，波动率0.52%(分位2%冰点)，<b>底部磨底</b>');
     risk.push('供强需弱加速累积+淡季需求无增量+累库幅度扩大→价格承压；<b>盘面亏损扩大→减产预期升温</b>');
-    s=-1; strat='<b>减产已启动+吨钢-36元+消费回升210</b>，继续大跌空间有限。<b>不宜追空</b>，反弹高度受淡季压制。';
+    s=-1; strat='<b>减产已启动+吨钢-61元+消费回升210</b>，继续大跌空间有限。<b>不宜追空</b>，反弹高度受淡季压制。';
     const outLook=s>=3?'偏强':s>=1?'震荡偏强':s>=-1?'中性':'偏弱';
     products.push({name:'螺纹钢',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
@@ -833,10 +833,10 @@ function updateInvestPanel(W,dim){
     demand.push('消费<b>'+h5c+'</b>(<b>↓9.72</b>)万吨，梅雨+高温淡季压制，终端刚需为主');
     price.push('主力10=<b>3316</b>(↓30)，基差≈34(现货平水)，10-01=<b>-15</b> contango(持仓成本15元)');
     price.push('【分位】近7年<b>23%</b>分位，盘面利润-66(2%分位)，出口vs印度-37美元→<b>竞争力修复</b>');
-    price.push('卷螺差=<b>-39</b>低位，出口价格优势显现(中日韩+5美元)→<b>外需托底延缓矛盾累积</b>');
+    price.push('卷螺差=<b>-39</b>低位，<b>现货利润18元→即将归零</b>，出口价格优势→<b>外需托底但内需疲弱</b>');
     price.push('【资金】日成交额<b>0.46</b>亿(分位13%)，波动率<b>0.62%</b>(分位2%冰点)，<b>波动率触底</b>');
     risk.push('产量高位+淡季需求走弱+库存连续累积→<b>价格承压加重</b>');
-    s=-1; strat='<b>库存加速累积+减产抑制供给+出口托底</b>，做空逻辑弱化。<b>磨底为主</b>，关注出口接单持续性。';
+    s=-1; strat='<b>现货利润18元濒临亏损+库存加速累积+出口托底</b>，做空逻辑弱化但利润转负风险仍在。<b>磨底为主</b>，关注利润是否转负。';
     const outLook=s>=2?'偏强':s>=0?'震荡':'偏弱';
     products.push({name:'热轧',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
