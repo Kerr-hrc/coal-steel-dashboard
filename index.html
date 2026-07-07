@@ -762,7 +762,7 @@ function updateInvestPanel(W,dim){
     price.push('【供给扰动】那达慕闭关5天(7/11-15)+安监+竞拍流拍→短期供给收紧');
     risk.push('减产已启动→铁水回落→焦煤需求边际转弱；煤矿复产放量节奏');
     s=1; strat='<b>供给收缩+那达慕闭关+contango极端(-247)</b>，底部支撑强。<b>正套：多09空01</b>。关注现货松动幅度和铁水变化。';
-    const outLook=s>=3?'偏强':s>=0?'震荡偏强':s>=-2?'中性':'偏弱';
+    const outLook=s>=3?'做多':s>=1?'轻仓做多':s>=-1?'观望':'做空';
     products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
   // --- 焦炭 ---
@@ -782,7 +782,7 @@ function updateInvestPanel(W,dim){
     price.push('【季节】6→7月焦炭季节性走平，淡季铁水高位支撑需求');
     risk.push('焦煤复产→成本支撑边际转弱；钢厂利润持续压缩→负反馈风险累积');
     s=2; strat='<b>提涨尾声+铁水降至240万+10座高炉检修</b>，需求转弱确认。<b>空焦炭/多焦煤套利</b>；单边偏空。';
-    const outLook=s>=5?'偏强':s>=3?'震荡偏强':s>=0?'中性':'偏弱';
+    const outLook=s>=4?'做多':s>=2?'轻仓做多':s>=0?'观望':'做空';
     products.push({name:'焦炭',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
   // --- 铁矿石 ---
@@ -802,7 +802,7 @@ function updateInvestPanel(W,dim){
     price.push('【季节】6→8月铁矿季节性走弱，但<b>9%分位已定价悲观</b>');
     risk.push('<b>PB粉有效跌破700</b>→成本支撑瓦解；钢厂利润压缩→负反馈；海运费下行');
     s=-1; strat='<b>9%分位+累库放缓+供需趋近平衡</b>，下行空间有限但反弹需政策催化。<b>09-01正套</b>；700附近磨底。';
-    const outLook=s>=2?'偏强':s>=0?'震荡':'偏弱';
+    const outLook=s>=2?'轻仓做多':s>=0?'观望':'做空';
     products.push({name:'铁矿石',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
   // --- 螺纹钢 ---
@@ -821,7 +821,7 @@ function updateInvestPanel(W,dim){
     price.push('【资金】日成交额<b>0.10</b>亿(排名#34↑17)，波动率0.52%(分位2%冰点)，<b>底部磨底</b>');
     risk.push('供强需弱加速累积+淡季需求无增量+累库幅度扩大→价格承压；<b>盘面亏损扩大→减产预期升温</b>');
     s=-1; strat='<b>减产已启动+吨钢-61元+消费回升210</b>，继续大跌空间有限。<b>不宜追空</b>，反弹高度受淡季压制。';
-    const outLook=s>=3?'偏强':s>=1?'震荡偏强':s>=-1?'中性':'偏弱';
+    const outLook=s>=2?'轻仓做多':s>=-1?'观望':'做空';
     products.push({name:'螺纹钢',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
   // --- 热轧 ---
@@ -837,7 +837,7 @@ function updateInvestPanel(W,dim){
     price.push('【资金】日成交额<b>0.42</b>亿(排名#39↑17)，波动率<b>🧊枯竭</b>(分位2%冰点)，<b>波动率触底</b>');
     risk.push('产量高位+淡季需求走弱+库存连续累积→<b>价格承压加重</b>');
     s=-1; strat='<b>现货利润18元濒临亏损+库存加速累积+出口托底</b>，做空逻辑弱化但利润转负风险仍在。<b>磨底为主</b>，关注利润是否转负。';
-    const outLook=s>=2?'偏强':s>=0?'震荡':'偏弱';
+    const outLook=s>=2?'轻仓做多':s>=0?'观望':'做空';
     products.push({name:'热轧',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
   // --- 冷轧/中厚板已移除 ---
@@ -848,7 +848,7 @@ function updateInvestPanel(W,dim){
   filteredProducts.forEach(function(p){
     var bg=p.score>=2?'#fef0f0':p.score>=0?'#fafaf8':'#f0faf4';
     html+='<div style="margin:4px 0;padding:8px 10px;background:'+bg+';border-radius:5px;font-size:13px">';
-    html+='<b style="font-size:14px">'+p.name+'</b> · 评分<b>'+(p.score>=0?'+':'')+p.score+'</b> · <span style="color:'+(p.outlook.includes('强')?'#c44':p.outlook.includes('弱')?'#2a6':'#555')+'"><b>'+p.outlook+'</b></span>';
+    html+='<b style="font-size:14px">'+p.name+'</b> · 评分<b>'+(p.score>=0?'+':'')+p.score+'</b> · <span style="color:'+(p.outlook.includes('做多')?'#c44':p.outlook.includes('做空')?'#2a6':'#555')+'"><b>'+p.outlook+'</b></span>';
     html+='<div style="margin-top:4px;color:var(--text2);line-height:1.7;font-size:13px">';
     if(p.supply&&p.supply.length)html+='<div><b>🏭 供给：</b>'+p.supply.join('；')+'</div>';
     if(p.demand&&p.demand.length)html+='<div><b>📊 需求：</b>'+p.demand.join('；')+'</div>';
