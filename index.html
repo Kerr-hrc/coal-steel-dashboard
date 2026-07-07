@@ -734,7 +734,7 @@ function updateInvestPanel(W,dim){
   html+='<b style="font-size:13px">📋 核心指标一览（W'+W+' · '+tblDate+'）</b>';
   html+='<table style="width:100%;border-collapse:collapse;margin-top:3px;font-size:11px;text-align:center">';
   html+='<tr style="background:#eee;font-weight:700"><td style="padding:3px 4px;text-align:left">品种</td><td>评分</td><td>价格分位</td><td>同期分位</td><td>基差</td><td>近月价差</td><td>波动率</td><td>波分位</td><td>成交额</td><td>成交分位</td><td>资金信号</td><td style="text-align:left;min-width:140px">核心逻辑</td><td style="text-align:left;min-width:160px">策略</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td style="color:#c44">+1</td><td style="color:#c44">30%</td><td style="color:#c44">0%</td><td>+183</td><td>-247</td><td>2.49%</td><td style="color:#c44">44%</td><td>86%</td><td style="color:#c44">undefined</td><td style="color:#c44">🔥活跃</td><td style="text-align:left;font-size:10px">供给收缩+库存低位+蒙煤扰动(<600车)，contango极端</td><td style="text-align:left;font-size:10px">多09空01正套；现货底部支撑强</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td style="color:#555">0</td><td style="color:#c44">30%</td><td style="color:#c44">0%</td><td>+183</td><td>-247</td><td>2.49%</td><td style="color:#c44">44%</td><td>86%</td><td style="color:#c44">undefined</td><td style="color:#c44">🔥活跃</td><td style="text-align:left;font-size:10px">供给收缩+库存低位+蒙煤扰动(<600车)，contango极端</td><td style="text-align:left;font-size:10px">多09空01正套；现货底部支撑强</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🧱 焦炭</td><td style="color:#c44">+2</td><td style="color:#c44">34%</td><td style="color:#c44">0%</td><td>+60</td><td>-66</td><td>51%</td><td>0.39亿</td><td>10%</td><td>undefined</td><td>➖中性</td><td style="text-align:left;font-size:10px">第十轮提涨周期尾声+铁水降至240万+检修10座高炉</td><td style="text-align:left;font-size:10px">空焦炭/多焦煤套利；单边偏空</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🪨 铁矿</td><td style="color:#2a6">-2</td><td style="color:#2a6">9%</td><td style="color:#2a6">0%</td><td style="color:#2a6">-52</td><td>+12.5</td><td>undefined</td><td>6%</td><td>0.04亿</td><td style="color:#2a6">undefined</td><td style="color:#2a6">❄️缩量</td><td style="text-align:left;font-size:10px">铁水高位韧性但检修增多→需求利空临近</td><td style="text-align:left;font-size:10px">09-01正套；690-720区间</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🔩 螺纹</td><td style="color:#2a6">-2</td><td style="color:#2a6">6%</td><td style="color:#2a6">0%</td><td>+107</td><td>-39</td><td>5%</td><td style="color:#2a6">20%</td><td>0.10亿</td><td style="color:#2a6">undefined</td><td style="color:#2a6">🧊枯竭</td><td style="text-align:left;font-size:10px">吨钢亏损-36元(近三年同期最低)+厂库同比+7.05%</td><td style="text-align:left;font-size:10px">减产启动边际改善；不宜追空</td></tr>';
@@ -761,7 +761,7 @@ function updateInvestPanel(W,dim){
     price.push('【资金】日成交额<b>0.92</b>亿(排名#8)，波动率<b>🔥活跃</b>(分位24%)，<b>异动提醒：排名↑17位</b>');
     price.push('【供给扰动】那达慕闭关5天(7/11-15)+安监+竞拍流拍→短期供给收紧');
     risk.push('减产已启动→铁水回落→焦煤需求边际转弱；煤矿复产放量节奏');
-    s=1; strat='<b>供给收缩+那达慕闭关+contango极端(-247)</b>，底部支撑强。<b>正套：多09空01</b>。关注现货松动幅度和铁水变化。';
+    s=0; strat='<b>供给收缩+那达慕闭关+contango极端(-247)</b>，底部支撑强。<b>正套：多09空01</b>。关注现货松动幅度和铁水变化。';
     const outLook=s>=3?'做多':s>=1?'轻仓做多':s>=-1?'观望':'做空';
     products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});
   }
