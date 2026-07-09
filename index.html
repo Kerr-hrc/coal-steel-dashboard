@@ -695,12 +695,12 @@ function showAnalysis(W,def){
 // 基本面量化分析（参考 Mysteel 周报框架）
 // 动态计算当前周数
 function getLatestWeek(){
-  const Y='2026';var maxW=0;
+  var maxW=0;
   SECTIONS.forEach(function(sec){sec.charts.forEach(function(ch){
-    var d=ALL_DATA[ch.id];if(!d||!d[Y])return;
-    Object.keys(d[Y]).forEach(function(w){w=parseInt(w);if(w>maxW&&w<=53)maxW=w;});
+    var d=ALL_DATA[ch.id];if(!d||!d['2026'])return;
+    Object.keys(d['2026']).forEach(function(w){w=parseInt(w);if(w>maxW&&w<=53)maxW=w;});
   });});
-  return maxW||28; // fallback to W28
+  return maxW||28;
 }
 function updateInvestPanel(W,dim){
   dim=dim||activeDim||'全部';
