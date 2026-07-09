@@ -698,7 +698,11 @@ function getLatestWeek(){
   var maxW=0;
   SECTIONS.forEach(function(sec){sec.charts.forEach(function(ch){
     var d=ALL_DATA[ch.id];if(!d||!d['2026'])return;
-    Object.keys(d['2026']).forEach(function(w){w=parseInt(w);if(w>maxW&&w<=53)maxW=w;});
+    var keys=Object.keys(d['2026']).map(Number).filter(function(k){return k>0;});
+    if(keys.length===0)return;
+    // 周度数据:最大key<=53; 日度数据:最大key>53 → 跳过
+    if(keys[keys.length-1]>53)return;
+    keys.forEach(function(w){if(w>maxW&&w<=53)maxW=w;});
   });});
   return maxW||28;
 }
