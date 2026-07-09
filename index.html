@@ -300,7 +300,7 @@ function renderGrid(){
   if(activeDim==='观点'){
     grid.innerHTML='';
     buildSidebar();
-    setTimeout(function(){updateInvestPanel(25,'观点');},300);
+    setTimeout(function(){updateInvestPanel(getLatestWeek(),'观点');},300);
     return;
   }
   if(filteredSections.length===0){
@@ -416,7 +416,7 @@ function renderGrid(){
   
   
   buildSidebar();
-  if(activeDim!=='期货')setTimeout(function(){updateInvestPanel(26,activeDim);},300);
+  if(activeDim!=='期货')setTimeout(function(){updateInvestPanel(getLatestWeek(),activeDim);},300);
   // 期货维度显示数据快报表
   const ft=document.getElementById('futTable');
   if(ft)ft.style.display=activeDim==='期货'?'block':'none';
@@ -689,6 +689,15 @@ function showAnalysis(W,def){
 }
 
 // 基本面量化分析（参考 Mysteel 周报框架）
+// 动态计算当前周数
+function getLatestWeek(){
+  const Y='2026';var maxW=0;
+  SECTIONS.forEach(function(sec){sec.charts.forEach(function(ch){
+    var d=ALL_DATA[ch.id];if(!d||!d[Y])return;
+    Object.keys(d[Y]).forEach(function(w){w=parseInt(w);if(w>maxW)maxW=w;});
+  });});
+  return maxW||28; // fallback to W28
+}
 function updateInvestPanel(W,dim){
   dim=dim||activeDim||'全部';
   const Y='2026',prevW=W>1?W-1:null;
@@ -868,7 +877,7 @@ function toggleTheme(){
   allInsts.forEach(c=>{try{c.resize();}catch(e){}});
 }
 
-window.addEventListener('DOMContentLoaded',()=>{initDimBar();renderGrid();setTimeout(function(){updateInvestPanel(25,'观点');},500);});
+window.addEventListener('DOMContentLoaded',()=>{initDimBar();renderGrid();setTimeout(function(){updateInvestPanel(getLatestWeek(),'观点');},500);});
 </script>
 </body>
 </html>
