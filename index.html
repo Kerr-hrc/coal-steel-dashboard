@@ -696,7 +696,7 @@ function getLatestWeek(){
   const Y='2026';var maxW=0;
   SECTIONS.forEach(function(sec){sec.charts.forEach(function(ch){
     var d=ALL_DATA[ch.id];if(!d||!d[Y])return;
-    Object.keys(d[Y]).forEach(function(w){w=parseInt(w);if(w>maxW)maxW=w;});
+    Object.keys(d[Y]).forEach(function(w){w=parseInt(w);if(w>maxW&&w<=53)maxW=w;});
   });});
   return maxW||28; // fallback to W28
 }
