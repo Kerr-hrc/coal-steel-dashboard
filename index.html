@@ -695,16 +695,15 @@ function showAnalysis(W,def){
 // 基本面量化分析（参考 Mysteel 周报框架）
 // 动态计算当前周数
 function getLatestWeek(){
+  // 只读取可靠周度图表的最大周数
+  var ids=['jt_profit','st_hot_metal','jm_coke_stock','s5_stock_螺纹钢','fw138_精煤库存_合计'];
   var maxW=0;
-  SECTIONS.forEach(function(sec){sec.charts.forEach(function(ch){
-    var d=ALL_DATA[ch.id];if(!d||!d['2026'])return;
-    var keys=Object.keys(d['2026']).map(Number).filter(function(k){return k>0&&k<=53;});
-    if(keys.length===0)return;
-    var maxKey=Math.max.apply(null,keys);
-    // 周度数据:最大key<=53(排除日度day-of-year)
-    if(maxKey>53)return;
-    if(maxKey>maxW)maxW=maxKey;
-  });});
+  ids.forEach(function(id){
+    var d=ALL_DATA[id];if(!d||!d['2026'])return;
+    Object.keys(d['2026']).map(Number).filter(function(k){return k>0&&k<=53;}).forEach(function(w){
+      if(w>maxW)maxW=w;
+    });
+  });
   return maxW||29;
 }
 function updateInvestPanel(W,dim){
