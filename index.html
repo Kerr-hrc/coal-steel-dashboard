@@ -698,13 +698,14 @@ function getLatestWeek(){
   var maxW=0;
   SECTIONS.forEach(function(sec){sec.charts.forEach(function(ch){
     var d=ALL_DATA[ch.id];if(!d||!d['2026'])return;
-    var keys=Object.keys(d['2026']).map(Number).filter(function(k){return k>0;});
+    var keys=Object.keys(d['2026']).map(Number).filter(function(k){return k>0&&k<=53;});
     if(keys.length===0)return;
-    // 周度数据:最大key<=53; 日度数据:最大key>53 → 跳过
-    if(keys[keys.length-1]>53)return;
-    keys.forEach(function(w){if(w>maxW&&w<=53)maxW=w;});
+    var maxKey=Math.max.apply(null,keys);
+    // 周度数据:最大key<=53(排除日度day-of-year)
+    if(maxKey>53)return;
+    if(maxKey>maxW)maxW=maxKey;
   });});
-  return maxW||28;
+  return maxW||29;
 }
 function updateInvestPanel(W,dim){
   dim=dim||activeDim||'全部';
