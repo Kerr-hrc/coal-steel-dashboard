@@ -745,7 +745,8 @@ function updateInvestPanel(W,dim){
   html+='<br>钢材：盈利率<b style="color:#e44">40.26%</b>(↓2.6) | 铁水<b>241.27</b>(↓2.0) | 螺纹利润<b style="color:#e44">-74</b> 热卷<b style="color:#e44">-26</b> | <b>减产传导至原料+利润无改善</b></div>';
 
   // ===== 核心指标一览表 =====
-  var td=new Date(2026,0,1);td.setDate(td.getDate()+(W-1)*7+4);
+  var refWeek=28,refDate=new Date(2026,6,3); // W28基准=7月3日
+  var td=new Date(refDate.getTime()+(W-refWeek)*7*86400000);
   var tblDate=('0'+(td.getMonth()+1)).slice(-2)+'-'+('0'+td.getDate()).slice(-2);
   html+='<div style="margin:4px 0;padding:6px 8px;background:#fafaf8;border-radius:5px;font-size:12px;overflow-x:auto">';
   html+='<b style="font-size:13px">📋 核心指标一览（W'+W+' · '+tblDate+'）</b>';
