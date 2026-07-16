@@ -743,50 +743,102 @@ function updateInvestPanel(W,dim){
   // ===== 快照一句话（始终可见）=====
   let html='<div style="margin-bottom:4px;font-size:11px;color:var(--text2)"><b>W'+W+'</b> 五大材减产↓21+去库↓18 | 螺纹三共振(减产+去库+消费↑) | 铁水241→续降 | 那达慕恢复但放行缓慢</div>';
 
-  // ===== 分品种紧凑卡片 =====
+  // ===== 分品种投资建议 =====
   let products=[];
   // --- 焦煤 ---
-  {let s=0,sup='安检支撑增产有限；那达慕恢复但司机到岗率低+蒙方效率不足，通关放行缓慢(预计<800车)',
-   dem='铁水241(↓2.0)+检修推进→续降；钢厂按需采购+放缓，高价资源出货受阻',
-   stk='监管区库存367.64降库不及预期；焦化厂库存832仍在去化(W27:862→W28:832)',
-   strat='安检+低库存+深贴水(+108)底部支撑 vs 通关恢复+现货松动+下游放缓 → 1600-1800区间震荡。<b>观望</b>，等待方向。';
-   products.push({name:'焦煤',icon:'⛏',s:s,sup:sup,dem:dem,stk:stk,strat:strat});}
+  {let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
+    supply.push('山西多地<b>安全检查并未放松</b>，短期生产增加有限，<b>资源偏紧局面持续</b>');
+    supply.push('矿山利用率W29跳升但安检限制增产持续性，<b>短期供给增量有限</b>');
+    supply.push('那达慕<b>7/16恢复通关</b>，但司机到岗率低+蒙方装车效率不足，<b>通关放行缓慢</b>(预计<800车)');
+    stock.push('监管区库存<b>367.64</b>万吨，那达慕期间降库幅度不及预期');
+    stock.push('焦化厂焦煤库存<b>832</b>万吨去化(W27:862→W28:832)，可用天数偏低');
+    demand.push('铁水<b>241.27</b>(↓1.98)+检修推进→继续回落，钢厂<b>按需采购+采购放缓</b>');
+    demand.push('市场情绪走弱，线上竞拍跌价流拍增加，<b>高价资源出货受阻</b>');
+    price.push('低硫主焦<b>2020</b>(↓18)，期货09=<b>1273</b>，蒙5仓单1381→09基差≈<b>+108</b>(期货贴水)');
+    price.push('【分位】近7年<b>30%</b>分位，估值偏低但非极端');
+    price.push('【价差】09-01=<b>-247</b>深度contango，深贴水+低库存→正套逻辑');
+    price.push(volFundLine('jm'));
+    price.push('【现货】焦煤价格重心下移，部分高价煤种仍有小幅回调可能');
+    risk.push('铁水回落→焦煤需求边际转弱；蒙煤通关恢复→供给增量逐步释放');
+    s=0; strat='<b>安检+低库存+深贴水底部支撑</b> vs <b>通关恢复+现货松动+下游放缓</b>，短期延续1600-1800区间震荡。<b>观望</b>，等待复产放量和铁水方向。';
+    const outLook=s>=3?'做多':s>=1?'轻仓做多':s>=-1?'观望':'做空';
+    products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});}
   // --- 焦炭 ---
-  {let s=-1,sup='产能利用率74.67%持平，日产64.13持稳；吨焦利润49微薄，供给弹性有限',
-   dem='铁水241→续降+钢厂采购放缓→看降预期增加',
-   stk='焦化厂库存111(↑7.95)被动累库加速(连续3周)；总库存呈现累库状态',
-   strat='被动累库+铁水回落+资金撤离(排名↓18)，黑色最弱环节。<b>空焦炭/多焦煤套利</b>优于单边。单边<b>观望偏空</b>。';
-   products.push({name:'焦炭',icon:'🧱',s:s,sup:sup,dem:dem,stk:stk,strat:strat});}
+  {let s=-1, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
+    supply.push('全样本产能利用率<b>74.67%</b>持平，日均产量<b>64.13</b>万吨持稳，供应端无大的变化');
+    supply.push('吨焦利润<b>49</b>元微薄，<b>利润低位限制供给弹性</b>');
+    stock.push('焦化厂库存<b>111</b>(↑7.95)万吨<b>被动累库加速</b>(连续3周)，钢厂262(↑6.86)，港口214');
+    stock.push('总库存呈现被动累库状态，<b>看降预期增加</b>');
+    demand.push('铁水<b>241.27</b>(↓1.98)+钢厂检修持续推进→<b>铁水预计续降至240附近</b>');
+    demand.push('钢厂采购节奏明显放缓+钢材消费淡季→<b>按需采购为主</b>');
+    price.push('期货09=<b>1879.5</b>(↓30)，港口准一<b>1625</b>(↓)，第十轮提涨周期尾声难落地');
+    price.push('【分位】近7年<b>34%</b>分位，年均值1784(26)首次反弹');
+    price.push('【价差】09-01=<b>-66</b> contango；<b>炭煤比=1.48</b>高位回落→空焦炭/多焦煤逻辑强化');
+    price.push(volFundLine('j'));
+    price.push('【预期】短期内焦炭价格大概率呈现<b>暂稳偏弱</b>格局');
+    risk.push('焦煤复产→成本支撑边际转弱；钢厂利润压缩→负反馈→焦炭提降周期开启');
+    s=-1; strat='<b>被动累库+铁水回落+资金撤离(排名↓18)</b>，黑色品种中基本面最弱。<b>空焦炭/多焦煤套利</b>优于单边。单边<b>观望偏空</b>。';
+    const outLook=s>=4?'做多':s>=2?'轻仓做多':s>=0?'观望':'做空';
+    products.push({name:'焦炭',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});}
   // --- 铁矿石 ---
-  {let s=0,sup='澳洲季节性检修→发运回落；港口累库连续放缓→供需趋近紧平衡',
-   dem='铁水241(↓2.0)→减产传导至原料端；钢厂亏损扩大→需求转弱确认',
-   stk='港口库存'+(io!=null?(io/10000).toFixed(2):'—')+'亿吨(同比'+fmtC(ioY,'%')+')',
-   strat='9%极低估值+back结构+供需双缩，700-750窄幅震荡等突破。<b>09-01正套</b>；单边<b>观望</b>。';
-   products.push({name:'铁矿石',icon:'🪨',s:s,sup:sup,dem:dem,stk:stk,strat:strat});}
+  {let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
+    supply.push('澳洲矿山进入季节性检修，发运将明显回落，<b>供给压力边际缓解</b>');
+    supply.push('港口库存累库连续放缓，供需趋近紧平衡');
+    stock.push('港口库存'+(io!=null?(io/10000).toFixed(2):'—')+'亿吨(同比'+fmtC(ioY,'%')+')，澳洲矿52%/巴西矿28%');
+    demand.push('铁水<b>241.27</b>(↓1.98)→检修推进续降，<b>减产已传导至原料端</b>');
+    demand.push('钢厂亏损扩大+铁水下降→需求转弱确认');
+    price.push('主力09=<b>748</b>窄幅震荡，PB粉<b>701</b>，基差09≈-50');
+    price.push('【分位】近7年<b>9%</b>分位，极低估值已定价悲观');
+    price.push('【价差】09-01=<b>+12.5</b> backwardation，近月偏强→正套逻辑仍在');
+    price.push(volFundLine('i')+'，<b>700附近窄幅磨底</b>');
+    price.push('【方向】突破取决于铁水降幅与发运节奏的相对强弱');
+    risk.push('<b>PB粉有效跌破700</b>→成本支撑瓦解；钢厂利润压缩→负反馈超预期');
+    s=0; strat='<b>9%极低估值+back结构+供需双缩</b>，下行空间有限但反弹需铁水企稳信号。<b>09-01正套</b>；单边<b>观望</b>。';
+    const outLook=s>=2?'轻仓做多':s>=0?'观望':'做空';
+    products.push({name:'铁矿石',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});}
   // --- 螺纹钢 ---
-  {let s=2,sup='产量'+(s5p!=null?Math.round(s5p):'—')+'(↓8.32)连续3周下降，五年最大降幅；高炉亏损→减产持续性有保障',
-   dem='表需'+(s5c!=null?Math.round(s5c):'—')+'(↑9.47)淡季逆势回升超预期；减产+消费↑→边际改善最显著',
-   stk='总库存'+(s5s!=null?Math.round(s5s):'—')+'(↓7.60)结束累库转去库；跟上季节性去库节奏',
-   strat='<b>减产↓8.32(五年最大)+去库↓7.60+消费↑9.47三因素共振</b>，黑色边际改善最确定品种。<b style="color:#c44">做多</b>，风险在淡季消费持续性。';
-   products.push({name:'螺纹钢',icon:'🔩',s:s,sup:sup,dem:dem,stk:stk,strat:strat});}
+  {let s=2, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
+    supply.push('产量<b>'+(s5p!=null?Math.round(s5p):'—')+'</b>(<b>↓8.32</b>)万吨，<b>连续3周下降，五年最大单周降幅</b>');
+    supply.push('高炉亏损+盈利率40.26%持续下滑→<b>减产持续性有保障</b>');
+    demand.push('表需<b>'+(s5c!=null?Math.round(s5c):'—')+'</b>(<b>↑9.47</b>)万吨<b>淡季逆势回升</b>，超预期');
+    stock.push('总库存<b>'+(s5s!=null?Math.round(s5s):'—')+'</b>(<b>↓7.60</b>)万吨，<b>结束累库转去库</b>，库销比回落');
+    price.push('主力10=<b>3147</b>(+54)，现货3170平水，盘面利润<b>-88</b>(<b>1%分位</b>)');
+    price.push('【分位】近7年<b>6%</b>分位极低估值，均价3251(26)企稳');
+    price.push('【价差】10-01=<b>-39</b> contango，基差+107(现货升水)');
+    price.push(volFundLine('rb')+'，<b>资金从冰点显著回流</b>');
+    price.push('【三因素共振】减产+去库+消费回升→黑色中边际改善最确定品种');
+    risk.push('淡季消费回升持续性存疑；利润修复后减产意愿减弱');
+    s=2; strat='<b>减产↓8.32(五年最大)+去库↓7.60+消费↑9.47三因素共振</b>，黑色边际改善最确定品种。高炉亏损保障减产持续性。<b style="color:#c44">做多</b>，风险在于淡季消费持续性。';
+    const outLook=s>=2?'轻仓做多':s>=-1?'观望':'做空';
+    products.push({name:'螺纹钢',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});}
   // --- 热卷 ---
-  {const h5p=val('s5_prod_热轧',W),h5s=val('s5_stock_热轧',W),h5c=val('s5_consume_热轧',W);let s=1,
-   sup='产量'+h5p+'(↓6.54)减产力度仅次于螺纹；利润-20濒临亏损→减产预期升温',
-   dem='消费'+h5c+'(↓0.37)基本持稳；出口vs印度-37美元→外需托底',
-   stk='库存'+h5s+'(↓4.54)连续去库；卷螺差+194→利润逼近亏损',
-   strat='减产↓6.54+去库↓4.54+利润-20濒临亏损，减产传导逻辑确立。<b style="color:#c44">轻仓做多</b>，关注利润是否转负触发进一步减产。';
-   products.push({name:'热卷',icon:'🔥',s:s,sup:sup,dem:dem,stk:stk,strat:strat});}
+  {const h5p=val('s5_prod_热轧',W),h5s=val('s5_stock_热轧',W),h5c=val('s5_consume_热轧',W);let s=1, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
+    supply.push('产量<b>'+h5p+'</b>(<b>↓6.54</b>)万吨，<b>减产力度仅次于螺纹</b>，利润亏损驱动减产启动');
+    stock.push('库存<b>'+h5s+'</b>(<b>↓4.54</b>)万吨，<b>连续去库</b>，供需格局边际改善');
+    demand.push('消费<b>'+h5c+'</b>(↓0.37)万吨基本持稳，淡季未明显恶化');
+    price.push('主力10=<b>3341</b>(+25)，现货3350平水，10-01=<b>-15</b> contango');
+    price.push('【分位】近7年<b>23%</b>分位，盘面利润<b>-20</b>(濒临亏损)，出口vs印度-37美元→<b>外需托底</b>');
+    price.push('卷螺差=<b>+194</b>，<b>利润逼近亏损→减产预期升温</b>');
+    price.push(volFundLine('hc')+'，<b>波动率脱离冰点</b>');
+    risk.push('产量仍偏高+消费未见增量+利润修复后减产意愿减弱');
+    s=1; strat='<b>减产↓6.54+去库↓4.54+利润-20濒临亏损</b>，减产传导逻辑确立。<b style="color:#c44">轻仓做多</b>，关注利润是否转负触发进一步减产。';
+    const outLook=s>=2?'轻仓做多':s>=0?'观望':'做空';
+    products.push({name:'热卷',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});}
 
   var dimMap={'观点':['焦煤','焦炭','铁矿石','螺纹钢','热卷'],'焦煤':['焦煤'],'焦炭':['焦炭'],'铁矿':['铁矿石'],'钢材':['螺纹钢','热卷'],'价格':[],'期货':[],'仓单':[]};
   var filtered=dimMap[dim]?products.filter(function(p){return dimMap[dim].indexOf(p.name)>=0;}):products;
   filtered.forEach(function(p){
-    var bg=p.s>=2?'#fef0f0':p.s>=0?'#fafaf8':'#f0faf4',out=p.s>=2?'做多':p.s>=1?'轻仓做多':p.s>=-1?'观望':'做空';
-    var oc=out.includes('做多')?'#c44':out.includes('做空')?'#2a6':'#555';
-    html+='<div style="margin:2px 0;padding:4px 8px;background:'+bg+';border-radius:4px;font-size:11px;line-height:1.45">';
-    html+='<b>'+p.icon+' '+p.name+'</b> · <b style="color:'+(p.s>=0?'#c44':'#2a6')+'">'+(p.s>=0?'+':'')+p.s+'</b> · <b style="color:'+oc+'">'+out+'</b> ';
-    html+='<span style="color:var(--text2)">| 供:'+p.sup+' | 需:'+p.dem+' | 库:'+p.stk+'</span>';
-    html+='<div style="margin-top:1px;font-weight:600">📌 '+p.strat+'</div>';
-    html+='</div>';
+    var bg=p.score>=2?'#fef0f0':p.score>=0?'#fafaf8':'#f0faf4';
+    html+='<div style="margin:3px 0;padding:6px 10px;background:'+bg+';border-radius:5px;font-size:11px;line-height:1.5">';
+    html+='<b style="font-size:12px">'+p.name+'</b> · 评分<b>'+(p.score>=0?'+':'')+p.score+'</b> · <span style="color:'+(p.outlook.includes('做多')?'#c44':p.outlook.includes('做空')?'#2a6':'#555')+'"><b>'+p.outlook+'</b></span>';
+    html+='<div style="margin-top:2px;color:var(--text2)">';
+    if(p.supply&&p.supply.length)html+='<div><b>🏭 供给：</b>'+p.supply.join('；')+'</div>';
+    if(p.demand&&p.demand.length)html+='<div><b>📊 需求：</b>'+p.demand.join('；')+'</div>';
+    if(p.stock&&p.stock.length)html+='<div><b>📦 库存：</b>'+p.stock.join('；')+'</div>';
+    if(p.price&&p.price.length)html+='<div><b>💰 价格/价差/分位：</b>'+p.price.join('；')+'</div>';
+    if(p.risk&&p.risk.length)html+='<div><b>⚠️ 风险：</b>'+p.risk.join('；')+'</div>';
+    html+='<div style="margin-top:2px;font-weight:600">📌 '+p.strat+'</div>';
+    html+='</div></div>';
   });
 
   document.getElementById('investText').innerHTML=html;
