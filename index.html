@@ -762,7 +762,7 @@ function updateInvestPanel(W,dim){
     risk.push('铁水回落→焦煤需求边际转弱；蒙煤通关恢复→供给增量逐步释放');
     s=0; strat='<b>安检+低库存+深贴水底部支撑</b> vs <b>通关恢复+现货松动+下游放缓</b>，短期延续1600-1800区间震荡。<b>观望</b>，等待复产放量和铁水方向。';
     const outLook=s>=3?'做多':s>=1?'轻仓做多':s>=-1?'观望':'做空';
-    products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});}
+    products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'安检+低库存底部支撑 vs 通关恢复+现货松动，短期维持窄幅震荡格局，等待复产放量和铁水变化给出方向。'});}
   // --- 焦炭 ---
   {let s=-1, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
     supply.push('全样本产能利用率<b>74.67%</b>持平，日均产量<b>64.13</b>万吨持稳，供应端无大的变化');
@@ -779,7 +779,7 @@ function updateInvestPanel(W,dim){
     risk.push('焦煤复产→成本支撑边际转弱；钢厂利润压缩→负反馈→焦炭提降周期开启');
     s=-1; strat='<b>被动累库+铁水回落+资金撤离(排名↓18)</b>，黑色品种中基本面最弱。<b>空焦炭/多焦煤套利</b>优于单边。单边<b>观望偏空</b>。';
     const outLook=s>=4?'做多':s>=2?'轻仓做多':s>=0?'观望':'做空';
-    products.push({name:'焦炭',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});}
+    products.push({name:'焦炭',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'被动累库+看降预期+资金撤离，黑色最弱环节。炭煤比高位回落，空焦炭/多焦煤套利优于单边。'});}
   // --- 铁矿石 ---
   {let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
     supply.push('澳洲矿山进入季节性检修，发运将明显回落，<b>供给压力边际缓解</b>');
@@ -795,7 +795,7 @@ function updateInvestPanel(W,dim){
     risk.push('<b>PB粉有效跌破700</b>→成本支撑瓦解；钢厂利润压缩→负反馈超预期');
     s=0; strat='<b>9%极低估值+back结构+供需双缩</b>，下行空间有限但反弹需铁水企稳信号。<b>09-01正套</b>；单边<b>观望</b>。';
     const outLook=s>=2?'轻仓做多':s>=0?'观望':'做空';
-    products.push({name:'铁矿石',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});}
+    products.push({name:'铁矿石',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'9%极低估值+back结构+供需双缩，700-750窄幅震荡格局难破，突破方向取决于铁水降幅与发运节奏的相对强弱。'});}
   // --- 螺纹钢 ---
   {let s=2, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
     supply.push('产量<b>'+(s5p!=null?Math.round(s5p):'—')+'</b>(<b>↓8.32</b>)万吨，<b>连续3周下降，五年最大单周降幅</b>');
@@ -810,7 +810,7 @@ function updateInvestPanel(W,dim){
     risk.push('淡季消费回升持续性存疑；利润修复后减产意愿减弱');
     s=2; strat='<b>减产↓8.32(五年最大)+去库↓7.60+消费↑9.47三因素共振</b>，黑色边际改善最确定品种。高炉亏损保障减产持续性。<b style="color:#c44">做多</b>，风险在于淡季消费持续性。';
     const outLook=s>=2?'轻仓做多':s>=-1?'观望':'做空';
-    products.push({name:'螺纹钢',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});}
+    products.push({name:'螺纹钢',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'减产+去库+消费回升三因素共振，资金从冰点显著回流，是当前黑色板块中边际改善最确定的做多标的。'});}
   // --- 热卷 ---
   {const h5p=val('s5_prod_热轧',W),h5s=val('s5_stock_热轧',W),h5c=val('s5_consume_热轧',W);let s=1, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
     supply.push('产量<b>'+h5p+'</b>(<b>↓6.54</b>)万吨，<b>减产力度仅次于螺纹</b>，利润亏损驱动减产启动');
@@ -823,7 +823,7 @@ function updateInvestPanel(W,dim){
     risk.push('产量仍偏高+消费未见增量+利润修复后减产意愿减弱');
     s=1; strat='<b>减产↓6.54+去库↓4.54+利润-20濒临亏损</b>，减产传导逻辑确立。<b style="color:#c44">轻仓做多</b>，关注利润是否转负触发进一步减产。';
     const outLook=s>=2?'轻仓做多':s>=0?'观望':'做空';
-    products.push({name:'热卷',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat});}
+    products.push({name:'热卷',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'减产传导逻辑确立+去库温和+出口托底，利润逼近亏损是后续减产加大的核心驱动力，轻仓做多。'});}
 
   var dimMap={'观点':['焦煤','焦炭','铁矿石','螺纹钢','热卷'],'焦煤':['焦煤'],'焦炭':['焦炭'],'铁矿':['铁矿石'],'钢材':['螺纹钢','热卷'],'价格':[],'期货':[],'仓单':[]};
   var filtered=dimMap[dim]?products.filter(function(p){return dimMap[dim].indexOf(p.name)>=0;}):products;
@@ -838,6 +838,7 @@ function updateInvestPanel(W,dim){
     if(p.price&&p.price.length)html+='<div><b>💰 价格/价差/分位：</b>'+p.price.join('；')+'</div>';
     if(p.risk&&p.risk.length)html+='<div><b>⚠️ 风险：</b>'+p.risk.join('；')+'</div>';
     html+='<div style="margin-top:2px;font-weight:600">📌 '+p.strat+'</div>';
+    if(p.conclusion)html+='<div style="margin-top:2px;padding:3px 6px;background:var(--tag-bg);border-radius:3px;font-weight:600">🎯 '+p.conclusion+'</div>';
     html+='</div></div>';
   });
 
