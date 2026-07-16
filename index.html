@@ -80,6 +80,8 @@ body{
   background-attachment:fixed;
 }
 .sticky-header{position:sticky;top:0;z-index:6;background:var(--bg);max-width:1500px;margin:0 auto 10px;padding:4px 0;border-bottom:1px solid var(--border);}.top-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.invest-sticky{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:6px 12px;margin-top:4px;box-shadow:var(--shadow)}
+.invest-sticky .collapsed{max-height:0!important;overflow:hidden!important;margin:0;padding:0}
 .top-bar h1{font-size:20px;font-weight:700}
 .top-bar .update-time{font-size:12px;color:var(--text3)}
 .top-bar .theme-btn{background:var(--card);border:1px solid var(--border);color:var(--text2);padding:4px 10px;border-radius:5px;cursor:pointer;font-size:12px;font-family:inherit;}
@@ -139,16 +141,16 @@ body{
 <div class="sidebar" id="sidebar"></div>
 
 <div class="dim-bar" id="dimBar"></div>
-</div>
 
-<div class="analysis-panel" id="invest" style="border-left:3px solid var(--accent);">
-  <div style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:4px">📈 基本面量化 · 投资参考</div>
-  <div style="font-size:13px;color:var(--text2);line-height:1.8" id="investText">加载中...</div>
+<div class="invest-sticky" id="investSticky">
+  <div style="display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="var b=document.getElementById('investBody');var a=document.getElementById('investArrow');var o=b.classList.toggle('collapsed');a.textContent=o?'▶':'▼';">
+    <span style="font-size:14px;font-weight:700;color:var(--accent)">📈 基本面量化 · 投资参考</span>
+    <span id="investArrow" style="font-size:12px;color:var(--text2)">▼</span>
+  </div>
+  <div id="investBody" style="font-size:13px;color:var(--text2);line-height:1.8;max-height:420px;overflow-y:auto;transition:max-height .3s">
+    <div id="investText">加载中...</div>
+  </div>
 </div>
-
-<div class="analysis-panel" id="futTable" style="display:none">
-  <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:6px">📋 期货数据快报 · 近一周</div>
-  <div id="futTableContent" style="font-size:11px;overflow-x:auto"></div>
 </div>
 
 <div class="chart-grid-wrap" id="chartGrid"></div>
