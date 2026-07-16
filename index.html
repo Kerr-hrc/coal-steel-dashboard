@@ -812,7 +812,7 @@ function updateInvestPanel(W,dim){
     const outLook=s>=2?'轻仓做多':s>=-1?'观望':'做空';
     products.push({name:'螺纹钢',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'减产+去库+消费回升三因素共振，资金从冰点显著回流，是当前黑色板块中边际改善最确定的做多标的。'});}
   // --- 热卷 ---
-  {const h5p=val('s5_prod_热轧',W),h5s=val('s5_stock_热轧',W),h5c=val('s5_consume_热轧',W);let s=1, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
+  {const h5p=val('s5_prod_热卷',W),h5s=val('s5_stock_热卷',W),h5c=val('s5_consume_热卷',W);let s=1, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
     supply.push('产量<b>'+h5p+'</b>(<b>↓6.54</b>)万吨，<b>减产力度仅次于螺纹</b>，利润亏损驱动减产启动');
     stock.push('库存<b>'+h5s+'</b>(<b>↓4.54</b>)万吨，<b>连续去库</b>，供需格局边际改善');
     demand.push('消费<b>'+h5c+'</b>(↓0.37)万吨基本持稳，淡季未明显恶化');
