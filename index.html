@@ -766,8 +766,8 @@ function updateInvestPanel(W,dim){
   html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td>0</td><td>30%</td><td>0%</td><td>+108</td><td>-247</td><td>'+volFmt(VOL.jm.vol,'pct2')+'</td><td>'+volFmt(VOL.jm.volPct,'pct')+'</td><td>'+volFmt(VOL.jm.amount,'amt')+'</td><td>'+volFmt(VOL.jm.amountPct,'pct')+'</td><td>'+volSig('jm')+'</td><td style="text-align:left;font-size:9px">焦化厂库存↓38至794+通关恢复1048+铁水破240</td><td style="text-align:left;font-size:9px">观望，供需双向拉扯</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🧱 焦炭</td><td style="color:#e63946"><b>-2</b></td><td>34%</td><td>0%</td><td>+60</td><td>-66</td><td>'+volFmt(VOL.j.vol,'pct2')+'</td><td>'+volFmt(VOL.j.volPct,'pct')+'</td><td>'+volFmt(VOL.j.amount,'amt')+'</td><td>'+volFmt(VOL.j.amountPct,'pct')+'</td><td>'+volSig('j')+'</td><td style="text-align:left;font-size:9px">累库暴增↑9.4至120+铁水破240+日产不减</td><td style="text-align:left;font-size:9px;color:#c44"><b>做空</b></td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🪨 铁矿</td><td>0</td><td>9%</td><td>0%</td><td>-52</td><td>+12.5</td><td>'+volFmt(VOL.i.vol,'pct2')+'</td><td>'+volFmt(VOL.i.volPct,'pct')+'</td><td>'+volFmt(VOL.i.amount,'amt')+'</td><td>'+volFmt(VOL.i.amountPct,'pct')+'</td><td>'+volSig('i')+'</td><td style="text-align:left;font-size:9px">铁水破240需求利空 vs 9%低估值+澳洲检修</td><td style="text-align:left;font-size:9px">09-01正套；观望</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">🔩 螺纹</td><td style="color:#e63946"><b>+2</b></td><td>6%</td><td>0%</td><td>+107</td><td>-39</td><td>'+volFmt(VOL.rb.vol,'pct2')+'</td><td>'+volFmt(VOL.rb.volPct,'pct')+'</td><td>'+volFmt(VOL.rb.amount,'amt')+'</td><td>'+volFmt(VOL.rb.amountPct,'pct')+'</td><td>'+volSig('rb')+'</td><td style="text-align:left;font-size:9px">铁水破240→减产深化+去库+消费↑三共振</td><td style="text-align:left;font-size:9px;color:#c44"><b>做多</b></td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">🔥 热卷</td><td style="color:#c44">+1</td><td>23%</td><td>0%</td><td>+34</td><td>-15</td><td>'+volFmt(VOL.hc.vol,'pct2')+'</td><td>'+volFmt(VOL.hc.volPct,'pct')+'</td><td>'+volFmt(VOL.hc.amount,'amt')+'</td><td>'+volFmt(VOL.hc.amountPct,'pct')+'</td><td>'+volSig('hc')+'</td><td style="text-align:left;font-size:9px">减产↓6.54+去库↓4.54+利润-18濒临亏损</td><td style="text-align:left;font-size:9px;color:#c44"><b>轻仓做多</b></td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">🔩 螺纹</td><td style="color:#c44">+1</td><td>6%</td><td>0%</td><td>+107</td><td>-39</td><td>'+volFmt(VOL.rb.vol,'pct2')+'</td><td>'+volFmt(VOL.rb.volPct,'pct')+'</td><td>'+volFmt(VOL.rb.amount,'amt')+'</td><td>'+volFmt(VOL.rb.amountPct,'pct')+'</td><td>'+volSig('rb')+'</td><td style="text-align:left;font-size:9px">减产+去库+消费↑三共振，但资金枯竭限制反弹</td><td style="text-align:left;font-size:9px;color:#c44"><b>轻仓做多</b></td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">🔥 热卷</td><td>0</td><td>23%</td><td>0%</td><td>+34</td><td>-15</td><td>'+volFmt(VOL.hc.vol,'pct2')+'</td><td>'+volFmt(VOL.hc.volPct,'pct')+'</td><td>'+volFmt(VOL.hc.amount,'amt')+'</td><td>'+volFmt(VOL.hc.amountPct,'pct')+'</td><td>'+volSig('hc')+'</td><td style="text-align:left;font-size:9px">减产↓6.54+去库但资金冰点→等待回暖信号</td><td style="text-align:left;font-size:9px">观望，等待资金回暖</td></tr>';
   html+='<tr style="background:#fafaf8"><td style="text-align:left;font-weight:700" colspan="2">🔗 跨品种</td><td colspan="11" style="text-align:left;font-size:10px">铁水跌破240 | 炭煤比回落 | 卷螺差+194 | <b>多成材空原料+空焦炭/多焦煤套利</b></td></tr>';
   html+='</table></div>';
 
@@ -824,7 +824,7 @@ function updateInvestPanel(W,dim){
     const outLook=s>=2?'轻仓做多':s>=0?'观望':'做空';
     products.push({name:'铁矿石',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'9%极低估值+供需双缩 vs 铁水跌破240利空，700-750窄幅震荡等突破。'});}
   // --- 螺纹钢 ---
-  {let s=2, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
+  {let s=1, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
     supply.push('产量<b>'+(s5p!=null?Math.round(s5p):'—')+'</b>(<b>↓8.32</b>)万吨，<b>连续3周下降，五年最大单周降幅</b>');
     supply.push('高炉亏损+盈利率40.26%持续下滑→<b>减产持续性有保障</b>');
     demand.push('表需<b>'+(s5c!=null?Math.round(s5c):'—')+'</b>(<b>↑9.47</b>)万吨<b>淡季逆势回升</b>，超预期');
@@ -835,11 +835,11 @@ function updateInvestPanel(W,dim){
     price.push(volFundLine('rb')+'，<b>资金从冰点显著回流</b>');
     price.push('【三因素共振】减产+去库+消费回升→黑色中边际改善最确定品种');
     risk.push('淡季消费回升持续性存疑；利润修复后减产意愿减弱');
-    s=2; strat='<b>减产↓8.32(五年最大)+去库↓7.60+消费↑9.47三因素共振</b>，黑色边际改善最确定品种。高炉亏损保障减产持续性。<b style="color:#c44">做多</b>，风险在于淡季消费持续性。';
+    s=1; strat='<b>减产↓8.32(五年最大)+去库↓7.60+消费↑9.47三因素共振</b>，基本面边际改善最确定。但<b>资金🧊枯竭(波分位3%+成交分位8%)</b>限制反弹高度。<b style="color:#c44">轻仓做多</b>，需等待资金回暖信号确认。';
     const outLook=s>=2?'轻仓做多':s>=-1?'观望':'做空';
-    products.push({name:'螺纹钢',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'减产+去库+消费回升三因素共振，资金从冰点显著回流，是当前黑色板块中边际改善最确定的做多标的。'});}
+    products.push({name:'螺纹钢',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'基本面三共振改善明确，但资金枯竭(波分位3%+成交分位8%)→反弹无力。轻仓做多，等待资金回暖。'});}
   // --- 热卷 ---
-  {const h5p=val('s5_prod_热卷',W),h5s=val('s5_stock_热卷',W),h5c=val('s5_consume_热卷',W);let s=1, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
+  {const h5p=val('s5_prod_热卷',W),h5s=val('s5_stock_热卷',W),h5c=val('s5_consume_热卷',W);let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
     supply.push('产量<b>'+h5p+'</b>(<b>↓6.54</b>)万吨，<b>减产力度仅次于螺纹</b>，利润亏损驱动减产启动');
     stock.push('库存<b>'+h5s+'</b>(<b>↓4.54</b>)万吨，<b>连续去库</b>，供需格局边际改善');
     demand.push('消费<b>'+h5c+'</b>(↓0.37)万吨基本持稳，淡季未明显恶化');
@@ -848,9 +848,9 @@ function updateInvestPanel(W,dim){
     price.push('卷螺差=<b>+194</b>，<b>利润逼近亏损→减产预期升温</b>');
     price.push(volFundLine('hc')+'，<b>波动率脱离冰点</b>');
     risk.push('产量仍偏高+消费未见增量+利润修复后减产意愿减弱');
-    s=1; strat='<b>减产↓6.54+去库↓4.54+利润-20濒临亏损</b>，减产传导逻辑确立。<b style="color:#c44">轻仓做多</b>，关注利润是否转负触发进一步减产。';
+    s=0; strat='<b>减产↓6.54+去库↓4.54基本面改善</b>，但<b>资金🧊枯竭(波分位1%冰点)</b>限制价格上行。<b>观望</b>，等待资金回暖信号确认后再入场。';
     const outLook=s>=2?'轻仓做多':s>=0?'观望':'做空';
-    products.push({name:'热卷',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'减产传导逻辑确立+去库温和+出口托底，利润逼近亏损是后续减产加大的核心驱动力，轻仓做多。'});}
+    products.push({name:'热卷',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'减产+去库基本面改善但资金冰点(波分位1%)→反弹缺乏流动性支撑，观望等待资金回暖。'});}
 
   var dimMap={'观点':['焦煤','焦炭','铁矿石','螺纹钢','热卷'],'焦煤':['焦煤'],'焦炭':['焦炭'],'铁矿':['铁矿石'],'钢材':['螺纹钢','热卷'],'价格':[],'期货':[],'仓单':[]};
   var filtered=dimMap[dim]?products.filter(function(p){return dimMap[dim].indexOf(p.name)>=0;}):products;
