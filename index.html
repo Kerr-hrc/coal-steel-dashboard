@@ -755,7 +755,8 @@ function updateInvestPanel(W,dim){
   // ===== 快照一句话（始终可见）=====
   let html='<div style="margin-bottom:4px;font-size:11px;color:var(--text2)"><b>W30</b> ⚠️螺纹减产逆转↑4.6+转累库↑5.2+消费大降↓8.2 | 热卷同样减产逆转+累库 | 焦炭09跌至1837 | 铁水239→续降 | 首轮提降全面落地</div>';
 
-  // ===== 核心指标一览表 =====
+  // ===== 核心指标一览表（仅观点维度显示）=====
+  if(dim==='观点'){
   var refWeek=28,refDate=new Date(2026,6,3);
   var td=new Date(refDate.getTime()+(W-refWeek)*7*86400000);
   var tblDate=('0'+(td.getMonth()+1)).slice(-2)+'-'+('0'+td.getDate()).slice(-2);
@@ -770,6 +771,7 @@ function updateInvestPanel(W,dim){
   html+='<tr><td style="text-align:left;font-weight:700">🔥 热卷</td><td style="color:#e63946">-1</td><td>23%</td><td>0%</td><td>+34</td><td>-15</td><td>'+volFmt(VOL.hc.vol,'pct2')+'</td><td>'+volFmt(VOL.hc.volPct,'pct')+'</td><td>'+volFmt(VOL.hc.amount,'amt')+'</td><td>'+volFmt(VOL.hc.amountPct,'pct')+'</td><td>'+volSig('hc')+'</td><td style="text-align:left;font-size:9px">W30减产逆转↑4.5+累库↑2.8+期货跌至3297</td><td style="text-align:left;font-size:9px">观望，等方向明朗</td></tr>';
   html+='<tr style="background:#fafaf8"><td style="text-align:left;font-weight:700" colspan="2">🔗 跨品种</td><td colspan="11" style="text-align:left;font-size:10px">W30成材减产逆转+累库→多头逻辑瓦解 | 铁水239续降 | 炭煤比回落 | <b>空焦炭+空焦炭/多焦煤套利</b></td></tr>';
   html+='</table></div>';
+  }
 
   // ===== 分品种投资建议 =====
   let products=[];
