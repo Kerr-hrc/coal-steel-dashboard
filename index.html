@@ -869,7 +869,7 @@ function updateInvestPanel(W,dim){
     if(p.stock&&p.stock.length)html+='<div><b>📦 库存：</b>'+p.stock.join('；')+'</div>';
     if(p.price&&p.price.length)html+='<div><b>💰 价格/价差/分位：</b>'+p.price.join('；')+'</div>';
     if(p.risk&&p.risk.length)html+='<div><b>⚠️ 风险：</b>'+p.risk.join('；')+'</div>';
-    html+='<div style="margin-top:2px;font-weight:600">📌 '+p.strat+'</div>';
+    html+='<div style="margin-top:2px;font-weight:600">📌 '+p.strategy+'</div>';
     if(p.conclusion)html+='<div style="margin-top:2px;padding:3px 6px;background:var(--tag-bg);border-radius:3px;font-weight:600">🎯 '+p.conclusion+'</div>';
     html+='</div></div>';
   });
