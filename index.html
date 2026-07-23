@@ -764,7 +764,7 @@ function updateInvestPanel(W,dim){
   html+='<b>📋 核心指标一览（W'+W+' · '+tblDate+'）</b>';
   html+='<table style="width:100%;border-collapse:collapse;margin-top:2px;font-size:10px;text-align:center">';
   html+='<tr style="background:#eee;font-weight:700"><td style="padding:2px 3px;text-align:left">品种</td><td>评分</td><td>价格分位</td><td>同期分位</td><td>基差</td><td>近月价差</td><td>波动率</td><td>波分位</td><td>成交额</td><td>成交分位</td><td>资金信号</td><td style="text-align:left;min-width:120px">核心逻辑</td><td style="text-align:left;min-width:130px">策略</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td>0</td><td>30%</td><td>0%</td><td>+108</td><td>-247</td><td>'+volFmt(VOL.jm.vol,'pct2')+'</td><td>'+volFmt(VOL.jm.volPct,'pct')+'</td><td>'+volFmt(VOL.jm.amount,'amt')+'</td><td>'+volFmt(VOL.jm.amountPct,'pct')+'</td><td>'+volSig('jm')+'</td><td style="text-align:left;font-size:9px">流拍26%+成交价回落20-50+铁水下行+部分降库</td><td style="text-align:left;font-size:9px">观望，偏弱调整</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td style="color:#c44">+1</td><td>30%</td><td>0%</td><td>+108</td><td>-247</td><td>'+volFmt(VOL.jm.vol,'pct2')+'</td><td>'+volFmt(VOL.jm.volPct,'pct')+'</td><td>'+volFmt(VOL.jm.amount,'amt')+'</td><td>'+volFmt(VOL.jm.amountPct,'pct')+'</td><td>'+volSig('jm')+'</td><td style="text-align:left;font-size:9px">年度减量确定+社会库存去化60-70%+煤矿零库存+结构矛盾</td><td style="text-align:left;font-size:9px;color:#c44"><b>轻仓做多</b></td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🧱 焦炭</td><td style="color:#e63946"><b>-2</b></td><td>34%</td><td>0%</td><td>+60</td><td>-66</td><td>'+volFmt(VOL.j.vol,'pct2')+'</td><td>'+volFmt(VOL.j.volPct,'pct')+'</td><td>'+volFmt(VOL.j.amount,'amt')+'</td><td>'+volFmt(VOL.j.amountPct,'pct')+'</td><td>'+volSig('j')+'</td><td style="text-align:left;font-size:9px">首轮提降全面落地+铁水下行+供需利空共振</td><td style="text-align:left;font-size:9px;color:#2a6"><b>做空</b></td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🪨 铁矿</td><td>0</td><td>9%</td><td>0%</td><td>-52</td><td>+12.5</td><td>'+volFmt(VOL.i.vol,'pct2')+'</td><td>'+volFmt(VOL.i.volPct,'pct')+'</td><td>'+volFmt(VOL.i.amount,'amt')+'</td><td>'+volFmt(VOL.i.amountPct,'pct')+'</td><td>'+volSig('i')+'</td><td style="text-align:left;font-size:9px">铁水下行+成本下移 vs 低估值+澳洲检修</td><td style="text-align:left;font-size:9px">09-01正套；观望</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🔩 螺纹</td><td style="color:#e63946"><b>-1</b></td><td>6%</td><td>0%</td><td>+107</td><td>-39</td><td>'+volFmt(VOL.rb.vol,'pct2')+'</td><td>'+volFmt(VOL.rb.volPct,'pct')+'</td><td>'+volFmt(VOL.rb.amount,'amt')+'</td><td>'+volFmt(VOL.rb.amountPct,'pct')+'</td><td>'+volSig('rb')+'</td><td style="text-align:left;font-size:9px">W30减产逆转↑4.6+累库↑5.2+消费↓8.2→三因素瓦解</td><td style="text-align:left;font-size:9px">观望，多头逻辑已破</td></tr>';
@@ -776,23 +776,25 @@ function updateInvestPanel(W,dim){
   // ===== 分品种投资建议 =====
   let products=[];
   // --- 焦煤 ---
-  {let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('山西多地<b>安全检查并未放松</b>，短期生产增加有限，<b>资源偏紧局面持续</b>');
-    supply.push('那达慕<b>7/16恢复通关</b>，甘其毛都通关<b>1048车</b>逐步恢复，司机到岗率改善');
-    stock.push('监管区库存<b>367.64</b>万吨，那达慕期间降库幅度不及预期');
-    stock.push('焦化厂焦煤库存<b>794</b>万吨大幅去库(↓38)，可用天数降至低位，<b>供给紧张加剧</b>');
-    demand.push('铁水<b>239.21</b>下行通道中+焦炭首轮提降落地→<b>下游采购节奏放缓</b>');
-    demand.push('部分企业原料库存已补充至较高水平，<b>存在适度降库行为</b>');
-    price.push('线上竞拍<b>流拍率26%</b>，多数煤种成交价较前期<b>回落20-50元/吨</b>');
-    price.push('低硫主焦<b>2020</b>持稳，期货09≈<b>1273</b>，蒙5仓单1571→09基差≈<b>+300</b>(期货深贴水)');
-    price.push('【分位】近7年<b>30%</b>分位，估值偏低但非极端');
-    price.push('【价差】09-01=<b>-247</b>深度contango，深贴水+低库存→正套逻辑');
+  {let s=1, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
+    supply.push('山西安全检查持续加大，复产煤矿产量<b>不及事故前水平</b>，<b>年度减量确定</b>');
+    supply.push('煤矿端<b>库存低位+暂无累库</b>，部分煤矿有预售，供应持续低位');
+    supply.push('蒙煤通关恢复(1048车)，但<b>以配煤角色为主、添加比例有限</b>，山西主焦不可替代');
+    supply.push('<b>【结构性矛盾】</b>盘面定价(中硫)≠长治主产(低硫/瘦主焦)，盘面<b>低估供给紧张程度</b>');
+    stock.push('煤矿库存低位+零累库→表内库存去化有限');
+    stock.push('表外社会库存已<b>去化60-70%</b>，剩余高价库存<b>惜售滞留</b>，缓冲即将耗尽');
+    stock.push('焦化厂焦煤库存<b>794</b>万吨去化(↓38)，可用天数降至低位');
+    demand.push('铁水<b>239.21</b>下行+焦炭提降落地→短期下游采购放缓，部分企业降库');
+    demand.push('但中期看，<b>供给硬约束(减量确定)+缓冲耗尽→供需矛盾可能加剧</b>');
+    price.push('低硫主焦<b>2020</b>持稳，期货09≈<b>1273</b>，09基差≈<b>+300</b>(盘面深贴水)');
+    price.push('【分位】近7年<b>30%</b>分位，深贴水已定价悲观预期');
+    price.push('【价差】09-01深度contango，<b>盘面定价≠现货结构</b>，正套逻辑成立');
     price.push(volFundLine('jm'));
-    price.push('【现货】焦煤价格重心下移，部分高价煤种仍有小幅回调可能');
-    risk.push('铁水回落→焦煤需求边际转弱；蒙煤通关恢复→供给增量逐步释放');
-    s=0; strat='<b>流拍26%+成交价回落20-50+铁水下行+焦炭提降</b>，需求端利空共振。但安检+供给偏紧底部仍有支撑。<b>观望</b>，短期偏弱调整为主。';
+    price.push('【核心矛盾】短期铁水下行+流拍 vs 中长期减量确定+缓冲耗尽');
+    risk.push('铁水持续下行→需求进一步恶化；煤矿复产超预期→供给恢复超预期');
+    s=1; strat='<b>年度减量确定+社会库存去化60-70%+煤矿零库存+结构矛盾</b>，中长期供给硬约束明确。短期铁水下行压制但缓冲即将耗尽。<b style="color:#c44">轻仓做多</b>，黑色中唯一有中长期供给支撑的品种。';
     const outLook=s>=3?'做多':s>=1?'轻仓做多':s>=-1?'观望':'做空';
-    products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'流拍26%+价格回落20-50+铁水下行+提降落地→偏弱调整，但安检+供给偏紧底部支撑，观望。'});}
+    products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'年度减量确定+社会库存去化60-70%+煤矿零库存+盘面低估供给紧张→中长期供给硬约束，黑色唯一有供给支撑品种。轻仓做多。'});}
   // --- 焦炭 ---
   {let s=-2, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
     supply.push('全样本产能利用率<b>74.58%</b>(↓0.09)，日均产量<b>64.05</b>(↓0.08)万吨，<b>供给不减</b>');
