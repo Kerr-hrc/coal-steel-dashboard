@@ -752,9 +752,60 @@ function updateInvestPanel(W,dim){
   const pr=val('st_profit_rate',W),prP=val('st_profit_rate',prevW);
   const s5p=val('s5_prod_螺纹钢',W),s5s=val('s5_stock_螺纹钢',W),s5c=val('s5_consume_螺纹钢',W);
 
-  // ===== 快照一句话（始终可见）=====
-  let html='<div style="margin-bottom:4px;font-size:11px;color:var(--text2)"><b>W30</b> 铁水237.7续降 | 五大材产量止降回升+库存转累→供需改善未能延续 | 港口铁矿累库179万吨 | 8月铁水预计回升240+ | 建议关注跨品种套利</div>';
+  // ===== KPI 卡片行 =====
+  let html='<div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:4px">';
 
+  // Helper: get latest daily price from ALL_DATA
+  function kpiVal(id){
+    var d=ALL_DATA[id];if(!d||!d['2026'])return null;
+    var keys=Object.keys(d['2026']).map(Number).filter(function(k){return k<=366;}).sort(function(a,b){return a-b;});
+    if(!keys.length)return null;
+    var latest=d['2026'][keys[keys.length-1]];
+    var prev=keys.length>7?d['2026'][keys[keys.length-8]]:d['2026'][keys[0]];
+    return {v:latest,p:prev?(latest-prev):0,pc:prev?Math.round((latest-prev)/prev*1000)/10:0};
+  }
+  var kpis=[
+    {icon:'⛏',name:'焦煤09',id:'f_jm'},
+    {icon:'🧱',name:'焦炭09',id:'f_j'},
+    {icon:'🔩',name:'螺纹10',id:'f_rb'},
+    {icon:'🔥',name:'热卷10',id:'f_hc'},
+    {icon:'🪨',name:'铁矿09',id:'f_i'},
+    {icon:'🏭',name:'铁水',id:'st_hot_metal',wk:true}
+  ];
+  kpis.forEach(function(k){
+    var v=k.wk?{v:st,p:st-stP,pc:stP?Math.round((st-stP)/stP*1000)/10:0}:kpiVal(k.id);
+    if(!v||v.v==null){html+='<div style="flex:1;min-width:80px;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:5px 8px;text-align:center;font-size:10px;color:var(--text3)">'+k.icon+' '+k.name+'<br>—</div>';return;}
+    var clr=v.pc>0?'#c44':v.pc<0?'#2a6':'#888',arrow=v.pc>0?'↑':v.pc<0?'↓':'→';
+    html+='<div style="flex:1;min-width:80px;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:5px 8px;text-align:center;font-size:10px">';
+    html+='<div style="color:var(--text2)">'+k.icon+' '+k.name+'</div>';
+    html+='<div style="font-size:17px;font-weight:700;line-height:1.2">'+fmtY(v.v,'')+'</div>';
+    html+='<div style="font-size:9px;color:'+clr+'">'+arrow+' '+Math.abs(v.pc).toFixed(1)+'%</div>';
+    html+='</div>';
+  });
+  html+='</div>';
+
+  // ===== 信号扫描（仅观点维度）=====
+  if(dim==='观点'){
+  var flags=[],extremes=[],trends=[];
+  // Red Flag 规则
+  if(VOL.rb&&VOL.rb.volPct<0.1&&VOL.rb.amountPct<0.1)flags.push('螺纹🧊资金枯竭(波'+volFmt(VOL.rb.volPct,'pct')+'+额'+volFmt(VOL.rb.amountPct,'pct')+')');
+  if(VOL.hc&&VOL.hc.volPct<0.1)flags.push('热卷❄️波动冰点(分位'+volFmt(VOL.hc.volPct,'pct')+')');
+  if(st!=null&&stP!=null&&st-stP<-1)flags.push('铁水↓'+(st-stP).toFixed(1)+'至'+st+'累计-5.6');
+  if(pr!=null&&pr<35)flags.push('盈利率'+pr+'%历史低位');
+  // 估值极端
+  if(VOL.i&&VOL.i.volPct<0.1)extremes.push('铁矿9%估值+波分位'+volFmt(VOL.i.volPct,'pct')+'极低');
+  extremes.push('螺纹6%分位创年内新低3076');
+  // 趋势变化
+  if(st!=null)trends.push('铁水'+st+'→8月检修结束预计回升240+');
+  trends.push('焦煤交易重心:供给→需求(蒙煤仓单封顶)');
+  trends.push('卷螺差200→220+铁矿9-1正套10→20');
+
+  html+='<div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:4px;font-size:10px;line-height:1.35">';
+  html+='<div style="flex:1;min-width:140px;background:#fff5f5;border:1px solid #fcc;border-radius:5px;padding:4px 7px"><b>🚨 Red Flag</b>'+flags.map(function(f){return '<div style="font-size:9px">• '+f+'</div>';}).join('')+'</div>';
+  html+='<div style="flex:1;min-width:140px;background:#fffdf5;border:1px solid #fdb;border-radius:5px;padding:4px 7px"><b>⚡ 极端估值</b>'+extremes.map(function(f){return '<div style="font-size:9px">• '+f+'</div>';}).join('')+'</div>';
+  html+='<div style="flex:1;min-width:140px;background:#f5f9ff;border:1px solid #acf;border-radius:5px;padding:4px 7px"><b>📈 趋势变化</b>'+trends.map(function(f){return '<div style="font-size:9px">• '+f+'</div>';}).join('')+'</div>';
+  html+='</div>';
+  }
   // ===== 核心指标一览表（仅观点维度显示）=====
   if(dim==='观点'){
   var refWeek=28,refDate=new Date(2026,6,3);
