@@ -752,39 +752,8 @@ function updateInvestPanel(W,dim){
   const pr=val('st_profit_rate',W),prP=val('st_profit_rate',prevW);
   const s5p=val('s5_prod_螺纹钢',W),s5s=val('s5_stock_螺纹钢',W),s5c=val('s5_consume_螺纹钢',W);
 
-  // ===== KPI 卡片行 =====
-  let html='<div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:4px">';
-
-  // Helper: get latest daily price from ALL_DATA
-  function kpiVal(id){
-    var d=ALL_DATA[id];if(!d||!d['2026'])return null;
-    var keys=Object.keys(d['2026']).map(Number).filter(function(k){return k<=366;}).sort(function(a,b){return a-b;});
-    if(!keys.length)return null;
-    var latest=d['2026'][keys[keys.length-1]];
-    var prev=keys.length>7?d['2026'][keys[keys.length-8]]:d['2026'][keys[0]];
-    return {v:latest,p:prev?(latest-prev):0,pc:prev?Math.round((latest-prev)/prev*1000)/10:0};
-  }
-  var kpis=[
-    {icon:'⛏',name:'焦煤09',id:'f_jm'},
-    {icon:'🧱',name:'焦炭09',id:'f_j'},
-    {icon:'🔩',name:'螺纹10',id:'f_rb'},
-    {icon:'🔥',name:'热卷10',id:'f_hc'},
-    {icon:'🪨',name:'铁矿09',id:'f_i'},
-    {icon:'🏭',name:'铁水',id:'st_hot_metal',wk:true}
-  ];
-  kpis.forEach(function(k){
-    var v=k.wk?{v:st,p:st-stP,pc:stP?Math.round((st-stP)/stP*1000)/10:0}:kpiVal(k.id);
-    if(!v||v.v==null){html+='<div style="flex:1;min-width:80px;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:5px 8px;text-align:center;font-size:10px;color:var(--text3)">'+k.icon+' '+k.name+'<br>—</div>';return;}
-    var clr=v.pc>0?'#c44':v.pc<0?'#2a6':'#888',arrow=v.pc>0?'↑':v.pc<0?'↓':'→';
-    html+='<div style="flex:1;min-width:80px;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:5px 8px;text-align:center;font-size:10px">';
-    html+='<div style="color:var(--text2)">'+k.icon+' '+k.name+'</div>';
-    html+='<div style="font-size:17px;font-weight:700;line-height:1.2">'+fmtY(v.v,'')+'</div>';
-    html+='<div style="font-size:9px;color:'+clr+'">'+arrow+' '+Math.abs(v.pc).toFixed(1)+'%</div>';
-    html+='</div>';
-  });
-  html+='</div>';
-
   // ===== 信号扫描（仅观点维度）=====
+  let html='';
   if(dim==='观点'){
   var flags=[],extremes=[],trends=[];
   // Red Flag 规则
