@@ -759,13 +759,13 @@ function updateInvestPanel(W,dim){
   // Red Flag 规则
   if(VOL.rb&&VOL.rb.volPct<0.1&&VOL.rb.amountPct<0.1)flags.push('螺纹🧊资金枯竭(波'+volFmt(VOL.rb.volPct,'pct')+'+额'+volFmt(VOL.rb.amountPct,'pct')+')');
   if(VOL.hc&&VOL.hc.volPct<0.1)flags.push('热卷❄️波动冰点(分位'+volFmt(VOL.hc.volPct,'pct')+')');
-  if(st!=null&&stP!=null&&st-stP<-1)flags.push('铁水↓'+(st-stP).toFixed(1)+'至'+st+'累计-5.6');
+  if(st!=null&&stP!=null&&st-stP<-1)flags.push('铁水↓'+(st-stP).toFixed(1)+'至'+st+'连降三周累计-5.7');
   if(pr!=null&&pr<35)flags.push('盈利率'+pr+'%历史低位');
   // 估值极端
   if(VOL.i&&VOL.i.volPct<0.1)extremes.push('铁矿9%估值+波分位'+volFmt(VOL.i.volPct,'pct')+'极低');
   extremes.push('螺纹6%分位创年内新低3076');
   // 趋势变化
-  if(st!=null)trends.push('铁水'+st+'→8月检修结束预计回升240+');
+  if(st!=null)trends.push('铁水'+st+'连降三周→焦化利润转负-25→全行业亏损加深');
   trends.push('焦煤交易重心:供给→需求(蒙煤仓单封顶)');
   trends.push('卷螺差200→220+铁矿9-1正套10→20');
 
@@ -785,10 +785,10 @@ function updateInvestPanel(W,dim){
   html+='<table style="width:100%;border-collapse:collapse;margin-top:2px;font-size:10px;text-align:center">';
   html+='<tr style="background:#eee;font-weight:700"><td style="padding:2px 3px;text-align:left">品种</td><td>评分</td><td>价格分位</td><td>同期分位</td><td>基差</td><td>近月价差</td><td>波动率</td><td>波分位</td><td>成交额</td><td>成交分位</td><td>资金信号</td><td style="text-align:left;min-width:120px">核心逻辑</td><td style="text-align:left;min-width:130px">策略</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td style="color:#2a6"><b>+1</b></td><td>30%</td><td>0%</td><td>+108</td><td>-247</td><td>'+volFmt(VOL.jm.vol,'pct2')+'</td><td>'+volFmt(VOL.jm.volPct,'pct')+'</td><td>'+volFmt(VOL.jm.amount,'amt')+'</td><td>'+volFmt(VOL.jm.amountPct,'pct')+'</td><td>'+volSig('jm')+'</td><td style="text-align:left;font-size:9px">山西精煤缺口~1000万吨/月+进口增量明显→硬缺口持续</td><td style="text-align:left;font-size:9px;color:#c44"><b>轻仓做多</b></td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">🧱 焦炭</td><td>0</td><td>34%</td><td>0%</td><td>+60</td><td>-66</td><td>'+volFmt(VOL.j.vol,'pct2')+'</td><td>'+volFmt(VOL.j.volPct,'pct')+'</td><td>'+volFmt(VOL.j.amount,'amt')+'</td><td>'+volFmt(VOL.j.amountPct,'pct')+'</td><td>'+volSig('j')+'</td><td style="text-align:left;font-size:9px">限产30%+成本支撑vs铁水难言见底+第三轮提降→震荡偏弱</td><td style="text-align:left;font-size:9px">观望，等限产落地+8月信号</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">🪨 铁矿</td><td>0</td><td>9%</td><td>0%</td><td>-52</td><td>+12.5</td><td>'+volFmt(VOL.i.vol,'pct2')+'</td><td>'+volFmt(VOL.i.volPct,'pct')+'</td><td>'+volFmt(VOL.i.amount,'amt')+'</td><td>'+volFmt(VOL.i.amountPct,'pct')+'</td><td>'+volSig('i')+'</td><td style="text-align:left;font-size:9px">唐山复产→铁水回升利多vs焦化限产30%利空→方向不明</td><td style="text-align:left;font-size:9px">观望，多空交织</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">🔩 螺纹</td><td style="color:#e63946"><b>-1</b></td><td>6%</td><td>0%</td><td>+107</td><td>-39</td><td>'+volFmt(VOL.rb.vol,'pct2')+'</td><td>'+volFmt(VOL.rb.volPct,'pct')+'</td><td>'+volFmt(VOL.rb.amount,'amt')+'</td><td>'+volFmt(VOL.rb.amountPct,'pct')+'</td><td>'+volSig('rb')+'</td><td style="text-align:left;font-size:9px">产量持续下滑+资金到位率三周回落+库存累积→反弹驱动不足</td><td style="text-align:left;font-size:9px">观望，低估值但驱动不足</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">🔥 热卷</td><td>0</td><td>23%</td><td>0%</td><td>+34</td><td>-15</td><td>'+volFmt(VOL.hc.vol,'pct2')+'</td><td>'+volFmt(VOL.hc.volPct,'pct')+'</td><td>'+volFmt(VOL.hc.amount,'amt')+'</td><td>'+volFmt(VOL.hc.amountPct,'pct')+'</td><td>'+volSig('hc')+'</td><td style="text-align:left;font-size:9px">8月出口韧性但小幅回落+库存累积→矛盾缓慢累积</td><td style="text-align:left;font-size:9px">观望，卷螺差220推荐</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">🧱 焦炭</td><td>0</td><td>34%</td><td>0%</td><td>+60</td><td>-66</td><td>'+volFmt(VOL.j.vol,'pct2')+'</td><td>'+volFmt(VOL.j.volPct,'pct')+'</td><td>'+volFmt(VOL.j.amount,'amt')+'</td><td>'+volFmt(VOL.j.amountPct,'pct')+'</td><td>'+volSig('j')+'</td><td style="text-align:left;font-size:9px">铁水235.55连降三周+焦化利润-25转负→提降压力加大</td><td style="text-align:left;font-size:9px">观望，等限产落地+8月信号</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">🪨 铁矿</td><td>0</td><td>9%</td><td>0%</td><td>-52</td><td>+12.5</td><td>'+volFmt(VOL.i.vol,'pct2')+'</td><td>'+volFmt(VOL.i.volPct,'pct')+'</td><td>'+volFmt(VOL.i.amount,'amt')+'</td><td>'+volFmt(VOL.i.amountPct,'pct')+'</td><td>'+volSig('i')+'</td><td style="text-align:left;font-size:9px">铁水连降三周至235.55+焦化限产利空vs港口库存去化→方向不明</td><td style="text-align:left;font-size:9px">观望，多空交织</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">🔩 螺纹</td><td style="color:#e63946"><b>-1</b></td><td>6%</td><td>0%</td><td>+107</td><td>-39</td><td>'+volFmt(VOL.rb.vol,'pct2')+'</td><td>'+volFmt(VOL.rb.volPct,'pct')+'</td><td>'+volFmt(VOL.rb.amount,'amt')+'</td><td>'+volFmt(VOL.rb.amountPct,'pct')+'</td><td>'+volSig('rb')+'</td><td style="text-align:left;font-size:9px">产量200.3↓+消费198.9↑+库存699累库→供需小幅改善但库存仍增</td><td style="text-align:left;font-size:9px">观望，低估值但驱动不足</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">🔥 热卷</td><td>0</td><td>23%</td><td>0%</td><td>+34</td><td>-15</td><td>'+volFmt(VOL.hc.vol,'pct2')+'</td><td>'+volFmt(VOL.hc.volPct,'pct')+'</td><td>'+volFmt(VOL.hc.amount,'amt')+'</td><td>'+volFmt(VOL.hc.amountPct,'pct')+'</td><td>'+volSig('hc')+'</td><td style="text-align:left;font-size:9px">产消双降(产292.7↓9.4/消287.2↓12)+库存累至444→供需双弱</td><td style="text-align:left;font-size:9px">观望，卷螺差220推荐</td></tr>';
   html+='<tr style="background:#fafaf8"><td style="text-align:left;font-weight:700" colspan="2">🔗 跨品种</td><td colspan="11" style="text-align:left;font-size:10px"><b>卷螺差200→220</b>(螺纹产量↓vs热卷产量↑) | <b>铁矿9-1正套10→20</b>(近月铁水支撑vs远月供给压力) | 多焦煤(硬缺口)/观望焦炭(限产待验证+第三轮提降)</td></tr>';
   html+='</table></div>';
   }
@@ -797,12 +797,12 @@ function updateInvestPanel(W,dim){
   let products=[];
   // --- 焦煤 ---
   {let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('山西安全检查持续，复产产量不及事故前→<b>年度减量确定</b>，新规十七条清理隐蔽工作面→中长期供给约束');
+    supply.push('W31精煤产量<b>486.23</b>(↓8.2)万吨→安全检查持续压制，新规十七条清理隐蔽工作面→中长期供给约束');
     supply.push('<b>【供给硬缺口】</b>精煤产量较正常水平缺口~<b>1143万吨/月</b>（产业会议），蒙煤+澳煤+俄煤仅补~150万吨→<b>净缺口~1000万吨/月</b>');
     supply.push('中蒙三大口岸通关恢复，但增量远不足以填补国内缺口→缺口率~87%</b>，进口端<b>边际回升</b>明显→缺口绝对量仍大但关注后续进口通关变化');
     stock.push('煤矿库存低位+零累库→表内库存去化有限');
     stock.push('表外社会库存已<b>去化60-70%</b>，剩余高价库存<b>惜售滞留</b>，缓冲即将耗尽');
-    stock.push('焦化厂焦煤库存<b>794</b>万吨去化(↓38)，可用天数降至低位');
+    stock.push('焦化厂焦煤库存<b>765.83</b>万吨持续去化(↓7.5)，可用天数降至低位');
     demand.push('铁水产量虽<b>难言见底</b>，但进一步下行空间有限→<b>刚需底部区间</b>，煤价上涨概率较大');
     demand.push('焦化限产30%短期利空焦煤→但焦煤缺口太大，限产对焦煤的边际利空有限');
     price.push('低硫主焦<b>2020</b>持稳；期货09=<b>1285</b>，蒙煤仓单1250-1350→现货升水盘面，上行目标参考');
@@ -817,59 +817,59 @@ function updateInvestPanel(W,dim){
     products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'1000万吨/月硬缺口+低库存→供给端压倒性利多，进口增量边际压制但不足以逆转。煤价上涨概率大，轻仓做多。'});}
   // --- 焦炭 ---
   {let s=-2, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('全样本产能利用率<b>74.63%</b>，日均产量<b>64.10</b>万吨，<b>供给不减</b>');
-    supply.push('第二轮降价落地后<b>全行业已陷入亏损</b>→焦化企业代表会议达成<b>限产30%共识</b>（执行力度待验证）');
+    supply.push('全样本产能利用率<b>73.06%</b>，日均产量<b>62.75</b>万吨，<b>供给小幅回落</b>');
+    supply.push('焦化利润<b>-25</b>元/吨→<b>全行业亏损加深</b>，焦化企业代表会议达成<b>限产30%共识</b>（执行力度待验证）');
     supply.push('限产30%+坚持"亏损不销售"原则→<b>主动压减供给</b>，推动焦炭供需关系回归健康平衡');
     stock.push('焦化厂库存累库放缓→限产30%落地后<b>库存将从累库转为去库</b>');
     stock.push('总库存压力不大→限产30%落地后<b>库存去化概率较大</b>');
-    demand.push('需求端进一步走弱→<b>铁水产量暂时还难言见底</b>，成材库存压力+钢厂利润收缩叠加→<b>第三轮提降预期仍在</b>');
+    demand.push('铁水<b>235.55</b>↓2.15连降三周→<b>需求端持续走弱</b>，成材库存压力+钢厂利润收缩叠加→<b>第三轮提降预期仍在</b>');
     demand.push('钢厂利润薄+按需采购→市场保持第三轮提降预期，等待8月成材压力能否缓和');
-    price.push('期货09=<b>1879.5</b>，港口准一<b>1625</b>(↓)，<b>首轮提降落地(↓50-55)</b>，第二轮是否提降取决于限产执行');
+    price.push('期货09=<b>1879.5</b>，港口准一<b>1625</b>(↓)，<b>首轮提降落地(↓50-55)</b>，焦化利润转负→限产动力增强');
     price.push('【分位】近7年<b>34%</b>分位，年均值1784(26)首次反弹');
     price.push('【价差】09-01=<b>-66</b> contango；焦煤缺口推升成本→<b>焦炭成本支撑增强</b>，炭煤比或回落');
     price.push(volFundLine('j'));
-    price.push('【多空交织】限产30%+成本支撑(利多) vs 铁水难言见底+第三轮提降预期(利空)→<b>震荡偏弱</b>');
+    price.push('【多空交织】限产30%+焦煤成本支撑(利多) vs 铁水235.55连降+利润-25+第三轮提降(利空)→<b>震荡偏弱</b>');
     risk.push('限产30%若执行不到位→空头逻辑恢复；焦煤涨价速度过快→成本侵蚀利润超预期');
-    s=0; strat='<b>限产30%+焦煤成本支撑是底部支撑</b>，但铁水难言见底+第三轮提降预期压制反弹空间。短期缺乏明显驱动，整体<b>震荡偏弱</b>。<b>观望</b>，等待限产执行验证+8月成材压力变化信号。';
+    s=0; strat='<b>限产30%+焦煤成本支撑是底部支撑</b>，但铁水235.55连降三周+利润转负-25+第三轮提降预期压制反弹空间。短期缺乏明显驱动，整体<b>震荡偏弱</b>。<b>观望</b>，等待限产执行验证+8月成材压力变化信号。';
     const outLook=s>=4?'做多':s>=2?'轻仓做多':s>=0?'观望':'做空';
-    products.push({name:'焦炭',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'限产30%+焦煤成本支撑vs铁水难言见底+第三轮提降→震荡偏弱，短期缺乏明显驱动。观望等限产落地验证。'});}
+    products.push({name:'焦炭',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'限产30%+焦煤成本支撑vs铁水235.55连降+利润转负+第三轮提降→震荡偏弱。观望等限产落地验证。'});}
   // --- 铁矿石 ---
   {let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
     supply.push('澳洲矿山季节性检修，发运边际回落；<b>港口库存环比累库179万吨</b>');
-    supply.push('7月底河北钢厂检修陆续结束→但铁水短期<b>难言见底</b>，关注8月成材压力能否缓和');
+    supply.push('铁水<b>235.55</b>↓2.15连降三周，累计-5.72→<b>需求端压力加大</b>，关注何时见底');
     stock.push('港口库存'+(io!=null?(io/10000).toFixed(2):'—')+'亿吨(同比'+fmtC(ioY,'%')+')，供需宽松格局未改');
-    demand.push('铁水<b>237.7</b>下行但即将企稳→<b>近月需求仍有支撑，远月压力更大</b>');
-    demand.push('焦化限产30%→间接利空铁矿（焦炭减产→铁水上限被压低），短期铁水难言见底→近月支撑减弱');
+    demand.push('铁水<b>235.55</b>连降三周→<b>近月支撑减弱，远月压力更大</b>');
+    demand.push('焦化限产30%→间接利空铁矿，铁水连降+焦化利润转负→需求预期进一步下调');
     price.push('主力09=<b>746</b>偏弱震荡，PB粉<b>700</b>(↓9)，港口现货均价700环比回落');
     price.push('【分位】近7年<b>9%</b>分位极低估值，但<b>利空尚未充分释放</b>');
     price.push('【正套推荐】09-01价差当前≈10→<b>有望向20元/吨靠近</b>（近月铁水回升支撑+远月供给压力）');
     price.push(volFundLine('i')+'，<b>700附近窄幅磨底</b>');
-    price.push('【多空交织】低估值+唐山复产(利多) vs 铁水难言见底+焦化限产间接利空+港口累库(利空)→<b>方向不明</b>');
+    price.push('【多空交织】低估值+港口库存去化(利多) vs 铁水235.55连降+焦化限产利空(利空)→<b>方向不明</b>');
     risk.push('<b>PB粉有效跌破700</b>→成本支撑瓦解；焦化限产执行→铁水需求预期下调');
-    s=0; strat='<b>多空交织，方向不明</b>。低估值+唐山复产提供支撑，但铁水难言见底+焦化限产30%间接利空+港口累库压力仍在。<b>09-01正套</b>(价差10→20)仍可关注；单边<b>观望</b>。';
+    s=0; strat='<b>多空交织，方向不明</b>。低估值+港口库存去化提供支撑，但铁水235.55连降三周+焦化限产利空+焦化利润转负。<b>09-01正套</b>(价差10→20)仍可关注；单边<b>观望</b>。';
     const outLook=s>=2?'轻仓做多':s>=0?'观望':'做空';
-    products.push({name:'铁矿石',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'唐山复产利多vs焦化限产利空→多空交织方向不明。09-01正套(10→20)可关注，单边观望。'});}
+    products.push({name:'铁矿石',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'低估值+库存去化vs铁水连降三周+焦化限产利空→多空交织。09-01正套可关注，单边观望。'});}
   // --- 螺纹钢 ---
   {let s=-1, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('产量持续下滑→<b>供给端收缩</b>，但减产速度不及需求下滑速度');
+    supply.push('W31产量<b>200.31</b>(↓1.13)万吨，连续低位运行→<b>供给端持续收缩</b>');
     supply.push('焦炭提降后钢厂亏损收窄(吨钢-64)→但<b>减产动力仍存</b>');
-    stock.push('总库存重新进入累库通道，<b>供给恢复快于需求→库存压力持续累积</b>');
-    demand.push('需求端尚未出现实质性改善→<b>高温、降雨及台风延续</b>，施工时长和采购强度难有提升');
+    stock.push('总库存<b>699.07</b>(↑1.37)万吨续累→<b>供给收缩速度不及需求恢复→库存压力仍在</b>');
+    demand.push('W31消费<b>198.94</b>(↑2.72)万吨小幅回升→但高温+降雨+台风仍制约施工强度');
     demand.push('专项债发行明显提速但<b>资金尚未有效转化为终端实物需求</b>→基建资金偏紧');
     demand.push('百年建筑工地资金到位率<b>连续三周回落</b>+8月高温持续影响施工→需求缺乏增量');
-    price.push('主力10=<b>3076</b>创年内新低，上海螺纹3130(↓)，盘面利润-82');
+    price.push('主力10=<b>3076</b>创年内新低，上海螺纹3130(↓)');
     price.push('【分位】近7年<b>6%</b>分位极低估值→低估值或带来阶段性修复，但反弹驱动不足');
     price.push('【供需格局】供给恢复+需求偏弱+库存累积→淡季交易逻辑延续');
-    risk.push('减产→供给收缩超预期→可能带来阶段性修复；资金到位率持续回落→需求进一步恶化');
-    s=-1; strat='<b>供给收缩+需求偏弱+库存累积+资金传导不畅</b>→基本面压力继续制约价格。当前价格虽已处年内低位，低估值或带来阶段性修复，但需求缺乏增量+库存压力尚未缓解+政策端无刺激→<b>反弹驱动不足</b>。<b>观望</b>。';
+    risk.push('消费恢复能否持续→若短期回落则累库加剧；资金到位率持续回落→需求进一步恶化');
+    s=-1; strat='<b>供给收缩(200.31↓)+消费小幅回升(198.94↑)+库存续累(699.07)</b>→供需均边际改善但库存仍在累积。低估值或带来阶段性修复，但消费回升能否持续待验证+政策端无刺激→<b>反弹驱动不足</b>。<b>观望</b>。';
     const outLook=s>=2?'轻仓做多':s>=-1?'观望':'做空';
-    products.push({name:'螺纹钢',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'供给收缩+需求缺增量+库存累积+资金未转化→基本面压力制约价格。低估值但反弹驱动不足，观望。'});}
+    products.push({name:'螺纹钢',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'供给收缩+消费小幅回升+库存续累→供需边际改善但累库未止。低估值或带来阶段性修复，观望。'});}
   // --- 热卷 ---
   {const h5p=val('s5_prod_热卷',W),h5s=val('s5_stock_热卷',W),h5c=val('s5_consume_热卷',W);let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('W30产量<b>302.02</b>(↑4.54)万吨，检修钢厂陆续复产→<b>供应边际回升</b>');
+    supply.push('W31产量<b>292.66</b>(↓9.36)万吨大幅回落→<b>供给端主动收缩</b>');
     supply.push('但生产效益仍在盈亏平衡线附近→供应压力仍维持低位');
-    stock.push('W30厂库+2.39+社库+0.39=总库<b>↑2.78</b>万吨，华东华南集中到货→累库主力');
-    demand.push('W30消费<b>299.24</b>(↓2.78)万吨，库销比升至10.26天');
+    stock.push('W31总库<b>443.99</b>(↑5.44)万吨→消费回落速度快于供给收缩→<b>累库加剧</b>');
+    demand.push('W31消费<b>287.22</b>(↓12.02)万吨大幅回落→库销比升至12.0天，<b>供需双弱</b>');
     demand.push('<b>【出口窗口收窄】</b>欧盟削减进口配额近半+东南亚雨季→亚洲钢价承压，中国出口优势减弱');
     demand.push('日韩热卷跌2-4美元 vs 中国跌幅较小→价差边际走扩1-3美元，出口缓冲减弱');
 	    demand.push('<b>【8月出口韧性】</b>制造业用钢保持韧性→海外需求拉动，8月出口维持高位');
@@ -879,10 +879,10 @@ function updateInvestPanel(W,dim){
     price.push('【分位】近7年<b>23%</b>分位，<b>供需矛盾缓慢累积但供给端压力低位→矛盾不明显</b>');
     price.push('【卷螺差】当前≈200→预计扩大至<b>220</b>（螺纹产量↓ vs 热卷产量↑）');
     price.push(volFundLine('hc')+'，<b>波动冰点+资金枯竭</b>');
-    risk.push('出口超预期回落→需求端进一步恶化；供给回升超预期+成本下移→价格承压');
-    s=0; strat='<b>供需矛盾缓慢累积+库存持续累积</b>，但8月出口韧性提供底部支撑→短期持续磨底。<b>卷螺差200→220</b>推荐（螺纹产量↓ vs 热卷产量↑）。单边<b>观望</b>。';
+    risk.push('消费大幅回落(↓12.02)→需求恶化超预期；出口回落+供给收缩不足→累库惯性延续');
+    s=0; strat='<b>产量大降(292.66↓9.36)+消费大跌(287.22↓12.02)+库存续累(443.99)</b>→供需双弱格局。8月出口韧性提供底部支撑但消费恶化更快。<b>卷螺差200→220</b>推荐（螺纹产量↓ vs 热卷产量↓幅度更大）。单边<b>观望</b>。';
     const outLook=s>=2?'轻仓做多':s>=0?'观望':'做空';
-    products.push({name:"热卷",score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:"供需矛盾缓慢累积+库存持续累积，但8月出口韧性提供底部支撑→延续磨底。卷螺差220推荐，单边观望。"});}
+    products.push({name:"热卷",score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:"产量大降+消费大跌+库存累至444→供需双弱，8月出口韧性对冲。卷螺差220推荐，单边观望。"});}
 
   var dimMap={'观点':['焦煤','焦炭','铁矿石','螺纹钢','热卷'],'焦煤':['焦煤'],'焦炭':['焦炭'],'铁矿':['铁矿石'],'钢材':['螺纹钢','热卷'],'价格':[],'期货':[],'仓单':[]};
   var filtered=dimMap[dim]?products.filter(function(p){return dimMap[dim].indexOf(p.name)>=0;}):products;
