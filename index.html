@@ -757,15 +757,15 @@ function updateInvestPanel(W,dim){
   if(dim==='观点'){
   var flags=[],extremes=[],trends=[];
   // Red Flag 规则
-      if(st!=null&&stP!=null&&st-stP<-1)flags.push('铁水↓'+(st-stP).toFixed(1)+'至'+st+'连降三周累计-5.7');flags.push('焦炭第3轮提降8-07零点执行(湿熄-50/干熄-55)+晋冀焦企限产启动(名义30%/实际新增有限)→焦化亏损-75~-80');flags.push('铁矿722(+0.3%)反弹乏力+板块资金-6亿净流出→反弹不牢');flags.push('螺纹3020仍<3025硬约束+社库连增三周→空平反弹不牢');
+      if(st!=null&&stP!=null&&st-stP<-1)flags.push('铁水↓'+(st-stP).toFixed(1)+'至'+st+'，连降承压');flags.push('焦炭第3轮提降8-07落地(湿熄-50/干熄-55)+晋冀限产启动，焦化亏损-75~-80');flags.push('铁矿722反弹乏力，板块资金-6亿净流出');flags.push('螺纹3020仍<3025硬约束+社库连增');
   if(pr!=null&&pr<35)flags.push('盈利率'+pr+'%历史低位');
   // 估值极端
-  extremes.push('螺纹6%分位低位+3020仍<3025硬约束(空平反弹)');extremes.push('铁矿9%分位低位+722反弹乏力(资金-6亿)');extremes.push('焦煤1281(+3.14%)领涨黑色+安检偏紧→低位反弹延续');
+  extremes.push('螺纹6%分位极低+3020<3025');extremes.push('铁矿9%分位极低+722反弹乏力');extremes.push('焦煤1281领涨黑色+安检偏紧→低位反弹延续');
   // 趋势变化
-  if(st!=null)trends.push('铁水'+st+'连降三周→焦化利润转负-25→全行业亏损加深');trends.push('黑色系08-07双焦领涨(焦炭+3.23%/焦煤+3.14%)但螺纹3020仍<3025→空平弱反弹延续，反弹不牢');
-  trends.push('焦煤1281(+3.14%)空头回补反弹延续+安检偏紧+竞拍溢价→反弹波段延续');
-  trends.push('8月展望前低后高：中上旬检修收尾复产+需求未见底→供增需降承压，下旬需求季节性改善+减产落地→弱反弹窗口');
-  trends.push('焦炭第3轮提降8-07落地=利空兑现+空头回补反弹(收1904,+3.23%)→短线反弹延续；但升水354+钢厂亏损→反弹空配，警惕基差回归');
+  if(st!=null)trends.push('铁水'+st+'连降三周→焦化利润转负，行业亏损加深');trends.push('8-07双焦领涨(焦炭+3.23%/焦煤+3.14%)，螺纹仍<3025→空平弱反弹，反弹不牢');
+  trends.push('焦煤1281空头回补反弹延续(安检偏紧+竞拍溢价)');
+  trends.push('8月前低后高：中上旬供增需降承压，下旬弱反弹窗口');
+  trends.push('焦炭提降落地=利空兑现+空头回补(1904反弹)，但升水354过大→不追高');
 
   html+='<div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:4px;font-size:10px;line-height:1.35">';
   html+='<div style="flex:1;min-width:140px;background:#fff5f5;border:1px solid #fcc;border-radius:5px;padding:4px 7px"><b>🚨 Red Flag</b>'+flags.map(function(f){return '<div style="font-size:9px">• '+f+'</div>';}).join('')+'</div>';
@@ -782,12 +782,12 @@ function updateInvestPanel(W,dim){
   html+='<b>📋 核心指标一览（W'+W+' · '+tblDate+'）</b>';
   html+='<table style="width:100%;border-collapse:collapse;margin-top:2px;font-size:10px;text-align:center">';
   html+='<tr style="background:#eee;font-weight:700"><td style="padding:2px 3px;text-align:left">品种</td><td>评分</td><td>价格分位</td><td>同期分位</td><td>基差</td><td>近月价差</td><td>持仓信号</td><td style="text-align:left;min-width:120px">核心逻辑</td><td style="text-align:left;min-width:130px">策略</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td style="color:#2a6"><b>+1</b></td><td>30%</td><td>0%</td><td>+28</td><td>-147</td><td>反弹延续·空头回补</td><td style="text-align:left;font-size:9px">8-07收1281(+3.14%)领涨+安监+竞拍溢价(尧都1713+63)→供给偏紧易涨难跌</td><td style="text-align:left;font-size:9px;color:#c44"><b>轻仓做多</b></td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">🧱 焦炭</td><td style="color:#c44"><b>+2</b></td><td>34%</td><td>0%</td><td>-354</td><td>-61.5</td><td>增仓·空头回补</td><td style="text-align:left;font-size:9px">8-07收1904(+3.23%)利空兑现+晋冀限产+焦煤成本支撑→短线反弹延续，深度升水354需防基差回归</td><td style="text-align:left;font-size:9px;color:#c44"><b>轻仓做多(短线)</b></td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">🪨 铁矿</td><td>0</td><td>9%</td><td>0%</td><td>-42</td><td>+10</td><td>减仓·反弹乏力</td><td style="text-align:left;font-size:9px">722微涨但反弹乏力+板块资金-6亿+高库存+铁水承压→8月中上旬震荡走弱、中下旬触底反弹</td><td style="text-align:left;font-size:9px">观望，等罢工事件明朗</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">🔩 螺纹</td><td>0</td><td>6%</td><td>0%</td><td>+80</td><td>-32</td><td>减仓6.72万手·空平</td><td style="text-align:left;font-size:9px">3020仍<3025硬约束+社库连增三周+表需周均190万吨→空平反弹不牢、震荡偏弱</td><td style="text-align:left;font-size:9px">观望，区间操作2970-3030</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">🔥 热卷</td><td>0</td><td>23%</td><td>0%</td><td>+43</td><td>-20</td><td>36.8万手·微涨</td><td style="text-align:left;font-size:9px">8-07收3237(+0.4%)但产消双弱→8月产量290.7+去库拐点0.6%→库存弱平衡，延缓跌速</td><td style="text-align:left;font-size:9px">观望，卷螺差200-220推荐</td></tr>';
-  html+='<tr style="background:#fafaf8"><td style="text-align:left;font-weight:700" colspan="2">🔗 跨品种</td><td colspan="7" style="text-align:left;font-size:10px"><b>卷螺差200-220</b>(螺纹产量↓vs热卷产量↑) | <b>焦煤1-5正套</b>(实际缺口大vs未来供应恢复) | <b>焦炭/焦煤比值趋于收缩</b>(8月·焦煤坚挺) | <b>短线多焦化利润</b>(8-07焦炭+3.23%领涨>焦煤+3.14%) | 轻仓多焦煤/焦炭短线多防基差回归</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td style="color:#2a6"><b>+1</b></td><td>30%</td><td>0%</td><td>+28</td><td>-147</td><td>反弹延续·空头回补</td><td style="text-align:left;font-size:9px">1281领涨黑色，供给偏紧易涨难跌</td><td style="text-align:left;font-size:9px;color:#c44"><b>轻仓做多</b></td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">🧱 焦炭</td><td style="color:#c44"><b>+2</b></td><td>34%</td><td>0%</td><td>-354</td><td>-61.5</td><td>增仓·空头回补</td><td style="text-align:left;font-size:9px">1904利空兑现反弹，但升水354防基差回归</td><td style="text-align:left;font-size:9px;color:#c44"><b>轻仓做多(短线)</b></td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">🪨 铁矿</td><td>0</td><td>9%</td><td>0%</td><td>-42</td><td>+10</td><td>减仓·反弹乏力</td><td style="text-align:left;font-size:9px">722反弹乏力+高库存，上旬走弱下旬或反弹</td><td style="text-align:left;font-size:9px">观望</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">🔩 螺纹</td><td>0</td><td>6%</td><td>0%</td><td>+80</td><td>-32</td><td>减仓6.72万手·空平</td><td style="text-align:left;font-size:9px">3020仍<3025+社库连增，空平反弹不牢</td><td style="text-align:left;font-size:9px">观望/反弹空配</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">🔥 热卷</td><td>0</td><td>23%</td><td>0%</td><td>+43</td><td>-20</td><td>36.8万手·微涨</td><td style="text-align:left;font-size:9px">3237产消双弱，8月弱平衡延缓跌速</td><td style="text-align:left;font-size:9px">观望</td></tr>';
+  html+='<tr style="background:#fafaf8"><td style="text-align:left;font-weight:700" colspan="2">🔗 跨品种</td><td colspan="7" style="text-align:left;font-size:10px"><b>卷螺差200-220</b> | <b>焦煤1-5正套</b> | <b>焦炭/焦煤比值收缩</b>(8月) | <b>短线多焦化利润</b>(8-07焦炭领涨)</td></tr>';
   html+='</table></div>';
   }
 
@@ -795,106 +795,80 @@ function updateInvestPanel(W,dim){
   let products=[];
   // --- 焦煤 ---
   {let s=1, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('<b>【供给端扰动·短线利多】</b>山西安监+吕梁电力1000万吨关停预期+甘其毛都蒙5#涨22→供给偏紧预期升温');
-    supply.push('<b>【供给硬缺口·中线利多】</b>精煤产量较正常水平缺口~<b>1000万吨/月</b>，蒙煤+澳煤+俄煤进口增量有限→硬缺口持续');
-    supply.push('W31精煤产量<b>486.23</b>(↓8.2)万吨→安全检查持续压制，新规十七条清理隐蔽工作面→中长期供给约束');
-    supply.push('<b>【竞拍溢价·现货走强】</b>安监常态化制约产能释放→供给仍偏紧；5日线上竞拍主焦普遍溢价，临汾尧都区高硫主焦精煤<b>1713元/吨</b>(较前期<b>+63</b>)→短期焦煤<b>易涨难跌</b>');
-    stock.push('煤矿库存低位+焦化厂焦煤库存765.83万吨持续去化(↓7.5)→表内低库存+去化→<b>中线利多</b>');
-    stock.push('表外社会库存已<b>去化60-70%</b>，剩余高价库存惜售滞留，缓冲即将耗尽');
-    demand.push('<b>【短线】</b>焦炭第3轮提降8-07执行→焦化亏损加深或限产→焦煤需求端短期承压');
-    demand.push('<b>【中线】</b>铁水235.55进一步下行空间有限→刚需底部区间，钢厂复产预期下焦煤需求弹性释放');
-    demand.push('焦化限产短期利空焦煤→但焦煤缺口太大，限产对焦煤边际利空有限');
-    demand.push('下游补库需求逐步释放+市场情绪回暖→成交活跃度提升，5日竞拍溢价印证需求端边际改善');
-    price.push('期货09=<b>1281</b>(+39,+3.14%)领涨黑色，蒙5精煤<b>1309</b>→基差<b>+28</b>(现货升水收窄)；低硫主焦1970.9');
-    price.push('<b>【持仓信号】</b>8-07反弹由空平主导(双焦资金+10亿净流入)→<b>空头回补</b>延续，安检偏紧+竞拍溢价支撑→<b>反弹波段延续</b>');
-    price.push('<b>【中线逻辑】</b>1000万吨/月硬缺口+低库存+供给约束→基本面利多扎实，供给端扰动(安监/吕梁电力)发酵→反弹或开启波段');
-    price.push('【分位】近7年<b>30%</b>分位低位+减仓上行结构→估值修复空间打开');
-    price.push('【价差】09-01深度contango(<b>-147</b>)+盘面定价(中硫)≠现货(低硫)→结构矛盾仍存');
-    price.push('<b>【核心矛盾】</b>短线焦炭提降压制(8-07) vs 中线供给偏紧(安监/缺口)→<b>回踩确认后偏多</b>');
-    price.push('<b>【8月展望】</b>煤矿复产节奏慢于预期+中东地缘扰动能源价格→<b>焦煤较焦炭坚挺</b>，焦炭/焦煤比值趋于收缩；主力换月后1-5价差延续<b>正套</b>(基本面从产量过剩转向实际缺口大)，但绝对价格上方受进口煤仓单压制');
-    risk.push('<b>【短线风险】</b>焦炭8-07提降落地冲击→焦煤跟跌；跌破1220-1230支撑则反弹夭折');
-    risk.push('<b>【中线风险】</b>进口增量持续超预期→缺口收窄；煤矿复产加快→供给恢复超预期');
-    s=1; strat='<b>【短线(1-4周)·偏多】</b>焦炭第3轮提降8-07已落地=利空兑现+焦煤8-07收<b>1281</b>(+3.14%)领涨→<b>空头回补反弹延续</b>，偏多。回踩<b>1250-1260</b>企稳试多(报告区间1260-1280)，目标<b>1300-1320</b>，跌破<b>1210</b>止损。<br><b>【中线(1-3月)·偏多】</b>1000万吨/月硬缺口+低库存+供给约束→基本面支撑。<b>跌破1200止损/转空</b>。';
+    supply.push('<b>【短线】</b>山西安监+吕梁电力1000万吨关停预期→供给偏紧预期升温');
+    supply.push('<b>【硬缺口】</b>精煤缺口~<b>1000万吨/月</b>，进口增量有限→硬缺口持续');
+    supply.push('<b>【竞拍溢价】</b>主焦竞拍普遍溢价(尧都高硫1713,+63)→现货<b>易涨难跌</b>');
+    stock.push('<b>【低库存】</b>煤矿+焦化库存低位去化(765.83,↓7.5)，表外已去化60-70%→中线利多');
+    demand.push('<b>【短线】</b>焦炭提降致焦化亏损加深→焦煤需求短线承压');
+    demand.push('<b>【中线】</b>铁水235.55下行空间有限+钢厂复产→需求弹性待释放');
+    price.push('<b>【盘面】</b>09收<b>1281</b>(+3.14%)领涨黑色，蒙5精煤1309→基差<b>+28</b>');
+    price.push('<b>【持仓】</b>空平主导(双焦+10亿净流入)→空头回补延续，反弹波段未走完');
+    price.push('<b>【估值】</b>30%分位低位+09-01深contango(<b>-147</b>)结构矛盾');
+    price.push('<b>【8月】</b>焦煤较焦炭坚挺，炭/煤比值趋收缩；1-5价差延续正套');
+    risk.push('<b>【风险】</b>跌破1220-1230反弹夭折；进口增量超预期+煤矿复产→缺口收窄');
+    s=1; strat='<b>【短线偏多】</b>1281领涨=空头回补反弹延续→回踩<b>1250-1260</b>试多，目标<b>1300-1320</b>，破<b>1210</b>止损。<br><b>【中线偏多】</b>硬缺口+低库存支撑，破<b>1200</b>转空。';
     const outLook=s>=3?'做多':s>=1?'轻仓做多':s>=0?'短空长多·观望等待':'做空';
-    products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'8-07收1281(+3.14%)领涨=空头回补反弹延续+安监制约+竞拍溢价(尧都高硫1713+63)→供给偏紧易涨难跌，短线偏多；中线硬缺口+低库存→偏多。回踩1250-1260试多，目标1300-1320，破1210止损。'});}
+    products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'1281领涨=空头回补反弹延续，供给偏紧易涨难跌→短线偏多；中线硬缺口+低库存→偏多。回踩1250-1260试多，破1210止损。'});}
   // --- 焦炭 ---
   {let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('<b>【第3轮提降·8-07零点执行】</b>唐山/邢台/天津/石家庄主流钢厂对湿熄焦下调<b>50元/吨</b>、干熄焦下调<b>55元/吨</b>→三轮累计降幅~150元/吨');
-    supply.push('<b>【晋冀焦企限产启动·8月初】</b>山西：鹏飞30%/东义15%/晋茂15%/恒沣65%/金岩30%+/顶装阳光30%/梗阳20%/潞宝20%/永鑫15%；河北：邯郸宝烨20%/鑫森15%/裕泰30%/鑫盛20%/新彭楠20%；此前内蒙/西北部分焦企已先行限产');
-    supply.push('焦化利润-25→提降后恶化至<b>-75~-80元/吨</b>→<b>全行业亏损加深</b>，限产30%共识<b>执行动力大增</b>（兑现力度待验证）；<b>【限产成色】</b>鹏飞开工9成→7成、东义85%→&lt;8成、金岩85%→80%确有减产，顶装系+河北部分焦企开工本在8-9成→<b>名义30%≠实际供给收缩</b>');
-    supply.push('限产30%+坚持"亏损不销售"原则→主动压减供给，推动供需关系回归健康平衡');
-    stock.push('焦化厂库存累库放缓→限产30%落地后库存将从累库转为去库');
-    stock.push('总库存压力不大→限产落地后库存去化概率较大');
-    demand.push('<b>【核心驱动】</b>钢厂亏损→<b>铁水235.55连降三周</b>→需求端负反馈是第3轮降价核心驱动力');
-    demand.push('钢厂利润薄+按需采购→第3轮提降落地后，关注8月成材压力能否缓和');
-    demand.push('<b>【8月展望】</b>钢厂盈利率33.8%近两年低位(8.8%分位)+利润恶化→或倒逼新一轮检修，8月日均铁水236-240区间、均值低于7月→<b>焦炭需求端仍承压，8月相对偏弱</b>');
-    price.push('期货09=<b>1904</b>(+59.5,+3.23%)强势反弹突破1880，日照港准一<b>1550</b>→<b>期货升水354过大</b>(盘面高估)→需警惕基差回归');
-    price.push('<b>【提降落地含义】</b>8-07零点执行=利空兑现→空头回补反弹(收1904,+3.23%)；但升水354+钢厂亏损→<b>反弹空配，警惕基差回归</b>');
-    price.push('<b>【磨底阶段】</b>焦煤供给偏紧+焦企深度亏损限产扩大→<b>限制焦价下行空间</b>→市场或进入磨底阶段');price.push('<b>【8-07盘面】</b>报告Top2推荐<b>短线多</b>(1860-1890持有/目标1930-1950/止损1770，置信度62%)；风险：深度升水354+第3轮提降+钢厂亏损');
-    price.push('【分位】近7年<b>34%</b>分位低位，焦化利润-25已转负');
-    price.push('【价差】09-01=<b>-61.5</b> contango；焦煤成本支撑增强→炭煤比或回落');
-    price.push('【多空交织】限产30%+焦煤成本支撑(利多) vs 第3轮提降8-07+期货升水243+铁水连降(利空)→<b>提降落地前偏弱，落地后看限产</b>');
-    risk.push('限产30%若执行不到位→空头逻辑恢复；提降落地后焦煤跟跌→成本支撑减弱');
-    s=2; strat='<b>8-07空头回补强势反弹(收1904,+3.23%，突破1880)</b>→短线转多。第3轮提降8-07已落地=利空兑现，晋冀限产启动+焦煤成本支撑→下行空间收窄。但<b>期货升水354过大</b>+钢厂亏损→<b>反弹不追高，逢高减/轻仓短线多</b>，报告建议1860-1890持有、目标1930-1950、<b>破1770止损</b>。中期仍磨底，关注铁水复产+焦化开工。';
+    supply.push('<b>【提降落地】</b>第3轮8-07执行(湿熄-50/干熄-55)，累计降幅~150');
+    supply.push('<b>【限产启动】</b>晋冀焦企限产30%(鹏飞/东义/金岩等)，名义30%≠实际收缩');
+    supply.push('<b>【利润】</b>焦化亏损加深至<b>-75~-80</b>→减产动力大增');
+    stock.push('<b>【库存】</b>总库存压力不大，限产落地后或从累库转去库');
+    demand.push('<b>【驱动】</b>铁水235.55连降三周→需求负反馈是提降主因');
+    demand.push('<b>【8月】</b>铁水236-240区间、均值低于7月→焦炭需求仍承压');
+    price.push('<b>【盘面】</b>09收<b>1904</b>(+3.23%)突破1880，日照港准一1550→<b>升水354过大</b>');
+    price.push('<b>【持仓】</b>增仓空头回补；34%分位低位，09-01=-61.5');
+    price.push('<b>【8-07盘面】</b>报告Top2推荐<b>短线多</b>(1860-1890持有/目标1930-1950/止损1770，置信度62%)');
+    price.push('<b>【多空】</b>限产30%+焦煤成本支撑 vs 升水354+铁水连降→提降落地后看限产兑现');
+    risk.push('<b>【风险】</b>升水354防基差回归；限产兑现不足→空头逻辑恢复');
+    s=2; strat='<b>【短线】</b>提降落地=利空兑现+空头回补→<b>轻仓短线多</b>(1860-1890持有/目标1930-1950/破1770止损)；但<b>升水354过大</b>→不追高、逢高减。中期仍磨底。';
     const outLook=s>=4?'做多':s>=2?'轻仓做多':s>=0?'观望':'做空';
-    products.push({name:'焦炭',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'8-07空头回补反弹收1904(+3.23%)+利空兑现→短线转多；但期货升水354过大+钢厂亏损→反弹不追高，轻仓短线多/逢高减，破1770止损；中期磨底，关注铁水+焦化开工。'});}
+    products.push({name:'焦炭',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'提降落地=利空兑现+空头回补→短线转多；但升水354过大→轻仓短线多不追高，破1770止损；中期磨底。'});}
   // --- 铁矿石 ---
   {let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('<b>【必和必拓8-08/09罢工】</b>供应扰动事件→短线反弹催化剂；澳洲矿山季节性检修，发运边际回落');
-    supply.push('港口库存高位+疏港放缓→<b>供需宽松格局未改</b>');
-    stock.push('港口库存'+(io!=null?(io/10000).toFixed(2):'—')+'亿吨(同比'+fmtC(ioY,'%')+')，高库存压制反弹高度');
-    demand.push('铁水<b>235.55</b>连降三周+钢厂减产→需求端承压，关注何时见底');
-    demand.push('焦化限产+钢材累库→需求预期偏弱，反弹缺乏需求配合');
-    price.push('主力09=<b>722</b>(+2,+0.30%)微涨，PB粉<b>680</b>(08-07+12)→基差<b>-42</b>(期货升水)；反弹乏力+板块资金-6亿净流出→<b>反弹不牢</b>');
-    price.push('<b>【持仓信号】</b>8-07减仓微涨→反弹乏力；螺纹/铁矿板块资金-6亿净流出→<b>空平反弹不牢</b>');
-    price.push('【分位】近7年<b>9%</b>分位极低估值→<b>下方空间有限，但反弹需基本面配合</b>');
-    price.push('【正套推荐】09-01价差<b>+10</b>（近月铁水支撑vs远月供给压力）');
-    price.push('【多空交织】必和必拓罢工+低估值+收复700(利多) vs 高库存+铁水连降+需求弱(利空)→<b>反弹持续性待验证</b>');
-    price.push('<b>【8月展望】</b>7月青岛港PB粉月均价<b>699元/吨</b>(环比-26)；8月上旬高炉检修增多+矿价延续<b>震荡走弱</b>，月中钢厂新一轮减产落地+建筑用钢需求季节性回暖→<b>触底反弹</b>');
-    risk.push('罢工事件落地后利多出尽→回吐涨幅；高库存压制反弹；钢厂减产超预期');
-    s=0; strat='主力<b>722微涨但反弹乏力</b>(板块资金-6亿净流出)，港口库存高位+铁水承压→<b>8月上旬延续震荡走弱</b>，中下旬钢厂减产落地+终端需求季节性回暖→<b>或触底反弹</b>。必和必拓8-08/09罢工为短线催化，事件落地前<b>观望</b>，不追高，下旬关注反弹窗口。';
+    supply.push('<b>【扰动】</b>必和必拓8-08/09罢工→短线反弹催化');
+    supply.push('<b>【格局】</b>港口库存高位+疏港放缓→供需宽松未改');
+    stock.push('<b>【库存】</b>港口'+(io!=null?(io/10000).toFixed(2):'—')+'亿吨(同比'+fmtC(ioY,'%')+')高企→压制反弹高度');
+    demand.push('<b>【需求】</b>铁水235.55连降三周+钢厂减产→反弹缺乏需求配合');
+    price.push('<b>【盘面】</b>主力09收<b>722</b>(+0.3%)微涨，PB粉680→基差<b>-42</b>');
+    price.push('<b>【持仓】</b>减仓微涨+板块资金-6亿流出→反弹不牢');
+    price.push('<b>【估值】</b>9%分位极低+09-01正套(+10)，下方空间有限');
+    price.push('<b>【8月】</b>上旬震荡走弱，中下旬减产落地+需求回暖→触底反弹窗口');
+    risk.push('<b>【风险】</b>罢工落地利多出尽→回吐；高库存+减产超预期压制');
+    s=0; strat='<b>8月上旬震荡走弱，中下旬或触底反弹</b>；罢工事件落地前<b>观望</b>，不追高，下旬关注反弹窗口。';
     const outLook=s>=2?'轻仓做多':s>=0?'观望':'做空';
-    products.push({name:'铁矿石',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'722微涨但反弹乏力+资金流出+高库存→8月上旬震荡走弱，中下旬或触底反弹。观望，下旬关注反弹窗口。'});}
+    products.push({name:'铁矿石',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'722反弹乏力+高库存→上旬走弱、中下旬或反弹；观望，不追高。'});}
   // --- 螺纹钢 ---
   {let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('W31产量<b>200.31</b>(↓1.13)万吨，连续低位运行→<b>供给端持续收缩</b>');
-    supply.push('焦炭第3轮提降→钢厂成本下移，吨钢亏损收窄(吨钢-64)→但减产动力仍存');
-    supply.push('<b>【8月产量】</b>长流程现金利润-80~-90元/吨+电炉平均利润-61元/吨→生产积极性下降，8月产量190-200万吨/周低位波动；但焦炭提降下成本或继续下移');
-    stock.push('总库存<b>699.07</b>(↑1.37)万吨续累→<b>供给收缩速度不及需求恢复→库存压力仍在</b>');
-    demand.push('W31消费<b>198.94</b>(↑2.72)万吨小幅回升→但高温+降雨+台风仍制约施工强度');
-    demand.push('<b>【8月表需】</b>预计185-195万吨/周、周均~<b>190万吨</b>(低于7月201)→淡季低位；中下旬出伏后需求或季节性回升，但房地产新开工偏弱、项目储备不足→难言根本改善');
-    demand.push('专项债发行提速但资金尚未有效转化为实物需求→基建资金偏紧');
-    demand.push('百年建筑工地资金到位率连续三周回落+8月高温持续→需求缺乏增量');
-    price.push('主力10=<b>3020</b>(+6,+0.20%)，上海螺纹<b>3100</b>→基差<b>+80</b>(现货升水收窄)；<b>仍&lt;3025硬约束</b>+社库连增三周→<b>空平反弹不牢</b>');
-    price.push('<b>【持仓信号】</b>8-06减仓6.72万手=空平主导(资金-6亿)→<b>反弹不牢</b>，<b>3025为硬约束</b>');
-    price.push('【分位】近7年<b>6%</b>分位极低估值+现货升水90→<b>估值修复条件存在，但需求驱动不足</b>');
-    price.push('【供需格局】供给收缩+需求偏弱+库存累积→反弹空间有限');
-    price.push('<b>【8月展望】</b>专项债8-9月发行提速但7月项目资金占比仅33.6%→实物工作量9月才逐步体现；上海螺纹现货<b>前低后高、震荡偏弱</b>');
-    risk.push('消费恢复能否持续→若回落则累库加剧；资金到位率回落→需求恶化；焦炭提降落地冲击');
-    s=0; strat='主力10=<b>3020仍&lt;3025硬约束</b>+社库连增三周+资金-6亿→<b>空平反弹不牢，报告列为回避品种</b>。8月上旬淡季压力+需求未现底→价格仍承压；中下旬出伏+专项债落地→<b>或阶段性修复</b>。<b>观望/反弹空配</b>，区间操作2970-3030，不追涨。';
+    supply.push('<b>【产量】</b>W31产量200.31(↓1.13)万吨，8月190-200万吨/周低位→供给收缩');
+    supply.push('<b>【利润】</b>长流程现金利润-80~-90+电炉-61→减产动力仍存');
+    stock.push('<b>【库存】</b>总库存699.07(↑1.37)万吨续累→库存压力仍在');
+    demand.push('<b>【表需】</b>8月周均~190万吨(低于7月201)淡季低位，高温降雨制约施工');
+    demand.push('<b>【资金】</b>专项债提速但资金到位率连续回落→需求缺乏增量');
+    price.push('<b>【盘面】</b>主力10收<b>3020</b>(+0.2%)，上海现货3100→基差<b>+80</b>');
+    price.push('<b>【持仓】</b>减仓6.72万手空平+资金-6亿→反弹不牢，<b>3025为硬约束</b>');
+    price.push('<b>【估值】</b>6%分位极低估值，需求驱动不足');
+    price.push('<b>【8月】</b>上海现货前低后高、震荡偏弱，实物量9月才体现');
+    risk.push('<b>【风险】</b>需求不及预期→累库加剧；资金到位率回落→需求恶化');
+    s=0; strat='<b>3020仍&lt;3025硬约束</b>+社库连增→<b>空平反弹不牢</b>，报告列为<b>回避品种</b>。<b>观望/反弹空配</b>，2970-3030区间，不追涨。';
     const outLook=s>=2?'轻仓做多':s>=-1?'观望':'做空';
-    products.push({name:'螺纹钢',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'3020仍<3025硬约束+社库连增三周→空平反弹不牢(报告回避)；8月前低后高中下旬或阶段性修复。观望/反弹空配，2970-3030区间。'});}
+    products.push({name:'螺纹钢',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'3020仍<3025+社库连增→空平反弹不牢(报告回避)；观望/反弹空配，2970-3030区间。'});}
   // --- 热卷 ---
   {const h5p=val('s5_prod_热卷',W),h5s=val('s5_stock_热卷',W),h5c=val('s5_consume_热卷',W);let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('W31产量<b>292.66</b>(↓9.36)万吨大幅回落→<b>供给端主动收缩</b>');
-    supply.push('但生产效益仍在盈亏平衡线附近→供应压力仍维持低位');
-    supply.push('<b>【8月产量】</b>河北热卷吨钢毛利降至~10元/吨+北方环保检查趋严+多家钢厂检修→8月周均产量或降至<b>290.7万吨</b>(环比-9)；7月周均299.5万吨');
-    stock.push('W31总库<b>443.99</b>(↑5.44)万吨→消费回落速度快于供给收缩→<b>累库加剧</b>');
-    stock.push('<b>【8月去库拐点】</b>供应端压力大幅下降→8月小样本库存或迎<b>去库拐点</b>(去库速度~0.6%)→库存弱平衡');
-    demand.push('W31消费<b>287.22</b>(↓12.02)万吨大幅回落→库销比升至12.0天，<b>供需双弱</b>');
-    demand.push('<b>【出口转弱】</b>内外价差低至<b>-17元/吨</b>(较月初收窄66)→FOB降至485美元/吨、折算人民币较月初跌近70元→<b>出口优势减弱，短期增量有限</b>');
-    demand.push('<b>【出口逆风增多】</b>欧美夏休+东南亚雨季+双反增多+美国关税+欧盟配额→利好减弱');
-    demand.push('<b>【8月表需】</b>制造业(车企)高温假至8月下旬→板材需求偏弱甚至减量，8月表需预计降至<b>291万吨</b>(7月297)');
-    price.push('主力10=<b>3237</b>(+13,+0.40%)微涨，上海现货<b>3280</b>→基差<b>+43</b>(现货升水收窄)；10-01 contango(-20)');
-    price.push('<b>【持仓信号】</b>36.8万手微涨(08-05)→盘面延续，缺乏明确方向');
-    price.push('【分位】近7年<b>23%</b>分位+现货升水53→<b>现货相对坚挺，盘面已部分price-in利空</b>');
-    price.push('【卷螺差】当前200-220区间（螺纹产量↓ vs 热卷产量↑）');
-    price.push('【多空交织】产消双降+累库(利空) vs 现货升水+出口韧性(利多)→<b>方向不明，观望</b>');
-    price.push('<b>【7月回顾】</b>上海热卷现货月均价<b>3309元/吨</b>(环比-68)→价格中枢下移');
-    risk.push('消费大幅回落(↓12.02)→需求恶化超预期；出口回落+供给收缩不足→累库惯性延续');
-    s=0; strat='<b>产量大降(292.66↓9.36)+消费大跌(287.22↓12.02)+库存续累(443.99)</b>→供需双弱格局。8月供应降至290.7+需求降至291→<b>库存弱平衡或去库，延缓跌速</b>；现货升水53提供底部支撑。<b>卷螺差200-220</b>区间。单边<b>观望</b>。';
+    supply.push('<b>【产量】</b>W31产量292.66(↓9.36)万吨，8月周均或降至<b>290.7万吨</b>→主动收缩');
+    supply.push('<b>【利润】</b>吨钢毛利~10元+环保趋严+检修→供应低位维持');
+    stock.push('<b>【库存】</b>总库443.99(↑5.44)累库，8月或迎去库拐点(~0.6%)→弱平衡');
+    demand.push('<b>【表需】</b>8月~291万吨(7月297)偏弱，车企高温假→板材需求减量');
+    demand.push('<b>【出口】</b>内外价差收窄+欧美双反→出口优势减弱，增量有限');
+    price.push('<b>【盘面】</b>主力10收<b>3237</b>(+0.4%)，上海现货3280→基差<b>+43</b>');
+    price.push('<b>【持仓】</b>36.8万手微涨→方向不明');
+    price.push('<b>【估值】</b>23%分位+卷螺差200-220，现货相对坚挺');
+    price.push('<b>【回顾】</b>7月现货月均价3309(环比-68)→价格中枢下移');
+    risk.push('<b>【风险】</b>消费回落超预期+出口减弱→累库惯性延续');
+    s=0; strat='<b>产消双降+累库→供需双弱</b>；8月供应290.7+需求291→<b>弱平衡延缓跌速</b>。单边<b>观望</b>，关注卷螺差200-220。';
     const outLook=s>=2?'轻仓做多':s>=0?'观望':'做空';
-    products.push({name:"热卷",score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:"8-07收3237(+0.4%)但产消双弱+累库→供需双弱，8月供应收缩+去库拐点→库存弱平衡延缓跌速。卷螺差200-220，单边观望。"});}
+    products.push({name:"热卷",score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:"3237产消双弱+累库→供需双弱，8月弱平衡延缓跌速；单边观望，卷螺差200-220。"});}
 
   var dimMap={'观点':['焦煤','焦炭','铁矿石','螺纹钢','热卷'],'焦煤':['焦煤'],'焦炭':['焦炭'],'铁矿':['铁矿石'],'钢材':['螺纹钢','热卷'],'价格':[],'期货':[],'仓单':[]};
   var filtered=dimMap[dim]?products.filter(function(p){return dimMap[dim].indexOf(p.name)>=0;}):products;
@@ -903,11 +877,11 @@ function updateInvestPanel(W,dim){
     html+='<div style="margin:3px 0;padding:6px 10px;background:'+bg+';border-radius:5px;font-size:11px;line-height:1.5">';
     html+='<b style="font-size:12px">'+p.name+'</b> · 评分<b>'+(p.score>=0?'+':'')+p.score+'</b> · <span style="color:'+(p.outlook.includes('做多')?'#c44':p.outlook.includes('做空')?'#2a6':'#555')+'"><b>'+p.outlook+'</b></span>';
     html+='<div style="margin-top:2px;color:var(--text2)">';
-    if(p.supply&&p.supply.length)html+='<div><b>🏭 供给：</b>'+p.supply.join('；')+'</div>';
-    if(p.demand&&p.demand.length)html+='<div><b>📊 需求：</b>'+p.demand.join('；')+'</div>';
-    if(p.stock&&p.stock.length)html+='<div><b>📦 库存：</b>'+p.stock.join('；')+'</div>';
-    if(p.price&&p.price.length)html+='<div><b>💰 价格/价差/分位：</b>'+p.price.join('；')+'</div>';
-    if(p.risk&&p.risk.length)html+='<div><b>⚠️ 风险：</b>'+p.risk.join('；')+'</div>';
+    if(p.supply&&p.supply.length)html+='<div><b>🏭 供给</b>'+p.supply.map(function(s){return'<div style="margin:1px 0 1px 14px">• '+s+'</div>';}).join('')+'</div>';
+    if(p.demand&&p.demand.length)html+='<div><b>📊 需求</b>'+p.demand.map(function(s){return'<div style="margin:1px 0 1px 14px">• '+s+'</div>';}).join('')+'</div>';
+    if(p.stock&&p.stock.length)html+='<div><b>📦 库存</b>'+p.stock.map(function(s){return'<div style="margin:1px 0 1px 14px">• '+s+'</div>';}).join('')+'</div>';
+    if(p.price&&p.price.length)html+='<div><b>💰 价格/结构</b>'+p.price.map(function(s){return'<div style="margin:1px 0 1px 14px">• '+s+'</div>';}).join('')+'</div>';
+    if(p.risk&&p.risk.length)html+='<div><b>⚠️ 风险</b>'+p.risk.map(function(s){return'<div style="margin:1px 0 1px 14px">• '+s+'</div>';}).join('')+'</div>';
     html+='<div style="margin-top:2px;font-weight:600">📌 '+p.strategy+'</div>';
     if(p.conclusion)html+='<div style="margin-top:2px;padding:3px 6px;background:var(--tag-bg);border-radius:3px;font-weight:600">🎯 '+p.conclusion+'</div>';
     html+='</div></div>';
