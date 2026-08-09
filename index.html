@@ -757,7 +757,7 @@ function updateInvestPanel(W,dim){
   if(dim==='观点'){
   var flags=[],extremes=[],trends=[];
   // Red Flag 规则
-      if(st!=null&&stP!=null&&st-stP<-1)flags.push('铁水↓'+(st-stP).toFixed(1)+'至'+st+'，连降承压');flags.push('焦炭第3轮提降8-07落地(湿熄-50/干熄-55)+晋冀限产启动，焦化亏损-75~-80');flags.push('铁矿722反弹乏力，板块资金-6亿净流出');flags.push('螺纹3020仍<3025硬约束+社库连增');
+      if(st!=null&&stP!=null&&st-stP<-1)flags.push('铁水↓'+(st-stP).toFixed(1)+'至'+st+'，连降承压');flags.push('焦炭第3轮提降8-07落地(湿熄-50/干熄-55)+晋冀限产启动，焦化亏损-41');flags.push('铁矿722反弹乏力，板块资金-6亿净流出');flags.push('螺纹3020仍<3025硬约束+社库连增');
   if(pr!=null&&pr<35)flags.push('盈利率'+pr+'%历史低位');
   // 估值极端
   extremes.push('螺纹6%分位极低+3020<3025');extremes.push('铁矿9%分位极低+722反弹乏力');extremes.push('焦煤1281领涨黑色+安检偏紧→低位反弹延续');
@@ -795,7 +795,6 @@ function updateInvestPanel(W,dim){
   let products=[];
   // --- 焦煤 ---
   {let s=1, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
-    supply.push('<b>【短线】</b>山西安监+吕梁电力1000万吨关停预期→供给偏紧预期升温');
     supply.push('<b>【硬缺口】</b>精煤缺口~<b>1000万吨/月</b>，进口增量有限→硬缺口持续');
     supply.push('<b>【竞拍溢价】</b>主焦竞拍普遍溢价(尧都高硫1713,+63)→现货<b>易涨难跌</b>');
     stock.push('<b>【低库存】</b>煤矿+焦化库存低位去化(765.83,↓7.5)，表外已去化60-70%→中线利多');
@@ -813,7 +812,7 @@ function updateInvestPanel(W,dim){
   {let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
     supply.push('<b>【提降落地】</b>第3轮8-07执行(湿熄-50/干熄-55)，累计降幅~150');
     supply.push('<b>【限产启动】</b>晋冀焦企限产30%(鹏飞/东义/金岩等)，名义30%≠实际收缩');
-    supply.push('<b>【利润】</b>焦化亏损加深至<b>-75~-80</b>→减产动力大增');
+    supply.push('<b>【利润】</b>焦化亏损<b>-41</b>(最新一周)→减产动力增强');
     stock.push('<b>【库存】</b>总库存压力不大，限产落地后或从累库转去库');
     demand.push('<b>【驱动】</b>铁水235.55连降三周→需求负反馈是提降主因');
     demand.push('<b>【8月】</b>铁水236-240区间、均值低于7月→焦炭需求仍承压');
