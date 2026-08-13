@@ -757,7 +757,7 @@ function updateInvestPanel(W,dim){
   if(dim==='观点'){
   var flags=[],extremes=[],trends=[];
   // Red Flag 规则
-      if(st!=null&&stP!=null&&st-stP>1)flags.push('铁水↑'+(st-stP).toFixed(1)+'至'+st+'，回升但盈利率'+pr+'%新低');flags.push('焦炭第3轮提降8-07落地(湿熄-50/干熄-55)+晋冀限产启动，焦化亏损-41');flags.push('焦煤连两日弱(日+2.06%→夜-1.08%→日-1.3%)反弹证伪，8-13盘中1320(-1.3%)');flags.push('山西晋中44座焦煤矿复产21座(产能2341万吨/停产前56%)→缺口收窄');flags.push('螺纹3010弱现实未改，找钢总库存去化12.68万+表需回升→边际改善');
+      if(st!=null&&stP!=null&&st-stP>1)flags.push('铁水↑'+(st-stP).toFixed(1)+'至'+st+'，回升但盈利率'+pr+'%新低');flags.push('焦炭第3轮提降8-07落地(湿熄-50/干熄-55)+晋冀限产启动，焦化亏损-41');flags.push('焦煤连两日弱(日+2.06%→夜-1.08%→日-1.3%)反弹证伪，8-13盘中1320(-1.3%)');flags.push('汾渭W32精煤库存转累(154.62,↑5.34)+焦企可用天数6.82天连续3周回升→需求走弱');flags.push('山西晋中44座焦煤矿复产21座(产能2341万吨/停产前56%)→缺口收窄');flags.push('螺纹3010弱现实未改，找钢总库存去化12.68万+表需回升→边际改善');
   if(pr!=null&&pr<35)flags.push('盈利率'+pr+'%历史低位');
   // 估值极端
   extremes.push('螺纹6%分位极低+3010弱现实');extremes.push('铁矿9%分位极低+720.5反弹乏力');extremes.push('焦煤30%分位低位+蒙5基差+140.5现货坚挺，但反弹证伪驱动弱');
@@ -782,7 +782,7 @@ function updateInvestPanel(W,dim){
   html+='<b>📋 核心指标一览（W'+W+' · '+tblDate+'）</b>';
   html+='<table style="width:100%;border-collapse:collapse;margin-top:2px;font-size:10px;text-align:center">';
   html+='<tr style="background:#eee;font-weight:700"><td style="padding:2px 3px;text-align:left">品种</td><td>评分</td><td>价格分位</td><td>同期分位</td><td>基差</td><td>近月价差</td><td>持仓信号</td><td style="text-align:left;min-width:120px">核心逻辑</td><td style="text-align:left;min-width:130px">策略</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td>0</td><td>30%</td><td>0%</td><td>+140.5</td><td>-138.5</td><td>连两日弱·反弹证伪</td><td style="text-align:left;font-size:9px">1320连两日弱反弹证伪+复产56%，维持回避</td><td style="text-align:left;font-size:9px">观望/回避</td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td>0</td><td>30%</td><td>0%</td><td>+140.5</td><td>-138.5</td><td>连两日弱·反弹证伪</td><td style="text-align:left;font-size:9px">1320连两日弱+汾渭累库(可用天数6.82天)，维持回避</td><td style="text-align:left;font-size:9px">观望/回避</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🧱 焦炭</td><td>0</td><td>34%</td><td>0%</td><td>+18</td><td>-51</td><td>微涨·观望</td><td style="text-align:left;font-size:9px">1906提降落地，升水收窄+需求弱</td><td style="text-align:left;font-size:9px">观望</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🪨 铁矿</td><td>0</td><td>9%</td><td>0%</td><td>-32.5</td><td>+11.5</td><td>澳巴去化·资金流出</td><td style="text-align:left;font-size:9px">720.5弱现实，澳巴七港去化托底+全国高位</td><td style="text-align:left;font-size:9px">观望</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🔩 螺纹</td><td>0</td><td>6%</td><td>0%</td><td>+84</td><td>-33</td><td>边际改善·空头占优</td><td style="text-align:left;font-size:9px">3010弱现实+找钢库存去化12.68万，边际改善</td><td style="text-align:left;font-size:9px">观望/反弹空配</td></tr>';
@@ -799,17 +799,20 @@ function updateInvestPanel(W,dim){
     supply.push('<b>【竞拍溢价】</b>主焦竞拍普遍溢价(尧都高硫1713,+63)→现货<b>易涨难跌</b>');
     supply.push('<b>【十五五】</b>煤炭供给收缩预期+安监→煤价<b>底部抬升</b>');
     supply.push('<b>【复产】</b>山西晋中44座焦煤矿复产21座(产能2341万吨，为停产前<b>56%</b>)→供给缺口收窄');
-    stock.push('<b>【低库存】</b>煤矿+焦化库存低位去化(765.83,↓7.5)，<b>焦化厂焦煤库存分位5.8%</b>极低→补库预期利多');
+    stock.push('<b>【汾渭W32】</b>精煤库存<b>154.62(↑5.34)</b>由降转累+原煤168.87(↑1.13)→<b>去库结束、累库转向</b>');
+    stock.push('<b>【可用天数】</b>焦企炼焦煤可用天数<b>6.82天</b>(6.01→6.47→6.82)连续3周回升→需求走弱');
+    stock.push('<b>【分位】</b>焦化厂焦煤库存分位5.8%极低→估值底部，但累库压制反弹');
     demand.push('<b>【短线】</b>焦炭提降致焦化亏损加深→焦煤需求短线承压');
+    demand.push('<b>【累库】</b>汾渭精煤库存转累+焦企可用天数6.82天回升→下游补库意愿走弱');
     demand.push('<b>【中线】</b>铁水238(↑2.5)回升+盈利率32%新低→复产弹性有限，需求待兑现');
     price.push('<b>【盘面】</b>09收<b>1337.5</b>(8-12日+2.06%)领涨，蒙5仓单~1478→基差<b>+140.5</b>');
     price.push('<b>【盘中】</b>8-13盘中<b>1320(-1.3%)</b>连两日弱(日+2.06%→夜-1.08%→日-1.3%)→<b>反弹证伪</b>');
     price.push('<b>【估值】</b>30%分位低位+09-01贴水(<b>-138.5</b>)结构矛盾，现货坚挺但驱动弱');
     price.push('<b>【8月】</b>焦煤较焦炭坚挺，炭/煤比值趋收缩；1-5价差正套需等企稳');
-    risk.push('<b>【风险】</b>跌破<b>1300</b>加空(8-13盘中)；突破<b>1350</b>才翻多；复产56%→供给回升压制');
+    risk.push('<b>【风险】</b>跌破<b>1300</b>加空(8-13盘中)；突破<b>1350</b>才翻多；复产56%+汾渭累库→供需双松压制');
     s=0; strat='<b>【反弹证伪·回避】</b>8-13盘中1320连两日弱→<b>回避趋势单</b>；突破<b>1350</b>才考虑做多，跌破<b>1300</b>加空。<br><b>【中线】</b>硬缺口+低库存+十五五支撑底部，破<b>1200</b>转空。';
     const outLook=s>=3?'做多':s>=1?'轻仓做多':s>=0?'短空长多·观望等待':'做空';
-    products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'8-13盘中1320连两日弱→反弹证伪，报告维持回避(突破1350才考虑多/破1300加空)；中线硬缺口+低库存+十五五→底部有支撑。'});}
+    products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'8-13盘中1320连两日弱+汾渭库存转累→反弹证伪，报告维持回避(突破1350才考虑多/破1300加空)；硬缺口+十五五支撑底部，但累库压制。'});}
   // --- 焦炭 ---
   {let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
     supply.push('<b>【提降落地】</b>第3轮8-07执行(湿熄-50/干熄-55)，累计降幅~150');
