@@ -757,12 +757,12 @@ function updateInvestPanel(W,dim){
   if(dim==='观点'){
   var flags=[],extremes=[],trends=[];
   // Red Flag 规则
-      if(st!=null&&stP!=null&&st-stP>1)flags.push('铁水↑'+(st-stP).toFixed(1)+'至'+st+'，回升但盈利率'+pr+'%新低');flags.push('焦炭第3轮提降8-07落地(湿熄-50/干熄-55)+晋冀限产启动，焦化亏损-41');flags.push('焦煤日涨夜落(8-12日+2.06%/夜-1.08%)获利了结→反弹非反转');flags.push('山西晋中44座焦煤矿复产21座(产能2341万吨/停产前56%)→缺口收窄');flags.push('螺纹3010弱现实未改，找钢总库存去化12.68万+表需回升→边际改善');
+      if(st!=null&&stP!=null&&st-stP>1)flags.push('铁水↑'+(st-stP).toFixed(1)+'至'+st+'，回升但盈利率'+pr+'%新低');flags.push('焦炭第3轮提降8-07落地(湿熄-50/干熄-55)+晋冀限产启动，焦化亏损-41');flags.push('焦煤连两日弱(日+2.06%→夜-1.08%→日-1.3%)反弹证伪，8-13盘中1320(-1.3%)');flags.push('山西晋中44座焦煤矿复产21座(产能2341万吨/停产前56%)→缺口收窄');flags.push('螺纹3010弱现实未改，找钢总库存去化12.68万+表需回升→边际改善');
   if(pr!=null&&pr<35)flags.push('盈利率'+pr+'%历史低位');
   // 估值极端
-  extremes.push('螺纹6%分位极低+3010弱现实');extremes.push('铁矿9%分位极低+720.5反弹乏力');extremes.push('焦煤30%分位低位+蒙5基差+140.5现货坚挺');
+  extremes.push('螺纹6%分位极低+3010弱现实');extremes.push('铁矿9%分位极低+720.5反弹乏力');extremes.push('焦煤30%分位低位+蒙5基差+140.5现货坚挺，但反弹证伪驱动弱');
   // 趋势变化
-  if(st!=null)trends.push('铁水'+st+'回升(+2.5)，盈利率'+pr+'%新低→行业亏损、减产压力仍在');trends.push('8-12焦煤日+2.06%领涨→夜-1.08%获利了结，炉料反弹非反转→黑色回避趋势单');
+  if(st!=null)trends.push('铁水'+st+'回升(+2.5)，盈利率'+pr+'%新低→行业亏损、减产压力仍在');trends.push('8-13盘中焦煤1320(-1.3%)连两日弱→反弹证伪，报告维持回避(突破1350才考虑多/破1300加空)');
   trends.push('焦煤复产56%供给回升+短线多降仓(8%→5%)，止损1300');
   trends.push('螺纹边际改善：找钢总库存去化12.68万+表需456.48万回升');
   trends.push('焦炭1906提降落地+升水收窄至18，需求弱→中性观望');
@@ -782,12 +782,12 @@ function updateInvestPanel(W,dim){
   html+='<b>📋 核心指标一览（W'+W+' · '+tblDate+'）</b>';
   html+='<table style="width:100%;border-collapse:collapse;margin-top:2px;font-size:10px;text-align:center">';
   html+='<tr style="background:#eee;font-weight:700"><td style="padding:2px 3px;text-align:left">品种</td><td>评分</td><td>价格分位</td><td>同期分位</td><td>基差</td><td>近月价差</td><td>持仓信号</td><td style="text-align:left;min-width:120px">核心逻辑</td><td style="text-align:left;min-width:130px">策略</td></tr>';
-  html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td style="color:#2a6"><b>+1</b></td><td>30%</td><td>0%</td><td>+140.5</td><td>-138.5</td><td>短线多降仓·止损1300</td><td style="text-align:left;font-size:9px">1337.5日涨夜落获利了结+复产56%，反弹非反转</td><td style="text-align:left;font-size:9px;color:#c44"><b>观望/轻仓多</b></td></tr>';
+  html+='<tr><td style="text-align:left;font-weight:700">⛏ 焦煤</td><td>0</td><td>30%</td><td>0%</td><td>+140.5</td><td>-138.5</td><td>连两日弱·反弹证伪</td><td style="text-align:left;font-size:9px">1320连两日弱反弹证伪+复产56%，维持回避</td><td style="text-align:left;font-size:9px">观望/回避</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🧱 焦炭</td><td>0</td><td>34%</td><td>0%</td><td>+18</td><td>-51</td><td>微涨·观望</td><td style="text-align:left;font-size:9px">1906提降落地，升水收窄+需求弱</td><td style="text-align:left;font-size:9px">观望</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🪨 铁矿</td><td>0</td><td>9%</td><td>0%</td><td>-32.5</td><td>+11.5</td><td>澳巴去化·资金流出</td><td style="text-align:left;font-size:9px">720.5弱现实，澳巴七港去化托底+全国高位</td><td style="text-align:left;font-size:9px">观望</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🔩 螺纹</td><td>0</td><td>6%</td><td>0%</td><td>+84</td><td>-33</td><td>边际改善·空头占优</td><td style="text-align:left;font-size:9px">3010弱现实+找钢库存去化12.68万，边际改善</td><td style="text-align:left;font-size:9px">观望/反弹空配</td></tr>';
   html+='<tr><td style="text-align:left;font-weight:700">🔥 热卷</td><td>0</td><td>23%</td><td>0%</td><td>+41</td><td>-17</td><td>微跌·观望</td><td style="text-align:left;font-size:9px">3239产消双弱，卷螺差229走扩</td><td style="text-align:left;font-size:9px">观望</td></tr>';
-  html+='<tr style="background:#fafaf8"><td style="text-align:left;font-weight:700" colspan="2">🔗 套利</td><td colspan="7" style="text-align:left;font-size:10px;line-height:1.5">①<b>多卷空螺</b>：库销比4.0vs1.6，卷螺差229走扩<br>②<b>多铜空螺纹</b>(8-13报告组合)：铜强黑色弱<br>③<b>焦煤1-5正套</b>：09-01贴水-138.5走扩+现货坚挺(蒙5基差+140.5)<br>④<b>螺矿比4.18</b>低位关注修复</td></tr>';
+  html+='<tr style="background:#fafaf8"><td style="text-align:left;font-weight:700" colspan="2">🔗 套利</td><td colspan="7" style="text-align:left;font-size:10px;line-height:1.5">①<b>多卷空螺</b>：库销比4.0vs1.6，卷螺差229走扩<br>②<b>多铜空螺纹</b>：8-13盘中沪铜-0.6%减仓走弱→<b>今日不宜新开</b><br>③<b>焦煤1-5正套</b>：近月现货坚挺(蒙5基差+140.5)，但反弹证伪→轻仓或等企稳<br>④<b>螺矿比4.18</b>低位关注修复</td></tr>';
   html+='</table></div>';
   }
 
@@ -803,13 +803,13 @@ function updateInvestPanel(W,dim){
     demand.push('<b>【短线】</b>焦炭提降致焦化亏损加深→焦煤需求短线承压');
     demand.push('<b>【中线】</b>铁水238(↑2.5)回升+盈利率32%新低→复产弹性有限，需求待兑现');
     price.push('<b>【盘面】</b>09收<b>1337.5</b>(8-12日+2.06%)领涨，蒙5仓单~1478→基差<b>+140.5</b>');
-    price.push('<b>【夜盘】</b>8-12夜<b>-1.08%</b>获利了结→反弹非反转，涨后不追');
-    price.push('<b>【估值】</b>30%分位低位+09-01贴水(<b>-138.5</b>)结构矛盾，现货坚挺');
-    price.push('<b>【8月】</b>焦煤较焦炭坚挺，炭/煤比值趋收缩；1-5价差延续正套');
-    risk.push('<b>【风险】</b>跌破<b>1300</b>短线多离场(8-13盘前止损1300)；复产56%→供给回升，反弹空间受限');
-    s=1; strat='<b>【短线偏多·降仓】</b>1337.5日涨夜落→短线多<b>降仓(8%→5%)</b>，止损<b>1300</b>，压力<b>1350/1370</b>、支撑<b>1300/1280</b>。<br><b>【中线偏多】</b>硬缺口+低库存支撑，破<b>1200</b>转空。';
+    price.push('<b>【盘中】</b>8-13盘中<b>1320(-1.3%)</b>连两日弱(日+2.06%→夜-1.08%→日-1.3%)→<b>反弹证伪</b>');
+    price.push('<b>【估值】</b>30%分位低位+09-01贴水(<b>-138.5</b>)结构矛盾，现货坚挺但驱动弱');
+    price.push('<b>【8月】</b>焦煤较焦炭坚挺，炭/煤比值趋收缩；1-5价差正套需等企稳');
+    risk.push('<b>【风险】</b>跌破<b>1300</b>加空(8-13盘中)；突破<b>1350</b>才翻多；复产56%→供给回升压制');
+    s=0; strat='<b>【反弹证伪·回避】</b>8-13盘中1320连两日弱→<b>回避趋势单</b>；突破<b>1350</b>才考虑做多，跌破<b>1300</b>加空。<br><b>【中线】</b>硬缺口+低库存+十五五支撑底部，破<b>1200</b>转空。';
     const outLook=s>=3?'做多':s>=1?'轻仓做多':s>=0?'短空长多·观望等待':'做空';
-    products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'1337.5日涨夜落获利了结+复产56%→反弹非反转，短线多降仓(止损1300)；中线硬缺口+低库存+十五五→偏多。'});}
+    products.push({name:'焦煤',score:s,outlook:outLook,supply:supply,demand:demand,stock:stock,price:price,risk:risk,strategy:strat,conclusion:'8-13盘中1320连两日弱→反弹证伪，报告维持回避(突破1350才考虑多/破1300加空)；中线硬缺口+低库存+十五五→底部有支撑。'});}
   // --- 焦炭 ---
   {let s=0, supply=[],demand=[],stock=[],price=[],risk=[],strat='';
     supply.push('<b>【提降落地】</b>第3轮8-07执行(湿熄-50/干熄-55)，累计降幅~150');
@@ -818,7 +818,7 @@ function updateInvestPanel(W,dim){
     stock.push('<b>【库存】</b>总库存压力不大，限产落地后或从累库转去库；但<b>独立焦化厂库存分位100</b>极端累库→压制估值');
     demand.push('<b>【驱动】</b>铁水238回升(↑2.5)+盈利率32%新低→需求仍弱，提降后难反弹');
     demand.push('<b>【8月】</b>铁水236-240区间、均值低于7月→焦炭需求仍承压');
-    price.push('<b>【盘面】</b>09收<b>1906</b>(8-12+1.11%)，港口现货1888.5→盘面<b>升水~18</b>');
+    price.push('<b>【盘面】</b>09收<b>1906</b>(8-12+1.11%)，8-13盘中<b>1895(-0.6%)</b>跟焦煤回落，港口现货1888.5→盘面<b>升水~18</b>');
     price.push('<b>【持仓】</b>微涨观望；34%分位低位，09-01=-51');
     price.push('<b>【8-12盘面】</b>焦炭日+1.11%跟涨(油价+限产)→夜-0.47%回落，反弹有限');
     price.push('<b>【多空】</b>限产30%+焦煤成本支撑 vs 需求弱+升水~18→提降后看限产兑现');
@@ -831,7 +831,7 @@ function updateInvestPanel(W,dim){
     supply.push('<b>【格局】</b>港口库存高位+疏港放缓→供需宽松未改');
     stock.push('<b>【库存】</b>港口'+(io!=null?(io/10000).toFixed(2):'—')+'亿吨(同比'+fmtC(ioY,'%')+')高企→压制反弹高度');
     demand.push('<b>【需求】</b>铁水238回升但盈利率32%新低+淡季→需求弱，反弹缺配合');
-    price.push('<b>【盘面】</b>主力09收<b>720.5</b>(8-12+0.14%)，PB粉685→基差<b>-32.5</b>');
+    price.push('<b>【盘面】</b>主力09收<b>720.5</b>(8-12+0.14%)，8-13盘中<b>722(+0.4%)</b>跟随炉料，PB粉685→基差<b>-32.5</b>');
     price.push('<b>【库存】</b>澳巴七港1233.3万吨(↓146.8，<b>Q3最低</b>)样本去化托底，全国总库存仍~1.67亿高位');
     price.push('<b>【估值】</b>9%分位极低+1-5正套(+11.5)，下方空间有限');
     price.push('<b>【8月】</b>淡季震荡走弱，关注铁水回升+减产兑现→反弹窗口');
@@ -846,7 +846,7 @@ function updateInvestPanel(W,dim){
     stock.push('<b>【库存】</b>总库存699.07(↑1.37)万吨续累→压力仍在；找钢口径总库存1170.63万(<b>↓12.68</b>)+表需456.48万(<b>↑31.09</b>)→<b>边际改善</b>');
     demand.push('<b>【表需】</b>8月周均~190万吨(低于7月201)淡季低位，高温降雨制约施工');
     demand.push('<b>【资金】</b>专项债提速但资金到位率连续回落→需求缺乏增量');
-    price.push('<b>【盘面】</b>主力10收<b>3010</b>(8-12+0.27%)，上海现货3100→基差<b>+84</b>');
+    price.push('<b>【盘面】</b>主力10收<b>3010</b>(8-12+0.27%)，8-13盘中<b>3015(+0.2%)</b>微涨无驱动，上海现货3100→基差<b>+84</b>');
     price.push('<b>【持仓】</b>8-11减仓4.12万手→空头占优；压力3030/3070，支撑2980/2950');
     price.push('<b>【估值】</b>6%分位极低估值，需求驱动不足');
     price.push('<b>【8月】</b>上海现货前低后高、震荡偏弱，实物量9月才体现');
