@@ -137,23 +137,23 @@ body{
 .strat-row b{color:var(--accent);margin-right:2px}
 
 /* 观点面板 - 分品种卡片网格 */
-.prod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
-@media (max-width:1100px){.prod-grid{grid-template-columns:1fr}}
+.prod-grid{display:flex;flex-direction:column;gap:6px}
 .prod-card{background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:5px 8px;margin-bottom:0}
-.prod-head{display:flex;align-items:center;gap:5px;margin-bottom:4px;padding-bottom:3px;border-bottom:1px dashed var(--border);flex-wrap:wrap}
+.prod-head{display:flex;align-items:center;gap:5px;margin-bottom:5px;padding-bottom:4px;border-bottom:1px dashed var(--border);flex-wrap:wrap}
 .prod-icon{font-size:13px}
-.prod-name{font-size:11px;font-weight:700;color:var(--text)}
-.prod-score{font-size:9px;font-weight:700;color:#fff;padding:0 5px;border-radius:3px}
-.prod-title{font-size:9px;color:var(--text2);font-weight:600}
-.prod-section{margin-bottom:3px}
+.prod-name{font-size:12px;font-weight:700;color:var(--text)}
+.prod-score{font-size:10px;font-weight:700;color:#fff;padding:0 5px;border-radius:3px}
+.prod-title{font-size:10px;color:var(--text2);font-weight:600}
+.prod-body{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;margin-bottom:4px}
+.prod-section{margin-bottom:0}
 .prod-section-title{font-size:9px;font-weight:700;color:var(--accent);margin-bottom:1px}
 .prod-bullets{margin:0;padding-left:14px;font-size:9px;line-height:1.4;color:var(--text2)}
 .prod-bullets li{margin:0}
 .prod-bullets .lv-high{color:#c44;font-weight:600}
 .prod-bullets .lv-mid{color:var(--text)}
 .prod-bullets .lv-low{color:var(--text3)}
-.prod-strat{font-size:9px;background:rgba(84,112,198,0.08);padding:3px 6px;border-radius:3px;margin-top:3px;line-height:1.4;color:var(--text);border-left:2px solid var(--accent)}
-.prod-conclusion{font-size:9px;background:rgba(0,0,0,0.04);padding:3px 6px;border-radius:3px;margin-top:2px;line-height:1.4;font-weight:600}
+.prod-strat{font-size:9px;background:rgba(84,112,198,0.08);padding:3px 6px;border-radius:3px;margin-top:3px;line-height:1.4;color:var(--text);border-left:2px solid var(--accent);grid-column:1/-1}
+.prod-conclusion{font-size:9px;background:rgba(0,0,0,0.04);padding:3px 6px;border-radius:3px;margin-top:2px;line-height:1.4;font-weight:600;grid-column:1/-1}
 
 /* 涨跌标签 */
 .diff-tag{display:inline-block;padding:0 4px;border-radius:2px;font-size:9px;font-weight:700;margin:0 1px}
@@ -1119,11 +1119,13 @@ function updateInvestPanel(W,dim){
       s += '</ul></div>';
       return s;
     }
+    html += '<div class="prod-body">';
     html += renderSection('🏭', '供给', p.supply);
     html += renderSection('📊', '需求', p.demand);
     html += p.stock ? renderSection('📦', '库存', p.stock) : '';
     html += renderSection('💰', '价格', p.price);
     html += renderSection('⚠️', '风险', p.risk);
+    html += '</div>';
     html += '<div class="prod-strat">'+p.strat+'</div>';
     html += '<div class="prod-conclusion">🎯 '+p.conclusion+'</div>';
     html += '</div>';
