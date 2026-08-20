@@ -312,7 +312,7 @@ const DIM_COUNTS = {"观点":346,"焦煤":61,"焦炭":36,"铁矿":6,"钢材":72,
 const VOL = {"_date":"20260729","jm":{"rank":15,"rankChg":"↓1","vol":0.0256410256410256,"volPct":0.4577029947514665,"amount":6.8230656,"amountPct":0.8811361531336832},"j":{"rank":38,"rankChg":"↑3","vol":0.0246612466124661,"volPct":0.510644031258421,"amount":0.591507,"amountPct":0.2573430342225815},"rb":{"rank":43,"rankChg":"↑7","vol":0.008491182233834,"volPct":0.1539192399049881,"amount":18.46664642,"amountPct":0.06104513064133017},"i":{"rank":47,"rankChg":"↑14","vol":0.0115020297699594,"volPct":0.04505954296749276,"amount":1.49574339,"amountPct":0.05053105889925973},"hc":{"rank":51,"rankChg":"↑5","vol":0.0079123554473524,"volPct":0.07546542553191489,"amount":12.06530478,"amountPct":0.3636968085106383}};
 
 /*===COLORS===*/
-const YEAR_COLORS={'2020':'#5470c6','2021':'#91cc75','2022':'#fac858','2023':'#ee6666','2024':'#73c0de','2025':'#3ba272','2026':'#e63946','2026月均':'#000000','2027':'#9a60b4'};
+const YEAR_COLORS={'2020':'#96a3c9','2021':'#96a3c9','2022':'#96a3c9','2023':'#96a3c9','2024':'#96a3c9','2025':'#96a3c9','2026':'#5470c6','2026月均':'#5470c6','2027':'#5470c6'};
 
 let activeDim='全部', allInsts=[];
 
@@ -366,7 +366,7 @@ function buildOption(def){
   const intlColors={'中国出口(FOB)':'#e63946','日本出口(FOB)':'#5470c6','印度出口(FOB)':'#ee6666','东南亚进口(CFR)':'#91cc75','独联体出口(FOB)':'#fac858','美国中西部':'#73c0de'};
   const series=years.map(y=>{const st=yearStyle(y);var nm=y+(isIntl?'':'年');var lc=st.lw||1.4,op=st.opacity||0.55;if(isIntl){lc=3;op=1;}return{name:nm,type:'line',yAxisIndex:0,data:weeks.map((_,wi)=>(raw[y]&&raw[y][wi+1]!=null)?raw[y][wi+1]:null),smooth:false,symbol:'none',showSymbol:false,emphasis:{symbolSize:3},lineStyle:{width:lc,opacity:op},itemStyle:{color:intlColors[y]||YEAR_COLORS[y]||'#999',opacity:op},connectNulls:isDaily&&!isSpread,z:isIntl?10:st.z};});
   // 月均年份特殊样式
-  series.forEach(function(s){if(s.name==='2026月均年'){s.lineStyle={width:2.5,color:'#000000',type:'solid'};s.itemStyle={color:'#000000'};s.z=20;}});
+  series.forEach(function(s){if(s.name==='2026月均年'){s.lineStyle={width:2.5,color:'#5470c6',type:'solid'};s.itemStyle={color:'#5470c6'};s.z=20;}});
   if(hasYoy)series.push({name:'25→26同比',type:'bar',yAxisIndex:1,data:yoyData,itemStyle:{color:'#c8c8c8',opacity:0.5},barWidth:'50%',z:-1,tooltip:{formatter:function(p){return'同比: <b>'+(p.value>=0?'+':'')+p.value.toFixed(1)+'%</b>';}}});
   const colors=years.map(y=>YEAR_COLORS[y]||'#999');
   const opt={animation:false,color:colors,legend:{type:'scroll',top:2,left:'center',itemWidth:14,itemHeight:8,itemGap:10,textStyle:{fontSize:10,color:'#333'}},grid:{left:52,right:hasYoy?56:20,top:48,bottom:28},xAxis:{type:'category',data:weeks,boundaryGap:false,axisLine:{lineStyle:{color:'#aaa'}},axisTick:{show:false},axisLabel:{fontSize:10,color:'#333',interval:labelInt,formatter:labelFn},splitLine:{show:false}},yAxis:[{type:'value',name:def.unit?'('+def.unit+')':'',nameTextStyle:{fontSize:10,color:'#333'},scale:true,axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:10,color:'#333',formatter:v=>fmtY(v,def.yFmt)},splitLine:{lineStyle:{color:'#e0dcd0',type:'dashed'}}}],series:series,dataZoom:[{type:'slider',bottom:0,height:16,borderColor:'#ccc',fillerColor:'rgba(100,140,120,0.1)',handleStyle:{color:'#5a8a6a'},textStyle:{fontSize:9,color:'#333'}},{type:'inside'}]};
