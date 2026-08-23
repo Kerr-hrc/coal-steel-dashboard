@@ -1106,7 +1106,7 @@ function updateInvestPanel(W,dim){
       {t:'台风后库存反复', lvl:'low'}
     ];
     var strat = '<b>合约：</b>01（中期多头）<br><b>操作：</b>回踩 3280-3310 做多，目标 3380-3430<br><b>止损：</b>3200';
-    products.push({name:'热卷', icon:'🔥', score:s, color:'#888', title:'边际改善·筑底', supply:supply, demand:demand, stock:stock, price:price, risk:risk, strat:strat, conclusion:'主力10≈3300、01≈3314（升水+14）+ 厂库去化 7.2 万 + 吨钢毛利 ~10 元 → 01 做多 3280-3310（止损 3200）'};}
+    products.push({name:'热卷', icon:'🔥', score:s, color:'#888', title:'边际改善·筑底', supply:supply, demand:demand, stock:stock, price:price, risk:risk, strat:strat, conclusion:'主力10≈3300、01≈3314（升水+14）+ 厂库去化 7.2 万 + 吨钢毛利 ~10 元 → 01 做多 3280-3310（止损 3200）'});}
 
   var dimMap={'观点':['焦煤','焦炭','铁矿石','螺纹钢','热卷'],'焦煤':['焦煤'],'焦炭':['焦炭'],'铁矿':['铁矿石'],'钢材':['螺纹钢','热卷'],'价格':[],'期货':[],'仓单':[],'月度数据':[],'平衡表':[]};
   var filtered = dimMap[dim] ? products.filter(function(p){return dimMap[dim].indexOf(p.name)>=0;}) : products;
