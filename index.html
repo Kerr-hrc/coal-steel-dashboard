@@ -929,6 +929,8 @@ function updateInvestPanel(W,dim){
         {tag:'成本', title:'焦炭首轮提涨兑现', desc:'8-20 落地(湿50/干55)，8-21 主力收 2119.5(+2.12%, 5日 +6.72%)'},
         {tag:'资金', title:'Jackson Hole 会前控仓', desc:'8/21-23 全球央行年会，焦炭 5 日 +6.72% 兑现压力，单边 ≤ 55 万、连续涨禁追高'},
         {tag:'黑色', title:'焦炭最强铁矿最弱', desc:'焦炭 +2.12% > 螺纹 +0.46% > 铁矿 +0.21%；铁矿被列为"空/回避"（铁水承压、库存回升）'},
+        {tag:'供给', title:'沁源县新增复产 1 座', desc:'8-24 长治沁源新增 1 座（日产减半、自用为主），累计复产 4 座 570 万吨 + 验收中 2 座 240 万吨，对市场流通冲击有限'},
+        {tag:'限产', title:'陕西焦企限产加码', desc:'受原料涨价+亏损扩大影响，个别焦企在原有限产基础上再<b>+10-20%</b>，区域负荷降至<b>40-70%</b>（Mysteel煤焦）'},
         {tag:'需求', title:'铁水微降至 237.68', desc:'全国 247 家钢厂日均，钢厂盈利率新低，原料强/成材弱分化加剧'}
       ],
       extremeVal: [
@@ -941,7 +943,7 @@ function updateInvestPanel(W,dim){
         {tag:'宏观', title:'Jackson Hole 前控仓', desc:'8/21-23 全球央行年会，鲍威尔讲话将决定降息路径；会前以"动量 + 回踩"为主'},
         {tag:'黑色', title:'焦炭/铁矿反差', desc:'焦炭 5 日 +6.72% vs 铁矿 0% → 焦强矿弱；铁矿因铁水承压、库存回升被列回避'},
         {tag:'焦煤', title:'强势但微跌', desc:'供给收缩无法证伪，竞拍溢价扩散 + 523矿产能67.5% + 安检持续；高位震荡不追高'},
-        {tag:'焦炭', title:'中性兑现', desc:'提涨兑现 + 利润-110 + 主力 2119.5；5 日 +6.72% 后获利兑现压力升温'},
+        {tag:'焦炭', title:'双重限产共振', desc:'晋冀限产 30% + 陕西负荷 40-70% + 提涨兑现；5 日 +6.72% 后获利兑现压力，但供给故事强化'},
         {tag:'螺纹', title:'中性持稳', desc:'W34 库存 682.85(-15.78) + 表需 196.16(+1.85)；升水 +30（10:3039 vs 01:3069）'},
         {tag:'铁矿', title:'回避', desc:'铁水承压 + 库存回升 + 700 元上方缺支撑；700 上方逐步兑现，680-690 才考虑轻多'}
       ]
@@ -974,11 +976,11 @@ function updateInvestPanel(W,dim){
     var td=new Date(refDate.getTime()+(W-refWeek)*7*86400000);
     var tblDate=('0'+(td.getMonth()+1)).slice(-2)+'-'+('0'+td.getDate()).slice(-2);
     html += '<div class="overview-wrap">';
-    html += '<div class="overview-title">📋 核心指标一览（W'+W+' · '+tblDate+' · 08-21 收盘）</div>';
+    html += '<div class="overview-title">📋 核心指标一览（W'+W+' · '+tblDate+' · 08-21 收盘 · 08-24 复产更新）</div>';
     html += '<table class="overview-table">';
     html += '<thead><tr><th class="t-name">品种</th><th>评分</th><th>主力</th><th>价格</th><th>基差</th><th>跨期</th><th>持仓信号</th><th class="t-logic">核心逻辑</th><th class="t-strat">策略</th></tr></thead><tbody>';
     html += '<tr class="prod-jm"><td class="t-name">⛏ 焦煤</td><td class="t-score s-pos">+2</td><td>01</td><td class="t-price">1589</td><td>+770</td><td>9-1=-176</td><td class="t-sig sig-strong">强势确认·做多01</td><td class="t-logic"><div class="logic-row"><span class="logic-tag">供给</span>山西原煤-35.57% + W34库存加速降 + 蒙煤-38.1</div><div class="logic-row"><span class="logic-tag">现货</span>8-19 临汾低硫2363(+244)高硫1980(+177)</div><div class="logic-row"><span class="logic-tag">资金</span>8-21 主力01≈1589(-0.13%)，禁追高，回踩做多</div></td><td class="t-strat"><div class="strat-row"><b>合约</b>主力01</div><div class="strat-row"><b>操作</b>回踩1500-1530多</div><div class="strat-row"><b>止损</b>1450</div></td></tr>';
-    html += '<tr class="prod-j"><td class="t-name">🧱 焦炭</td><td class="t-score s-zero">0</td><td>01</td><td class="t-price">2119.5</td><td>—</td><td>9-1=-79</td><td class="t-sig sig-mid">中性·5日+6.72%</td><td class="t-logic"><div class="logic-row"><span class="logic-tag">现货</span>8-20提涨落地(湿50/干55)，8-21主力收2119.5</div><div class="logic-row"><span class="logic-tag">开工</span>独立焦化开工71.28%(W33略降)</div><div class="logic-row"><span class="logic-tag">资金</span>5日+6.72%涨幅大，Jackson Hole前兑现压力升温</div></td><td class="t-strat"><div class="strat-row"><b>合约</b>主力01</div><div class="strat-row"><b>操作</b>2080-2120区间观望</div><div class="strat-row"><b>止损</b>—</div></td></tr>';
+    html += '<tr class="prod-j"><td class="t-name">🧱 焦炭</td><td class="t-score s-pos">+1</td><td>01</td><td class="t-price">2119.5</td><td>—</td><td>9-1=-79</td><td class="t-sig sig-strong">双重限产·跟多01</td><td class="t-logic"><div class="logic-row"><span class="logic-tag">现货</span>8-20提涨落地(湿50/干55)，8-21主力收2119.5</div><div class="logic-row"><span class="logic-tag">限产</span>晋冀30% + 陕西负荷40-70%(再加10-20%)</div><div class="logic-row"><span class="logic-tag">资金</span>5日+6.72%涨幅大，Jackson Hole前兑现压力升温</div></td><td class="t-strat"><div class="strat-row"><b>合约</b>主力01</div><div class="strat-row"><b>操作</b>2080-2100区间分批多</div><div class="strat-row"><b>止损</b>2050</div></td></tr>';
     html += '<tr class="prod-i"><td class="t-name">🪨 铁矿</td><td class="t-score s-neg">-1</td><td>01</td><td class="t-price">707</td><td>-25</td><td>9-1=+12</td><td class="t-sig sig-weak">回避·逼近700元</td><td class="t-logic"><div class="logic-row"><span class="logic-tag">估值</span>主力01=707，逼近700元；8-21报告列"空/回避"</div><div class="logic-row"><span class="logic-tag">库存</span>港口16618万吨高位，铁水承压</div><div class="logic-row"><span class="logic-tag">情绪</span>弱跟随焦煤，700上方缺支撑</div></td><td class="t-strat"><div class="strat-row"><b>合约</b>主力01</div><div class="strat-row"><b>操作</b>700上方兑现</div><div class="strat-row"><b>止损</b>—</div></td></tr>';
     html += '<tr class="prod-rb"><td class="t-name">🔩 螺纹</td><td class="t-score s-zero">0</td><td>10→01</td><td class="t-price">10:3039<br/>01:3069</td><td>+83</td><td>10-1=-30</td><td class="t-sig sig-mid">中性·旺季预期</td><td class="t-logic"><div class="logic-row"><span class="logic-tag">现货</span>主力10=3039,01=3069(升水+30)</div><div class="logic-row"><span class="logic-tag">库存</span>W34 682.85(-15.78)，连续两周降</div><div class="logic-row"><span class="logic-tag">表需</span>W34 196.16(+1.85)，连续两周升</div></td><td class="t-strat"><div class="strat-row"><b>合约</b>01(旺季预期)</div><div class="strat-row"><b>操作</b>回踩3030-3060多</div><div class="strat-row"><b>止损</b>2950</div></td></tr>';
     html += '<tr class="prod-hc"><td class="t-name">🔥 热卷</td><td class="t-score s-zero">0</td><td>10→01</td><td class="t-price">10:3300<br/>01:3314</td><td>+30</td><td>10-1=-14</td><td class="t-sig sig-mid">边际改善·筑底</td><td class="t-logic"><div class="logic-row"><span class="logic-tag">现货</span>主力10≈3300,01≈3314(升水+14)</div><div class="logic-row"><span class="logic-tag">厂库</span>小样本去库7.2万</div><div class="logic-row"><span class="logic-tag">毛利</span>吨钢毛利~10元，底部支撑</div></td><td class="t-strat"><div class="strat-row"><b>合约</b>01(中期多头)</div><div class="strat-row"><b>操作</b>回踩3280-3310多</div><div class="strat-row"><b>止损</b>3200</div></td></tr>';
@@ -1008,16 +1010,17 @@ function updateInvestPanel(W,dim){
     ];
     var risk = [
       {t:'两日累计 >5%，禁追高', lvl:'mid'},
+      {t:'沁源新增复产 1 座（日产减半/自用），冲击有限', lvl:'low'},
       {t:'复产加速(柳林+3万日产)，下方风险', lvl:'low'}
     ];
     var strat = '<b>合约：</b>主力 01 为主<br><b>操作：</b>回踩 1500-1530 做多，目标 1650-1700<br><b>止损：</b>1450';
-    products.push({name:'焦煤', icon:'⛏', score:s, color:'#cc4', title:'强势确认·做多01', supply:supply, demand:demand, price:price, risk:risk, strat:strat, conclusion:'山西原煤-35.57%+W34库存加速降+主力01≈1589(-0.13%)+禁追高纪律 → 01 回踩 1500-1530 做多（止损 1450）'});}
+    products.push({name:'焦煤', icon:'⛏', score:s, color:'#cc4', title:'强势确认·做多01', supply:supply, demand:demand, price:price, risk:risk, strat:strat, conclusion:'山西原煤-35.57%（7月）+W34库存加速降+沁源新增复产1座（自用）+主力01≈1589(-0.13%)+禁追高纪律 → 01 回踩 1500-1530 做多（止损 1450）'});}
   // --- 焦炭 ---
   {let s=0;
     var supply = [
       {t:'8-20 提涨落地(湿50/干55)，现货跟随', lvl:'high'},
-      {t:'独立焦化开工 71.28%（W33 较 W32 略降）', lvl:'mid'},
-      {t:'晋冀焦企限产 30%（鹏飞/东义/金岩等）', lvl:'mid'}
+      {t:'陕西焦企限产加码 +10-20%，区域负荷 40-70%', lvl:'high'},
+      {t:'晋冀限产 30%（鹏飞/东义/金岩）+ 独立焦化开工 71.28%', lvl:'mid'}
     ];
     var demand = [
       {t:'焦化利润 '+(jp!=null?jp:'-')+'（W32 '+(jpP!=null?jpP:'-')+'，亏损扩大）', lvl:'high'},
@@ -1030,11 +1033,12 @@ function updateInvestPanel(W,dim){
       {t:'Jackson Hole前控仓，连续涨禁追高', lvl:'mid'}
     ];
     var risk = [
-      {t:'5 日 +6.72% 获利兑现压力', lvl:'high'},
-      {t:'铁水微降 237.68，下游减产兑现', lvl:'low'}
+      {t:'5 日 +6.72% 获利兑现压力（Jackson Hole 后）', lvl:'high'},
+      {t:'铁水微降 237.68，下游减产兑现', lvl:'low'},
+      {t:'二轮提涨落空 → 价格回吐', lvl:'mid'}
     ];
     var strat = '<b>合约：</b>主力 01<br><b>操作：</b>2080-2120 区间观望，向上 2150 兑现<br><b>止损：</b>—';
-    products.push({name:'焦炭', icon:'🧱', score:s, color:'#888', title:'中性·兑现压力', supply:supply, demand:demand, price:price, risk:risk, strat:strat, conclusion:'8-21主力01收2119.5(+2.12%, 5日+6.72%)+Jackson Hole前控仓+提涨兑现 → 01 中性观望，2080-2120 区间，2150 兑现'});}
+    products.push({name:'焦炭', icon:'🧱', score:s, color:'#c84', title:'双重限产·跟多01', supply:supply, demand:demand, price:price, risk:risk, strat:strat, conclusion:'8-24 陕西焦企限产加码 +10-20%（区域负荷 40-70%）+ 晋冀 30% + 提涨兑现 + 主力 2119.5 → 01 2080-2100 分批多（止损 2050），目标 2180-2230'});}
   // --- 铁矿石 ---
   {let s=-1;
     var supply = [
