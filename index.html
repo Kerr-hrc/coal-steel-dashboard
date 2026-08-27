@@ -1018,7 +1018,9 @@ function updateInvestPanel(W,dim){
       {t:'复产加速（沁源新增+验收中），下方风险', lvl:'low'}
     ];
     var strat = '<b>分合约策略：</b>09 估值偏高逐步兑现<br><b>01：</b>回踩 1550-1570 做多，目标 1650-1700<br><b>套利：</b>2701-2705 正套（价差 110+ 维持基础）<br><b>止损：</b>01 止损 1500；9 月初通关恢复前后减仓';
-    products.push({name:'焦煤', icon:'⛏', score:s, color:'#cc4', title:'监管区去库·做多01', supply:supply, demand:demand, price:price, risk:risk, strat:strat, conclusion:'监管区390→230万吨+甘其毛都593车+环保压货9月初恢复+523矿精煤近三年低位+坑口利润近千+替代有限(山西≤15%/河北≤30%) → 09 逐步兑现(估值偏高)；01 回踩 1550-1570 做多（止损 1500）；2701-2705 正套同步参与'});}
+    var signal=[{t:'JM09 持仓 11万+ > 仓单量',lvl:'high'},{t:'9-1 价差收至 100 内',lvl:'high'},{t:'2701-2705 价差 110+',lvl:'high'},{t:'监管区 8-上旬→当前 230 万吨',lvl:'high'}];
+    var timeline=[{t:'<b>9 月初</b> 通关恢复(预计 1600-1700 车)',lvl:'high'},{t:'山西原煤 7月 -35.57% 持续',lvl:'high'},{t:'523 矿精煤近三年低位',lvl:'high'},{t:'金九银十补库窗口',lvl:'mid'}];
+    products.push({name:'焦煤', icon:'⛏', score:s, color:'#cc4', title:'监管区去库·做多01', supply:supply, demand:demand, price:price, risk:risk, signal:signal, timeline:timeline, strat:strat, conclusion:'监管区390→230万吨+甘其毛都593车+环保压货9月初恢复+523矿精煤近三年低位+坑口利润近千+替代有限(山西≤15%/河北≤30%) → 09 逐步兑现(估值偏高)；01 回踩 1550-1570 做多（止损 1500）；2701-2705 正套同步参与'});}
   // --- 焦炭 ---
   {let s=1;
     var supply = [
@@ -1042,8 +1044,10 @@ function updateInvestPanel(W,dim){
       {t:'铁水微降 237.68，下游减产兑现', lvl:'low'},
       {t:'蒙煤仓单成本附近压制期货上方空间', lvl:'mid'}
     ];
-    var strat = '<b>合约：</b>主力 01<br><b>操作：</b>2130-2150 分批多，目标 2200-2260<br><b>止损：</b>2090';
-    products.push({name:'焦炭', icon:'🧱', score:s, color:'#c84', title:'二轮落地·三轮预期', supply:supply, demand:demand, price:price, risk:risk, strat:strat, conclusion:'8-26 二轮提涨落地(河北湿+100/干+110, 一级湿2030/干2435)+三轮预期升温+陕西限产+晋冀30%+港口准一1736(+82)+主力2119.5 → 01 2130-2150 分批多（止损 2090），目标 2200-2260'});}
+    var strat = '<b>合约：</b>主力 01<br><b>操作：</b>2130-2150 分批多，目标 2200-2260<br><b>止损：</b>2090<br><b>节奏：</b>8-28 提出 → 9-1 落地(+100-110) → 兑现节点';
+    var signal=[{t:'二轮 8-26 已落地(湿+100/干+110)',lvl:'high'},{t:'<b>三轮 8-28 提出 / 9-1 落地</b>',lvl:'high'},{t:'盘面给出升水, 提涨空间打开',lvl:'high'},{t:'集港需求增加',lvl:'high'},{t:'中下游补库释放',lvl:'mid'}];
+    var timeline=[{t:'<b>8-28</b> 三轮提涨提出(<b>+100-110</b>)',lvl:'high'},{t:'<b>9-1</b> 三轮提涨落地',lvl:'high'},{t:'焦企开工率持续回落',lvl:'high'},{t:'焦企依旧亏损',lvl:'mid'},{t:'铁水高位、钢厂刚性采购',lvl:'mid'},{t:'金九银十补库窗口',lvl:'mid'}];
+    products.push({name:'焦炭', icon:'🧱', score:s, color:'#c84', title:'二轮落地·三轮 9-1 落地', supply:supply, demand:demand, price:price, risk:risk, signal:signal, timeline:timeline, strat:strat, conclusion:'8-26 二轮提涨落地(湿+100/干+110, 一级湿2030/干2435)+<b>三轮 8-28 提出/9-1 落地/+100-110</b>+陕西限产+晋冀30%+港口准一1736(+82)+主力2119.5 → 01 2130-2150 分批多（止损 2090），目标 2200-2260'});}
   // --- 铁矿石 ---
   {let s=0;
     var supply = [
@@ -1066,7 +1070,9 @@ function updateInvestPanel(W,dim){
       {t:'终端旺季需求高度有限', lvl:'low'}
     ];
     var strat = '<b>合约：</b>主力 01<br><b>操作：</b>700-720 分批多，目标 730-740<br><b>止损：</b>690';
-    products.push({name:'铁矿石', icon:'🪨', score:s, color:'#888', title:'中性转偏多·695 目标', supply:supply, demand:demand, price:price, risk:risk, strat:strat, conclusion:'PB粉687(+3)→695目标+铁水回升至240+247盈利率32%+无减产压力+近3周累库仅17万吨 → 01 700-720 分批多（止损 690），目标 730-740'});}
+    var signal=[{t:'PB 粉 687(+3)→ 695 目标',lvl:'mid'},{t:'247 盈利率 32%+, 无减产压力',lvl:'high'},{t:'港存近 3 周仅累 17 万吨',lvl:'mid'},{t:'五大材库存近三年低位',lvl:'high'}];
+    var timeline=[{t:'本周震荡上行至 695',lvl:'mid'},{t:'台风后到港恢复正常',lvl:'mid'},{t:'金九银十传统旺季',lvl:'high'},{t:'钢厂复产加快 → 利润压缩',lvl:'mid'}];
+    products.push({name:'铁矿石', icon:'🪨', score:s, color:'#888', title:'中性转偏多·695 目标', supply:supply, demand:demand, price:price, risk:risk, signal:signal, timeline:timeline, strat:strat, conclusion:'PB粉687(+3)→695目标+铁水回升至240+247盈利率32%+无减产压力+近3周累库仅17万吨 → 01 700-720 分批多（止损 690），目标 730-740'});}
   // --- 螺纹钢 ---
   {let s=1;
     var supply = [
@@ -1093,7 +1099,9 @@ function updateInvestPanel(W,dim){
       {t:'钢厂复产加快 → 卷螺供给压力回升', lvl:'low'}
     ];
     var strat = '<b>合约：</b>01（旺季预期多头）<br><b>操作：</b>3050-3080 分批多，目标 3150-3200<br><b>止损：</b>3000';
-    products.push({name:'螺纹钢', icon:'🔩', score:s, color:'#c84', title:'出伏修复·跟多01', supply:supply, demand:demand, stock:stock, price:price, risk:risk, strat:strat, conclusion:'8-25出伏+上海现货3108(+10)+本周产量或降至179.1+长流程产能年内低位+库存近三年低位 → 01 3050-3080 分批多（止损 3000），目标 3150-3200'});}
+    var signal=[{t:'上海现货 3108(+10)',lvl:'high'},{t:'高炉现金 -130 / 电炉谷电 11',lvl:'high'},{t:'本周产量或降至 179.1 万吨',lvl:'high'},{t:'库存近三年低位',lvl:'high'}];
+    var timeline=[{t:'<b>8-25</b> 出伏节点',lvl:'high'},{t:'资金到位率降幅 3 周收窄',lvl:'mid'},{t:'长流程产能年内低位',lvl:'high'},{t:'金九银十需求验证',lvl:'mid'}];
+    products.push({name:'螺纹钢', icon:'🔩', score:s, color:'#c84', title:'出伏修复·跟多01', supply:supply, demand:demand, stock:stock, price:price, risk:risk, signal:signal, timeline:timeline, strat:strat, conclusion:'8-25出伏+上海现货3108(+10)+本周产量或降至179.1+长流程产能年内低位+库存近三年低位 → 01 3050-3080 分批多（止损 3000），目标 3150-3200'});}
   // --- 热卷 ---
   {let s=0;
     var supply = [
@@ -1121,7 +1129,9 @@ function updateInvestPanel(W,dim){
       {t:'华东社库入库后库存压力回升', lvl:'low'}
     ];
     var strat = '<b>合约：</b>01（中期多头）<br><b>操作：</b>3280-3310 分批多，目标 3380-3430<br><b>止损：</b>3200';
-    products.push({name:'热卷', icon:'🔥', score:s, color:'#888', title:'底部扎实·企稳', supply:supply, demand:demand, stock:stock, price:price, risk:risk, strat:strat, conclusion:'上海现货3298(+36)+小样本厂库-0.8/社库-0.3+华南去库-1.3领先+钢厂超预期检修+雨季褪去 → 01 3280-3310 分批多（止损 3200），目标 3380-3430'});}
+    var signal=[{t:'上海现货 3298(+36)',lvl:'mid'},{t:'小样本厂库 -0.8 / 社库 -0.3',lvl:'high'},{t:'华南社库 -1.3 领先全国',lvl:'high'},{t:'钢厂超预期检修',lvl:'high'}];
+    var timeline=[{t:'东南亚热卷企稳',lvl:'mid'},{t:'雨季褪去、外需边际复苏',lvl:'mid'},{t:'钢厂利润受限 → 检修持续',lvl:'high'},{t:'华东社库入库后压力回升',lvl:'low'}];
+    products.push({name:'热卷', icon:'🔥', score:s, color:'#888', title:'底部扎实·企稳', supply:supply, demand:demand, stock:stock, price:price, risk:risk, signal:signal, timeline:timeline, strat:strat, conclusion:'上海现货3298(+36)+小样本厂库-0.8/社库-0.3+华南去库-1.3领先+钢厂超预期检修+雨季褪去 → 01 3280-3310 分批多（止损 3200），目标 3380-3430'});}
 
   var dimMap={'观点':['焦煤','焦炭','铁矿石','螺纹钢','热卷'],'焦煤':['焦煤'],'焦炭':['焦炭'],'铁矿':['铁矿石'],'钢材':['螺纹钢','热卷'],'价格':[],'期货':[],'仓单':[],'月度数据':[],'平衡表':[]};
   var filtered = dimMap[dim] ? products.filter(function(p){return dimMap[dim].indexOf(p.name)>=0;}) : products;
@@ -1157,6 +1167,8 @@ function updateInvestPanel(W,dim){
     html += renderSection('⚠️', '风险', p.risk);
     html += '</div>';
     html += '<div class="prod-col prod-right">';
+    html += p.signal ? renderSection('🚦', '信号触发', p.signal) : '';
+    html += p.timeline ? renderSection('⏰', '关键节点', p.timeline) : '';
     html += '<div class="prod-strat">'+p.strat+'</div>';
     html += '<div class="prod-conclusion">🎯 '+p.conclusion+'</div>';
     html += '</div>';
