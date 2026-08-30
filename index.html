@@ -1044,10 +1044,10 @@ function updateInvestPanel(W,dim){
       {t:'铁水微降 237.68，下游减产兑现', lvl:'low'},
       {t:'蒙煤仓单成本附近压制期货上方空间', lvl:'mid'}
     ];
-    var strat = '<b>合约：</b>主力 01<br><b>操作：</b>2130-2150 分批多，目标 2200-2260<br><b>止损：</b>2090<br><b>节奏：</b>8-28 提出 → 9-1 落地(+100-110) → 兑现节点';
-    var signal=[{t:'二轮 8-26 已落地(湿+100/干+110)',lvl:'high'},{t:'<b>三轮 8-28 提出 / 9-1 落地</b>',lvl:'high'},{t:'盘面给出升水, 提涨空间打开',lvl:'high'},{t:'集港需求增加',lvl:'high'},{t:'中下游补库释放',lvl:'mid'}];
+    var strat = '<b>合约：</b>主力 01<br><b>操作：</b>2130-2150 分批多，目标 2200-2260<br><b>止损：</b>2090<br><b>节奏：</b>8-28 提出 → <b>8-31 落地</b>(+100-110) → 兑现节点';
+    var signal=[{t:'二轮 8-26 已落地(湿+100/干+110)',lvl:'high'},{t:'<b>三轮 8-28 提出 / 8-31 落地</b>(+100-110)',lvl:'high'},{t:'盘面给出升水, 提涨空间打开',lvl:'high'},{t:'集港需求增加',lvl:'high'},{t:'中下游补库释放',lvl:'mid'}];
     var timeline=[{t:'<b>8-28</b> 三轮提涨提出(<b>+100-110</b>)',lvl:'high'},{t:'<b>9-1</b> 三轮提涨落地',lvl:'high'},{t:'焦企开工率持续回落',lvl:'high'},{t:'焦企依旧亏损',lvl:'mid'},{t:'铁水高位、钢厂刚性采购',lvl:'mid'},{t:'金九银十补库窗口',lvl:'mid'}];
-    products.push({name:'焦炭', icon:'🧱', score:s, color:'#c84', title:'二轮落地·三轮 9-1 落地', supply:supply, demand:demand, price:price, risk:risk, signal:signal, timeline:timeline, strat:strat, conclusion:'8-26 二轮提涨落地(湿+100/干+110, 一级湿2030/干2435)+<b>三轮 8-28 提出/9-1 落地/+100-110</b>+陕西限产+晋冀30%+港口准一1736(+82)+主力2119.5 → 01 2130-2150 分批多（止损 2090），目标 2200-2260'});}
+    products.push({name:'焦炭', icon:'🧱', score:s, color:'#c84', title:'二轮落地·三轮 8-31 落地', supply:supply, demand:demand, price:price, risk:risk, signal:signal, timeline:timeline, strat:strat, conclusion:'8-26 二轮提涨落地(湿+100/干+110, 一级湿2030/干2435)+<b>三轮 8-28 提出/8-31 落地/+100-110</b>+陕西限产+晋冀30%+港口准一1736(+82)+主力2119.5 → 01 2130-2150 分批多（止损 2090），目标 2200-2260'});}
   // --- 铁矿石 ---
   {let s=0;
     var supply = [
