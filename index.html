@@ -926,7 +926,7 @@ function updateInvestPanel(W,dim){
       redFlag: [
         {tag:'提涨', title:'焦炭四轮 9-3 已落地', desc:'<b>9-1 提出 / 9-3 落地 +100-110</b>已兑现；二/三/四轮累计+300-330；<b>五轮预期</b>升温'},
        {tag:'限产', title:'230 产能 71.03%(-6.88pct)', desc:'230 焦企产能利用率单周降 6.88pct，本周限产强化幅度历史罕见'},
-       {tag:'套利', title:'焦煤 2701-2705 正套', desc:'焦煤近端供应偏紧+传统补库阶段，01-05 价差 <b>>110 元/吨</b> 仍有维持基础'},
+       {tag:'套利', title:'焦煤 2601-2605 正套', desc:'焦煤近端供应偏紧+传统补库阶段，2601-2605 价差 <b>>110 元/吨</b> 仍有维持基础'},
         {tag:'切换', title:'主力切换 2601', desc:'JM/J 09 临近交割、持仓已大幅下降；<b>主力合约切换至 2601</b>，资金转向远月定价；9-1 价差由近月偏强收敛'},
         {tag:'蒙煤', title:'监管区急速去库', desc:'8上旬约<b>390万吨→230万吨</b>，日均去库约 10 万吨；口岸已无现货+贸易商捂货惜售；国内日出库 17-18 万吨创历年最好'},
        {tag:'山西', title:'临汾+1 停产煤矿', desc:'9-4 个别矿因隐患停产 3-5 天，<b>产能 150 万吨</b>，主产低硫主焦；临汾停产 4 座/420 万吨（vs 5-25 高峰 22 座/2630 万吨）'},
@@ -939,7 +939,7 @@ function updateInvestPanel(W,dim){
       ],
       extremeVal: [
         {tag:'焦煤', title:'监管区 230 万吨', desc:'390→230（日均 -10 万吨）+ 环保检查压货 9 月初恢复；坑口利润近千(800→1770)；替代有限(山西≤15%/河北≤30%)'},
-        {tag:'焦炭', title:'二轮落地 2030/2435', desc:'8-26 河北采购价上调(湿+100/干+110)；港口准一 1736(+82) 中间环节补库'},
+        {tag:'焦炭', title:'四轮落地 +300-330', desc:'二/三/四轮累计 +300-330；一级湿 2330 / 一级干 2735；港口准一 1750(+94) 中间环节补库延续'},
         {tag:'铁矿', title:'PB 粉 687(+3)', desc:'本周预计震荡上行至 695 附近；台风后到港恢复、近 3 周平均累库仅 17 万吨'},
         {tag:'螺纹', title:'现货 3108(+10)', desc:'上海螺纹现货均价；8-25 出伏+长流程产能年内低位，库存压力可控'},
         {tag:'热卷', title:'现货 3298(+36)', desc:'上海热卷均价；外需雨季褪去，底部支撑扎实'},
@@ -985,8 +985,8 @@ function updateInvestPanel(W,dim){
     html += '<div class="overview-title">📋 核心指标一览（W'+W+' · '+tblDate+' · 09-04 周度数据 · 偏强震荡·斜率放缓 · 负反馈风险显现）</div>';
     html += '<table class="overview-table">';
     html += '<thead><tr><th class="t-name">品种</th><th>评分</th><th>主力</th><th>价格</th><th>基差</th><th>跨期</th><th>持仓信号</th><th class="t-logic">核心逻辑</th><th class="t-strat">策略</th></tr></thead><tbody>';
-    html += '<tr class="prod-jm"><td class="t-name">⛏ 焦煤</td><td class="t-score s-pos">+2</td><td>01</td><td class="f-price">1589</td><td>+481</td><td>9-1=~-100</td><td class="f-sig sig-strong">逼仓+正套·做多01</td><td class="f-logic"><div class="logic-row"><span class="logic-tag">供给</span>523矿精煤近三年低位 + 监管区<b>390→230万吨</b>(日均-10) + 甘其毛都<b>593车</b>(高峰1473)</div><div class="logic-row"><span class="logic-tag">环保</span>内蒙古全区要求入煤棚，<b>9月初恢复</b>后预计1600-1700车</div><div class="logic-row"><span class="logic-tag">现货</span>临汾低硫2070(+36)；9-1价差收敛；<b>主力切2601</b></div><div class="logic-row"><span class="logic-tag">套利</span>2601-2605正套有维持基础</div></td><td class="f-strat"><div class="strat-row"><b>单边</b>01回踩1550-1570多</div><div class="strat-row"><b>套利</b>2701-2705正套</div><div class="strat-row"><b>止损</b>1500</div></td></tr>';
-    html += '<tr class="prod-j"><td class="t-name">🧱 焦炭</td><td class="t-score s-pos">+1</td><td>01</td><td class="f-price">2119.5</td><td>—</td><td>9-1=~-79</td><td class="f-sig sig-strong">三轮提涨·跟多01</td><td class="f-logic"><div class="logic-row"><span class="logic-tag">提涨</span><b>二轮已落地</b>(8-26河北湿+100/干+110,一级湿2030/干2435)+三轮预期</div><div class="logic-row"><span class="logic-tag">现货</span>港口准一1736(+82)；集港需求增加+焦企亏损扩大</div><div class="logic-row"><span class="logic-tag">限产</span>晋冀30% + 陕西负荷40-70% + 中下游补库</div></td><td class="f-strat"><div class="strat-row"><b>合约</b>主力01</div><div class="strat-row"><b>操作</b>2130-2150分批多</div><div class="strat-row"><b>止损</b>2090</div></td></tr>';
+    html += '<tr class="prod-jm"><td class="t-name">⛏ 焦煤</td><td class="t-score s-pos">+2</td><td>01</td><td class="f-price">1589</td><td>+481</td><td>9-1=~-100</td><td class="f-sig sig-strong">主力切2601·做多</td><td class="f-logic"><div class="logic-row"><span class="logic-tag">供给</span>523矿精煤近三年低位 + 监管区<b>390→230万吨</b>(日均-10) + 甘其毛都<b>593车</b>(高峰1473)</div><div class="logic-row"><span class="logic-tag">环保</span>内蒙古全区要求入煤棚，<b>9月初恢复</b>后预计1600-1700车</div><div class="logic-row"><span class="logic-tag">现货</span>临汾低硫2070(+36)；9-1价差收敛；<b>主力切2601</b></div><div class="logic-row"><span class="logic-tag">套利</span>2601-2605正套有维持基础</div></td><td class="f-strat"><div class="strat-row"><b>单边</b>主力2601回踩1550-1570多</div><div class="strat-row"><b>套利</b>2601-2605正套</div><div class="strat-row"><b>止损</b>1500</div></td></tr>';
+    html += '<tr class="prod-j"><td class="t-name">🧱 焦炭</td><td class="t-score s-pos">+1</td><td>01</td><td class="f-price">2119.5</td><td>—</td><td>9-1=~-79</td><td class="f-sig sig-strong">四轮兑现·跟多</td><td class="f-logic"><div class="logic-row"><span class="logic-tag">提涨</span><b>四轮 9-3 已落地</b>(累计+300-330)，一级湿 2330 / 一级干 2735</div><div class="logic-row"><span class="logic-tag">现货</span>港口准一1750(+94)；集港需求增加+焦企亏损扩大</div><div class="logic-row"><span class="logic-tag">限产</span>晋冀30% + 陕西负荷40-70% + 中下游补库</div></td><td class="f-strat"><div class="strat-row"><b>合约</b>主力01(2601)</div><div class="strat-row"><b>操作</b>2130-2150分批多</div><div class="strat-row"><b>止损</b>2090</div></td></tr>';
     html += '<tr class="prod-i"><td class="t-name">🪨 铁矿</td><td class="t-score s-zero">0</td><td>01</td><td class="f-price">712</td><td>-25</td><td>9-1=+12</td><td class="f-sig sig-mid">中性转偏多·695 目标</td><td class="f-logic"><div class="logic-row"><span class="logic-tag">估值</span>PB粉687(+3)→目标695；247盈利率32%+无减产压力</div><div class="logic-row"><span class="logic-tag">库存</span>上周港存+463万(到港恢复)，近3周平均仅+17万吨</div><div class="logic-row"><span class="logic-tag">需求</span>铁水见底回升→240万上方；五大材库存近三年低位</div></td><td class="f-strat"><div class="strat-row"><b>合约</b>主力01</div><div class="strat-row"><b>操作</b>700-720分批多</div><div class="strat-row"><b>止损</b>690</div></td></tr>';
     html += '<tr class="prod-rb"><td class="t-name">🔩 螺纹</td><td class="t-score s-pos">+1</td><td>10→01</td><td class="f-price">10:3052<br/>01:3082</td><td>+83</td><td>10-1=-30</td><td class="f-sig sig-strong">出伏修复·跟多01</td><td class="f-logic"><div class="logic-row"><span class="logic-tag">现货</span>上海3108(+10)；高炉现金-130/电炉谷电11</div><div class="logic-row"><span class="logic-tag">供给</span>本周产量或降至179.1万；长流程产能年内低位</div><div class="logic-row"><span class="logic-tag">需求</span>8-25出伏+降雨减少+资金到位率降幅3周收窄</div></td><td class="f-strat"><div class="strat-row"><b>合约</b>01(旺季预期)</div><div class="strat-row"><b>操作</b>3050-3080分批多</div><div class="strat-row"><b>止损</b>3000</div></td></tr>';
     html += '<tr class="prod-hc"><td class="t-name">🔥 热卷</td><td class="t-score s-zero">0</td><td>10→01</td><td class="f-price">10:3298<br/>01:3312</td><td>+30</td><td>10-1=-14</td><td class="f-sig sig-mid">底部扎实·企稳</td><td class="f-logic"><div class="logic-row"><span class="logic-tag">现货</span>上海3298(+36)；钢厂利润受限+超预期检修</div><div class="logic-row"><span class="logic-tag">库存</span>小样本厂库-0.8/社库-0.3万；华南社库-1.3领先</div><div class="logic-row"><span class="logic-tag">外需</span>东南亚热卷企稳/雨季褪去，出口接单回暖</div></td><td class="f-strat"><div class="strat-row"><b>合约</b>01(中期多头)</div><div class="strat-row"><b>操作</b>3280-3310分批多</div><div class="strat-row"><b>止损</b>3200</div></td></tr>';
@@ -1022,10 +1022,10 @@ function updateInvestPanel(W,dim){
       {t:'蒙煤仓单成本附近压制期货上方空间', lvl:'mid'},
       {t:'复产加速（沁源新增+验收中），下方风险', lvl:'low'}
     ];
-    var strat = '<b>分合约策略：</b>09 估值偏高逐步兑现<br><b>01：</b>回踩 1550-1570 做多，目标 1650-1700<br><b>套利：</b>2701-2705 正套（价差 110+ 维持基础）<br><b>止损：</b>01 止损 1500；9 月初通关恢复前后减仓';
+    var strat = '<b>分合约策略：</b>09 临近交割兑现<br><b>主力 2601：</b>回踩 1550-1570 做多，目标 1650-1700<br><b>套利：</b>2601-2605 正套（价差 110+ 维持基础）<br><b>止损：</b>2601 止损 1500；9 月初通关恢复前后减仓';
     var signal=[{t:'主力 01(2601) 偏多格局',lvl:'high'},{t:'9-1 价差收敛，远月跟涨',lvl:'high'},{t:'2601-2605 正套有维持基础',lvl:'high'},{t:'监管区 390→230 万吨',lvl:'high'}];
     var timeline=[{t:'<b>9 月初</b> 通关恢复(预计 1600-1700 车)',lvl:'high'},{t:'山西原煤 7月 -35.57% 持续',lvl:'high'},{t:'523 矿精煤近三年低位',lvl:'high'},{t:'金九银十补库窗口',lvl:'mid'}];
-    products.push({name:'焦煤', icon:'⛏', score:s, color:'#cc4', title:'监管区去库·做多01', supply:supply, demand:demand, price:price, risk:risk, signal:signal, timeline:timeline, strat:strat, conclusion:'监管区390→230万吨+甘其毛都593车+环保压货9月初恢复+523矿精煤近三年低位+坑口利润近千+替代有限(山西≤15%/河北≤30%) → 09 逐步兑现(估值偏高)；01 回踩 1550-1570 做多（止损 1500）；2701-2705 正套同步参与'});}
+    products.push({name:'焦煤', icon:'⛏', score:s, color:'#cc4', title:'监管区去库·做多2601', supply:supply, demand:demand, price:price, risk:risk, signal:signal, timeline:timeline, strat:strat, conclusion:'监管区390→230万吨+甘其毛都593车+环保压货9月初恢复+523矿精煤近三年低位+坑口利润近千+替代有限(山西≤15%/河北≤30%) → 09 临近交割兑现(估值偏高)；主力 2601 回踩 1550-1570 做多（止损 1500）；2601-2605 正套同步参与'});}
   // --- 焦炭 ---
   {let s=1;
     var supply = [
@@ -1042,7 +1042,7 @@ function updateInvestPanel(W,dim){
     ];
     var price = [
       {t:'主力 01=2119.5；<b>��轮 9-3 落地</b>(+100-110)，目标 2200-2260', lvl:'high'},
-      {t:'二/三/四轮累计 +300-330，提涨节奏加速', lvl:'high'},
+      {t:'二/三/四轮累计 +300-330，五轮节奏放缓；一级湿 2330 / 干 2735', lvl:'high'},
       {t:'盘面给出升水，提涨空间打开', lvl:'high'}
     ];
     var risk = [
@@ -1050,9 +1050,9 @@ function updateInvestPanel(W,dim){
       {t:'四轮提涨钢厂抵制（累计+300-330），五轮落地难度上升', lvl:'high'},
       {t:'铁水 236.82(+0.22) 由负转正，但持续性存疑', lvl:'mid'}
     ];
-    var strat = '<b>合约：</b>主力 01<br><b>操作：</b>2130-2150 分批多，目标 2200-2260<br><b>止损：</b>2090<br><b>节奏：</b>四轮已落地 → <b>五轮预期</b> → 9 月初蒙煤恢复';
-    var signal=[{t:'四轮 9-3 已落地(累计+300-330)',lvl:'high'},{t:'<b>五轮预期升温</b>(亏损扩大+集港需求增加)',lvl:'high'},{t:'盘面给出升水，提涨空间打开',lvl:'high'},{t:'230 焦企产能 71.03%(-6.88pct) 限产强化',lvl:'high'},{t:'库存全样本去化',lvl:'high'}];
-    var timeline=[{t:'<b>8-28</b> 三轮提涨提出(<b>+100-110</b>)',lvl:'high'},{t:'<b>9-1</b> 三轮提涨落地',lvl:'high'},{t:'焦企开工率持续回落',lvl:'high'},{t:'焦企依旧亏损',lvl:'mid'},{t:'铁水高位、钢厂刚性采购',lvl:'mid'},{t:'金九银十补库窗口',lvl:'mid'}];
+    var strat = '<b>合约：</b>主力 01(2601)<br><b>操作：</b>2130-2150 分批多，目标 2200-2260<br><b>止损：</b>2090<br><b>节奏：</b>四轮已落地 → <b>上涨斜率放缓</b> → 关注负反馈+钢厂检修';
+    var signal=[{t:'四轮 9-3 已落地(累计+300-330)',lvl:'high'},{t:'<b>上涨斜率放缓</b>，五轮节奏放慢',lvl:'high'},{t:'钢厂利润收缩 → <b>负反馈风险显现</b>',lvl:'high'},{t:'230 焦企产能 71.03%(-6.88pct) 限产强化',lvl:'high'},{t:'库存全样本去化',lvl:'mid'}];
+    var timeline=[{t:'<b>9-3 四轮已落地</b>(累计+300-330)',lvl:'high'},{t:'<b>9-4 临汾停产 1 座</b>(产能150万吨)',lvl:'high'},{t:'五轮预期升温，但节奏放缓',lvl:'mid'},{t:'230 焦企产能 71.03%(-6.88pct) 限产强化',lvl:'high'},{t:'库存全样本去化延续',lvl:'mid'},{t:'钢厂利润收缩，负反馈风险显现',lvl:'high'}];
     products.push({name:'焦炭', icon:'🧱', score:s, color:'#c84', title:'四轮兑现·斜率放缓', supply:supply, demand:demand, price:price, risk:risk, signal:signal, timeline:timeline, strat:strat, conclusion:'四轮 9-3 已落地(累计+300-330)+230 焦企产能 71.03%(-6.88pct)+库存全样本去化+主力2119.5+<b>上涨斜率放缓+负反馈风险显现</b> → 01 2130-2150 分批多（止损 2090），目标 2200-2260；五轮节奏放缓，关注钢厂检修节点'});}
   // --- 铁矿石 ---
   {let s=0;
