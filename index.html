@@ -803,7 +803,7 @@ function renderMetricRow(grid,metric,items){
   items.forEach(item=>{
     const card=document.createElement('div');
     card.className='chart-card';
-    card.innerHTML='<div class="cc-title" title="'+item.ch.desc+'">'+item.ch.title+' <span style="font-size:9px;color:var(--text3);background:var(--tag-bg);padding:0 4px;border-radius:4px;">'+item.shortSrc+'</span></div>'+renderCcStats(item.ch)+(item.ch.analysis?'<div class="cc-analysis">'+item.ch.analysis+'</div>':'')+'<div class="cc-chart" id="c_'+item.ch.id+'"></div>';
+    card.innerHTML='<div class="cc-title" title="'+item.ch.desc+'">'+item.ch.title+' <span style="font-size:9px;color:var(--text3);background:var(--tag-bg);padding:0 4px;border-radius:4px;">'+item.shortSrc+'</span></div>'+renderCcStats(item.ch)+'<div class="cc-chart" id="c_'+item.ch.id+'"></div>';
     row.appendChild(card);
   });
   grid.appendChild(row);
