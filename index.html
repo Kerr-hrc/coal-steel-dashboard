@@ -99,6 +99,34 @@ body{
 .analysis-panel .ap-week{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:3px}
 .analysis-panel .ap-text{font-size:13px;color:var(--text2);line-height:1.7}
 
+/* 观点面板 - 顶部 KPI 网格 */
+.kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:8px}
+.kpi-card{background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:6px 8px;font-size:10px;line-height:1.3}
+.kpi-card.kpi-hi{border:2px solid #c44;background:#fff5f5}
+.kpi-l{color:var(--text3);font-size:9px;margin-bottom:2px;letter-spacing:.2px}
+.kpi-v{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.kpi-u{font-size:9px;font-weight:400;color:var(--text3);margin-left:2px}
+.kpi-d{font-size:9px;margin-top:1px;font-weight:600}
+.kpi-s{color:var(--text3);font-size:9px;margin-top:3px;line-height:1.35}
+
+/* 观点面板 - 错点层（自省模块）*/
+.err-layer{background:linear-gradient(135deg,#fef2f2 0%,#fee 100%);border:2px solid #c44;border-radius:6px;padding:8px 10px;margin-bottom:8px}
+.err-title{font-size:12px;font-weight:700;color:#c44;margin-bottom:6px;padding-bottom:4px;border-bottom:1px dashed #c44;display:flex;align-items:center;gap:6px}
+.err-item{background:rgba(255,255,255,0.7);border:1px solid rgba(204,68,68,0.2);border-radius:4px;padding:6px 8px;margin-bottom:5px}
+.err-item:last-child{margin-bottom:0}
+.err-h{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.err-no{background:#c44;color:#fff;border-radius:3px;padding:1px 5px;font-size:10px;font-weight:700;flex-shrink:0}
+.err-lvl{font-size:9px;padding:1px 5px;border-radius:3px;font-weight:600;flex-shrink:0}
+.err-lvl.lvl-重大{background:#c44;color:#fff}
+.err-lvl.lvl-重要{background:#fdb;color:#c84}
+.err-lvl.lvl-一般{background:#eef;color:#88a}
+.err-t{font-size:10.5px;font-weight:700;color:var(--text);flex:1;line-height:1.3}
+.err-row{font-size:9.5px;line-height:1.45;color:var(--text2);margin-bottom:1px}
+.err-row:last-child{margin-bottom:0}
+.err-row b{color:var(--text);font-weight:600;margin-right:2px}
+.err-row.err-fix b{color:#c44}
+.err-row.err-avoid b{color:#2a6}
+
 /* 观点面板 - 信号扫描（三栏）*/
 .scan-grid{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
 .scan-col-title{font-size:11px;font-weight:700;color:var(--text);margin-bottom:4px;padding-bottom:3px;border-bottom:1px dashed var(--border)}
@@ -925,6 +953,96 @@ function updateInvestPanel(W,dim){
   const h5s=val('s5_stock_热卷',W),h5c=val('s5_consume_热卷',W);
 
   let html='';
+
+  // ===== 0. 顶部 KPI 网格 =====
+  if(dim==='观点'){
+    var kpis = [
+      // 第一行：5 个主力合约价格
+      {label:'焦煤 JM2701', value:1655, delta:-25.5, deltaPct:-1.5, color:'#cc4', sub:'主力 2701 · 估值 80-85 分位'},
+      {label:'焦炭 J2701', value:2160.5, delta:+41, deltaPct:+1.9, color:'#c84', sub:'主力 2701 · 五轮已落地'},
+      {label:'螺纹 RB2701', value:3169, delta:+117, deltaPct:+3.8, color:'#c84', sub:'主力 2701 · 领涨黑色系'},
+      {label:'热卷 HC2701', value:3385, delta:+73, deltaPct:+2.2, color:'#888', sub:'主力 2701 · 底部震荡'},
+      {label:'铁矿 I2701', value:738, delta:+26, deltaPct:+3.7, color:'#888', sub:'主力 2701 · 跟随钢材'},
+      // 第二行：盘面利润 + 价差
+      {label:'螺纹盘面利润', value:-208, delta:-9, unit:'元/吨', color:'#c44', sub:'钢厂深度亏损·减产压力'},
+      {label:'热卷盘面利润', value:-191, delta:0, unit:'元/吨', color:'#c44', sub:'钢厂深度亏损·检修持续'},
+      {label:'卷螺差（盘面）', value:216, delta:+8, sub:'hc - rb = 216 · 卷强螺弱'},
+      {label:'螺矿比', value:4.29, delta:-0.05, sub:'rb / i = 4.29 · 钢材跟涨铁矿'},
+      {label:'焦矿比', value:2.24, delta:-0.04, sub:'jm / i = 2.24 · 煤弱矿强'},
+      // 第三行：基本面
+      {label:'钢厂盈利率', value:7.79, unit:'%', delta:0, sub:'247 家（持平）连续两周围绕 8%', color:'#c44'},
+      {label:'日均铁水', value:237.63, unit:'万吨', delta:+1.34, sub:'止跌回升·同比仍 -3.39', color:'#2a6'},
+      {label:'焦煤精煤库存', value:201, unit:'万吨', delta:-8, sub:'523 矿（-8）仍去化·近三年低位', color:'#c44'},
+      {label:'焦炭总库存', value:19.25, unit:'万吨', delta:-5.0, sub:'总库存大幅去化·下游接货偏弱', color:'#2a6'},
+      {label:'铁矿 47 港库存', value:17135.9, unit:'万吨', delta:+112.71, sub:'环环比 +112.71·同比 +2,754', color:'#c44'},
+      // 第四行：特殊信号 + 政策
+      {label:'钢厂焦炭库存', value:14.33, unit:'万吨', delta:-4.42, sub:'★主动去库看空★', highlight:true, color:'#c44'},
+      {label:'蒙煤甘其毛都', value:531, unit:'车', delta:-143, sub:'vs 9-10 674·三大口 1084', color:'#c44'},
+      {label:'山西增产计划', value:5450, unit:'万吨', delta:0, sub:'40 座 9 底-10 月·理想日产+20', color:'#c84'},
+      {label:'政策文件', value:'666号文', sub:'发改办能源〔2026〕666号·超产矿合规复产', highlight:true, color:'#c44'}
+    ];
+
+    html += '<div class="kpi-grid">';
+    kpis.forEach(function(k){
+      var dStr='';
+      if(k.delta!=null && k.delta!==0){
+        var sign=k.delta>=0?'+':'';
+        var dcolor=k.delta>=0?'#c44':'#2a6';
+        var arrow=k.delta>=0?'↑':'↓';
+        dStr='<div class="kpi-d" style="color:'+dcolor+'">'+arrow+sign+k.delta+(k.deltaPct!=null?' ('+sign+k.deltaPct+'%)':'')+(k.unit?' '+k.unit:'')+'</div>';
+      }
+      var hi=k.highlight?' kpi-hi':'';
+      html += '<div class="kpi-card'+hi+'">';
+      html += '<div class="kpi-l">'+k.label+'</div>';
+      html += '<div class="kpi-v" style="color:'+(k.color||'var(--text)')+'">'+k.value+(k.unit?'<span class="kpi-u">'+k.unit+'</span>':'')+'</div>';
+      html += dStr;
+      html += '<div class="kpi-s">'+k.sub+'</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+
+  // ===== 0.5 错点层（自省模块） =====
+  if(dim==='观点'){
+    var errors = [
+      {
+        no:'⑭',
+        level:'重大',
+        title:'钢厂主动去库 -4.42 看空：原 patch_invest22 仍乐观',
+        detail:'原判断"2150-2180 区间多，目标 2200-2240"忽视了钢厂主动去库 -4.42 万吨的看空信号；钢厂在原料涨价+成材弱情况下主动降库存，是典型的负反馈兑现信号。',
+        fix:'本期改为"2150-2180 区间（保守）"，目标下调至 2200-2220；增加 2220+ 不追多的硬约束。',
+        avoid:'【下次检查项】当钢厂库存连续 2 周加速下降（>3 万吨/周），必须重新评估策略方向，不依赖前一周结论。'
+      },
+      {
+        no:'⑮',
+        level:'重要',
+        title:'山西增产 5450 万吨：未量化对价格的影响',
+        detail:'patch_invest23 已纳入"山西 93 座增产计划"，但未量化对价格的影响；理想条件下日产 +20 万吨，约相当于全国炼焦煤日产 130 万吨的 15%。',
+        fix:'patch_invest24+25 已在 risk/strat 加入"上方承压"+"目标下调"，但仍缺少量化对比（缺口 3.5 vs 增量 6-10 万吨/日）。',
+        avoid:'【下次检查项】重大供给侧事件必须含"政策能否填平缺口"的量化对比，不能仅做定性描述。'
+      },
+      {
+        no:'⑯',
+        level:'一般',
+        title:'2701 合约切换时点：Red Flag 表述仍沿用 09 临近交割',
+        detail:'patch_invest22-25 期间主力合约已切换至 2701，但部分 Red Flag/价格描述仍保留"09 临近交割"等过时表述。',
+        fix:'已通过 patch d8b9579 修正：Red Flag 改"主力 2701 估值·正套"，price 改"2701 持仓高位"。',
+        avoid:'【下次检查项】合约切换后必须 grep 月份合约表述（09/10/11/2609/2610/2701），timeline 默认锚定"主力+近月"。'
+      }
+    ];
+
+    html += '<div class="err-layer">';
+    html += '<div class="err-title">⚠️ 错点库（自省层）·本期 '+errors.length+' 项</div>';
+    errors.forEach(function(e){
+      html += '<div class="err-item">';
+      html += '<div class="err-h"><span class="err-no">'+e.no+'</span><span class="err-lvl lvl-'+e.level+'">'+e.level+'</span><span class="err-t">'+e.title+'</span></div>';
+      html += '<div class="err-row"><b>原判断：</b>'+e.detail+'</div>';
+      html += '<div class="err-row err-fix"><b>本期修正：</b>'+e.fix+'</div>';
+      html += '<div class="err-row err-avoid"><b>下次避免：</b>'+e.avoid+'</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+  }
 
   // ===== 1. 信号扫描（三栏） =====
   if(dim==='观点'){
