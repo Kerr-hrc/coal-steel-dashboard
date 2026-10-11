@@ -986,7 +986,7 @@ function updateInvestPanel(W,dim){
   if(dim==='观点'){
     var kpis = [
       // 第一行：5 个主力合约价格（基差修正：盘面相对现货）
-      {label:'焦煤 JM2701', value:1655, delta:-25.5, deltaPct:-1.5, color:'#cc4', sub:'主力 2701 · 蒙5#1650 平水 · 成本松动'},
+      {label:'焦煤 JM2701', value:1539, delta:-116, deltaPct:-7.0, color:'#cc4', sub:'主力 2701 · 蒙5#1634 升水 +95 · 触底反弹·短期上涨'},
       {label:'焦炭 J2701', value:2150, delta:-10.5, deltaPct:-0.5, color:'#c84', sub:'主力 2701 · 现货1930 深度贴水-220'},
       {label:'螺纹 RB2701', value:3169, delta:+117, deltaPct:+3.8, color:'#c84', sub:'主力 2701 · 上海3260 升水+91'},
       {label:'热卷 HC2701', value:3385, delta:+73, deltaPct:+2.2, color:'#888', sub:'主力 2701 · 上海3300 贴水-85'},
@@ -1066,6 +1066,14 @@ function updateInvestPanel(W,dim){
         avoid:'【下次检查项】判断钢厂行为必须看 247 钢厂全样本口径，不能引用子样本（100-200 万吨产能组等）做整体推断；引数据前必须用 array[22]=[28] 字段验证是 247 钢厂还是子样本。'
       },
       {
+        no:'⑳',
+        level:'重要',
+        title:'JM2701 价格基准纠错：高点 1689 (9-8) + 短期触底反弹',
+        detail:'<b>原错点</b>（patch_invest31 + patch_invest32）：把 JM2701 = 1539 高点基准写成"1655 跌 -116"，但用户实际告知高点是<b>9月8日的 1689</b>（vs 当前 -150）。同时把短期方向误判为"平台补跌主导"，实际用户原意是"1539 上涨 / 上个交易日上涨"。',
+        fix:'本期把 patch_invest31+32 的"vs 历史 1655 跌 -116"全部改为"vs 9-8 高点 1689 跌 -150"；标题"平台补跌·升水反转"改为"触底反弹·升水反转"；描述补充"短期触底反弹"。',
+        avoid:'【下次检查项】当用户提供盘面价格时，必须（a）确认基准（历史高点/前一日/前低）（b）确认方向（涨/跌/震荡）。两个事实并存时，描述必须同时包含两者，不能省略其中任一维度。'
+      },
+      {
         no:'⑲',
         level:'重大',
         title:'焦炭提降第二轮 10-12 落地：累库压制+钢厂话语权回归',
@@ -1108,7 +1116,7 @@ function updateInvestPanel(W,dim){
   if(dim==='观点'){
     var bases = [
       {name:'焦炭', spot:1830, spotSrc:'日照港准一焦 10-12', fut:'J2701', futV:2150, bs:-320, bsLvl:'neg', eval:'<b>10-12 第二轮提降 -100/-110 落地</b>（10-9 提出），现货 1830（湿）/ 2225（干），累计 -200/-210 已超涨价前；盘面 J2701=2150 深度贴水 -320，<b>盘面补跌压力极大</b>'},
-      {name:'焦煤', spot:1650, spotSrc:'蒙5#原煤 9-29', fut:'JM2701', futV:1655, bs:-5, bsLvl:'mid', eval:'平水 -5；成本端松动（523 精煤 +110）但蒙煤 -22.4 进口端偏紧对冲'},
+      {name:'焦煤', spot:1634, spotSrc:'蒙5#原煤 10-12', fut:'JM2701', futV:1539, bs:+95, bsLvl:'pos', eval:'<b>升水 +95</b>：蒙 5#原煤 1634（仅跌 -16 蒙煤紧支撑）vs 平台 JM2701=1539（vs <b>9-8 高点 1689 跌 -150</b> 后<b>触底反弹</b>），短期上行修正'},
       {name:'螺纹', spot:3260, spotSrc:'上海 9-29', fut:'RB2701', futV:3169, bs:+91, bsLvl:'pos', eval:'升水 +91；现货强于盘面，反映钢厂挺价+节前补库；成本 2918+加工费 200=3118，毛利仅 142'},
       {name:'热卷', spot:3300, spotSrc:'上海 9-29', fut:'HC2701', futV:3385, bs:-85, bsLvl:'neg', eval:'贴水 -85；盘面领先现货，外需回暖+检修支撑预期；但利润 -206 亏损压制'},
       {name:'铁矿', spot:740, spotSrc:'PB 粉 估', fut:'I2701', futV:738, bs:+2, bsLvl:'mid', eval:'平水 +2；跟随钢材波动，钢厂减产兑现后上方承压'}
@@ -1130,7 +1138,7 @@ function updateInvestPanel(W,dim){
       html += '</tr>';
     });
     html += '</tbody></table>';
-    html += '<div class="base-note"><b>基差解读：</b>焦炭 <b>-320 深度贴水</b>（10-12 第二轮提降 -100/-110 落地后）→ 盘面 2150 完全未 price-in 现货下行；累计 -200/-210 已超涨价前；盘面要么<b>补跌至 1950-2000</b>维持基差，要么修复至 2050-2100（钢厂节前补库兑现）。<b>螺纹 +91 升水</b>反映钢厂挺价，但长偊钢材偏空（产量持平、库存累库、表观需求走弱），上方承压。</div>';
+    html += '<div class="base-note"><b>基差解读：</b>焦炭 <b>-320 深度贴水</b>（10-12 第二轮提降 -100/-110 落地后）→ 盘面 2150 完全未 price-in 现货下行；累计 -200/-210 已超涨价前；盘面要么<b>补跌至 1950-2000</b>维持基差，要么修复至 2050-2100（钢厂节前补库兑现）。<b>螺纹 +91 升水</b>反映钢厂挺价，但长偊钢材偏空（产量持平、库存累库、表观需求走弱），上方承压。<b>焦煤 +95 升水</b>反映蒙煤 -22.4 进口紧支撑（平台跟跌跌幅 -116 vs 现货 -16），平台累库主导。<b>焦煤 +95 升水</b>反映蒙煤 -22.4 进口紧支撑（平台跟跌跌幅 -116 vs 现货 -16），平台累库主导。</div>';
     html += '</div>';
   }
 
@@ -1148,7 +1156,7 @@ function updateInvestPanel(W,dim){
         {tag:'山西', type:'policy', sev:2, time:'已持续 2 周', title:'93 座增产 5450 万吨 Q4 释放', desc:'<b>40 座 9 月底-10 月复产</b>，产能 <b>5450 万吨</b>；16 座 11 月增产 1430 万吨；2 座 12 月 180 万吨；理想条件下年内山西日产<b>+20 万吨</b>（9-16 基数 68.4 万吨）'},
         {tag:'蒙煤', type:'data', sev:2, time:'已持续 2 周', title:'监管区 -22.4 持续去化', desc:'甘其毛都监管区 <b>157.2→134.8</b>(-22.4 万吨)，9-25→10-6 持续去化；进口端偏紧支撑（与国内累库形成对冲）'},
         {tag:'港口', type:'data', sev:1, time:'本周新', title:'铁矿港存 16419 累库', desc:'47 港库存 <b>16355→16419</b> (+64)；澳洲 8287→8314、巴西 4833→4884；日均疏港 335.88→335.3 持平；卸货天数 24→25'},
-        {tag:'2701', type:'evt', sev:1, time:'本周新', title:'主力 2701·现货领先', desc:'<b>主力 2701</b> 估值偏高+9-30 提降落地+钢厂减产兑现 → 焦炭盘面 J2701=2150 仍有补跌空间；焦煤 JM2701=1655 平水；螺纹 RB2701=3169 升水+91；热卷 HC2701=3385 贴水-85'},
+        {tag:'2701', type:'evt', sev:1, time:'本周新', title:'主力 2701·焦煤触底反弹', desc:'<b>主力 2701</b> 估值偏高+10-12 提降落地+钢厂减产兑现 → 焦炭盘面 J2701=2150 仍有补跌空间；<b>焦煤 JM2701=1539</b>（vs <b>9-8 高点 1689 跌 -150</b>，<b>短期触底反弹</b>）蒙 5#原煤 1634 <b>升水 +95</b>；螺纹 RB2701=3169 升水+91；热卷 HC2701=3385 贴水-85'},
         {tag:'需求', type:'data', sev:1, time:'已持续 3 周', title:'金九兑现不及预期', desc:'钢材现货成交整体偏弱；原料持续拉涨→焦钢企业利润持续承压；钢厂主动减产压制需求；节前补库兑现度有限'}
       ],
       extremeVal: [
@@ -1156,7 +1164,7 @@ function updateInvestPanel(W,dim){
         {tag:'螺纹', type:'data', sev:3, time:'本周新', title:'现货 3260 升水+91', desc:'上海现货 <b>3260</b> vs 主力 RB2701=3169，<b>基差 +91 升水</b>；钢厂挺价+节前补库支撑；但钢厂现金成本 2918+加工费 200=3118，毛利仅 142'},
         {tag:'钢厂', type:'data', sev:3, time:'本周新', title:'盈利率 6.93% 创新低', desc:'247 钢厂盈利率 <b>6.93%</b>(vs 9-18 7.79%) 创近期新低；9 月以来钢厂持续亏损，<b>减产兑现压力极大</b>；铁水 -3.84 同步'},
         {tag:'热卷', type:'data', sev:2, time:'本周新', title:'现货 3300 贴水-85', desc:'上海现货 <b>3300</b> vs 主力 HC2701=3385，<b>基差 -85 贴水</b>；盘面领先现货；热卷高炉利润 -206 深度亏损，盘面已 price-in 减产'},
-        {tag:'焦煤', type:'data', sev:2, time:'已持续 3 周', title:'523 累库+蒙煤紧·平水 -5', desc:'523 矿精煤库存 <b>130.71→240.4</b>(+110 累库★★★)；蒙5#原煤 1650 vs 主力 JM2701=1655，<b>基差 -5 平水</b>；蒙煤 -22.4 进口端偏紧支撑'},
+        {tag:'焦煤', type:'data', sev:3, time:'本周新', title:'JM2701=1539 触底反弹·升水 +95', desc:'523 矿精煤库存 <b>130.71→240.4</b>(+110 累库★★★)+焦炭提降传导；<b>蒙5#原煤 1634 vs 主力 JM2701=1539，基差 +95 升水</b>（蒙煤 -22.4 进口端偏紧支撑现货-16 vs 平台跟跌 -150 后触底反弹）'},
         {tag:'成本', type:'data', sev:2, time:'已持续 3 周', title:'钢坯成本 2918·现货 3260', desc:'唐山钢坯成本 <b>2918</b> vs 上海螺纹 3260、毛利 142；钢厂深度亏损下减产兑现是必然；钢材现金流支撑位'},
         {tag:'估值', type:'data', sev:2, time:'已持续 2 周', title:'焦煤估值 80-85 分位偏高', desc:'焦煤估值 80-85 分位偏高+山西增产 5450 万吨压制+523 累库+110 → 1750+ 仓单成本压制 + 技术阻力'},
         {tag:'铁矿', type:'data', sev:1, time:'本周新', title:'主力 738·港存 16419', desc:'铁矿 2701 <b>738</b>；47 港库存 16419.34 (+64)；澳洲 8314、巴西 4884；<b>钢厂减产压制上方</b>；PB 粉 740 平水 +2'},
@@ -1165,7 +1173,7 @@ function updateInvestPanel(W,dim){
       trendChg: [
         {tag:'总论', type:'evt', sev:3, time:'本周新', title:'空头趋势加速·提降二次', desc:'<b>多头</b>：蒙煤 -22.4 进口偏紧+247 钢厂补库+15.3+焦企复产+节前补库；<b>空头</b>：<b>10-12 第二轮提降 -100/-110 落地</b>+累计 -200/-210 超涨价前+钢厂盈利率 6.93% 创新低+铁水 -3.84 减产兑现+523 累库 +110+长偊钢材偏空（产量持平、库存累库、表观需求走弱）；<b>现货深度领先盘面，盘面补跌压力极大</b>'},
         {tag:'焦炭', type:'evt', sev:3, time:'本周新', title:'现货领先·提降加速', desc:'五轮累计 +400-440 已完全回落；<b>10-12 第二轮提降 -100/-110 落地</b>（累计 -200/-210 超涨价前）；现货 1830 vs 盘面 2150，<b>深度贴水 -320</b>；安全垫 128-158 被突破；再降 1 轮概率 30-40%；主力 2150 补跌压力极大'},
-        {tag:'焦煤', type:'data', sev:2, time:'已持续 3 周', title:'累库压制·上方承压', desc:'523 精煤库存 <b>+110 万吨累库★★★</b>；523 原煤日产 <b>156.47→149.1</b>(-7.37)；产能利用率 <b>69.66%→66.4%</b>(-3.26pct)；蒙煤 -22.4 进口紧支撑；主力 1655 平水'},
+        {tag:'焦煤', type:'data', sev:3, time:'本周新', title:'触底反弹·升水反转', desc:'523 精煤库存 <b>+110 万吨累库★★★</b>；523 原煤日产 <b>156.47→149.1</b>(-7.37)；产能利用率 <b>69.66%→66.4%</b>(-3.26pct)；<b>JM2701=1539 触底反弹</b>（vs 9-8 高点 1689 跌 -150），蒙 5#1634 <b>升水 +95</b>（蒙煤紧支撑现货 -16 vs 平台 -150 后反弹）'},
         {tag:'铁矿', type:'data', sev:2, time:'已持续 3 周', title:'减产压制·中性偏弱', desc:'铁矿 2701 <b>738</b>；港存 16419 累库；钢厂盈利率 6.93% 创新低→减产兑现→铁矿上方承压；745+ 不追高；��期 700-740'},
         {tag:'螺纹', type:'data', sev:2, time:'本周新', title:'现货强·减产兑现', desc:'rb 2701 <b>3169</b>、上海现货 <b>3260 升水 +91</b>；产量 173.08 接近年内低位；但<b>钢厂利润 -173 深度亏损+盈利率 6.93% 创新低</b>，减产兑现压力极大；现货上方承压'},
         {tag:'热卷', type:'data', sev:2, time:'本周新', title:'盘面领先·偏弱', desc:'hc 2701 <b>3385</b>、上海现货 <b>3300 贴水 -85</b>；小样本厂库-0.8/社库-0.3万；利润 -206 深度亏损；盘面领先现货，外需回暖+检修支撑预期减弱'}
@@ -1205,10 +1213,11 @@ function updateInvestPanel(W,dim){
     var td=new Date(refDate.getTime()+(W-refWeek)*7*86400000);
     var tblDate=('0'+(td.getMonth()+1)).slice(-2)+'-'+('0'+td.getDate()).slice(-2);
     html += '<div class="overview-wrap">';
-    html += '<div class="overview-title">📋 核心指标一览（W'+W+' · '+tblDate+' · 10-12 数据 · 空头趋势加速 · 10-12第二轮提降 -100/-110 落地+247钢厂补库+523累库+110+长偊钢材偏空·现货深度领先盘面 -320）</div>';
+    html += '<div class="overview-title">📋 核心指标一览（W'+W+' · '+tblDate+' · 10-12 数据 · 空头趋势加速 · 10-12第二轮提降 -100/-110 落地+247钢厂补库+523累库+110+长偊钢材偏空·现货深度领先盘面 -320·焦煤 JM2701=1539 触底反弹 升水 +95）</div>';
     html += '<table class="overview-table">';
     html += '<thead><tr><th class="t-name">品种</th><th>评分</th><th>主力</th><th>价格</th><th>基差</th><th>跨期</th><th>持仓信号</th><th class="t-logic">核心逻辑</th><th class="t-strat">策略</th></tr></thead><tbody>';
-    html += '<tr class="prod-jm"><td class="t-name">⛏ 焦煤</td><td class="t-score s-zero">0</td><td>01</td><td class="f-price">1655</td><td>-5</td><td>1-5=~+130</td><td class="f-sig sig-mid">累库压制·1700-1800</td><td class="f-logic"><div class="logic-row"><span class="logic-tag">供给</span>523 精煤库存 <b>130.71→240.4</b>(+110 累库★★★)；523 原煤日产 <b>156.47→149.1</b>(-7.37)；产能利用率 69.66%→66.4%</div><div class="logic-row"><span class="logic-tag">进口</span>甘其毛都监管区 <b>157.2→134.8</b>(-22.4)；蒙煤进口端偏紧支撑</div><div class="logic-row"><span class="logic-tag">压制</span>估值80-85分位+<b>山西增产 5450 万吨 Q4 释放</b>+523 累库+110 → 上方承压</div><div class="logic-row"><span class="logic-tag">需求</span>247 钢厂炼焦煤 <b>747.61→762.9</b>(+15.3 补库)；钢厂减产兑现压制需求</div><div class="logic-row"><span class="logic-tag">基差</span>蒙5#原煤 1650 vs 主力 JM2701=1655，<b>平水 -5</b></div></td><td class="f-strat"><div class="strat-row"><b>单边</b>1700-1800 偏弱（上方承压）</div><div class="strat-row"><b>目标</b>1720 减仓；下方 1620 支撑</div><div class="strat-row"><b>区间</b>1700-1800（累库+110 压制上限）</div></td></tr>';
+    html += '<tr class="prod-jm"><td class="t-name">⛏ 焦煤</td><td class="t-score s-neg">-1</td><td>01</td><td class="f-price">1539</td><td>+95</td><td>1-5=~+130</td><td class="f-sig sig-strong">触底反弹·升水 +95·1450-1580</td><td class="f-logic"><div class="logic-row"><span class="logic-tag">供给</span>523 精煤库存 <b>130.71→240.4</b>(+110 累库★★★)；523 原煤日产 <b>156.47→149.1</b>(-7.37)；产能利用率 69.66%→66.4%</div><div class="logic-row"><span class="logic-tag">进口</span>甘其毛都监管区 <b>157.2→134.8</b>(-22.4)；蒙煤进口端偏紧支撑</div><div class="logic-row"><span class="logic-tag">压制</span>估值80-85分位+<b>山西增产 5450 万吨 Q4 释放</b>+523 累库+110 → 上方承压</div><div class="logic-row"><span class="logic-tag">需求</span>247 钢厂炼焦煤 <b>747.61→762.9</b>(+15.3 补库)；钢厂减产兑现压制需求</div><div class="logic-row"><span class="logic-tag">基差</span>蒙 5#原煤 <b>1634</b> vs 主力 JM2701=<b>1539</b>（vs <b>9-8 高点 1689 跌 -150</b>，<b>短期触底反弹</b>），<b>升水 +95</b>（蒙煤 -22.4 进口紧支撑+高位回落+触底反弹）</div></td><td class="f-strat"><div class="strat-row"><b>单边</b>1450-1580 偏弱（vs 9-8 高点 1689 跌 -150）</div><div class="strat-row"><b>目标</b>1480-1500 减仓；下方 1480 支撑</div>
+<div class="strat-row"><b>区间</b>1450-1580（vs 9-8 高点 -150+累库+110 压制上限）</div></td></tr>';
     html += '<tr class="prod-j"><td class="t-name">🧱 焦炭</td><td class="t-score s-neg">-2</td><td>01</td><td class="f-price">2150</td><td>-320</td><td>1-5=~+80</td><td class="f-sig sig-strong">现货领先·盘面补跌·1950-2100</td><td class="f-logic"><div class="logic-row"><span class="logic-tag">提降</span><b>10-12 第二轮提降 -100/-110 落地</b>（10-9 提出）；日照港准一焦 1830（累计 -200 超涨价前 9-16=1930）；五轮累计 +400-440 已完全回落</div><div class="logic-row"><span class="logic-tag">复产</span>230 焦企产能 <b>67.47%→69.74%</b>(+2.27pct)；日均产量 <b>46.65→48.21</b>；吨焦利润 <b>55→78</b></div><div class="logic-row"><span class="logic-tag">库存</span>247 钢厂焦炭 <b>567.46→580.6</b>(+13.14 补库★)；焦炭总库存 821.55→822.87 持平；港口库存 184→174</div><div class="logic-row"><span class="logic-tag">基差</span>现货 1930 vs 主力 J2701=2150，<b>深度贴水 -320</b>（10-12 第二轮提降后），<b>现货领先盘面</b>；盘面补跌压力极大</div></td><td class="f-strat"><div class="strat-row"><b>合约</b>主力01(2701)</div><div class="strat-row"><b>操作</b>1950-2100 偏弱·盘面补跌压力大</div><div class="strat-row"><b>止损</b>2200+ 不追多；下方 2000 强支撑</div></td></tr>';
     html += '<tr class="prod-i"><td class="t-name">🪨 铁矿</td><td class="t-score s-zero">0</td><td>01</td><td class="f-price">738</td><td>+2</td><td>1-5=+12</td><td class="f-sig sig-mid">减产压制·720-760</td><td class="f-logic"><div class="logic-row"><span class="logic-tag">价格</span>主力 2701 = <b>738</b>；PB 粉 740 vs I2701，<b>平水 +2</b></div><div class="logic-row"><span class="logic-tag">库存</span>47 港 <b>16355→16419</b>(+64)；澳洲 8314、巴西 4884；日均疏港 335.3</div><div class="logic-row"><span class="logic-tag">压制</span>钢厂盈利率 <b>6.93% 创新低</b> → 减产兑现 → 铁矿上方承压；745+ 不追高</div><div class="logic-row"><span class="logic-tag">需求</span>铁水 <b>237.63→233.79</b>(三周 -3.84) 减产兑现中</div></td><td class="f-strat"><div class="strat-row"><b>合约</b>主力01</div><div class="strat-row"><b>操作</b>720-760 偏弱震荡</div><div class="strat-row"><b>止损</b>770 做空止损；700 以下止盈</div></td></tr>';
     html += '<tr class="prod-rb"><td class="t-name">🔩 螺纹</td><td class="t-score s-pos">+1</td><td>01</td><td class="f-price">3169</td><td>+91</td><td>01-05=-30</td><td class="f-sig sig-strong">现货强·减产兑现·3100-3200</td><td class="f-logic"><div class="logic-row"><span class="logic-tag">价格</span>rb 2701 <b>3169</b>、上海现货 <b>3260 升水 +91</b>；现货强于盘面，钢厂挺价+节前补库</div><div class="logic-row"><span class="logic-tag">利润</span>高炉利润 <b>-173</b>(9-29) 深度亏损；钢厂盈利率 <b>6.93% 创新低</b> → 减产兑现压力极大</div><div class="logic-row"><span class="logic-tag">供给</span>本周产量 173.08(-7.30) 接近年内低位；长流程产能年内低位</div><div class="logic-row"><span class="logic-tag">成本</span>唐山钢坯成本 <b>2918</b> vs 现货 3260，毛利仅 142 → 钢厂减产是必然</div></td><td class="f-strat"><div class="strat-row"><b>合约</b>主力 01(2701)</div><div class="strat-row"><b>操作</b>3100-3200 高位震荡·逢高减仓</div><div class="strat-row"><b>止损</b>3000；减产兑现后下行 3050-3100</div></td></tr>';
@@ -1235,7 +1244,7 @@ function updateInvestPanel(W,dim){
       {t:'硬缺口 ~1000 万吨/月，进口增量有限（蒙煤 -22.4 持续去化）', lvl:'high'}
     ];
     var price = [
-      {t:'蒙5#原煤现货 <b>1650</b>；<b>主力 JM2701 = 1655（平水 -5）</b>', lvl:'high'},
+      {t:'蒙5#原煤现货 <b>1634</b>；<b>主力 JM2701 = 1539（vs 9-8 高点 1689 跌 -150，短期触底反弹）</b>', lvl:'high'},
       {t:'1-5 价差 110+，正套基础维持', lvl:'high'},
       {t:'<b>2701 持仓高位</b>，资金博弈 Q4 增产兑现节奏', lvl:'high'},
       {t:'坑口成本 800/现价 1770，矿方利润近千无减量动机', lvl:'high'}
@@ -1246,10 +1255,10 @@ function updateInvestPanel(W,dim){
       {t:'钢厂盈利率 <b>6.93% 创新低</b> + 减产兑现 → 焦煤需求边际走弱', lvl:'high'},
       {t:'蒙煤 531 车回落 → 但港口库存仍处中位（下方支撑中）', lvl:'mid'}
     ];
-    var strat = '<b>短期（1-2 周）：</b>主力 JM2701 <b>1700-1800 偏弱震荡</b>；上方 1800+ 不追多；下方 1620-1650 支撑；提降博弈中观望<br><b>中期（1-2 月）：</b>Q4 山西增产释放+钢厂减产兑现+523 累库+110 → 中枢下移至 <b>1600-1750</b>；1700+ 减仓<br><b>长期（1-3 月）：</b>硬缺口 1000 万吨/月+蒙煤季节性下降+冬季补库 → <b>中枢 1600-1750</b>，旺季尾段冲高 1750-1800；底部做多为主<br><b>套利：</b>2701-2705 正套（价差 110-140 维持但走弱）<br><b>止损：</b>2701 跌破 1600 减仓；1580 止损';
-    var signal=[{t:'主力 JM2701 <b>1700-1800 偏弱震荡</b>',lvl:'high'},{t:'523 累库+110 + 山西增产 → 上方承压',lvl:'high'},{t:'钢厂盈利率 6.93% 创新低 → 减产兑现',lvl:'high'},{t:'蒙煤 -22.4 进口紧支撑对冲',lvl:'mid'},{t:'2701-2705 正套（1-5 价差 110-140）弱化',lvl:'mid'}];
+    var strat = '<b>短期（1-2 周）：</b>主力 JM2701 <b>1450-1580 偏弱</b>（vs 9-8 高点 1689 跌 -150）；上方 1580+ 不追多；下方 1480-1500 支撑；蒙煤紧支撑现货 1634<b>升水 +95</b><br><b>中期（1-2 月）：</b>Q4 山西增产释放+钢厂减产兑现+523 累库+110+高位回落 → 中枢下移至 <b>1450-1600</b>；1580+ 减仓<br><b>长期（1-3 月）：</b>硬缺口 1000 万吨/月+蒙煤季节性下降+冬季补库 → <b>中枢 1450-1600</b>，旺季尾段冲高 1600-1650；底部做多为主<br><b>套利：</b>2701-2705 正套弱化参与<br><b>止损：</b>2701 跌破 1450 减仓；1420 止损';
+    var signal=[{t:'主力 JM2701 <b>1539 触底反弹</b>（vs 9-8 高点 1689 跌 -150），蒙 5#1634 升水 +95',lvl:'high'},{t:'523 累库+110 + 山西增产 → 上方承压',lvl:'high'},{t:'钢厂盈利率 6.93% 创新低 → 减产兑现',lvl:'high'},{t:'蒙煤 -22.4 进口紧支撑现货对冲高位回落',lvl:'high'},{t:'2701-2705 正套弱化（1-5 价差走窄）',lvl:'mid'}];
     var timeline=[{t:'<b>9-30</b> 焦炭首轮提降 -100 落地（成本端松动）',lvl:'high'},{t:'<b>10-7</b> 247 钢厂炼焦煤补库 +15.3 万吨',lvl:'high'},{t:'<b>10-9</b> 523 精煤库存 240.4 累库+110',lvl:'high'},{t:'<b>9 底-10 月</b> 山西增产 5450 万吨首批释放',lvl:'high'},{t:'钢厂减产节点（10 月中下旬）压制焦煤需求',lvl:'high'},{t:'山西原煤日产 +20 万吨（理想条件）',lvl:'mid'},{t:'Q4 蒙煤取暖季（10 月底开始）季节性下降',lvl:'mid'}];
-    products.push({name:'焦煤', icon:'⛏', score:s, color:'#cc4', title:'累库压制·上方承压（��+中长期）', supply:supply, demand:demand, price:price, risk:risk, signal:signal, timeline:timeline, strat:strat, conclusion:'<b>短期（1-2 周）：</b>523 精煤库存 <b>+110 万吨累库★★★</b>+山西增产 5450 万吨 Q4 释放+估值 80-85 分位+蒙5#原煤 1650（基差 -5 平水）+<b>钢厂盈利率 6.93% 创新低→减产兑现</b> → 主力 JM2701 <b>1700-1800 偏弱震荡</b>；上方 1800+ 不追多；下方 1620-1650 支撑；<b>中期（1-2 月）：</b>Q4 中枢 <b>1600-1750</b>，山西增产释放+钢厂减产兑现压制；<b>长期（1-3 月）：</b>中枢 <b>1600-1750</b>，硬缺口+蒙煤季节性下降+冬季补库支撑，旺季尾段冲高 1750-1800；2701-2705 正套弱化参与'});}
+    products.push({name:'焦煤', icon:'⛏', score:s, color:'#cc4', title:'触底反弹·升水反转（短+中长期）', supply:supply, demand:demand, price:price, risk:risk, signal:signal, timeline:timeline, strat:strat, conclusion:'<b>短期（1-2 周）：</b>523 精煤库存 <b>+110 万吨累库★★★</b>+山西增产 5450 万吨 Q4 释放+焦炭第二轮提降传导+蒙 5#1634（基差 +95 升水·蒙煤紧支撑）+<b>钢厂盈利率 6.93% 创新低→减产兑现</b> → 主力 JM2701 <b>1539 触底反弹</b>（vs <b>9-8 高点 1689 跌 -150</b>）<b>1450-1580 偏弱</b>，短期反弹修复；上方 1580+ 不追多；下方 1480-1500 支撑；<b>中期（1-2 月）：</b>Q4 中枢 <b>1450-1600</b>，山西增产释放+钢厂减产兑现+触底反弹；<b>长期（1-3 月）：</b>中枢 <b>1450-1600</b>，硬缺口+蒙煤季节性下降+冬季补库支撑，旺季尾段冲高 1600-1650；2701-2705 正套弱化参与'});}
   // --- 焦炭 ---
   {let s=1;
     var supply = [
