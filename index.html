@@ -250,24 +250,24 @@ body{
 .sidebar a:hover,.sidebar a.active{color:var(--accent);border-left-color:var(--accent);background:var(--tag-bg);}
 .sb-btn{display:none;position:fixed;left:4px;top:4px;z-index:12;width:30px;height:30px;background:var(--card);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:16px;color:var(--text2);text-align:center;line-height:28px;box-shadow:var(--shadow)}
 @media(max-width:1100px){.sidebar{display:none}.sidebar.open{display:block}.sb-btn{display:block}body{padding-left:16px!important}}
-@media(min-width:901px){body{padding-left:20px}}
+@media(min-width:901px){body{padding-left:160px}}
 .cat-header{font-size:13px;font-weight:700;color:var(--text);padding:5px 0 2px;margin-top:2px;border-bottom:1px solid var(--accent2);display:flex;align-items:center;gap:6px;scroll-margin-top:100px}
 .cat-header:first-child{margin-top:0}
 .cat-header .cat-badge{font-size:11px;font-weight:400;color:var(--text3);background:var(--tag-bg);padding:1px 8px;border-radius:8px}
 .chart-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:2px;}
 @media(max-width:1100px){.chart-row{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.chart-row{grid-template-columns:1fr}}
-.chart-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:5px 8px 4px;box-shadow:var(--shadow);}
-.chart-card .cc-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.chart-card .cc-analysis{font-size:11px;color:var(--text3);margin-bottom:2px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.chart-card .cc-stats{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:2px;align-items:center;line-height:1.3}
-.chart-card .cc-stat{background:var(--tag-bg);padding:1px 6px;border-radius:3px;color:var(--text);font-size:10px;font-weight:500;white-space:nowrap}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:2px 5px 2px;box-shadow:var(--shadow);}
+.chart-card .cc-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.chart-card .cc-analysis{font-size:10.5px;color:var(--text3);margin-bottom:0;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.chart-card .cc-stats{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:0;align-items:center;line-height:1.25}
+.chart-card .cc-stat{background:var(--tag-bg);padding:0 5px;border-radius:3px;color:var(--text);font-size:9.5px;font-weight:500;white-space:nowrap}
 .chart-card .cc-stat.cc-last{background:rgba(84,112,198,0.18);color:#5470c6;font-weight:700}
 .chart-card .cc-stat.cc-up{color:#c44;background:rgba(204,68,68,0.10)}
 .chart-card .cc-stat.cc-down{color:#2a6;background:rgba(42,170,102,0.10)}
 .chart-card .cc-stat.cc-flat{color:var(--text3)}
 .chart-card .cc-trend{font-size:9px;color:var(--text3);font-style:italic;padding-left:2px}
-.chart-card .cc-chart{width:100%;height:210px}
+.chart-card .cc-chart{width:100%;height:235px}
 
 .footer{position:relative;z-index:1;max-width:1500px;margin:14px auto 0;text-align:center;font-size:11px;color:var(--text3);}
 .data-notice{position:relative;z-index:1;max-width:1500px;margin:10px auto 0;background:var(--card2);border:1px dashed var(--border);border-radius:6px;padding:10px 14px;font-size:12px;color:var(--text3)}
@@ -1013,7 +1013,7 @@ function updateInvestPanel(W,dim){
       {label:'247 钢厂炼焦煤', value:762.9, unit:'万吨', delta:+15.3, sub:'★钢厂主动补库★ 冬季备库', color:'#2a6'},
       {label:'247 钢厂焦炭', value:580.6, unit:'万吨', delta:+13.14, sub:'★钢厂主动补库★ 非去库', color:'#2a6'},
       // 第四行：政策 + 信号 + 现货
-      {label:'9-30 提降', value:'-100', unit:'元/吨', delta:0, sub:'★首轮落地★ 钢厂话语权回归', highlight:true, color:'#c44'},
+      {label:'10-12 提降', value:'-200', unit:'元/吨', delta:0, sub:'★第二轮累计-200★ 钢厂话语权巩固', highlight:true, color:'#c44'},
       {label:'蒙煤甘其毛都', value:134.8, unit:'万吨', delta:-22.4, sub:'监管区 9-25→10-6 持续去化', color:'#c44'},
       {label:'山西增产计划', value:5450, unit:'万吨', delta:0, sub:'40 座 9 底-10 月 · 理想日产+20', color:'#c84'},
       {label:'政策文件', value:'666号文', sub:'发改办能源〔2026〕666号 · 超产矿合规复产', highlight:true, color:'#c44'}
@@ -1119,7 +1119,7 @@ function updateInvestPanel(W,dim){
       {
         no:'⑲',
         level:'重大',
-        title:'焦炭提降第二轮 10-12 落地：累库压制+钢厂话语权回归',
+        title:'焦炭提降第二轮 10-12 落地：累库压制+钢厂话语权巩固',
         detail:'<b>10-9 焦炭第二轮提降 -100/-110 落地</b>（10-12 周一执行）：一级湿 1930→1830、干 2335→2225；累计 -200/-210 已超涨价前水平（9-16=1930/2335）；钢厂话语权进一步巩固；累库压制 + 钢厂盈利率 6.93% 创新低 → 空头趋势加速',
         fix:'本期把焦炭评分从 -1 改为 -2，基差从 -220 改为 -320，盘面区间从 2000-2150 下调至 1950-2100；再降 1 轮（第三轮）概率 30-40%（累计 -300 落地）。',
         avoid:'【下次检查项】当提降消息公布时（如 10-9 提出但 10-12 落地），必须 grep 整个生成器中相关表述（不仅是观点页，还要查现货-基差对照、KPI 网格、错点层、核心表），不能只看卡片。事件窗口期（提降→落地）需要双套数据：公布前 + 落地后。'
