@@ -1027,6 +1027,8 @@ function updateInvestPanel(W,dim){
         var dcolor=k.delta>=0?'#c44':'#2a6';
         var arrow=k.delta>=0?'↑':'↓';
         dStr='<div class="kpi-d" style="color:'+dcolor+'">'+arrow+sign+k.delta+(k.deltaPct!=null?' ('+sign+k.deltaPct+'%)':'')+(k.unit?' '+k.unit:'')+'</div>';
+      } else if(k.delta===0){
+        dStr='<div class="kpi-d" style="color:#888">— 持平 —</div>';
       }
       var hi=k.highlight?' kpi-hi':'';
       html += '<div class="kpi-card'+hi+'">';
