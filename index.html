@@ -712,6 +712,10 @@ function renderGrid(){
     if(invSticky)invSticky.style.display='none';
     if(futSticky)futSticky.style.display='block';
     setTimeout(buildFutTable,300);
+  }else if(activeDim==='分析'){
+    if(invSticky)invSticky.style.display='block';
+    if(futSticky)futSticky.style.display='none';
+    setTimeout(function(){updateAnalysisPanel(getLatestWeek(),'分析');},300);
   }else{
     if(invSticky)invSticky.style.display='block';
     if(futSticky)futSticky.style.display='none';
