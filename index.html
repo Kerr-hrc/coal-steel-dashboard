@@ -186,6 +186,37 @@ body{
 .cred-tag{display:inline-block;background:#c44;color:#fff;font-size:7.5px;padding:0 3px;border-radius:2px;margin-right:2px;vertical-align:1px;font-weight:700}
 .cred-tag.cred-2{background:#c84}
 .cred-tag.cred-1{background:#888}
+.xmind{background:#fff;border:1px solid var(--border);border-radius:6px;padding:14px;margin-bottom:8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.xmind-toolbar{display:flex;align-items:center;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.xmind-btn{background:var(--card2);border:1px solid var(--border);border-radius:3px;padding:3px 8px;font-size:10px;cursor:pointer;color:var(--text);transition:all .15s}
+.xmind-btn:hover{background:#346;color:#fff;border-color:#346}
+.xmind-hint{font-size:9.5px;color:var(--text3);margin-left:auto}
+.xmind-root{background:linear-gradient(135deg,#346 0%,#258 100%);color:#fff;font-size:16px;font-weight:700;text-align:center;padding:12px 20px;border-radius:8px;margin:0 auto 16px;max-width:340px;box-shadow:0 2px 8px rgba(52,70,150,0.25);position:relative}
+.xmind-root::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid #258}
+.xmind-meta{font-size:9.5px;font-weight:400;opacity:0.8;display:block;margin-top:2px}
+.xmind-branches{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}
+.xmind-branch{background:var(--b-bg);border:1.5px solid var(--b-color);border-radius:6px;padding:6px;position:relative;transition:box-shadow .15s}
+.xmind-branch:hover{box-shadow:0 2px 6px rgba(0,0,0,0.08)}
+.xmind-branch::before{content:'';position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:6px solid var(--b-color)}
+.xmind-btitle{font-size:12px;font-weight:700;color:var(--b-color);padding:4px 6px;cursor:pointer;display:flex;align-items:center;gap:4px;user-select:none;border-radius:3px}
+.xmind-btitle:hover{background:rgba(255,255,255,0.5)}
+.xmind-arr{font-size:9px;color:var(--b-color);display:inline-block;width:10px}
+.xmind-icon{font-size:14px;line-height:1}
+.xmind-bname{font-size:12px}
+.xmind-ben{font-size:8.5px;color:var(--text3);font-weight:400;margin-left:2px}
+.xmind-count{background:var(--b-color);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:auto}
+.xmind-children{margin-top:4px;padding-top:4px;border-top:1px dashed var(--b-color)}
+.xmind-node{background:rgba(255,255,255,0.85);border:1px solid;border-radius:4px;padding:3px 5px;margin-bottom:3px;font-size:10px;line-height:1.35;cursor:default;display:flex;align-items:center;gap:3px;flex-wrap:wrap;transition:all .15s}
+.xmind-node:hover{background:#fff;transform:translateX(2px);box-shadow:0 1px 3px rgba(0,0,0,0.08)}
+.xmind-node.cred-3{border-color:#c44;border-left:3px solid #c44}
+.xmind-node.cred-2{border-color:#c84;border-left:3px solid #c84}
+.xmind-node.cred-1{border-color:#aaa;border-left:3px solid #aaa;background:rgba(0,0,0,0.02);color:var(--text3)}
+.xmind-nicon{font-size:8px;font-weight:700;color:#fff;padding:0 3px;border-radius:2px;flex-shrink:0;letter-spacing:-0.5px}
+.xmind-node.cred-3 .xmind-nicon{background:#c44}
+.xmind-node.cred-2 .xmind-nicon{background:#c84}
+.xmind-node.cred-1 .xmind-nicon{background:#888}
+.xmind-nname{font-weight:600;color:var(--text);flex:0 0 auto}
+.xmind-nd{color:var(--text3);font-size:9px;flex:1;min-width:0}
 
 /* 观点面板 - 信号扫描（三栏）*/
 .scan-grid{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
@@ -1534,35 +1565,60 @@ function updateAnalysisPanel(W,dim){
 
   // ===== 2. 黑色产业链 × 数据架构一体化图（5 环节 × N sheet） =====
   // 直接按 22 sheet 重组为 5 环节横向网格，每节点显示可信度标识
-  const chainGroups = [
-    {key:'up', title:'上游（煤/矿/进口）', color:'#c84', bg:'#fef5e7', sheets:[
-      {n:'汾渭 138家363座煤矿数据', v:3, d:'山西原煤周产/产能利用率'},
-      {n:'Mysteel 焦煤数据', v:3, d:'矿山产量/库存（周度）'},
-      {n:'铁矿港口库存结构', v:3, d:'47 港分品种库存'},
-      {n:'甘其毛都监管区总库存', v:2, d:'蒙煤口岸库存'},
+  // ===== 2. 黑色产业链思维导图（ECharts tree）=====
+
+  // 数据：根 → 5 环节 → sheet 节点；环节颜色 + 可信度色边
+
+
+  html += '<div class="ana-section">';
+  html += '<div class="ana-stitle">📊 1. 黑色产业链思维导图（Xmind 风格 · 可折叠）</div>';
+  html += '<div class="ana-legend">';
+  html += '<span style="color:#c84"><b>橙=上游</b></span> <span style="color:#46c"><b>蓝=中游</b></span> <span style="color:#2a6"><b>绿=下游</b></span> <span style="color:#547"><b>紫=价格</b></span> <span style="color:#c44"><b>红=政策</b></span> | ';
+  html += '<span class="cred-3">★★★ 充分</span> <span class="cred-2">★★ 派生</span> <span class="cred-1">★ 预警/缺失</span>';
+  html += '</div>';
+  html += '<div class="xmind-toolbar">';
+  html += '<button class="xmind-btn" onclick="xmindAct('expand')">▼ 全部展开</button>';
+  html += '<button class="xmind-btn" onclick="xmindAct('collapse')">▶ 全部折叠</button>';
+  html += '<button class="xmind-btn" onclick="xmindAct('cred3')">★★★ 仅</button>';
+  html += '<span class="xmind-hint">点击主分支或子节点可折叠/展开</span>';
+  html += '</div>';
+  html += '<div class="xmind">';
+  // 根节点
+  html += '<div class="xmind-root" data-level="0">';
+  html += '<span class="xmind-icon">⚫</span>黑色产业链';
+  html += '<span class="xmind-meta">22 sheet · 3 可信度 · 5 环节</span>';
+  html += '</div>';
+  // 5 主分支容器
+  html += '<div class="xmind-branches" id="xmindBranches">';
+  const xmindBranches = [
+    {key:'up', icon:'🏔', title:'上游', en:'煤/矿/进口', color:'#c84', bg:'#fef5e7', sheets:[
+      {n:'汾渭 138家363座', v:3, d:'山西原煤周产/产能利用率'},
+      {n:'Mysteel 焦煤', v:3, d:'矿山产量/库存（周度）'},
+      {n:'铁矿港口库存', v:3, d:'47 港分品种库存'},
+      {n:'甘其毛都监管区', v:2, d:'蒙煤口岸库存'},
       {n:'日度蒙煤通关', v:2, d:'蒙煤日度通关量（车）'},
-      {n:'统计局分省数据', v:2, d:'山西/内蒙古/陕西/新疆 原煤（月）'},
-      {n:'统计局数据·原煤', v:2, d:'全国原煤产量（月度）'},
-      {n:'统计局数据·焦炭/粗钢/钢材', v:1, d:'⚠ 分品种待补充'}
+      {n:'统计局分省', v:2, d:'山西/内蒙古/陕西/新疆 原煤（月）'},
+      {n:'统计局·原煤', v:2, d:'全国原煤产量（月度）'},
+      {n:'统计局·焦炭/粗钢/钢材', v:1, d:'⚠ 分品种待补充'}
     ]},
-    {key:'mid', title:'中游（焦化/钢厂）', color:'#46c', bg:'#e7f3fe', sheets:[
-      {n:'汾渭 焦企炼焦煤库存可用天数', v:3, d:'独立焦企全国/山西/河北/山东'},
-      {n:'Mysteel 焦炭数据·230 焦企', v:3, d:'产能/产量/利润/库存'},
-      {n:'五大材数据源-MS（周四更新）', v:3, d:'螺纹/热卷周度产量+库存'},
-      {n:'五大材分地区数据源', v:3, d:'分地区钢材产量'},
-      {n:'钢材数据源·247 钢厂', v:3, d:'日均/产能/盈利率'},
+    {key:'mid', icon:'🏭', title:'中游', en:'焦化/钢厂', color:'#46c', bg:'#e7f3fe', sheets:[
+      {n:'汾渭可用天数', v:3, d:'独立焦企全国/山西/河北/山东'},
+      {n:'Mysteel 焦炭·230', v:3, d:'产能/产量/利润/库存'},
+      {n:'五大材-MS', v:3, d:'螺纹/热卷周度产量+库存'},
+      {n:'五大材分地区', v:3, d:'分地区钢材产量'},
+      {n:'钢材·247', v:3, d:'日均/产能/盈利率'},
       {n:'周发运', v:3, d:'周度发运量'},
-      {n:'统计局数据·焦炭/粗钢/生铁', v:1, d:'⚠ 实时性差（滞后 1 月）'}
+      {n:'统计局·焦炭/粗钢/生铁', v:1, d:'⚠ 实时性差（滞后 1 月）'}
     ]},
-    {key:'down', title:'下游（需求端）', color:'#2a6', bg:'#e8f8e8', sheets:[
-      {n:'⚠ 房地产：新开工/施工/销售', v:1, d:'❌ 尚未纳入'},
-      {n:'⚠ 基建：专项债/PPP', v:1, d:'❌ 尚未纳入'},
-      {n:'⚠ 制造业：PMI/出口', v:1, d:'❌ 尚未纳入'},
+    {key:'down', icon:'🏗', title:'下游', en:'房地产/基建/制造', color:'#2a6', bg:'#e8f8e8', sheets:[
+      {n:'房地产：新开工/施工/销售', v:1, d:'❌ 尚未纳入'},
+      {n:'基建：专项债/PPP', v:1, d:'❌ 尚未纳入'},
+      {n:'制造业：PMI/出口', v:1, d:'❌ 尚未纳入'},
       {n:'钢材现货成交', v:1, d:'★ 预警指标（情绪面）'}
     ]},
-    {key:'price', title:'价格（现货+期货）', color:'#547', bg:'#f0f0f8', sheets:[
-      {n:'双焦价格（现货）', v:3, d:'焦煤/焦炭（含地区）'},
-      {n:'钢材价格（现货）', v:3, d:'螺纹/热卷/线材'},
+    {key:'price', icon:'💰', title:'价格', en:'现货+期货', color:'#547', bg:'#f0f0f8', sheets:[
+      {n:'双焦价格·现货', v:3, d:'焦煤/焦炭（含地区）'},
+      {n:'钢材价格·现货', v:3, d:'螺纹/热卷/线材'},
       {n:'rb 期货', v:3, d:'螺纹主力（5000 行历史）'},
       {n:'hc 期货', v:3, d:'热卷主力'},
       {n:'jm 期货', v:3, d:'焦煤主力'},
@@ -1570,36 +1626,37 @@ function updateAnalysisPanel(W,dim){
       {n:'i 期货', v:3, d:'铁矿主力'},
       {n:'注册仓单', v:2, d:'期货仓单（含品种/地区）'}
     ]},
-    {key:'pol', title:'政策/事件', color:'#c44', bg:'#fde7e7', sheets:[
-      {n:'焦炭历年提涨提降', v:3, d:'历史事件库（22 行）'},
-      {n:'⚠ 666号文·发改办能源', v:1, d:'★ 预警（已发生）'},
-      {n:'⚠ 山西增产 93 座计划', v:1, d:'★ 预警（已发生）'}
+    {key:'pol', icon:'📜', title:'政策', en:'提涨提降/增产', color:'#c44', bg:'#fde7e7', sheets:[
+      {n:'焦炭提涨提降历史', v:3, d:'22 行事件库'},
+      {n:'666号文·发改办能源', v:1, d:'★ 预警（已发生）'},
+      {n:'山西增产 93 座', v:1, d:'★ 预警（已发生）'}
     ]}
   ];
-
-  html += '<div class="ana-section">';
-  html += '<div class="ana-stitle">📊 1. 黑色产业链 × 数据架构一体化（5 环节 × 22 sheet × 3 可信度）</div>';
-  html += '<div class="ana-legend">';
-  html += '<span class="cred-3">★★★ 充分可信（直接用于决策）</span>';
-  html += '<span class="cred-2">★★ 派生数据（辅助验证）</span>';
-  html += '<span class="cred-1">★ 预警指标（待补充/情绪面）</span>';
-  html += '</div>';
-  html += '<div class="chain-grid">';
-  chainGroups.forEach(g => {
-    html += '<div class="chain-col" style="border-color:'+g.color+';background:'+g.bg+'">';
-    html += '<div class="chain-col-title" style="color:'+g.color+'">'+g.title+' <span class="chain-count">('+g.sheets.length+')</span></div>';
-    g.sheets.forEach(s => {
+  xmindBranches.forEach(b => {
+    html += '<div class="xmind-branch xmind-b-'+b.key+'" style="--b-color:'+b.color+';--b-bg:'+b.bg+'" data-level="1">';
+    html += '<div class="xmind-btitle" onclick="xmindToggle(this)">';
+    html += '<span class="xmind-arr">▼</span>';
+    html += '<span class="xmind-icon">'+b.icon+'</span>';
+    html += '<span class="xmind-bname">'+b.title+'</span>';
+    html += '<span class="xmind-ben">'+b.en+'</span>';
+    html += '<span class="xmind-count">'+b.sheets.length+'</span>';
+    html += '</div>';
+    html += '<div class="xmind-children">';
+    b.sheets.forEach(s => {
       const credCls = s.v===3?'cred-3':s.v===2?'cred-2':'cred-1';
       const credTxt = s.v===3?'★★★':s.v===2?'★★':'★';
-      html += '<div class="chain-node '+credCls+'">';
-      html += '<div class="chain-n"><span class="cred-tag '+credCls+'">'+credTxt+'</span> '+s.n+'</div>';
-      html += '<div class="chain-d">'+s.d+'</div>';
+      html += '<div class="xmind-node '+credCls+'" data-level="2" data-cred="'+s.v+'">';
+      html += '<span class="xmind-nicon">'+credTxt+'</span>';
+      html += '<span class="xmind-nname">'+s.n+'</span>';
+      html += '<span class="xmind-nd">'+s.d+'</span>';
       html += '</div>';
     });
-    html += '</div>';
+    html += '</div>'; // children
+    html += '</div>'; // branch
   });
-  html += '</div>';
-  html += '<div class="ana-note"><b>传导关系：</b>上游（煤/矿）→ 中游（焦化/钢厂）→ 下游（房地产/基建/制造）；价格（现货领先基差 → 期货跟随）；政策（提涨提降、增产计划）作为外生冲击影响中游和价格。颜色：橙=上游、蓝=中游、绿=下游、紫=价格、红=政策；可信度：★★★ 充分、★★ 派生、★ 预警/缺失。</div>';
+  html += '</div>'; // xmind-branches
+  html += '</div>'; // xmind
+  html += '<div class="ana-note"><b>辐射关系：</b>上游（煤/矿/进口）→ 中游（焦化/钢厂）→ 下游（房地产/基建/制造）；价格（现货+期货）；政策（提涨提降/增产）作为外生冲击。点击主分支或子节点可折叠/展开。</div>';
   html += '</div>';
 
   // ===== 3. 数据架构地图（22 sheet × 6 维度 × 3 可信度） =====
@@ -1690,6 +1747,35 @@ function updateAnalysisPanel(W,dim){
   html += '<span style="color:var(--text3)">历史形态库正在持续建设（每周 patch_invest 自动提取 5-10 个关键时点）</span>';
   html += '</div>';
   html += '</div>';
+
+  // Xmind 思维导图交互（纯 HTML，100% 可控）
+  function xmindToggle(titleEl){
+    var branch=titleEl.parentNode;
+    var children=branch.querySelector('.xmind-children');
+    var arr=titleEl.querySelector('.xmind-arr');
+    if(children.style.display==='none'){
+      children.style.display='';
+      arr.textContent='▼';
+    }else{
+      children.style.display='none';
+      arr.textContent='▶';
+    }
+  }
+  window.xmindToggle=xmindToggle;
+  function xmindAct(act){
+    var branches=document.querySelectorAll('.xmind-branches .xmind-branch');
+    if(act==='expand'){
+      branches.forEach(b=>{b.querySelector('.xmind-children').style.display='';b.querySelector('.xmind-arr').textContent='▼';});
+    }else if(act==='collapse'){
+      branches.forEach(b=>{b.querySelector('.xmind-children').style.display='none';b.querySelector('.xmind-arr').textContent='▶';});
+    }else if(act==='cred3'){
+      branches.forEach(b=>{b.querySelector('.xmind-children').style.display='';b.querySelector('.xmind-arr').textContent='▼';});
+      document.querySelectorAll('.xmind-node').forEach(n=>{
+        n.style.display=(n.getAttribute('data-cred')==='3')?'':'none';
+      });
+    }
+  }
+  window.xmindAct=xmindAct;
 
   document.getElementById('chartGrid').innerHTML=html;
 }
