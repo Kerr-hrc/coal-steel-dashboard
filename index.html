@@ -1513,6 +1513,7 @@ function updateAnalysisPanel(W,dim){
 
   const Y=(new Date().getFullYear()).toString();
   function val(id,w){const d=ALL_DATA[id];return(d&&d[Y]&&d[Y][w]!=null)?d[Y][w]:null;}
+  function excelDateToYMD(serial){if(!serial)return'-';var d=new Date(Date.UTC(0,0,serial-1));var m=d.getUTCMonth()+1,dy=d.getUTCDate();return d.getUTCFullYear()+'-'+(m<10?'0':'')+m+'-'+(dy<10?'0':'')+dy;}
 
   let html='';
 
