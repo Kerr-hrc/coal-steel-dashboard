@@ -1577,9 +1577,9 @@ function updateAnalysisPanel(W,dim){
   html += '<span class="cred-3">★★★ 充分</span> <span class="cred-2">★★ 派生</span> <span class="cred-1">★ 预警/缺失</span>';
   html += '</div>';
   html += '<div class="xmind-toolbar">';
-  html += '<button class="xmind-btn" onclick="xmindAct('expand')">▼ 全部展开</button>';
-  html += '<button class="xmind-btn" onclick="xmindAct('collapse')">▶ 全部折叠</button>';
-  html += '<button class="xmind-btn" onclick="xmindAct('cred3')">★★★ 仅</button>';
+  html += '<button class="xmind-btn" data-act="expand">▼ 全部展开</button>';
+  html += '<button class="xmind-btn" data-act="collapse">▶ 全部折叠</button>';
+  html += '<button class="xmind-btn" data-act="cred3">★★★ 仅</button>';
   html += '<span class="xmind-hint">点击主分支或子节点可折叠/展开</span>';
   html += '</div>';
   html += '<div class="xmind">';
@@ -1776,6 +1776,10 @@ function updateAnalysisPanel(W,dim){
     }
   }
   window.xmindAct=xmindAct;
+  // 绑定 toolbar 按钮事件（避免在 JS 字符串内嵌 onclick 引号）
+  document.querySelectorAll('.xmind-btn[data-act]').forEach(function(btn){
+    btn.onclick=function(){ xmindAct(this.getAttribute('data-act')); };
+  });
 
   document.getElementById('chartGrid').innerHTML=html;
 }
