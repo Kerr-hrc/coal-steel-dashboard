@@ -589,6 +589,7 @@ function renderGrid(){
   if(activeDim==='分析'){
     grid.innerHTML='';
     buildSidebar();
+    var invText=document.getElementById('investText');if(invText)invText.innerHTML='';
     setTimeout(function(){updateAnalysisPanel(getLatestWeek(),'分析');},300);
     return;
   }
