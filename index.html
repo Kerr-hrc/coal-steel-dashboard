@@ -391,17 +391,17 @@ body{
 .chart-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:2px;}
 @media(max-width:1100px){.chart-row{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.chart-row{grid-template-columns:1fr}}
-.chart-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:2px 5px 2px;box-shadow:var(--shadow);}
-.chart-card .cc-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.chart-card .cc-analysis{font-size:10.5px;color:var(--text3);margin-bottom:0;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.chart-card .cc-stats{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:0;align-items:center;line-height:1.25}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:4px 5px 5px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.chart-card .cc-title{font-size:12px;font-weight:600;color:var(--text);margin:0 0 2px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
+.chart-card .cc-analysis{font-size:10.5px;color:var(--text3);margin:0 0 2px 0;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.chart-card .cc-stats{display:flex;flex-wrap:wrap;gap:3px;margin:0 0 2px 0;align-items:center;line-height:1.2}
 .chart-card .cc-stat{background:var(--tag-bg);padding:0 5px;border-radius:3px;color:var(--text);font-size:9.5px;font-weight:500;white-space:nowrap}
 .chart-card .cc-stat.cc-last{background:rgba(84,112,198,0.18);color:#5470c6;font-weight:700}
 .chart-card .cc-stat.cc-up{color:#c44;background:rgba(204,68,68,0.10)}
 .chart-card .cc-stat.cc-down{color:#2a6;background:rgba(42,170,102,0.10)}
 .chart-card .cc-stat.cc-flat{color:var(--text3)}
-.chart-card .cc-trend{font-size:9px;color:var(--text3);font-style:italic;padding-left:2px}
-.chart-card .cc-chart{width:100%;height:235px}
+.chart-card .cc-trend{font-size:9px;color:var(--text3);font-style:italic;padding-left:2px;margin:0}
+.chart-card .cc-chart{width:100%;flex:1;min-height:300px;height:300px}
 
 .footer{position:relative;z-index:1;max-width:1500px;margin:14px auto 0;text-align:center;font-size:11px;color:var(--text3);}
 .data-notice{position:relative;z-index:1;max-width:1500px;margin:10px auto 0;background:var(--card2);border:1px dashed var(--border);border-radius:6px;padding:10px 14px;font-size:12px;color:var(--text3)}
