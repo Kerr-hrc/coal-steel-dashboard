@@ -1148,13 +1148,13 @@ function updateInvestPanel(W,dim){
       {chain:'up', chainLabel:'🏔 上游（煤/矿/进口）', chainColor:'#c84', label:'焦煤 JM2701', value:1482, delta:-84, deltaPct:-5.4, color:'#c44',
         sub:'<b style="color:#c44">周环比 1566→1482 -84(-5.4%)</b> · <span style="color:var(--text3)">10-16 收盘 · 历史分位 25-30%</span>'},
       {chain:'up', label:'523 精煤日产', value:67.71, unit:'万吨', delta:+1.77, color:'#c84', highlight:true,
-        sub:'<b style="color:#c84">+1.77(+2.7%)</b> 真实增产 · <span style="color:var(--text3)">W46311 vs W46290 65.94 · 历史分位 70-75%</span>'},
+        sub:'<b style="color:#2a6">+1.77(+2.7%)</b> 真实增产 · <span style="color:var(--text3)">W46311 vs W46290 65.94 · 历史分位 70-75%</span>'},
       {chain:'up', label:'523 原煤日产', value:160.76, unit:'万吨', delta:+6.89, color:'#c84', highlight:true,
-        sub:'<b style="color:#c84">+6.89(+4.5%)</b> 山西增产传导 · <span style="color:var(--text3)">W46311 vs W46290 153.87 · 山西 138家 77.63%</span>'},
+        sub:'<b style="color:#2a6">+6.89(+4.5%)</b> 山西增产传导 · <span style="color:var(--text3)">W46311 vs W46290 153.87 · 山西 138家 77.63%</span>'},
       {chain:'up', label:'523 精煤库存', value:247.54, unit:'万吨', delta:+7.14, color:'#c44',
         sub:'<b style="color:#c44">+7.14 累库</b> 增产传导 · <span style="color:var(--text3)">vs 9-25 累库 +25.55 · 产能 71.84%</span>'},
       {chain:'up', label:'蒙煤甘其毛都', value:873, unit:'车/日', delta:+138, color:'#c84', highlight:true,
-        sub:'<b style="color:#c84">日环比 +18.8% 跳升</b> · <span style="color:var(--text3)">10-16→10-17 735→873 · 周环比 9-29→10-17 -11.2% 仍低于节前</span>'},
+        sub:'<b style="color:#2a6">日环比 +18.8% 跳升</b> · <span style="color:var(--text3)">10-16→10-17 735→873 · 周环比 9-29→10-17 -11.2% 仍低于节前</span>'},
       // ② 中游焦化 — 5 张：J2701 / 焦企日均 / 焦企产能 / 焦化厂焦炭 / 中游焦煤
       {chain:'coke', chainLabel:'🧱 中游焦化（焦炭产销存）', chainColor:'#a64caf', label:'焦炭 J2701', value:1972.5, delta:-66.5, deltaPct:-3.3, color:'#c44',
         sub:'<b style="color:#c44">周环比 2039→1972.5 -66.5(-3.3%)</b> · <span style="color:var(--text3)">10-16 收盘 · 现货 1870 贴水 -102.5 · 历史分位 35-40%</span>'},
@@ -1179,18 +1179,18 @@ function updateInvestPanel(W,dim){
         sub:'<b style="color:#c44">★第二轮累计 -200</b> · <b style="color:#c44">★焦企吨焦利润 -52 亏损★</b> · <span style="color:var(--text3)">钢厂话语权巩固</span>'},
       // ④ 下游钢材 — 4 张：RB/HC/盘面利润×2
       {chain:'rb', chainLabel:'🔩 下游钢材（螺纹+热卷+利润）', chainColor:'#5470c6', label:'螺纹 RB2701', value:3074, delta:-6, deltaPct:-0.2, color:'#c84',
-        sub:'<b style="color:#c84">周环比 3080→3074 -6(-0.2%)</b> · <b style="color:#2a6">抗跌性最强</b> · <span style="color:var(--text3)">10-16 收盘 · 现货 3230 升水 +156 · 历史分位 25-30%</span>'},
+        sub:'<b style="color:#2a6">周环比 3080→3074 -6(-0.2%)</b> · <b style="color:#2a6">抗跌性最强</b> · <span style="color:var(--text3)">10-16 收盘 · 现货 3230 升水 +156 · 历史分位 25-30%</span>'},
       {chain:'rb', label:'热卷 HC2701', value:3242, delta:-12, deltaPct:-0.4, color:'#888',
         sub:'<span style="color:var(--text3)">周环比 3254→3242 -12(-0.4%) · 10-16 收盘 · 现货 3260 贴水 -18 · 历史分位 30-35%</span>'},
       {chain:'rb', label:'螺纹盘面利润', value:-50, delta:+123, unit:'元/吨', color:'#2a6',
         sub:'<b style="color:#2a6">毛利 +27</b>（vs 上周 -173）· <b style="color:#2a6">★左侧修复</b> · <span style="color:var(--text3)">钢坯成本 2875 vs 现货 3230</span>'},
       {chain:'rb', label:'热卷盘面利润', value:-95, delta:+111, unit:'元/吨', color:'#c84',
-        sub:'<b style="color:#c84">亏损收窄 111</b>（vs -206）· <b style="color:#2a6">★左侧修复确认</b> · <span style="color:var(--text3)">钢厂盈利率 8.23% 反弹 1.30pct</span>'},
+        sub:'<b style="color:#2a6">亏损收窄 111</b>（vs -206）· <b style="color:#2a6">★左侧修复确认</b> · <span style="color:var(--text3)">钢厂盈利率 8.23% 反弹 1.30pct</span>'},
       // ⑤ 宏观/政策 — 5 张：I2701 / 价差×3 / 增产计划 / 政策文件
       {chain:'macro', chainLabel:'📊 宏观/政策（铁矿+价差+增产）', chainColor:'#2a6', label:'铁矿 I2701', value:672.5, delta:-4.5, deltaPct:-0.7, color:'#c44',
         sub:'<b style="color:#c44">周环比 677→672.5 -4.5(-0.7%)</b> · <span style="color:var(--text3)">10-16 收盘 · PB 粉 649 升水 +23.5 · 历史分位 25-30%</span>'},
       {chain:'macro', label:'卷螺差（盘面）', value:168, delta:-48, color:'#c84',
-        sub:'<b style="color:#c84">历史 75-80 分位偏高</b> · <span style="color:var(--text3)">hc-rb=168 · vs 上周 216 收窄 -48 · 后期回归压力</span>'},
+        sub:'<b style="color:#c44">历史 75-80 分位偏高</b> · <span style="color:var(--text3)">hc-rb=168 · vs 上周 216 收窄 -48 · 后期回归压力</span>'},
       {chain:'macro', label:'螺矿比', value:4.57, delta:+0.28, color:'#5470c6',
         sub:'<b style="color:#5470c6">历史 45-50 分位中性</b> · <span style="color:var(--text3)">rb/i=4.57 · vs 上周 4.29 走扩</span>'},
       {chain:'macro', label:'焦矿比', value:2.20, delta:-0.04, color:'#888',
@@ -1359,7 +1359,7 @@ function updateInvestPanel(W,dim){
         eval:'★ 升水 +415（vs 上周 +97.5 走扩 317.5）：蒙5# 1897 vs 平台 1482；山西增产 5450 万吨 + 523 产能 71.84%（+1.68pct） + 蒙煤通关 873 车/日（10-17 跳升）+ 监管区 162.1 累库·压制反弹'},
       {name:'🧱 焦炭', score:'+1', scoreCls:'s-pos', spot:1870, spotSrc:'日照准一 10-16', fut:'J2701', futV:1972.5, bs:-102.5, bsLvl:'neg',
         sig:'盘面补跌·1900-2030 偏弱',
-        eval:'贴水 -102.5（vs 上周 -170 收窄 67.5 盘面补跌）：现货 1870 累计 -200/-210 超涨价前；230 焦企产能 71.84% + 焦化厂焦炭 78.01（★不是极低★ 实际是中性偏高） + 钢厂焦炭 580.6 主动补库·第三轮提降概率 20-30%'},
+        eval:'贴水 -102.5（vs 上周 -170 收窄 67.5 盘面补跌）：现货 1870 累计 -200/-210 超涨价前；230 焦企产能 71.84% + 焦化厂焦炭 78.01（★不是极低★ 实际是中性偏高） + 钢厂焦炭 580.22 实际去化 -1.3%·第三轮提降概率 20-30%'},
       {name:'🪨 铁矿', score:'-1', scoreCls:'s-neg', spot:649, spotSrc:'PB 粉 青岛 10-16', fut:'I2701', futV:672.5, bs:+23.5, bsLvl:'pos',
         sig:'发运压制·660-690 偏弱',
         eval:'升水 +23.5（vs 上周 +2 走扩 21.5）：47 港 16534.67 累库 · 距 1.8 亿吨阈值差 1465（约 5-6 周）· Q4 季节性回升压制·钢厂盈利率 8.23% 反弹支撑'},
@@ -1464,10 +1464,10 @@ function updateInvestPanel(W,dim){
   // --- 焦煤 ---
   {let s=1;
     var supply = [
-      {t:'<b style="color:#c44">523 产能利用率 71.38%（+4.97pct）</b><b style="color:#c84">单周最大增幅</b>·<b style="color:#c44">精煤日产 67.71 万吨 / 原煤 160.76 万吨</b><span style="color:var(--text3)">创近期新高</span>', lvl:'high'},
+      {t:'<b style="color:#c44">523 产能利用率 71.38%（+4.97pct）</b><b style="color:#2a6">单周最大增幅</b>·<b style="color:#c44">精煤日产 67.71 万吨 / 原煤 160.76 万吨</b><span style="color:var(--text3)">创近期新高</span>', lvl:'high'},
       {t:'<span style="color:var(--text3)">山西 138家363座 W46311</span> 产能利用率 <b style="color:#c44">77.63%</b>（vs 9-30 69.58% <b style="color:#2a6">+8.05pct</b>）<span style="color:var(--text3)">持续高位</span>', lvl:'high'},
       {t:'523 精煤库存 <b style="color:#c44">247.54 万吨</b>（<b style="color:#c44">+7.14 / 累计 +25.55</b> vs 9-25）<b style="color:#c44">增产传导确认</b>', lvl:'high'},
-      {t:'<b style="color:#c84">蒙煤反向累库</b>·监管区 <b style="color:#c44">152.6→162.1（4 天 +9.5）</b>，<span style="color:var(--text3)">9 月以来去化 -255 万吨</span><b style="color:#c44">首次反向</b>', lvl:'high'},
+      {t:'<b style="color:#c44">蒙煤反向累库</b>·监管区 <b style="color:#c44">152.6→162.1（4 天 +9.5）</b>，<span style="color:var(--text3)">9 月以来去化 -255 万吨</span><b style="color:#c44">首次反向</b>', lvl:'high'},
       {t:'汾渭吕梁精煤 <b style="color:#c44">13.87 万吨（-2.27）</b><b style="color:#c44">首次去化</b>→<b style="color:#c44">中游消耗前置</b>', lvl:'mid'}
     ];
     var demand = [
@@ -1479,12 +1479,12 @@ function updateInvestPanel(W,dim){
     var price = [
       {t:'蒙 5#原煤 <b style="color:#c44">1897</b> vs 平台 JM2701=<b style="color:#c44">1482</b> <b style="color:#2a6">升水 +415</b>（vs 上周 +97.5 <b style="color:#2a6">走扩 317.5</b>）', lvl:'high'},
       {t:'主力 JM2701=<b style="color:#c44">1482</b><b style="color:#c44">跌 -173（-10.5%）</b>·vs 9-8 高点 1689 <b style="color:#c44">跌 -207（-12.3%）</b>', lvl:'high'},
-      {t:'<span style="color:var(--text3)">1-5 价差走窄，</span>2701-2705 正套<b style="color:#c84">弱化参与</b>', lvl:'mid'},
+      {t:'<span style="color:var(--text3)">1-5 价差走窄，</span>2701-2705 正套<b style="color:#888">弱化参与</b>', lvl:'mid'},
       {t:'坑口成本 <b style="color:#c44">800</b> / 蒙5#<b style="color:#c44">1897</b>，矿方利润<b style="color:#2a6">近千</b>·<b style="color:#2a6">无减量动机</b>', lvl:'mid'}
     ];
     var risk = [
       {t:'山西增产 <b style="color:#c44">5450 万吨</b> Q4 释放（523 产能 71.38%<span style="color:var(--text3)">创新高</span>）<b style="color:#c44">压制上方</b>', lvl:'high'},
-      {t:'蒙煤反向累库<b style="color:#c84">（+9.5/4天）</b><b style="color:#c44">压制反弹</b>·<span style="color:var(--text3)">冬季抢运叠加</span>', lvl:'high'},
+      {t:'蒙煤反向累库<b style="color:#c44">（+9.5/4天）</b><b style="color:#c44">压制反弹</b>·<span style="color:var(--text3)">冬季抢运叠加</span>', lvl:'high'},
       {t:'钢厂盈利率 <b style="color:#2a6">反弹 8.23%</b>·<b style="color:#2a6">左侧修复</b>但 JM 盘面<b style="color:#c44">已崩 -10.5%</b>', lvl:'high'},
       {t:'估值 <b style="color:#c44">80-85 分位</b> 偏高 → <b style="color:#c44">1750+ 仓单成本</b> 压制', lvl:'mid'}
     ];
@@ -1497,11 +1497,11 @@ function updateInvestPanel(W,dim){
     var supply = [
       {t:'五轮累计 <b style="color:#c44">+450 - 二轮提降 -200 = 净剩 +250</b>（未完全回落）·<b style="color:#c44">10-12 第二轮提降 -100/-110 落地</b>（一级湿 <b style="color:#c44">1870</b> / 干 <b style="color:#c44">2225</b>），累计 <b style="color:#c44">-200/-210</b> <span style="color:var(--text3)">已超涨价前 9-16=1930</span>', lvl:'high'},
       {t:'230 焦企产能 <b style="color:#c44">71.84%</b> <span style="color:var(--text3)">持平高位</span>·日均产量 <b style="color:#c44">61.7 万吨</b> <span style="color:var(--text3)">持平</span>·<b style="color:#c44">焦企复产见顶</b>', lvl:'high'},
-      {t:'焦企吨焦利润 <b style="color:#c44">78→1→-52 元/吨</b>（<b style="color:#c44">1→-52 跌 -53 跌穿盈亏平衡</b>）<b style="color:#c44">安全垫已被突破</b>', lvl:'high'},
+      {t:'焦企吨焦利润 <b style="color:#c44">78→1→-52 元/吨</b>（<b style="color:#c44">1→-52 跌 -53 跌穿盈亏平衡进入亏损</b>）<b style="color:#c44">安全垫已被突破</b>', lvl:'high'},
       {t:'山西增产 <b style="color:#c44">5450 万吨</b> Q4 释放 → 焦煤成本端<b style="color:#c44">支撑弱化</b>（JM 主力 <b style="color:#c44">跌 -10.5%</b>）', lvl:'mid'}
     ];
     var demand = [
-      {t:'247 钢厂焦炭库存 <b style="color:#c44">580.6 万吨（+13.14）</b><b style="color:#2a6">主动补库</b><span style="color:var(--text3)">冬季备库持续</span>', lvl:'high'},
+      {t:'247 钢厂焦炭库存 <b style="color:#c44">580.22 万吨（-7.43 -1.3%）</b><b style="color:#c44">实际去化</b><span style="color:var(--text3)">v5 修正 580.6 数据有误</span>', lvl:'high'},
       {t:'247 钢厂盈利率 <b style="color:#2a6">6.93→8.23%</b><b style="color:#2a6">反弹 1.30pct·左侧修复开启</b>', lvl:'high'},
       {t:'铁水 <b style="color:#c44">233.66</b> <span style="color:var(--text3)">维持</span>（vs 9-18 高点 237.63 <b style="color:#2a6">-3.97 -1.7%</b>）<b style="color:#2a6">减产放缓</b>', lvl:'high'},
       {t:'螺纹消费 <b style="color:#2a6">139→222 万吨（+59%）</b><b style="color:#2a6">节后补库兑现</b>（库销比 <b style="color:#2a6">4.28→2.47</b>）', lvl:'high', highlight:true}
@@ -1509,7 +1509,7 @@ function updateInvestPanel(W,dim){
     var price = [
       {t:'日照港准一焦 <b style="color:#c44">1870</b>（10-16）vs 主力 J2701=<b style="color:#c44">1972.5</b><b style="color:#2a6">贴水 -102.5</b>（vs 上周 -170 <b style="color:#2a6">收窄 67.5</b>）', lvl:'high'},
       {t:'主力 J2701=<b style="color:#c44">1972.5</b><b style="color:#c44">跌 -66.5（周环比 -3.3%）</b>·<b style="color:#c44">已跌穿 2000</b>', lvl:'high'},
-      {t:'盘面 price-in <b style="color:#c84">71%（178/250）</b> vs 上周 78%，<b style="color:#2a6">补跌空间收窄</b>', lvl:'mid'},
+      {t:'盘面 price-in <b style="color:#888">71%（178/250）</b> vs 上周 78%，<b style="color:#2a6">补跌空间收窄</b>', lvl:'mid'},
       {t:'1-5 月差 <b style="color:#c44">-64</b>（10-16）·<b style="color:#c44">远月贴水扩大</b>', lvl:'mid'}
     ];
     var risk = [
@@ -1556,7 +1556,7 @@ function updateInvestPanel(W,dim){
   // --- 螺纹钢 ---
   {let s=1;
     var supply = [
-      {t:'<span style="color:var(--text3)">本周</span>螺纹产量 <b style="color:#c44">173.89 万吨（+3.62）</b><span style="color:var(--text3)">节后复产</span>·<b style="color:#c84">仍接近年内低位</b>', lvl:'high'},
+      {t:'<span style="color:var(--text3)">本周</span>螺纹产量 <b style="color:#c44">173.89 万吨（+3.62）</b><span style="color:var(--text3)">节后复产</span>·<b style="color:#888">仍接近年内低位</b>', lvl:'high'},
       {t:'钢坯成本 <b style="color:#c44">2875</b> vs 上海现货 <b style="color:#c44">3230</b> 毛利 <b style="color:#2a6">27</b>·钢厂盈利率<b style="color:#2a6">反弹 8.23%</b>', lvl:'high'},
       {t:'<span style="color:var(--text3)">本周</span>厂库 <b style="color:#c44">548.46 万吨（-8.1%）</b><span style="color:var(--text3)">节后去库</span>·<b style="color:#2a6">库存压力可控</b>', lvl:'high'},
       {t:'电炉谷电 <b style="color:#c44">11</b>·高炉<b style="color:#2a6">深度亏损修复</b>（vs 上周 -173<span style="color:var(--text3)">深度亏损</span>）', lvl:'mid'}
@@ -1575,7 +1575,7 @@ function updateInvestPanel(W,dim){
       {t:'主力 RB2701=<b style="color:#c44">3074</b>（10-16）·上海现货 <b style="color:#c44">3230</b><b style="color:#2a6">升水 +156</b>', lvl:'high'},
       {t:'周环比 <b style="color:#c44">3080→3074 -6（-0.2%）</b>·<b style="color:#2a6">跌幅小于原料（JM -5.4%）</b>', lvl:'high'},
       {t:'钢坯成本 <b style="color:#c44">2875</b>·现货 <b style="color:#c44">3230</b> 毛利 <b style="color:#2a6">27</b>·<b style="color:#2a6">钢厂挺价</b>', lvl:'mid'},
-      {t:'<span style="color:var(--text3)">2610-2701 价差走扩·</span>10 合约<b style="color:#c84">进入交割月</b>', lvl:'mid'}
+      {t:'<span style="color:var(--text3)">2610-2701 价差走扩·</span>10 合约<b style="color:#888">进入交割月</b>', lvl:'mid'}
     ];
     var risk = [
       {t:'<b style="color:#c44">冬季需求走弱</b>·<b style="color:#c44">11 月北方限产</b>·<b style="color:#c44">终需求高度有限</b>', lvl:'high'},
@@ -1589,7 +1589,7 @@ function updateInvestPanel(W,dim){
   // --- 热卷 ---
   {let s=0;
     var supply = [
-      {t:'<span style="color:var(--text3)">本周</span>热卷产量 <b style="color:#c44">283.52 万吨（-8.60）</b><span style="color:var(--text3)">节后回落</span>·<b style="color:#c84">接近年内低位</b>', lvl:'high'},
+      {t:'<span style="color:var(--text3)">本周</span>热卷产量 <b style="color:#c44">283.52 万吨（-8.60）</b><span style="color:var(--text3)">节后回落</span>·<b style="color:#888">接近年内低位</b>', lvl:'high'},
       {t:'北方钢厂<b style="color:#c44">超预期检修持续</b>·<span style="color:var(--text3)">长假期间产量变化不大</span>', lvl:'high'},
       {t:'热卷毛利 <b style="color:#2a6">-95</b> vs 上周 <b style="color:#c44">-206</b><b style="color:#2a6">修复 111</b>·<b style="color:#2a6">深度亏损收窄</b>', lvl:'high', highlight:true}
     ];
@@ -1602,7 +1602,7 @@ function updateInvestPanel(W,dim){
     var stock = [
       {t:'热卷总库存 <b style="color:#2a6">438.72 万吨（-17.73）</b><b style="color:#2a6">节后大幅去库</b>', lvl:'high', highlight:true},
       {t:'中厚板社库<b style="color:#2a6">大幅去库</b>·<b style="color:#2a6">下游需求有支撑</b>', lvl:'high'},
-      {t:'热卷库销比 <b style="color:#2a6">1.46</b>（10-15）·<b style="color:#c84">接近年内低位</b>', lvl:'high'}
+      {t:'热卷库销比 <b style="color:#2a6">1.46</b>（10-15）·<b style="color:#888">接近年内低位</b>', lvl:'high'}
     ];
     var price = [
       {t:'主力 HC2701=<b style="color:#c44">3242</b>（10-16）·上海现货 <b style="color:#c44">3260</b><b style="color:#c44">贴水 -18</b><span style="color:var(--text3)">（平水附近）</span>', lvl:'high'},
