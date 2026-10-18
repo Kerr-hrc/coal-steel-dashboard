@@ -1168,7 +1168,7 @@ function updateInvestPanel(W,dim){
         sub:'<b style="color:#c44">-67.04 持续去化</b> 中游消耗前置 · <span style="color:var(--text3)">W46311 vs W46290 845.8 · 数据源 Mysteel 焦煤 列 12</span>'},
       // ③ 中游钢厂 — 5 张：盈利率 / 铁水 / 247炼焦煤 / 247焦炭 / 提降
       {chain:'steel', chainLabel:'🏭 中游钢厂（采购+减产+补库）', chainColor:'#547', label:'钢厂盈利率', value:8.23, unit:'%', delta:+1.30, color:'#2a6', highlight:true,
-        sub:'<span style="color:var(--text3)">★左侧修复开启</span> · <span style="color:var(--text3)">247 家 W46311 · 从 6.93% 反弹至 8.23% (+1.30pct)</span>'},
+        sub:'<b style="color:#c44">★左侧修复开启</b> · <span style="color:var(--text3)">247 家 W46311 · 从 6.93% 反弹至 8.23% (+1.30pct)</span>'},
       {chain:'steel', label:'日均铁水', value:233.66, unit:'万吨', delta:-0.18, color:'#888',
         sub:'<span style="color:var(--text3)">247 家 W46311 · 三周 -3.97 · 减产持续但未破 230 阈值</span>'},
       {chain:'steel', label:'247 钢厂炼焦煤', value:762.9, unit:'万吨', delta:+15.3, color:'#2a6',
@@ -1176,16 +1176,16 @@ function updateInvestPanel(W,dim){
       {chain:'steel', label:'247 钢厂焦炭', value:580.22, unit:'万吨', delta:-7.43, color:'#c44', highlight:true,
         sub:'<b style="color:#c44">-7.43 实际去化</b> · <span style="color:var(--text3)">★v5 修正 580.6 → 580.22 · 周环比 -1.3% 非补库</span>'},
       {chain:'steel', label:'10-12 提降', value:'-200', unit:'元/吨', delta:0, color:'#c44', highlight:true,
-        sub:'<b style="color:#c44">★第二轮累计 -200</b> · <b style="color:#c44">★焦企吨焦利润 -52 亏损★</b> · <span style="color:var(--text3)">钢厂话语权巩固</span>'},
+        sub:'<b style="color:#c44">★第二轮累计 -200</b> · <b style="color:#c44">★焦企吨焦利润 -52 亏损★</b> · <b style="color:#c44">钢厂话语权巩固</b>'},
       // ④ 下游钢材 — 4 张：RB/HC/盘面利润×2
       {chain:'rb', chainLabel:'🔩 下游钢材（螺纹+热卷+利润）', chainColor:'#5470c6', label:'螺纹 RB2701', value:3074, delta:-6, deltaPct:-0.2, color:'#c84',
-        sub:'<b style="color:#c44">周环比 3080→3074 -6(-0.2%)</b> · <span style="color:var(--text3)">抗跌性最强</span> · <span style="color:var(--text3)">10-16 收盘 · 现货 3230 升水 +156 · 历史分位 25-30%</span>'},
+        sub:'<b style="color:#c44">周环比 3080→3074 -6(-0.2%)</b> · <b style="color:#c44">★ 抗跌性最强 ★</b> · <span style="color:var(--text3)">10-16 收盘 · 现货 3230 升水 +156 · 历史分位 25-30%</span>'},
       {chain:'rb', label:'热卷 HC2701', value:3242, delta:-12, deltaPct:-0.4, color:'#888',
         sub:'<span style="color:var(--text3)">周环比 3254→3242 -12(-0.4%) · 10-16 收盘 · 现货 3260 贴水 -18 · 历史分位 30-35%</span>'},
       {chain:'rb', label:'螺纹盘面利润', value:-50, delta:+123, unit:'元/吨', color:'#2a6',
-        sub:'<b style="color:#c44">毛利 +27</b>（vs 上周 -173）· <span style="color:var(--text3)">★左侧修复</span> · <span style="color:var(--text3)">钢坯成本 2875 vs 现货 3230</span>'},
+        sub:'<b style="color:#c44">毛利 +27</b>（vs 上周 -173）· <b style="color:#c44">★左侧修复</b> · <span style="color:var(--text3)">钢坯成本 2875 vs 现货 3230</span>'},
       {chain:'rb', label:'热卷盘面利润', value:-95, delta:+111, unit:'元/吨', color:'#c84',
-        sub:'<b style="color:#c44">亏损收窄 111</b>（vs -206）· <span style="color:var(--text3)">★左侧修复确认</span> · <span style="color:var(--text3)">钢厂盈利率 8.23% 反弹 1.30pct</span>'},
+        sub:'<b style="color:#c44">亏损收窄 111</b>（vs -206）· <b style="color:#c44">★左侧修复确认</b> · <span style="color:var(--text3)">钢厂盈利率 8.23% 反弹 1.30pct</span>'},
       // ⑤ 宏观/政策 — 5 张：I2701 / 价差×3 / 增产计划 / 政策文件
       {chain:'macro', chainLabel:'📊 宏观/政策（铁矿+价差+增产）', chainColor:'#2a6', label:'铁矿 I2701', value:672.5, delta:-4.5, deltaPct:-0.7, color:'#c44',
         sub:'<b style="color:#c44">周环比 677→672.5 -4.5(-0.7%)</b> · <span style="color:var(--text3)">10-16 收盘 · PB 粉 649 升水 +23.5 · 历史分位 25-30%</span>'},
@@ -1464,17 +1464,17 @@ function updateInvestPanel(W,dim){
   // --- 焦煤 ---
   {let s=1;
     var supply = [
-      {t:'<b style="color:#c44">523 产能利用率 71.38%（+4.97pct）</b><span style="color:var(--text3)">单周最大增幅</span>·<b style="color:#c44">精煤日产 67.71 万吨 / 原煤 160.76 万吨</b><span style="color:var(--text3)">创近期新高</span>', lvl:'high'},
+      {t:'<b style="color:#c44">523 产能利用率 71.38%（+4.97pct）</b><b style="color:#c44">★ 单周最大增幅 ★</b>·<b style="color:#c44">精煤日产 67.71 万吨 / 原煤 160.76 万吨</b><span style="color:var(--text3)">创近期新高</span>', lvl:'high'},
       {t:'<span style="color:var(--text3)">山西 138家363座 W46311</span> 产能利用率 <b style="color:#c44">77.63%</b>（vs 9-30 69.58% <b style="color:#2a6">+8.05pct</b>）<span style="color:var(--text3)">持续高位</span>', lvl:'high'},
-      {t:'523 精煤库存 <b style="color:#c44">247.54 万吨</b>（<b style="color:#c44">+7.14 / 累计 +25.55</b> vs 9-25）<span style="color:var(--text3)">增产传导确认</span>', lvl:'high'},
+      {t:'523 精煤库存 <b style="color:#c44">247.54 万吨</b>（<b style="color:#c44">+7.14 / 累计 +25.55</b> vs 9-25）<b style="color:#c44">增产传导确认</b>', lvl:'high'},
       {t:'<span style="color:var(--text3)">蒙煤反向累库</span>·监管区 <b style="color:#c44">152.6→162.1（4 天 +9.5）</b>，<span style="color:var(--text3)">9 月以来去化 -255 万吨</span><span style="color:var(--text3)">首次反向</span>', lvl:'high'},
-      {t:'汾渭吕梁精煤 <b style="color:#c44">13.87 万吨（-2.27）</b><span style="color:var(--text3)">首次去化</span>→<span style="color:var(--text3)">中游消耗前置</span>', lvl:'mid'}
+      {t:'汾渭吕梁精煤 <b style="color:#c44">13.87 万吨（-2.27）</b><span style="color:var(--text3)">首次去化</span>→<b style="color:#c44">★ 中游消耗前置 ★</b>', lvl:'mid'}
     ];
     var demand = [
-      {t:'247 钢厂炼焦煤 <b style="color:#c44">762.9 万吨（+15.3）</b><span style="color:var(--text3)">主动补库</span><span style="color:var(--text3)">冬季备库持续</span>', lvl:'high'},
+      {t:'247 钢厂炼焦煤 <b style="color:#c44">762.9 万吨（+15.3）</b><b style="color:#c44">主动补库</b><span style="color:var(--text3)">冬季备库持续</span>', lvl:'high'},
       {t:'230 焦企产能 <b style="color:#c44">71.84%</b> <span style="color:var(--text3)">持平高位</span>；焦化日均产量 <b style="color:#c44">61.7 万吨</b><span style="color:var(--text3)">（持平）</span>', lvl:'high'},
-      {t:'247 钢厂盈利率 <b style="color:#2a6">6.93→8.23%</b><span style="color:var(--text3)">左侧修复</span>→铁水 <b style="color:#c44">233.66</b> <span style="color:var(--text3)">稳定</span>·<span style="color:var(--text3)">减产放缓</span>', lvl:'high'},
-      {t:'螺纹消费 <b style="color:#2a6">139→222 万吨（+59%）</b><span style="color:var(--text3)">节后补库兑现</span>', lvl:'mid'}
+      {t:'247 钢厂盈利率 <b style="color:#2a6">6.93→8.23%</b><b style="color:#c44">左侧修复</b>→铁水 <b style="color:#c44">233.66</b> <span style="color:var(--text3)">稳定</span>·<span style="color:var(--text3)">减产放缓</span>', lvl:'high'},
+      {t:'螺纹消费 <b style="color:#2a6">139→222 万吨（+59%）</b><b style="color:#c44">★ 节后补库兑现 ★</b>', lvl:'mid'}
     ];
     var price = [
       {t:'蒙 5#原煤 <b style="color:#c44">1897</b> vs 平台 JM2701=<b style="color:#c44">1482</b> <b style="color:#c44">升水 +415</b>（vs 上周 +97.5 <b style="color:#c44">走扩 317.5</b>）', lvl:'high'},
@@ -1483,8 +1483,8 @@ function updateInvestPanel(W,dim){
       {t:'坑口成本 <b style="color:#c44">800</b> / 蒙5#<b style="color:#c44">1897</b>，矿方利润<span style="color:var(--text3)">近千</span>·<span style="color:var(--text3)">无减量动机</span>', lvl:'mid'}
     ];
     var risk = [
-      {t:'山西增产 <b style="color:#c44">5450 万吨</b> Q4 释放（523 产能 71.38%<span style="color:var(--text3)">创新高</span>）<span style="color:var(--text3)">压制上方</span>', lvl:'high'},
-      {t:'蒙煤反向累库<b style="color:#c44">（+9.5/4天）</b><span style="color:var(--text3)">压制反弹</span>·<span style="color:var(--text3)">冬季抢运叠加</span>', lvl:'high'},
+      {t:'山西增产 <b style="color:#c44">5450 万吨</b> Q4 释放（523 产能 71.38%<span style="color:var(--text3)">创新高</span>）<b style="color:#2a6">压制上方</b>', lvl:'high'},
+      {t:'蒙煤反向累库<b style="color:#c44">（+9.5/4天）</b><b style="color:#2a6">★ 压制反弹 ★</b>·<b style="color:#2a6">冬季抢运叠加</b>', lvl:'high'},
       {t:'钢厂盈利率 <b style="color:#c44">反弹 8.23%</b>·<span style="color:var(--text3)">左侧修复</span>但 JM 盘面<b style="color:#c44">已崩 -10.5%</b>', lvl:'high'},
       {t:'估值 <b style="color:#c44">80-85 分位</b> 偏高 → <b style="color:#c44">1750+ 仓单成本</b> 压制', lvl:'mid'}
     ];
@@ -1497,11 +1497,11 @@ function updateInvestPanel(W,dim){
     var supply = [
       {t:'五轮累计 <b style="color:#c44">+450 - 二轮提降 -200 = 净剩 +250</b>（未完全回落）·<b style="color:#c44">10-12 第二轮提降 -100/-110 落地</b>（一级湿 <b style="color:#c44">1870</b> / 干 <b style="color:#c44">2225</b>），累计 <b style="color:#c44">-200/-210</b> <span style="color:var(--text3)">已超涨价前 9-16=1930</span>', lvl:'high'},
       {t:'230 焦企产能 <b style="color:#c44">71.84%</b> <span style="color:var(--text3)">持平高位</span>·日均产量 <b style="color:#c44">61.7 万吨</b> <span style="color:var(--text3)">持平</span>·<span style="color:var(--text3)">焦企复产见顶</span>', lvl:'high'},
-      {t:'焦企吨焦利润 <b style="color:#c44">78→1→-52 元/吨</b>（<b style="color:#c44">1→-52 跌 -53 跌穿盈亏平衡进入亏损</b>）<span style="color:var(--text3)">安全垫已被突破</span>', lvl:'high'},
-      {t:'山西增产 <b style="color:#c44">5450 万吨</b> Q4 释放 → 焦煤成本端<span style="color:var(--text3)">支撑弱化</span>（JM 主力 <b style="color:#c44">跌 -10.5%</b>）', lvl:'mid'}
+      {t:'焦企吨焦利润 <b style="color:#c44">78→1→-52 元/吨</b>（<b style="color:#c44">1→-52 跌 -53 跌穿盈亏平衡进入亏损</b>）<b style="color:#2a6">安全垫已被突破</b>', lvl:'high'},
+      {t:'山西增产 <b style="color:#c44">5450 万吨</b> Q4 释放 → 焦煤成本端<b style="color:#2a6">支撑弱化</b>（JM 主力 <b style="color:#c44">跌 -10.5%</b>）', lvl:'mid'}
     ];
     var demand = [
-      {t:'247 钢厂焦炭库存 <b style="color:#c44">580.22 万吨（-7.43 -1.3%）</b><span style="color:var(--text3)">实际去化</span><span style="color:var(--text3)">v5 修正 580.6 数据有误</span>', lvl:'high'},
+      {t:'247 钢厂焦炭库存 <b style="color:#c44">580.22 万吨（-7.43 -1.3%）</b><b style="color:#c44">实际去化</b><span style="color:var(--text3)">v5 修正 580.6 数据有误</span>', lvl:'high'},
       {t:'247 钢厂盈利率 <b style="color:#2a6">6.93→8.23%</b><b style="color:#c44">反弹 1.30pct·左侧修复开启</b>', lvl:'high'},
       {t:'铁水 <b style="color:#c44">233.66</b> <span style="color:var(--text3)">维持</span>（vs 9-18 高点 237.63 <b style="color:#2a6">-3.97 -1.7%</b>）<span style="color:var(--text3)">减产放缓</span>', lvl:'high'},
       {t:'螺纹消费 <b style="color:#2a6">139→222 万吨（+59%）</b><span style="color:var(--text3)">节后补库兑现</span>（库销比 <b style="color:#2a6">4.28→2.47</b>）', lvl:'high', highlight:true}
@@ -1509,13 +1509,13 @@ function updateInvestPanel(W,dim){
     var price = [
       {t:'日照港准一焦 <b style="color:#c44">1870</b>（10-16）vs 主力 J2701=<b style="color:#c44">1972.5</b><b style="color:#2a6">贴水 -102.5</b>（vs 上周 -170 <b style="color:#c44">收窄 67.5</b>）', lvl:'high'},
       {t:'主力 J2701=<b style="color:#c44">1972.5</b><b style="color:#c44">跌 -66.5（周环比 -3.3%）</b>·<b style="color:#c44">已跌穿 2000</b>', lvl:'high'},
-      {t:'盘面 price-in <b style="color:#888">71%（178/250）</b> vs 上周 78%，<span style="color:var(--text3)">补跌空间收窄</span>', lvl:'mid'},
+      {t:'盘面 price-in <b style="color:#888">71%（178/250）</b> vs 上周 78%，<b style="color:#c44">补跌空间收窄</b>', lvl:'mid'},
       {t:'1-5 月差 <b style="color:#c44">-64</b>（10-16）·<span style="color:var(--text3)">远月贴水扩大</span>', lvl:'mid'}
     ];
     var risk = [
-      {t:'钢厂盈利率<b style="color:#2a6">反弹 8.23%</b><span style="color:var(--text3)">减弱提降压力</span>·<b style="color:#c44">第三轮提降概率上调 30-40%</b>（v5 修正：吨焦利润 <b style="color:#c44">-52 亏损</b>）', lvl:'high'},
-      {t:'230 焦企产能 <b style="color:#c44">71%</b> <span style="color:var(--text3)">持平高位</span>·<span style="color:var(--text3)">供给端偏松</span>', lvl:'high'},
-      {t:'焦企吨焦利润 <b style="color:#c44">-52 元/吨（亏损）</b><span style="color:var(--text3)">已突破安全垫</span>·<span style="color:var(--text3)">继续提降或触发焦企被动减产</span>', lvl:'high'},
+      {t:'钢厂盈利率<b style="color:#2a6">反弹 8.23%</b><b style="color:#2a6">减弱提降压力</b>·<b style="color:#c44">第三轮提降概率上调 30-40%</b>（v5 修正：吨焦利润 <b style="color:#c44">-52 亏损</b>）', lvl:'high'},
+      {t:'230 焦企产能 <b style="color:#c44">71%</b> <span style="color:var(--text3)">持平高位</span>·<b style="color:#c44">★ 供给端偏松 ★</b>', lvl:'high'},
+      {t:'焦企吨焦利润 <b style="color:#c44">-52 元/吨（亏损）</b><b style="color:#2a6">已突破安全垫</b>·<b style="color:#2a6">继续提降或触发焦企被动减产</b>', lvl:'high'},
       {t:'山西增产 <b style="color:#c44">5450 万吨</b> → 焦煤成本端<span style="color:var(--text3)">支撑弱化</span>（JM <b style="color:#c44">崩 -10.5%</b>）', lvl:'mid'}
     ];
     var strat = '<b>★ 短期（1-2 周）核心矛盾★</b>：J2701=1972.5 崩 -8.3% vs 钢厂盈利率反弹 6.93→8.23% + 螺纹消费 +59% → 主力 <b>1900-2030 偏弱</b>（基差 -102.5 较上周 -170 收窄）；下方 1900 强支撑（钢厂刚性采购+成本端）；上方 2030+ 不追多；★ 若钢厂盈利率站稳 8%+ + 铁水 230-235 区间，J 有左侧反弹至 2030-2080 机会★<br><b>中期（1-2 月）：</b>钢厂减产放缓+230 复产见顶+累计 -200/-210 → 中枢 <b>1850-2000</b>；第三轮提降概率从 30-40% 调整为 20-30%（盈利率反弹后钢厂话语权略降）<br><b>长期（1-3 月）：</b>钢厂复产+冬季补库 → 中枢 <b>1850-2050</b>；春节后下行 1750-1850<br><b>止损：</b>2050 减仓；跌破 1900 止损';
@@ -1526,10 +1526,10 @@ function updateInvestPanel(W,dim){
   {let s=-1;
     var supply = [
       {t:'47 港库存 <b style="color:#c44">16534.67 万吨（+54.45 累库）</b><b style="color:#c44">距 1.8 亿吨阈值差 1465 万吨</b>', lvl:'high'},
-      {t:'日均疏港 <b style="color:#c44">322.54 万吨（-18.56 下滑）</b>·<span style="color:var(--text3)">钢厂提货积极性下降</span>', lvl:'high'},
+      {t:'日均疏港 <b style="color:#c44">322.54 万吨（-18.56 下滑）</b>·<b style="color:#2a6">钢厂提货积极性下降</b>', lvl:'high'},
       {t:'澳矿 <b style="color:#2a6">8464.66（+206.48）</b>·巴西矿 <b style="color:#c44">4874.26（-102.56）</b>·贸易矿 <b style="color:#c44">10554.35（-26.26）</b>', lvl:'mid'},
       {t:'PB 粉 <b style="color:#c44">649</b> vs 主力 I2701=<b style="color:#c44">672.5</b><b style="color:#c44">升水 +23.5</b>（vs 上周 +2 <b style="color:#c44">走扩 21.5</b>）', lvl:'mid'},
-      {t:'Q4 海外发运<span style="color:var(--text3)">季节性回升</span>（<span style="color:var(--text3)">10-15 后</span>）<span style="color:var(--text3)">压制上方</span>', lvl:'mid'}
+      {t:'Q4 海外发运<b style="color:#2a6">季节性回升</b>（<span style="color:var(--text3)">10-15 后</span>）<span style="color:var(--text3)">压制上方</span>', lvl:'mid'}
     ];
     var demand = [
       {t:'铁水 <b style="color:#c44">233.66 万吨/日</b>（vs 9-18 高点 237.63 <b style="color:#2a6">-3.97 -1.7%</b>）<span style="color:var(--text3)">减产放缓</span>', lvl:'high'},
@@ -1545,8 +1545,8 @@ function updateInvestPanel(W,dim){
     ];
     var risk = [
       {t:'47 港 <b style="color:#c44">16534 累库延续（+54）</b>+<b style="color:#c44">1.8 亿吨阈值临近</b><span style="color:var(--text3)">压制上方</span>', lvl:'high'},
-      {t:'日均疏港 <b style="color:#c44">-18.56 下滑</b>·<span style="color:var(--text3)">钢厂提货弱</span>', lvl:'high'},
-      {t:'Q4 海外发运<span style="color:var(--text3)">季节性回升</span> + <span style="color:var(--text3)">西芒杜增量</span>', lvl:'high'},
+      {t:'日均疏港 <b style="color:#c44">-18.56 下滑</b>·<b style="color:#2a6">钢厂提货弱</b>', lvl:'high'},
+      {t:'Q4 海外发运<span style="color:var(--text3)">季节性回升</span> + <b style="color:#2a6">西芒杜增量</b>', lvl:'high'},
       {t:'钢厂盈利率 <b style="color:#c44">8.23% 反弹后</b><span style="color:var(--text3)">减产放缓</span>·<span style="color:var(--text3)">铁矿需求边际企稳</span>', lvl:'mid'}
     ];
     var strat = '<b>★ 短期（1-2 周）★</b>：I2701=672.5 跌 -8.9%·主力崩跌但 PB 粉 649 升水 +23.5 现货抗跌 → 主力 <b>650-690 偏弱</b>，下方 650 强支撑（成本+疏港），上方 690+ 不追多；★ 关注 47 港 1.8 亿吨阈值（约 5-6 周累库）·触及后空头兑现+原料端普跌★<br><b>中期（1-2 月）：</b>钢厂减产放缓+1.8 亿吨阈值临近 → 中枢 <b>650-700</b>；690 以上做空（止损 710），650 以下止盈<br><b>长期（1-3 月）：</b>中性偏弱，中枢 <b>630-680</b>；冬季补库反弹至 700 后回落<br><b>止损：</b>650 减仓；跌破 620 止损';
@@ -1564,12 +1564,12 @@ function updateInvestPanel(W,dim){
     var demand = [
       {t:'上海现货 <b style="color:#c44">3230</b><b style="color:#c44">升水 +156</b>（vs 主力 RB2701=<b style="color:#c44">3074</b>）·<b style="color:#c44">升水走扩 65</b>', lvl:'high'},
       {t:'螺纹消费 <b style="color:#c44">139.58→222.27 万吨（+59.2%）</b><span style="color:var(--text3)">节后补库兑现</span>', lvl:'high'},
-      {t:'库销比 <b style="color:#2a6">4.28→2.47（-42%）</b>·<span style="color:var(--text3)">需求显著修复</span>', lvl:'high'},
+      {t:'库销比 <b style="color:#2a6">4.28→2.47（-42%）</b>·<b style="color:#c44">需求显著修复</b>', lvl:'high'},
       {t:'钢厂盈利率 <b style="color:#c44">6.93→8.23% 反弹</b>·<span style="color:var(--text3)">减产放缓压制减弱</span>', lvl:'mid'}
     ];
     var stock = [
-      {t:'螺纹总库存 <b style="color:#c44">548.46 万吨（-48.38）</b><span style="color:var(--text3)">节后大幅去库</span>', lvl:'high'},
-      {t:'库销比 <b style="color:#c44">2.47 创近期新低</b>·<span style="color:var(--text3)">需求端验证</span>', lvl:'high'}
+      {t:'螺纹总库存 <b style="color:#c44">548.46 万吨（-48.38）</b><b style="color:#c44">节后大幅去库</b>', lvl:'high'},
+      {t:'库销比 <b style="color:#c44">2.47 创近期新低</b>·<b style="color:#c44">需求端验证</b>', lvl:'high'}
     ];
     var price = [
       {t:'主力 RB2701=<b style="color:#c44">3074</b>（10-16）·上海现货 <b style="color:#c44">3230</b><b style="color:#2a6">升水 +156</b>', lvl:'high'},
@@ -1578,8 +1578,8 @@ function updateInvestPanel(W,dim){
       {t:'<span style="color:var(--text3)">2610-2701 价差走扩·</span>10 合约<b style="color:#888">进入交割月</b>', lvl:'mid'}
     ];
     var risk = [
-      {t:'<span style="color:var(--text3)">冬季需求走弱</span>·<b style="color:#c44">11 月北方限产</b>·<span style="color:var(--text3)">终需求高度有限</span>', lvl:'high'},
-      {t:'钢坯成本 <b style="color:#c44">2875</b> vs 现货 <b style="color:#c44">3230</b> 毛利<b style="color:#c44">仅 27</b>·<span style="color:var(--text3)">上方空间有限</span>', lvl:'mid'},
+      {t:'<b style="color:#2a6">冬季需求走弱</b>·<b style="color:#c44">11 月北方限产</b>·<span style="color:var(--text3)">终需求高度有限</span>', lvl:'high'},
+      {t:'钢坯成本 <b style="color:#c44">2875</b> vs 现货 <b style="color:#c44">3230</b> 毛利<b style="color:#c44">仅 27</b>·<b style="color:#2a6">上方空间有限</b>', lvl:'mid'},
       {t:'钢厂盈利率 <b style="color:#2a6">8.23% 反弹后</b>·<span style="color:var(--text3)">减产放缓·供给压力回升</span>', lvl:'mid'}
     ];
     var strat = '<b>★ 短期（1-2 周）★</b>：RB2701=3074 + 现货 3230 升水 +156 + 消费 139→222 +59% + 库销比 2.47 → 主力 <b>3030-3150 偏强</b>，下方 3030 支撑（成本+消费），上方 3150+ 不追多；★ 钢厂盈利率反弹 8.23% + 节后补库兑现·基本面左侧修复·RB 抗跌性最强★<br><b>中期（1-2 月）：</b>冬季需求走弱+减产放缓 → 中枢 <b>3000-3150</b>；3150+ 做空（止损 3200），3000 以下做多（止损 2950）<br><b>长期（1-3 月）：</b>中枢 <b>2900-3100</b>；春节前补库反弹至 3150，节后下行 2850-2950<br><b>止损：</b>3000 减仓；跌破 2950 止损';
@@ -1589,31 +1589,31 @@ function updateInvestPanel(W,dim){
   // --- 热卷 ---
   {let s=0;
     var supply = [
-      {t:'<span style="color:var(--text3)">本周</span>热卷产量 <b style="color:#c44">283.52 万吨（-8.60）</b><span style="color:var(--text3)">节后回落</span>·<b style="color:#888">接近年内低位</b>', lvl:'high'},
-      {t:'北方钢厂<span style="color:var(--text3)">超预期检修持续</span>·<span style="color:var(--text3)">长假期间产量变化不大</span>', lvl:'high'},
-      {t:'热卷毛利 <b style="color:#2a6">-95</b> vs 上周 <b style="color:#c44">-206</b><b style="color:#2a6">修复 111</b>·<span style="color:var(--text3)">深度亏损收窄</span>', lvl:'high', highlight:true}
+      {t:'<span style="color:var(--text3)">本周</span>热卷产量 <b style="color:#c44">283.52 万吨（-8.60）</b><b style="color:#2a6">节后回落</b>·<b style="color:#888">接近年内低位</b>', lvl:'high'},
+      {t:'北方钢厂<b style="color:#c44">超预期检修持续</b>·<span style="color:var(--text3)">长假期间产量变化不大</span>', lvl:'high'},
+      {t:'热卷毛利 <b style="color:#2a6">-95</b> vs 上周 <b style="color:#c44">-206</b><b style="color:#2a6">修复 111</b>·<b style="color:#c44">深度亏损收窄</b>', lvl:'high', highlight:true}
     ];
     var demand = [
-      {t:'上海现货 <b style="color:#c44">3260</b> vs 平台 HC2701=<b style="color:#c44">3242</b><b style="color:#c44">贴水 -18</b>（vs 上周 -85 <b style="color:#2a6">收窄 67</b>）<span style="color:var(--text3)">盘面补跌到位</span>', lvl:'high', highlight:true},
-      {t:'热卷消费 <b style="color:#c44">266.82→301.25 万吨（+12.9%）</b>·<span style="color:var(--text3)">节后需求改善</span>', lvl:'high', highlight:true},
+      {t:'上海现货 <b style="color:#c44">3260</b> vs 平台 HC2701=<b style="color:#c44">3242</b><b style="color:#c44">贴水 -18</b>（vs 上周 -85 <b style="color:#2a6">收窄 67</b>）<b style="color:#c44">★ 盘面补跌到位 ★</b>', lvl:'high', highlight:true},
+      {t:'热卷消费 <b style="color:#c44">266.82→301.25 万吨（+12.9%）</b>·<b style="color:#c44">节后需求改善</b>', lvl:'high', highlight:true},
       {t:'外需<span style="color:var(--text3)">雨季褪去、东南亚接单回暖</span>；钢厂利润 <b style="color:#c44">-95 修复</b>', lvl:'mid'},
       {t:'钢厂盈利率 <b style="color:#2a6">6.93→8.23%</b><b style="color:#c44">反弹 1.30pct·减产放缓</b>', lvl:'mid'}
     ];
     var stock = [
       {t:'热卷总库存 <b style="color:#c44">438.72 万吨（-17.73）</b><span style="color:var(--text3)">节后大幅去库</span>', lvl:'high', highlight:true},
-      {t:'中厚板社库<span style="color:var(--text3)">大幅去库</span>·<span style="color:var(--text3)">下游需求有支撑</span>', lvl:'high'},
+      {t:'中厚板社库<b style="color:#c44">大幅去库</b>·<b style="color:#c44">下游需求有支撑</b>', lvl:'high'},
       {t:'热卷库销比 <b style="color:#2a6">1.46</b>（10-15）·<b style="color:#888">接近年内低位</b>', lvl:'high'}
     ];
     var price = [
       {t:'主力 HC2701=<b style="color:#c44">3242</b>（10-16）·上海现货 <b style="color:#c44">3260</b><b style="color:#c44">贴水 -18</b><span style="color:var(--text3)">（平水附近）</span>', lvl:'high'},
       {t:'vs 上周 <b style="color:#c44">3385 跌 -143（-4.2%）</b>·<b style="color:#c44">跌幅小于铁矿（-8.9%）</b>', lvl:'high', highlight:true},
       {t:'卷螺差 <b style="color:#c44">168</b>（10-16）vs 上周 216 <b style="color:#c44">收窄 -48</b>·<span style="color:var(--text3)">卷螺差回归</span>', lvl:'mid'},
-      {t:'<span style="color:var(--text3)">出口接单</span>较前期<span style="color:var(--text3)">回暖</span>（<span style="color:var(--text3)">钢坯/东南亚</span>）', lvl:'mid'}
+      {t:'<span style="color:var(--text3)">出口接单</span>较前期<b style="color:#c44">回暖</b>（<span style="color:var(--text3)">钢坯/东南亚</span>）', lvl:'mid'}
     ];
     var risk = [
-      {t:'热卷毛利 <b style="color:#c44">-95 仍亏损</b>·<span style="color:var(--text3)">钢厂上方承压</span>', lvl:'high'},
+      {t:'热卷毛利 <b style="color:#c44">-95 仍亏损</b>·<b style="color:#2a6">钢厂上方承压</b>', lvl:'high'},
       {t:'钢厂盈利率 <b style="color:#2a6">8.23% 反弹后</b>·<span style="color:var(--text3)">减产放缓·供给压力回升</span>', lvl:'mid'},
-      {t:'<span style="color:var(--text3)">冬季需求走弱</span> + <span style="color:var(--text3)">外需季节性下降</span>', lvl:'mid'}
+      {t:'<span style="color:var(--text3)">冬季需求走弱</span> + <b style="color:#2a6">外需季节性下降</b>', lvl:'mid'}
     ];
     var strat = '<b>★ 短期（1-2 周）★</b>：HC2701=3242 + 现货 3260 贴水 -18（盘面补跌到位）+ 热卷消费 266→301 +12.9% + 总库存 -17.73 → 主力 <b>3200-3300 偏弱</b>，下方 3200 强支撑（消费修复+毛利修复），上方 3300+ 不追多；★ 贴水从 -85 收窄至 -18·盘面补跌到位·左侧反弹机会★<br><b>中期（1-2 月）：</b>节前补库+外需回暖 → 中枢 <b>3200-3350</b>；3300+ 做空（止损 3350），3200 以下做多（止损 3150）<br><b>长期（1-3 月）：</b>冬季需求走弱+外需季节性下降 → 中枢 <b>3150-3300</b>；春节后下行 3050-3200<br><b>止损：</b>3280 减仓；跌破 3180 止损';
     var signal=[{t:'★ 主力 HC2701=3242 现货 3260 贴水 -18（平水）★',lvl:'high'},{t:'★ 热卷消费 266→301 +12.9%★ 节后改善',lvl:'high'},{t:'★ 热卷总库存 438.72 (-17.73) ★ 节后大幅去库',lvl:'high'},{t:'★ 钢厂盈利率 6.93→8.23% ★ 反弹 1.30pct',lvl:'high'},{t:'热卷毛利 -95 修复 111（vs -206 深度亏损）',lvl:'mid'}];
