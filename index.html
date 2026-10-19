@@ -1760,22 +1760,29 @@ function updateAnalysisPanel(W,dim){
   // data 数组中每项：{pt:'523 矿原煤日产', val:'160.76 万吨', sub:'+4.5% vs 9-25', cred:3}
   const xmindBranches = [
     {key:'jm', icon:'⛏', title:'焦煤', en:'主焦煤/蒙煤', color:'#c84', bg:'#fef5e7', sheets:[
-      {n:'① 供给', data:[
-        {pt:'523 矿原煤日产', val:'160.76 万吨', sub:'+4.5% vs 9-25', cred:3},
-        {pt:'523 矿精煤日产', val:'67.71 万吨', sub:'+2.7%', cred:3},
-        {pt:'523 矿产能', val:'71.38%', sub:'+4.97pct 单周最大', cred:3},
-        {pt:'山西 138家原煤', val:'77.63% 产能', sub:'+8.05pct vs 9-30', cred:3}
+      {n:'① 供给（★ 矿+洗+进口+发运 ★）', data:[
+        {pt:'矿端·523 原煤日产', val:'160.76 万吨', sub:'+4.5% vs 9-25', cred:3},
+        {pt:'矿端·523 精煤日产', val:'67.71 万吨', sub:'+2.7%', cred:3},
+        {pt:'矿端·523 产能', val:'71.38%', sub:'+4.97pct 单周最大', cred:3},
+        {pt:'矿端·山西 138家原煤', val:'77.63% 产能', sub:'+8.05pct vs 9-30', cred:3},
+        {pt:'洗煤厂·110家开工率', val:'(待纳入)', sub:'★★★优先级 P1', cred:1},
+        {pt:'进口·蒙煤通关车数', val:'873 车/日', sub:'+29% 跳升★', cred:3},
+        {pt:'进口·海运煤（澳/俄/印尼）', val:'(待纳入)', sub:'★★★分国别 P2', cred:1}
       ]},
       {n:'② 需求', data:[
         {pt:'230 焦企产能', val:'71.84%', sub:'持平·复产见顶', cred:3},
         {pt:'230 焦企日均', val:'61.7 万吨', sub:'持平', cred:3},
         {pt:'247 钢厂炼焦煤', val:'762.9 万吨', sub:'+15.3 持续补库★', cred:3}
       ]},
-      {n:'③ 库存', data:[
-        {pt:'523 精煤库存', val:'247.54', sub:'+25.55 累库', cred:3},
-        {pt:'港口焦煤', val:'267.95', sub:'持续去化', cred:3},
-        {pt:'汾渭吕梁精煤', val:'13.87', sub:'-2.27 矿端首次去化', cred:3},
-        {pt:'230 焦化厂焦煤', val:'778.76', sub:'-67.04 中游消耗前置★', cred:3}
+      {n:'③ 库存（★ 5 层全口径 ★）', data:[
+        {pt:'矿端·523 精煤', val:'247.54', sub:'+25.55 累库', cred:3},
+        {pt:'矿端·汾渭吕梁精煤', val:'13.87', sub:'-2.27 首次去化', cred:3},
+        {pt:'洗煤厂·110家精煤', val:'(待纳入)', sub:'★★★优先级 P1', cred:1},
+        {pt:'洗煤厂开工率', val:'(待纳入)', sub:'★★★优先级 P1', cred:1},
+        {pt:'中游·230 焦化厂炼焦煤', val:'778.76', sub:'-67.04 中游消耗前置★', cred:3},
+        {pt:'中游·港口焦煤', val:'267.95', sub:'持续去化', cred:3},
+        {pt:'下游·247 钢厂炼焦煤', val:'762.9', sub:'+15.3 持续补库★', cred:3},
+        {pt:'下游·247 钢厂可用天数', val:'(待纳入)', sub:'★钢厂冬储关键指标', cred:1}
       ]},
       {n:'④ 价格', data:[
         {pt:'JM2701 收盘', val:'1482', sub:'-5.4% 周环比', cred:3},
@@ -2091,9 +2098,272 @@ function updateAnalysisPanel(W,dim){
   html += '</div>'; // jc-path
   html += '</div>'; // section
 
+
+  // ===== 3-E. 焦煤权重+行业数据（10-19 扩展：与焦炭 3.2/3.3 同结构） =====
+  html += '<div class="ana-section">';
+  html += '<div class="ana-stitle">⛏ 3-E. 焦煤权重+行业数据（10-19 扩展）</div>';
+
+  // 3-E.1 焦煤多空权重
+  html += '<div class="ana-subsection">';
+  html += '<div class="ana-sstitle">⚖️ 3-E.1 焦煤多空权重（6 维）</div>';
+  html += '<div class="jc-weight">';
+  var jmWeights = [
+    {name:'基差 (-415 深度贴水)', bull:25, bear:20, lvl:'high'},
+    {name:'523 矿产能 (+4.97pct)', bull:5, bear:35, lvl:'high', highlight:true},
+    {name:'蒙煤通关 (+29% 跳升)', bull:5, bear:30, lvl:'high', highlight:true},
+    {name:'钢厂盈利率 (8.23% 反弹)', bull:30, bear:10, lvl:'high'},
+    {name:'焦企吨焦利润 (-52 亏损)', bull:5, bear:25, lvl:'mid'},
+    {name:'山西增产 5450 万吨', bull:0, bear:30, lvl:'high'}
+  ];
+  jmWeights.forEach(function(w){
+    html += '<div class="jc-wt-row">';
+    html += '<div class="jc-wt-name">'+w.name+(w.highlight?' ★':'')+'</div>';
+    html += '<div class="jc-wt-bar">';
+    html += '<div class="jc-wt-bull" style="width:'+w.bull+'%"><span>'+w.bull+'</span></div>';
+    html += '<div class="jc-wt-bear" style="width:'+w.bear+'%"><span>'+w.bear+'</span></div>';
+    html += '</div>';
+    html += '<div class="jc-wt-lvl lvl-'+w.lvl+'">'+w.lvl.toUpperCase()+'</div>';
+    html += '</div>';
+  });
+  var jmBull = jmWeights.reduce(function(s,w){return s+w.bull;}, 0);
+  var jmBear = jmWeights.reduce(function(s,w){return s+w.bear;}, 0);
+  html += '<div class="jc-wt-total">';
+  html += '<span class="jc-wt-tot-bull">多头总分 '+jmBull+'</span>';
+  html += '<span class="jc-wt-tot-bear">空头总分 '+jmBear+'</span>';
+  html += '<span class="jc-wt-tot-diff">差值 '+(jmBull-jmBear)+'（多空比 '+((jmBull/Math.max(jmBear,1)).toFixed(2))+':1）</span>';
+  html += '</div>';
+  html += '</div>';
+  html += '</div>';
+
+  // 3-E.2 焦煤行业数据
+  html += '<div class="ana-subsection">';
+  html += '<div class="ana-sstitle">📊 3-E.2 焦煤行业数据（6 维 × 历史分位）</div>';
+  html += '<table class="jc-data-table">';
+  html += '<thead><tr><th>维度</th><th>当前值</th><th>历史分位</th><th>状态</th><th>分位柱</th><th>近 4 周趋势</th></tr></thead><tbody>';
+  var jmData = [
+    {dim:'523 矿原煤日产', val:'160.76 万吨', pct:70, state:'复产明显·单周最大', trend:'142→160.76（+13% ★单周最大增幅）'},
+    {dim:'523 矿精煤日产', val:'67.71 万吨', pct:65, state:'中性偏高', trend:'62→67.71（+9% 节后复产）'},
+    {dim:'523 矿产能利用率', val:'71.38%', pct:75, state:'★高位·单周 +4.97pct', trend:'66.41→71.38% ★复产见顶'},
+    {dim:'247 钢厂炼焦煤', val:'762.9 万吨', pct:80, state:'★高位·持续补库', trend:'+15.3 持续补库'},
+    {dim:'230 焦化厂炼焦煤', val:'778.76 万吨', pct:50, state:'中性·持续去化', trend:'-67.04 中游消耗前置★'},
+    {dim:'甘其毛都通关车数', val:'873 车/日', pct:85, state:'★历史高位·跳升', trend:'676→873 +29% ★进口端宽松'},
+    {dim:'JM2701 盘面', val:'1482', pct:35, state:'偏低·周环比 -5.4%', trend:'1566→1482 -84（-5.4%）'},
+    {dim:'蒙 5# 现货', val:'1897', pct:60, state:'中性', trend:'持平 1897'}
+  ];
+  jmData.forEach(function(d){
+    var barColor = d.pct >= 80 ? '#c44' : (d.pct >= 50 ? '#c84' : (d.pct <= 20 ? '#579' : '#2a6'));
+    html += '<tr>';
+    html += '<td class="jc-d-dim">'+d.dim+'</td>';
+    html += '<td class="jc-d-val">'+d.val+'</td>';
+    html += '<td class="jc-d-pct">'+d.pct+'%</td>';
+    html += '<td class="jc-d-state">'+d.state+'</td>';
+    html += '<td class="jc-d-bar"><div class="jc-d-bar-inner" style="width:'+d.pct+'%;background:'+barColor+'"></div></td>';
+    html += '<td class="jc-d-trend">'+d.trend+'</td>';
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  html += '</div>';
+
+  html += '</div>'; // section
+
+  // ===== 3-F. 铁矿权重+行业数据（10-19 扩展） =====
+  html += '<div class="ana-section">';
+  html += '<div class="ana-stitle">🪨 3-F. 铁矿权重+行业数据（10-19 扩展）</div>';
+
+  html += '<div class="ana-subsection">';
+  html += '<div class="ana-sstitle">⚖️ 3-F.1 铁矿多空权重（6 维）</div>';
+  html += '<div class="jc-weight">';
+  var iWeights = [
+    {name:'基差 (+23.5 升水)', bull:20, bear:15, lvl:'mid'},
+    {name:'47 港累库 (+54 距 1.8 亿差 1465)', bull:5, bear:30, lvl:'high', highlight:true},
+    {name:'Q4 海外发运季节性', bull:5, bear:25, lvl:'high'},
+    {name:'钢厂盈利率 (8.23% 反弹)', bull:30, bear:10, lvl:'high'},
+    {name:'螺纹消费 (+59% 节后补库)', bull:30, bear:5, lvl:'high', highlight:true},
+    {name:'疏港 (-18.56 提货弱)', bull:5, bear:20, lvl:'mid'}
+  ];
+  iWeights.forEach(function(w){
+    html += '<div class="jc-wt-row">';
+    html += '<div class="jc-wt-name">'+w.name+(w.highlight?' ★':'')+'</div>';
+    html += '<div class="jc-wt-bar">';
+    html += '<div class="jc-wt-bull" style="width:'+w.bull+'%"><span>'+w.bull+'</span></div>';
+    html += '<div class="jc-wt-bear" style="width:'+w.bear+'%"><span>'+w.bear+'</span></div>';
+    html += '</div>';
+    html += '<div class="jc-wt-lvl lvl-'+w.lvl+'">'+w.lvl.toUpperCase()+'</div>';
+    html += '</div>';
+  });
+  var iBull = iWeights.reduce(function(s,w){return s+w.bull;}, 0);
+  var iBear = iWeights.reduce(function(s,w){return s+w.bear;}, 0);
+  html += '<div class="jc-wt-total">';
+  html += '<span class="jc-wt-tot-bull">多头总分 '+iBull+'</span>';
+  html += '<span class="jc-wt-tot-bear">空头总分 '+iBear+'</span>';
+  html += '<span class="jc-wt-tot-diff">差值 '+(iBull-iBear)+'（多空比 '+((iBull/Math.max(iBear,1)).toFixed(2))+':1）</span>';
+  html += '</div>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '<div class="ana-subsection">';
+  html += '<div class="ana-sstitle">📊 3-F.2 铁矿行业数据（6 维 × 历史分位）</div>';
+  html += '<table class="jc-data-table">';
+  html += '<thead><tr><th>维度</th><th>当前值</th><th>历史分位</th><th>状态</th><th>分位柱</th><th>近 4 周趋势</th></tr></thead><tbody>';
+  var iData = [
+    {dim:'47 港库存', val:'16534.67 万吨', pct:90, state:'★历史高位·距 1.8 亿差 1465', trend:'16480→16534 +54 ★累库'},
+    {dim:'日均疏港', val:'322.54 万吨', pct:55, state:'中性', trend:'-18.56 提货弱'},
+    {dim:'247 铁水日均', val:'233.66 万吨', pct:50, state:'中性·减产放缓', trend:'-3.97 -1.7% 减产放缓★'},
+    {dim:'钢厂盈利率', val:'8.23%', pct:30, state:'偏低·反弹', trend:'6.93→8.23% +1.30pct ★反弹'},
+    {dim:'I2701 盘面', val:'672.5', pct:35, state:'偏低·周环比 -0.7%', trend:'677→672.5 -4.5（-0.7%）'},
+    {dim:'青岛 PB 粉现货', val:'649', pct:50, state:'中性', trend:'升水 +23.5 现货抗跌'},
+    {dim:'螺纹消费', val:'222 万吨', pct:70, state:'★单周最大', trend:'139→222 +59.2% ★节后补库兑现'},
+    {dim:'全球发运', val:'Q4 季节性', pct:65, state:'偏高', trend:'季节性回升压制★'}
+  ];
+  iData.forEach(function(d){
+    var barColor = d.pct >= 80 ? '#c44' : (d.pct >= 50 ? '#c84' : (d.pct <= 20 ? '#579' : '#2a6'));
+    html += '<tr>';
+    html += '<td class="jc-d-dim">'+d.dim+'</td>';
+    html += '<td class="jc-d-val">'+d.val+'</td>';
+    html += '<td class="jc-d-pct">'+d.pct+'%</td>';
+    html += '<td class="jc-d-state">'+d.state+'</td>';
+    html += '<td class="jc-d-bar"><div class="jc-d-bar-inner" style="width:'+d.pct+'%;background:'+barColor+'"></div></td>';
+    html += '<td class="jc-d-trend">'+d.trend+'</td>';
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  html += '</div>';
+
+  html += '</div>'; // section
+
+  // ===== 3-G. 螺纹权重+行业数据（10-19 扩展） =====
+  html += '<div class="ana-section">';
+  html += '<div class="ana-stitle">🔩 3-G. 螺纹权重+行业数据（10-19 扩展）</div>';
+
+  html += '<div class="ana-subsection">';
+  html += '<div class="ana-sstitle">⚖️ 3-G.1 螺纹多空权重（6 维）</div>';
+  html += '<div class="jc-weight">';
+  var rbWeights = [
+    {name:'基差 (+156 升水 偏深)', bull:35, bear:10, lvl:'high', highlight:true},
+    {name:'消费 (+59.2% 单周最大)', bull:40, bear:5, lvl:'high', highlight:true},
+    {name:'库销比 (2.47 急速下行)', bull:30, bear:10, lvl:'high'},
+    {name:'毛利 (-173 → +27 修复 200+)', bull:35, bear:5, lvl:'high', highlight:true},
+    {name:'钢厂盈利率 (8.23% 反弹)', bull:30, bear:10, lvl:'high'},
+    {name:'周产 (+3.62 节后复产)', bull:5, bear:20, lvl:'mid'}
+  ];
+  rbWeights.forEach(function(w){
+    html += '<div class="jc-wt-row">';
+    html += '<div class="jc-wt-name">'+w.name+(w.highlight?' ★':'')+'</div>';
+    html += '<div class="jc-wt-bar">';
+    html += '<div class="jc-wt-bull" style="width:'+w.bull+'%"><span>'+w.bull+'</span></div>';
+    html += '<div class="jc-wt-bear" style="width:'+w.bear+'%"><span>'+w.bear+'</span></div>';
+    html += '</div>';
+    html += '<div class="jc-wt-lvl lvl-'+w.lvl+'">'+w.lvl.toUpperCase()+'</div>';
+    html += '</div>';
+  });
+  var rbBull = rbWeights.reduce(function(s,w){return s+w.bull;}, 0);
+  var rbBear = rbWeights.reduce(function(s,w){return s+w.bear;}, 0);
+  html += '<div class="jc-wt-total">';
+  html += '<span class="jc-wt-tot-bull">多头总分 '+rbBull+'</span>';
+  html += '<span class="jc-wt-tot-bear">空头总分 '+rbBear+'</span>';
+  html += '<span class="jc-wt-tot-diff">差值 '+(rbBull-rbBear)+'（多空比 '+((rbBull/Math.max(rbBear,1)).toFixed(2))+':1）</span>';
+  html += '</div>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '<div class="ana-subsection">';
+  html += '<div class="ana-sstitle">📊 3-G.2 螺纹行业数据（6 维 × 历史分位）</div>';
+  html += '<table class="jc-data-table">';
+  html += '<thead><tr><th>维度</th><th>当前值</th><th>历史分位</th><th>状态</th><th>分位柱</th><th>近 4 周趋势</th></tr></thead><tbody>';
+  var rbData = [
+    {dim:'螺纹周产', val:'173.89 万吨', pct:55, state:'中性·节后复产', trend:'170.27→173.89 +3.62'},
+    {dim:'螺纹消费', val:'222 万吨', pct:85, state:'★单周最大·节后补库', trend:'139→222 +59.2% ★节后补库兑现'},
+    {dim:'螺纹总库存', val:'548.46 万吨', pct:60, state:'中性·持续去化', trend:'-48.38 -8.1% ★节后大幅去库'},
+    {dim:'库销比', val:'2.47', pct:30, state:'★偏低·急速下行', trend:'4.28→2.47 急速下行★'},
+    {dim:'螺纹毛利', val:'+27 元/吨', pct:35, state:'★修复 200+', trend:'-173→+27 修复 200+★'},
+    {dim:'RB2701 盘面', val:'3074', pct:50, state:'中性·周环比 -0.2%', trend:'3080→3074 -6（-0.2%）'},
+    {dim:'上海螺纹现货', val:'3230', pct:55, state:'中性', trend:'升水 +156'},
+    {dim:'钢厂盈利率', val:'8.23%', pct:30, state:'★反弹 1.30pct', trend:'6.93→8.23% 反弹★左侧修复开启'}
+  ];
+  rbData.forEach(function(d){
+    var barColor = d.pct >= 80 ? '#c44' : (d.pct >= 50 ? '#c84' : (d.pct <= 20 ? '#579' : '#2a6'));
+    html += '<tr>';
+    html += '<td class="jc-d-dim">'+d.dim+'</td>';
+    html += '<td class="jc-d-val">'+d.val+'</td>';
+    html += '<td class="jc-d-pct">'+d.pct+'%</td>';
+    html += '<td class="jc-d-state">'+d.state+'</td>';
+    html += '<td class="jc-d-bar"><div class="jc-d-bar-inner" style="width:'+d.pct+'%;background:'+barColor+'"></div></td>';
+    html += '<td class="jc-d-trend">'+d.trend+'</td>';
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  html += '</div>';
+
+  html += '</div>'; // section
+
+  // ===== 3-H. 热卷权重+行业数据（10-19 扩展） =====
+  html += '<div class="ana-section">';
+  html += '<div class="ana-stitle">🔥 3-H. 热卷权重+行业数据（10-19 扩展）</div>';
+
+  html += '<div class="ana-subsection">';
+  html += '<div class="ana-sstitle">⚖️ 3-H.1 热卷多空权重（6 维）</div>';
+  html += '<div class="jc-weight">';
+  var hcWeights = [
+    {name:'基差 (-18 贴水 平水)', bull:15, bear:25, lvl:'mid'},
+    {name:'卷螺差 (+168 扩大 12)', bull:30, bear:5, lvl:'high', highlight:true},
+    {name:'消费 (+12.9% 制造业)', bull:30, bear:10, lvl:'high'},
+    {name:'毛利 (-206 → -95 修复 111)', bull:25, bear:10, lvl:'high', highlight:true},
+    {name:'钢厂盈利率 (8.23% 反弹)', bull:25, bear:10, lvl:'high'},
+    {name:'周产 (-8.60 节后减产)', bull:15, bear:5, lvl:'mid', highlight:true}
+  ];
+  hcWeights.forEach(function(w){
+    html += '<div class="jc-wt-row">';
+    html += '<div class="jc-wt-name">'+w.name+(w.highlight?' ★':'')+'</div>';
+    html += '<div class="jc-wt-bar">';
+    html += '<div class="jc-wt-bull" style="width:'+w.bull+'%"><span>'+w.bull+'</span></div>';
+    html += '<div class="jc-wt-bear" style="width:'+w.bear+'%"><span>'+w.bear+'</span></div>';
+    html += '</div>';
+    html += '<div class="jc-wt-lvl lvl-'+w.lvl+'">'+w.lvl.toUpperCase()+'</div>';
+    html += '</div>';
+  });
+  var hcBull = hcWeights.reduce(function(s,w){return s+w.bull;}, 0);
+  var hcBear = hcWeights.reduce(function(s,w){return s+w.bear;}, 0);
+  html += '<div class="jc-wt-total">';
+  html += '<span class="jc-wt-tot-bull">多头总分 '+hcBull+'</span>';
+  html += '<span class="jc-wt-tot-bear">空头总分 '+hcBear+'</span>';
+  html += '<span class="jc-wt-tot-diff">差值 '+(hcBull-hcBear)+'（多空比 '+((hcBull/Math.max(hcBear,1)).toFixed(2))+':1）</span>';
+  html += '</div>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '<div class="ana-subsection">';
+  html += '<div class="ana-sstitle">📊 3-H.2 热卷行业数据（6 维 × 历史分位）</div>';
+  html += '<table class="jc-data-table">';
+  html += '<thead><tr><th>维度</th><th>当前值</th><th>历史分位</th><th>状态</th><th>分位柱</th><th>近 4 周趋势</th></tr></thead><tbody>';
+  var hcData = [
+    {dim:'热卷周产', val:'283.52 万吨', pct:65, state:'中性偏高·节后减产', trend:'292.12→283.52 -8.60'},
+    {dim:'热卷消费', val:'301 万吨', pct:70, state:'★偏强·制造业拉动', trend:'266→301 +12.9%'},
+    {dim:'热卷总库存', val:'438.72 万吨', pct:55, state:'中性·持续去化', trend:'-17.73 -3.9% 持续去化'},
+    {dim:'卷螺差', val:'+168', pct:85, state:'★历史高位·扩大 12', trend:'156→168 +12 卷强螺弱延续★'},
+    {dim:'热卷毛利', val:'-95 元/吨', pct:25, state:'★修复 111', trend:'-206→-95 修复 111★'},
+    {dim:'HC2701 盘面', val:'3242', pct:50, state:'中性·周环比 -0.4%', trend:'3255→3242 -13（-0.4%）'},
+    {dim:'上海热卷现货', val:'3260', pct:55, state:'中性', trend:'贴水 -18 平水'},
+    {dim:'钢厂盈利率', val:'8.23%', pct:30, state:'★反弹 1.30pct', trend:'6.93→8.23% 反弹★'}
+  ];
+  hcData.forEach(function(d){
+    var barColor = d.pct >= 80 ? '#c44' : (d.pct >= 50 ? '#c84' : (d.pct <= 20 ? '#579' : '#2a6'));
+    html += '<tr>';
+    html += '<td class="jc-d-dim">'+d.dim+'</td>';
+    html += '<td class="jc-d-val">'+d.val+'</td>';
+    html += '<td class="jc-d-pct">'+d.pct+'%</td>';
+    html += '<td class="jc-d-state">'+d.state+'</td>';
+    html += '<td class="jc-d-bar"><div class="jc-d-bar-inner" style="width:'+d.pct+'%;background:'+barColor+'"></div></td>';
+    html += '<td class="jc-d-trend">'+d.trend+'</td>';
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  html += '</div>';
+
+  html += '</div>'; // section
+
   // ===== 4. 焦炭三合一卡片（决策路径 + 权重 + 行业数据） — 实装 =====
   html += '<div class="ana-section">';
-  html += '<div class="ana-stitle">🎯 3. 焦炭三合一卡片（10-18 实装：决策路径 + 权重 + 行业数据）</div>';
+  html += '<div class="ana-stitle">🎯 3. 焦炭三合一卡片（10-18 实装：决策路径 + 权重 + 行业数据）</div>'
 
   // --- 3.1 决策路径（Mermaid 替代方案：纯 HTML 流程图） ---
   html += '<div class="ana-subsection">';
