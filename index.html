@@ -219,7 +219,23 @@ body{
 .xmind-node.cred-3 .xmind-nicon{background:#c44}
 .xmind-node.cred-2 .xmind-nicon{background:#c84}
 .xmind-node.cred-1 .xmind-nicon{background:#888}
-.xmind-nname{font-weight:600;color:var(--text);flex:0 0 auto}
+.xmind-nname{font-weight:600;color:var(--text);flex:0 0 auto;min-width:60px}
+.xmind-nval{font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;font-size:9.5px;background:rgba(255,255,255,0.6);padding:0 4px;border-radius:2px;border:1px solid rgba(0,0,0,0.05)}
+.xmind-node.cred-3 .xmind-nval{color:#c44}
+.xmind-node.cred-2 .xmind-nval{color:#c84}
+.xmind-node.cred-1 .xmind-nval{color:var(--text3)}
+.xmind-dim{background:rgba(0,0,0,0.04);border-left:3px solid var(--b-color);border-radius:3px;padding:3px 5px;margin:4px 0 2px;font-size:10.5px;font-weight:700;display:flex;align-items:center;gap:3px;cursor:default}
+.xmind-dim.cred-3{border-left-color:#c44}
+.xmind-dim.cred-2{border-left-color:#c84}
+.xmind-dim.cred-1{border-left-color:#aaa;color:var(--text3)}
+.xmind-dim .xmind-nicon{font-size:7.5px}
+.xmind-dname{flex:1}
+.xmind-dcount{background:var(--b-color);color:#fff;font-size:8.5px;font-weight:700;padding:0 4px;border-radius:6px;opacity:0.85}
+.xmind-node{margin-left:10px;border-left:2px solid}
+.xmind-flow{display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;background:linear-gradient(90deg,#fef5e7 0%,#fde7e7 25%,#f0f0f0 50%,#f0f0f8 75%,#e8f8e8 100%);border:1px solid var(--border);border-radius:6px;margin-bottom:10px;font-size:10.5px;font-weight:600}
+.xmind-flow-item{display:flex;align-items:center;gap:3px;padding:3px 8px;background:rgba(255,255,255,0.7);border-radius:4px;border:1px solid var(--b-color)}
+.xmind-flow-arr{color:#888;font-size:14px;font-weight:700}
+.xmind-flow-label{font-size:9px;color:var(--text3);font-weight:400}
 
 /* 焦炭三合一卡片 */
 .ana-subsection{margin-bottom:10px;padding:6px 8px;background:var(--card2);border:1px solid var(--border);border-radius:5px}
@@ -1721,70 +1737,216 @@ function updateAnalysisPanel(W,dim){
   html += '<span class="xmind-icon">⚫</span>黑色产业链';
   html += '<span class="xmind-meta">5 品种 × 5 环节 × 数据点 · 3 可信度</span>';
   html += '</div>';
+  // 4.1 产品流向（横向流程图 — 焦煤→焦炭→铁矿→钢材→宏观）
+  html += '<div class="xmind-flow">';
+  html += '<span class="xmind-flow-label">🔗 产业链传导：</span>';
+  html += '<span class="xmind-flow-item" style="--b-color:#c84">⛏ 焦煤</span>';
+  html += '<span class="xmind-flow-arr">→</span>';
+  html += '<span class="xmind-flow-item" style="--b-color:#c44">🧱 焦炭</span>';
+  html += '<span class="xmind-flow-arr">→</span>';
+  html += '<span class="xmind-flow-item" style="--b-color:#888">🪨 铁矿</span>';
+  html += '<span class="xmind-flow-arr">→</span>';
+  html += '<span class="xmind-flow-item" style="--b-color:#547">🔩 钢材</span>';
+  html += '<span class="xmind-flow-arr">↔</span>';
+  html += '<span class="xmind-flow-item" style="--b-color:#2a6">📊 宏观</span>';
+  html += '<span class="xmind-flow-label" style="margin-left:auto">正向传导+外生冲击</span>';
+  html += '</div>';
+
   // 5 主分支容器
   html += '<div class="xmind-branches" id="xmindBranches">';
   // ★改造：3 层树形（品种 → 维度 → 数据点）— 与数据架构明细表合并
   // 每个 branch 是 1 个品种，每个 branch.sheets 是 1 个维度，sheet.n 是维度名，sheet.d 是数据点详情（含本期值）
+  // 4 层结构：品种 → 环节 → 数据点 → 本期值
+  // data 数组中每项：{pt:'523 矿原煤日产', val:'160.76 万吨', sub:'+4.5% vs 9-25', cred:3}
   const xmindBranches = [
     {key:'jm', icon:'⛏', title:'焦煤', en:'主焦煤/蒙煤', color:'#c84', bg:'#fef5e7', sheets:[
-      {n:'① 供给', v:3, d:'523 矿原煤 160.76(+4.5%) / 精煤 67.71(+2.7%) 万吨 · 产能 71.38% · 山西 138家 77.63%'},
-      {n:'② 需求', v:3, d:'230 焦企产能 71.84% · 247 钢厂炼焦煤 762.9(+15.3) · 焦化日均 61.7 万吨'},
-      {n:'③ 库存', v:3, d:'523 精煤 247.54(+25.55 累库) · 港口 267.95↓ · 汾渭吕梁精煤 13.87(-2.27 矿端去化) · <b>★注意汾渭 138家363座 = 矿端数据★</b>'},
-      {n:'④ 价格', v:3, d:'JM2701=1482(周环比 -5.4%) · 蒙5#=1897(升水 +415) · 1-5 月差走窄'},
-      {n:'⑤ 进口+发运', v:3, d:'★ 甘其毛都通关车数 10-15→10-17 735→873 车/日 (+18.8% 跳升) · 监管区 162.1 (+9.5) · 进口端方向明确转松 ★'},
-      {n:'⑥ 政策', v:1, d:'山西增产 5450 万吨 Q4 释放 · 666 号文合规复产'}
+      {n:'① 供给', data:[
+        {pt:'523 矿原煤日产', val:'160.76 万吨', sub:'+4.5% vs 9-25', cred:3},
+        {pt:'523 矿精煤日产', val:'67.71 万吨', sub:'+2.7%', cred:3},
+        {pt:'523 矿产能', val:'71.38%', sub:'+4.97pct 单周最大', cred:3},
+        {pt:'山西 138家原煤', val:'77.63% 产能', sub:'+8.05pct vs 9-30', cred:3}
+      ]},
+      {n:'② 需求', data:[
+        {pt:'230 焦企产能', val:'71.84%', sub:'持平·复产见顶', cred:3},
+        {pt:'230 焦企日均', val:'61.7 万吨', sub:'持平', cred:3},
+        {pt:'247 钢厂炼焦煤', val:'762.9 万吨', sub:'+15.3 持续补库★', cred:3}
+      ]},
+      {n:'③ 库存', data:[
+        {pt:'523 精煤库存', val:'247.54', sub:'+25.55 累库', cred:3},
+        {pt:'港口焦煤', val:'267.95', sub:'持续去化', cred:3},
+        {pt:'汾渭吕梁精煤', val:'13.87', sub:'-2.27 矿端首次去化', cred:3},
+        {pt:'230 焦化厂焦煤', val:'778.76', sub:'-67.04 中游消耗前置★', cred:3}
+      ]},
+      {n:'④ 价格', data:[
+        {pt:'JM2701 收盘', val:'1482', sub:'-5.4% 周环比', cred:3},
+        {pt:'蒙 5# 现货', val:'1897', sub:'vs 主力 +415', cred:3},
+        {pt:'基差', val:'-415', sub:'深度贴水', cred:3}
+      ]},
+      {n:'⑤ 进口+发运', data:[
+        {pt:'甘其毛都通关', val:'873 车/日', sub:'+29% 跳升★', cred:3},
+        {pt:'监管区库存', val:'162.1', sub:'+9.5 方向转松', cred:2}
+      ]},
+      {n:'⑥ 政策', data:[
+        {pt:'山西增产 93 座', val:'5450 万吨', sub:'Q4 释放', cred:1},
+        {pt:'666 号文', val:'超产矿合规复产', sub:'', cred:1}
+      ]}
     ]},
     {key:'j', icon:'🧱', title:'焦炭', en:'现货+期货', color:'#c44', bg:'#fde7e7', sheets:[
-      {n:'① 自身产量', v:3, d:'230 焦企产能 71.84% 持平 · 日均 61.7 万吨 · <b>★复产见顶</b>'},
-      {n:'② 自身库存', v:3, d:'230 焦企焦炭 78.01 万吨★极低位 · 247 钢厂焦炭 580.22(+13.14 ★主动补库) · 港口 146.11（周环比 -16.06 持续去化）'},
-      {n:'③ 自身利润', v:2, d:'吨焦利润 78→1→-52 元/吨（★ 1→-52 跌 -53 跌穿盈亏平衡★） ★跌穿盈亏平衡（1→-52 跌 -53 进入亏损区）★ · 汾渭临沂 1029 元/吨(高利润尚存)'},
-      {n:'④ 需求', v:3, d:'247 钢厂焦炭 580.22(+13.14) · 钢厂盈利率 8.23% 反弹 · 铁水 233.66(-1.7%)'},
-      {n:'⑤ 价格', v:3, d:'J2701=1972.5(周环比 -3.3%) · 现货 1870 贴水 -102.5 · 1-5 月差 -64'},
-      {n:'⑥ 提降事件', v:3, d:'★二轮累计 -200/-210 落地 · 第三轮概率 20-30%(vs 30-40%)· 净剩 +250'}
+      {n:'① 自身产量', data:[
+        {pt:'230 焦企产能', val:'71.84%', sub:'持平·复产见顶★', cred:3},
+        {pt:'230 焦企日均', val:'61.7 万吨', sub:'持平', cred:3}
+      ]},
+      {n:'② 自身库存', data:[
+        {pt:'230 焦企焦炭', val:'78.01 万吨', sub:'中性偏高·v3 修正 0.36', cred:3},
+        {pt:'247 钢厂焦炭', val:'580.6', sub:'+13.14 ★主动补库', cred:3},
+        {pt:'港口焦炭', val:'146.11', sub:'-16.06 持续去化', cred:3}
+      ]},
+      {n:'③ 自身利润', data:[
+        {pt:'吨焦利润', val:'1 元/吨', sub:'★跌穿盈亏平衡(1→-52)★', cred:2},
+        {pt:'汾渭临沂利润', val:'1029 元/吨', sub:'高利润尚存', cred:3}
+      ]},
+      {n:'④ 需求', data:[
+        {pt:'247 钢厂焦炭', val:'580.22', sub:'+13.14', cred:3},
+        {pt:'钢厂盈利率', val:'8.23%', sub:'反弹 1.30pct★', cred:3},
+        {pt:'247 铁水', val:'233.66', sub:'-1.7% 减产放缓', cred:3}
+      ]},
+      {n:'⑤ 价格', data:[
+        {pt:'J2701 收盘', val:'1972.5', sub:'-3.3% 周环比', cred:3},
+        {pt:'日照准一焦现货', val:'1870', sub:'贴水 -102.5', cred:3},
+        {pt:'基差', val:'-102.5', sub:'较上周 -170 收窄', cred:3}
+      ]},
+      {n:'⑥ 提降事件', data:[
+        {pt:'二轮累计', val:'-200/-210', sub:'已落地★', cred:3},
+        {pt:'第三轮概率', val:'20-30%', sub:'vs 上周 30-40% 下调', cred:2}
+      ]}
     ]},
     {key:'i', icon:'🪨', title:'铁矿', en:'47港库存', color:'#888', bg:'#f0f0f0', sheets:[
-      {n:'① 供给+发运', v:3, d:'47 港 16534.67(+54 累库) · 澳矿 8464.66 · 巴西 4874.26 · 贸易矿 10554.35 · Q4 季节性回升'},
-      {n:'② 需求', v:3, d:'247 铁水 233.66(-3.97 -1.7% 减产放缓) · 钢厂盈利率 8.23% 反弹'},
-      {n:'③ 库存', v:3, d:'47 港距 1.8 亿吨阈值差 1465 · 疏港 322.54(-18.56 提货弱)'},
-      {n:'④ 价格', v:3, d:'I2701=672.5(周环比 -0.7%) · PB 粉 649(升水 +23.5) · 1-5 月差 +9.5'},
-      {n:'⑤ 利润', v:3, d:'钢坯成本 2875 vs 现货 3230 毛利 27 · 钢厂盈利率反弹支撑'},
-      {n:'⑥ 待补充', v:1, d:'西芒杜 250 万吨年化 2000 · 钢厂行为(待纳入)'}
+      {n:'① 供给+发运', data:[
+        {pt:'47 港库存', val:'16534.67', sub:'+54 累库·距阈值 1465', cred:3},
+        {pt:'澳矿库存', val:'8464.66', sub:'', cred:3},
+        {pt:'巴西库存', val:'4874.26', sub:'', cred:3},
+        {pt:'贸易矿', val:'10554.35', sub:'', cred:3},
+        {pt:'海外发运', val:'Q4 季节性', sub:'压制上方', cred:2}
+      ]},
+      {n:'② 需求', data:[
+        {pt:'247 铁水', val:'233.66', sub:'-3.97 -1.7% 减产放缓', cred:3},
+        {pt:'钢厂盈利率', val:'8.23%', sub:'反弹 1.30pct', cred:3}
+      ]},
+      {n:'③ 库存', data:[
+        {pt:'47 港距 1.8 亿', val:'差 1465', sub:'阈值 8.1%', cred:3},
+        {pt:'日均疏港', val:'322.54', sub:'-18.56 提货弱', cred:3}
+      ]},
+      {n:'④ 价格', data:[
+        {pt:'I2701 收盘', val:'672.5', sub:'-0.7% 周环比', cred:3},
+        {pt:'青岛 PB 粉', val:'649', sub:'升水 +23.5', cred:3}
+      ]},
+      {n:'⑤ 利润', data:[
+        {pt:'钢坯成本', val:'2875 元/吨', sub:'', cred:3},
+        {pt:'螺纹毛利', val:'+27', sub:'修复 200+', cred:3},
+        {pt:'热卷毛利', val:'-95', sub:'修复 111', cred:3}
+      ]},
+      {n:'⑥ 待补充', data:[
+        {pt:'西芒杜', val:'250 万吨/年', sub:'年化 2000', cred:1},
+        {pt:'钢厂行为', val:'', sub:'待纳入', cred:1}
+      ]}
     ]},
     {key:'rb', icon:'🔩', title:'钢材', en:'螺纹+热卷', color:'#547', bg:'#f0f0f8', sheets:[
-      {n:'① 供给', v:3, d:'螺纹 173.89(+3.62 节后复产) · 热卷 283.52(-8.60) · 五大材周度'},
-      {n:'② 需求', v:3, d:'★螺纹消费 139→222 +59.2%★ · 热卷消费 266→301 +12.9% · 节后补库兑现'},
-      {n:'③ 库存', v:3, d:'螺纹总库存 548.46(-48.38 -8.1%) · 热卷 438.72(-17.73) · 库销比 2.47 偏低'},
-      {n:'④ 价格', v:3, d:'RB2701=3074(-0.2%) · HC2701=3242(-0.4%) · 现货 3230/3260 升水+156/贴水-18'},
-      {n:'⑤ 利润', v:3, d:'钢坯成本 2875 · 螺纹毛利 27 · 热卷毛利 -95 · 钢厂盈利率 8.23% 反弹'},
-      {n:'⑥ 下游消费', v:1, d:'地产/基建/制造分项待补充(★优先级 P1) · 钢材现货成交(待纳入)'}
+      {n:'① 供给', data:[
+        {pt:'螺纹周产', val:'173.89', sub:'+3.62 节后复产', cred:3},
+        {pt:'热卷周产', val:'283.52', sub:'-8.60', cred:3},
+        {pt:'五大材周产', val:'457.41', sub:'', cred:3}
+      ]},
+      {n:'② 需求', data:[
+        {pt:'螺纹消费', val:'222 万吨', sub:'+59.2% 单周最大★', cred:3},
+        {pt:'热卷消费', val:'301 万吨', sub:'+12.9%', cred:3}
+      ]},
+      {n:'③ 库存', data:[
+        {pt:'螺纹总库存', val:'548.46', sub:'-48.38 -8.1% 节后去库★', cred:3},
+        {pt:'热卷总库存', val:'438.72', sub:'-17.73 -3.9%', cred:3},
+        {pt:'库销比', val:'2.47', sub:'vs 4.28 急速下行', cred:3}
+      ]},
+      {n:'④ 价格', data:[
+        {pt:'RB2701 收盘', val:'3074', sub:'-0.2% 周环比', cred:3},
+        {pt:'HC2701 收盘', val:'3242', sub:'-0.4% 周环比', cred:3},
+        {pt:'上海螺纹现货', val:'3230', sub:'升水 +156', cred:3},
+        {pt:'上海热卷现货', val:'3260', sub:'贴水 -18', cred:3}
+      ]},
+      {n:'⑤ 利润', data:[
+        {pt:'螺纹毛利', val:'+27', sub:'修复 200+', cred:3},
+        {pt:'热卷毛利', val:'-95', sub:'修复 111', cred:3},
+        {pt:'钢厂盈利率', val:'8.23%', sub:'反弹 1.30pct', cred:3}
+      ]},
+      {n:'⑥ 下游消费', data:[
+        {pt:'地产/基建/制造', val:'', sub:'分项★待纳入(P1)★', cred:1},
+        {pt:'钢材现货成交', val:'', sub:'待纳入(情绪面)', cred:1}
+      ]}
     ]},
     {key:'mh', icon:'📊', title:'宏观/政策', en:'提涨提降/增产', color:'#2a6', bg:'#e8f8e8', sheets:[
-      {n:'① 钢厂行为', v:3, d:'247 钢厂炼焦煤+焦炭双补库 · 盈利率 6.93→8.23% 反弹 · 减产放缓'},
-      {n:'② 提涨提降', v:3, d:'焦炭二轮累计 -200/-210 落地 · 22 行历史事件库 · 净剩 +250 未完全回收'},
-      {n:'③ 增产计划', v:1, d:'山西 93 座 5450 万吨 Q4 释放 · 实际进度跟踪 · 523 产能利用率 71.38%'},
-      {n:'④ 政策文件', v:1, d:'666 号文(发改办能源〔2026〕666 号)超产矿合规复产'},
-      {n:'⑤ 统计局', v:2, d:'分省原煤/焦炭/粗钢/钢材(月度滞后 1 月) · <b>★含分省+合计+原煤+精煤</b>'},
-      {n:'⑥ 期货/仓单', v:2, d:'注册仓单 JM 238266 / J 117447 / I 2300 / RB 1650 / HC 933'}
+      {n:'① 钢厂行为', data:[
+        {pt:'247 炼焦煤+焦炭', val:'双补库', sub:'', cred:3},
+        {pt:'盈利率', val:'6.93→8.23%', sub:'反弹·减产放缓', cred:3}
+      ]},
+      {n:'② 提涨提降', data:[
+        {pt:'二轮累计', val:'-200/-210', sub:'落地', cred:3},
+        {pt:'历史事件库', val:'22 行', sub:'净剩 +250 未完全回收', cred:2}
+      ]},
+      {n:'③ 增产计划', data:[
+        {pt:'山西 93 座', val:'5450 万吨', sub:'Q4 释放', cred:1},
+        {pt:'523 产能利用率', val:'71.38%', sub:'+4.97pct', cred:3}
+      ]},
+      {n:'④ 政策文件', data:[
+        {pt:'666 号文', val:'发改办能源〔2026〕666', sub:'超产矿合规复产', cred:1}
+      ]},
+      {n:'⑤ 统计局', data:[
+        {pt:'分省原煤/焦炭/粗钢', val:'月度', sub:'滞后 1 月', cred:2},
+        {pt:'★含分省+合计+原煤+精煤', val:'', sub:'', cred:2}
+      ]},
+      {n:'⑥ 期货/仓单', data:[
+        {pt:'JM 仓单', val:'238266', sub:'', cred:2},
+        {pt:'J 仓单', val:'117447', sub:'', cred:2},
+        {pt:'I 仓单', val:'2300', sub:'', cred:2},
+        {pt:'RB 仓单', val:'1650', sub:'', cred:2},
+        {pt:'HC 仓单', val:'933', sub:'', cred:2}
+      ]}
     ]}
   ];
+  // 4 层：品种标题 → 环节（可折叠）→ 数据点（本期值）→ 颜色=可信度
   xmindBranches.forEach(b => {
     html += '<div class="xmind-branch xmind-b-'+b.key+'" style="--b-color:'+b.color+';--b-bg:'+b.bg+'" data-level="1">';
+    // L1: 品种标题
     html += '<div class="xmind-btitle" onclick="xmindToggle(this)">';
     html += '<span class="xmind-arr">▼</span>';
     html += '<span class="xmind-icon">'+b.icon+'</span>';
     html += '<span class="xmind-bname">'+b.title+'</span>';
     html += '<span class="xmind-ben">'+b.en+'</span>';
-    html += '<span class="xmind-count">'+b.sheets.length+'</span>';
+    html += '<span class="xmind-count">'+b.sheets.reduce(function(s,sh){return s+sh.data.length;},0)+'</span>';
     html += '</div>';
     html += '<div class="xmind-children">';
     b.sheets.forEach(s => {
-      const credCls = s.v===3?'cred-3':s.v===2?'cred-2':'cred-1';
-      const credTxt = s.v===3?'★★★':s.v===2?'★★':'★';
-      html += '<div class="xmind-node '+credCls+'" data-level="2" data-cred="'+s.v+'">';
-      html += '<span class="xmind-nicon">'+credTxt+'</span>';
-      html += '<span class="xmind-nname">'+s.n+'</span>';
-      html += '<span class="xmind-nd">'+s.d+'</span>';
+      // L2: 环节（6 维度）
+      const dimCred = s.data[0]?s.data[0].cred:2;
+      const dimCredCls = dimCred===3?'cred-3':dimCred===2?'cred-2':'cred-1';
+      const dimCredTxt = dimCred===3?'★★★':dimCred===2?'★★':'★';
+      html += '<div class="xmind-dim '+dimCredCls+'" data-level="2" data-cred="'+dimCred+'">';
+      html += '<span class="xmind-nicon">'+dimCredTxt+'</span>';
+      html += '<span class="xmind-dname">'+s.n+'</span>';
+      html += '<span class="xmind-dcount">'+s.data.length+'</span>';
       html += '</div>';
+      // L3: 数据点（本期值）
+      s.data.forEach(d => {
+        const credCls = d.cred===3?'cred-3':d.cred===2?'cred-2':'cred-1';
+        const credTxt = d.cred===3?'★★★':d.cred===2?'★★':'★';
+        html += '<div class="xmind-node '+credCls+'" data-level="3" data-cred="'+d.cred+'">';
+        html += '<span class="xmind-nicon">'+credTxt+'</span>';
+        html += '<span class="xmind-nname">'+d.pt+'</span>';
+        if(d.val){
+          html += '<span class="xmind-nval">'+d.val+'</span>';
+        }
+        if(d.sub){
+          html += '<span class="xmind-nd">'+d.sub+'</span>';
+        }
+        html += '</div>';
+      });
     });
     html += '</div>'; // children
     html += '</div>'; // branch
@@ -1792,106 +1954,6 @@ function updateAnalysisPanel(W,dim){
   html += '</div>'; // xmind-branches
   html += '</div>'; // xmind
   html += '<div class="ana-note"><b>5 品种辐射关系：</b>焦煤→焦炭→铁矿→钢材（产业链正向传导）；宏观/政策作为外生冲击（钢厂行为/提涨提降/增产计划）。<b>每品种 6 数据节点</b>：供给/需求/库存/价格/利润或进口或政策。点击主分支或子节点可折叠/展开。</div>';
-  html += '</div>';
-
-  // ===== 3. 数据架构地图（22 sheet × 6 维度 × 3 可信度） =====
-  html += '<div class="ana-section">';
-  html += '<div class="ana-stitle">📋 2. 数据架构明细表（6 维度 × N 数据点 · 含本期值）</div>';
-  html += '<div class="ana-legend">';
-  html += '<span class="cred-3">★★★ 充分可信</span>';
-  html += '<span class="cred-2">★★ 派生数据</span>';
-  html += '<span class="cred-1">★ 预警/缺失</span>';
-  html += '</div>';
-
-  // ★改造：按 6 大维度（产量/库存/价格/供给/利润/事件）× N 数据点
-  const dimGroups = [
-    {dim:'产量', icon:'🏭', items:[
-      {pt:'523 矿原煤日产', sheet:'Mysteel 焦煤', freq:'周', cred:3, v:'160.76 万吨（+4.5% vs 9-25）'},
-      {pt:'523 矿精煤日产', sheet:'Mysteel 焦煤', freq:'周', cred:3, v:'67.71 万吨（+2.7% vs 9-25）'},
-      {pt:'523 矿产能利用率', sheet:'Mysteel 焦煤', freq:'周', cred:3, v:'71.38%（+4.97pct 单周最大）'},
-      {pt:'山西 138家原煤周产', sheet:'汾渭 138家', freq:'周', cred:3, v:'★ 77.63% 产能·+8.05pct vs 9-30'},
-      {pt:'230 焦企产能利用率', sheet:'Mysteel 焦炭', freq:'周', cred:3, v:'71.84%（持平 复产见顶）'},
-      {pt:'230 焦企日均产量', sheet:'Mysteel 焦炭', freq:'周', cred:3, v:'61.7 万吨（持平）'},
-      {pt:'螺纹周产量', sheet:'五大材-MS', freq:'周', cred:3, v:'173.89 万吨（+3.62 节后复产）'},
-      {pt:'热卷周产量', sheet:'五大材-MS', freq:'周', cred:3, v:'283.52 万吨（-8.60）'},
-      {pt:'247 铁水日均', sheet:'钢材数据源', freq:'周', cred:3, v:'233.66（-3.97 -1.7% 减产放缓）'},
-      {pt:'统计局·原煤/焦炭/粗钢', sheet:'统计局数据', freq:'月', cred:2, v:'滞后 1 月 · 待补充'}
-    ]},
-    {dim:'库存', icon:'📦', items:[
-      {pt:'523 精煤库存', sheet:'Mysteel 焦煤', freq:'周', cred:3, v:'247.54（+25.55 vs 9-25 累库）'},
-      {pt:'247 钢厂炼焦煤', sheet:'Mysteel 焦煤（列 22）', freq:'周', cred:3, v:'761.13（+12.23 vs 9-25 ★持续补库）'},
-      {pt:'247 钢厂焦炭', sheet:'Mysteel 焦炭', freq:'周', cred:3, v:'580.6（+13.14 ★主动补库）'},
-      {pt:'230 焦化厂焦煤（原料）', sheet:'Mysteel 焦煤', freq:'周', cred:3, v:'778.76（★-67.04 vs 9-25 持续去化·中游消耗前置）'},
-      {pt:'230 焦企焦炭（产成品）', sheet:'Mysteel 焦炭', freq:'周', cred:3, v:'78.01 万吨（中性偏高 ★v3 修正 0.36★）'},
-      {pt:'港口焦煤', sheet:'Mysteel 焦煤', freq:'周', cred:3, v:'267.95（去化）'},
-      {pt:'汾渭吕梁精煤', sheet:'汾渭 138家', freq:'周', cred:3, v:'13.87（-2.27 首次去化）'},
-      {pt:'甘其毛都监管区', sheet:'甘其毛都库存', freq:'日', cred:2, v:'162.1（+9.5 短期方向转松）'},
-      {pt:'47 港铁矿', sheet:'铁矿港口', freq:'周', cred:3, v:'16534.67（+54 累库）'},
-      {pt:'螺纹总库存', sheet:'五大材-MS', freq:'周', cred:3, v:'548.46（-48.38 ★节后去库）'},
-      {pt:'热卷总库存', sheet:'五大材-MS', freq:'周', cred:3, v:'438.72（-17.73 节后去库）'},
-      {pt:'注册仓单（5 品种）', sheet:'注册仓单', freq:'日', cred:2, v:'JM 238266 / J 117447 / I 2300 / RB 1650 / HC 933'}
-    ]},
-    {dim:'价格', icon:'💰', items:[
-      {pt:'JM2701 收盘', sheet:'jm', freq:'日', cred:3, v:'1482（周环比 -5.4%）'},
-      {pt:'J2701 收盘', sheet:'j', freq:'日', cred:3, v:'1972.5（周环比 -3.3%）'},
-      {pt:'RB2701 收盘', sheet:'rb', freq:'日', cred:3, v:'3074（周环比 -0.2%）'},
-      {pt:'HC2701 收盘', sheet:'hc', freq:'日', cred:3, v:'3242（周环比 -0.4%）'},
-      {pt:'I2701 收盘', sheet:'i', freq:'日', cred:3, v:'672.5（周环比 -0.7%）'},
-      {pt:'蒙 5# 现货', sheet:'双焦价格', freq:'日', cred:3, v:'1897（vs 主力升水 +415）'},
-      {pt:'日照准一焦', sheet:'双焦价格', freq:'日', cred:3, v:'1870（vs 主力贴水 -102.5）'},
-      {pt:'上海螺纹现货', sheet:'钢材价格', freq:'日', cred:3, v:'3230（vs 主力升水 +156）'},
-      {pt:'上海热卷现货', sheet:'钢材价格', freq:'日', cred:3, v:'3260（vs 主力贴水 -18）'},
-      {pt:'青岛 PB 粉', sheet:'钢材价格', freq:'日', cred:3, v:'649（vs 主力升水 +23.5）'}
-    ]},
-    {dim:'供给（进口+发运）', icon:'🚚', items:[
-      {pt:'甘其毛都通关车数', sheet:'日度蒙煤通关（列 1）', freq:'日', cred:3, v:'★ 873 车/日（10-17）· 10-15=676 → 10-17=873 +29% 跳升'},
-      {pt:'47 港日均疏港', sheet:'铁矿港口', freq:'周', cred:3, v:'322.54（-18.56 提货弱）'},
-      {pt:'全球发运', sheet:'周发运', freq:'周', cred:3, v:'Q4 季节性回升压制'},
-      {pt:'山西/蒙/陕/新原煤', sheet:'统计局分省', freq:'月', cred:2, v:'滞后 1 月 · 待补充'},
-      {pt:'澳煤/俄煤/印尼煤分国别', sheet:'—（待纳入）', freq:'月', cred:1, v:'❌ 尚未纳入（★优先级 P2）'}
-    ]},
-    {dim:'利润', icon:'💹', items:[
-      {pt:'247 钢厂盈利率', sheet:'钢材数据源', freq:'周', cred:3, v:'8.23%（+1.30pct 反弹★）'},
-      {pt:'高炉产能利用率', sheet:'钢材数据源', freq:'周', cred:3, v:'87.74%（持平）'},
-      {pt:'钢坯成本', sheet:'钢材价格', freq:'日', cred:3, v:'2875 元/吨'},
-      {pt:'螺纹毛利', sheet:'钢材价格', freq:'日', cred:3, v:'+27（vs 上周 -173 修复 200+）'},
-      {pt:'热卷毛利', sheet:'钢材价格', freq:'日', cred:3, v:'-95（vs 上周 -206 修复 111）'},
-      {pt:'吨焦利润', sheet:'Mysteel 焦炭', freq:'周', cred:3, v:'1 元/吨（★跌穿盈亏平衡（1→-52 跌 -53 进入亏损区）★）'},
-      {pt:'汾渭临沂利润', sheet:'汾渭 138家', freq:'周', cred:3, v:'1029 元/吨'}
-    ]},
-    {dim:'事件/政策', icon:'📜', items:[
-      {pt:'焦炭提涨提降', sheet:'焦炭历年提涨提降', freq:'事件', cred:3, v:'★二轮累计 -200/-210 落地'},
-      {pt:'666 号文·发改办能源', sheet:'—（政策文件）', freq:'政策', cred:1, v:'超产矿合规复产'},
-      {pt:'山西增产 93 座', sheet:'—（政策文件）', freq:'政策', cred:1, v:'5450 万吨 Q4 释放'},
-      {pt:'下游消费（地产/基建/制造）', sheet:'—（待纳入）', freq:'月', cred:1, v:'❌ 尚未纳入（★优先级 P1）'},
-      {pt:'钢材现货成交', sheet:'—（待纳入）', freq:'日', cred:1, v:'❌ 尚未纳入（情绪面预警）'}
-    ]}
-  ];
-  var _dimIdx = 0;
-  dimGroups.forEach(function(g){
-    html += '<tr style="background:rgba(52,70,150,0.08)"><td colspan="6" style="padding:4px 8px;font-weight:700;font-size:10.5px;color:#346">'+g.icon+' '+g.dim+' <span style="font-weight:400;color:var(--text3);font-size:9px">· '+g.items.length+' 数据点</span></td></tr>';
-    g.items.forEach(function(it){
-      _dimIdx++;
-      var credCls = it.cred===3?'cred-3':it.cred===2?'cred-2':'cred-1';
-      var credTxt = it.cred===3?'★★★':it.cred===2?'★★':'★';
-      html += '<tr>';
-      html += '<td style="color:var(--text3);font-size:9px;text-align:center">'+g.icon+'</td>';
-      html += '<td><b>'+it.pt+'</b></td>';
-      html += '<td style="font-size:9px;color:var(--text2)">'+it.sheet+'</td>';
-      html += '<td style="font-size:9px;color:var(--text3);text-align:center">'+it.freq+'</td>';
-      html += '<td class="'+credCls+'" style="text-align:center">'+credTxt+'</td>';
-      html += '<td style="font-size:9.5px;font-variant-numeric:tabular-nums">'+it.v+'</td>';
-      html += '</tr>';
-    });
-  });
-
-  // 数据缺失提示
-  html += '<div class="ana-warn">';
-  html += '<b>⚠ 数据缺失/补充建议：</b><br>';
-  html += '1. <b>统计局分省数据</b> 已纳入但需补充：焦炭/粗钢/生铁/钢材的分省数据（目前只有原煤分省）<br>';
-  html += '2. <b>宏观数据缺口</b>：PMI、房地产（投资/新开工/销售）、基建（专项债/PPP）尚未纳入<br>';
-  html += '3. <b>资金/情绪面数据缺口</b>：持仓量变化、成交量异动、基差率统计尚未建立<br>';
-  html += '4. <b>进出口分项缺口</b>：澳煤/俄煤/印尼煤分国别进口数据';
   html += '</div>';
 
   html += '</div>';
