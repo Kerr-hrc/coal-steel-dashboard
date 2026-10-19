@@ -1896,6 +1896,139 @@ function updateAnalysisPanel(W,dim){
 
   html += '</div>';
 
+  // ===== 3-A. 焦煤决策卡片（10-19 扩展：4 阶段·输入信号→关键判断→推理→结论） =====
+  html += '<div class="ana-section">';
+  html += '<div class="ana-stitle">⛏ 3-A. 焦煤决策卡片（10-19 扩展·JM2701 周环比 -5.4% 累计 -12.3%）</div>';
+  html += '<div class="jc-path">';
+  html += '<div class="jc-stage s1"><div class="jc-sh">① 输入信号（焦煤自身·10-18 数据）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-self">自身产量</span><b>523 矿原煤日产 160.76 万吨</b>（+4.5% vs 9-25）· 精煤 67.71(+2.7%) · 产能利用率 71.38% (<b style="color:#c44">+4.97pct 单周最大增幅</b>)</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-self">自身库存</span>523 精煤 247.54（+25.55 累库★ 矿端累库）· 港口 267.95（持续去化）· 汾渭吕梁 13.87（<b style="color:#c44">-2.27 矿端首次去化</b>）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-self">中游库存</span><b>230 焦化厂炼焦煤 778.76 万吨</b>（<b style="color:#2a6">★-67.04 vs 9-25 持续去化</b>·中游消耗前置）· 247 钢厂炼焦煤 761.13（<b style="color:#c44">+12.23 ★持续补库</b>）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">进口+通关</span><b>甘其毛都通关车数</b> 10-15=676 → 10-17=873（<b style="color:#2a6">+29% 跳升</b>）· 监管区库存 162.1（+9.5 短期方向转松）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">基差</span>JM2701=1482 vs 蒙 5# 现货 1897 <b style="color:#2a6">贴水 -415</b>（盘面深度贴水·暗示现货压力大）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">钢厂行为</span>247 钢厂盈利率 6.93→8.23% 反弹 ★ + 焦煤+焦炭双补库 · 铁水 233.66(-1.7% 减产放缓)</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">下游消费</span>230 焦企产能 71.84% 持平·日均 61.7 万吨（<b style="color:#c44">★复产见顶</b>）· 焦企吨焦利润 1 元/吨(<b style="color:#2a6">★跌穿盈亏平衡</b>)</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">政策</span>★ 山西增产 93 座 5450 万吨 Q4 释放 · 666 号文超产矿合规复产</div>';
+  html += '</div>';
+  html += '<div class="jc-stage s2"><div class="jc-sh">② 关键判断（6 维）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">1</span><b style="color:#2a6">★ 523 矿产能 +4.97pct 单周最大增幅 + 蒙煤通关 +29% 跳升</b> → 供给端明确转松</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">2</span>★ 230 焦化厂炼焦煤 -67 vs 247 钢厂 +12 → <b>中游前置消耗 vs 下游持续补库</b> 分层</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">3</span>★ 山西增产 5450 万吨 Q4 释放 → <b style="color:#2a6">供给端偏松</b>·成本端支撑弱化</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">4</span>★ 焦企吨焦利润 1 元/吨（<b style="color:#2a6">★跌穿盈亏平衡</b>） → <b style="color:#2a6">上方承压</b>·焦企补库意愿弱</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">5</span>★ JM 盘面周环比 -5.4% 累计 -12.3% 远超基本面恶化 → <b style="color:#c44">盘面补跌到位</b>·左侧修复开启</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">6</span>★ 钢厂盈利率 8.23% 反弹 + 冬季备库 → <b style="color:#c44">下方支撑</b> 1450-1500</div>';
+  html += '</div>';
+  html += '<div class="jc-stage s3"><div class="jc-sh">③ 推理链条（多空博弈）</div>';
+  html += '<div class="jc-chain">';
+  html += '<div class="jc-row c-bull"><span class="jc-arr">▲</span><b>多头逻辑</b>：钢厂盈利率反弹 8.23% + 247 钢厂炼焦煤 +12.23 持续补库 + 蒙 5# 现货 1897 升水 +415 + 焦煤 80-85 分位已 <b style="color:#c44">★盘面补跌到位</b> → <b>左侧修复</b>·下方 1450 强支撑</div>';
+  html += '<div class="jc-row c-bear"><span class="jc-arr">▼</span><b>空头逻辑</b>：523 矿产能 +4.97pct <b style="color:#2a6">单周最大增幅</b> + 蒙煤 +29% 跳升 + 山西 5450 万吨 + 焦企吨焦 -52 亏损 → <b style="color:#2a6">供给端偏松</b>·上方 1530+ 承压</div>';
+  html += '<div class="jc-row c-key"><span class="jc-arr">◆</span><b>关键变量</b>：山西增产实际进度？蒙煤通关能否维持 800+ 车/日？焦企亏损是否触发被动减产？</div>';
+  html += '</div></div>';
+  html += '<div class="jc-stage s4"><div class="jc-sh">④ 结论（短期 1-2 周）</div>';
+  html += '<div class="jc-row c-final"><b>主力 JM2701 = 1430-1530 偏弱</b>（基差 -415 较深）；下方 1430 强支撑（蒙 5# 成本+钢厂刚性采购）；上方 1530+ 不追多；<b style="color:#c44">★ 若钢厂盈利率站稳 8%+ + 蒙煤拐头，JM 有左侧反弹至 1550-1600 机会★</b></div>';
+  html += '<div class="jc-row c-final">形态匹配 2023-06（总分最高）：历史后续 JM 4 周跌 -180；中期 Q4 中枢 1450-1600；长期中枢 1450-1650</div>';
+  html += '</div>';
+  html += '</div>'; // jc-path
+  html += '</div>'; // section
+
+  // ===== 3-B. 铁矿决策卡片（10-19 扩展：4 阶段） =====
+  html += '<div class="ana-section">';
+  html += '<div class="ana-stitle">🪨 3-B. 铁矿决策卡片（10-19 扩展·I2701 周环比 -0.7% 累计 -8.9%）</div>';
+  html += '<div class="jc-path">';
+  html += '<div class="jc-stage s1"><div class="jc-sh">① 输入信号（铁矿自身·10-18 数据）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-self">港口库存</span><b>47 港 16534.67 万吨</b>（+54 累库）· 距 1.8 亿吨阈值差 <b>1465 万吨</b>（距阈值 8.1%）· 澳矿 8464.66 · 巴西 4874.26 · 贸易矿 10554.35</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-self">疏港</span>47 港日均疏港 322.54 万吨（<b style="color:#2a6">-18.56 提货弱</b>）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">发运</span>Q4 海外发运季节性回升（<b style="color:#2a6">压制上方</b>）· 西芒杜 250 万吨年化 2000（远期供给增量·★★★优先级 P2）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">下游需求</span>247 铁水 233.66（<b style="color:#c44">-3.97 -1.7% 减产放缓</b>）· 钢厂盈利率 6.93→8.23% <b style="color:#c44">★反弹 1.30pct</b></div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">基差</span>I2701=672.5 vs 青岛 PB 粉 649 <b style="color:#c44">★升水 +23.5</b>（盘面小幅升水·与焦煤深度贴水形成对比）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">钢材需求</span>螺纹消费 +59.2% <b style="color:#c44">★节后补库兑现</b> · 热卷消费 +12.9% · 五大材周产 457.41 万吨</div>';
+  html += '</div>';
+  html += '<div class="jc-stage s2"><div class="jc-sh">② 关键判断（5 维）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">1</span>★ 47 港库存 16534 累库 + 距阈值 1.8 亿差 1465 万吨 → <b style="color:#2a6">★上方承压</b>·阈值临近</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">2</span>★ 疏港 322.54 (-18.56 提货弱) + 钢厂盈利率反弹 8.23% → <b>钢厂提货积极性下降</b></div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">3</span>★ Q4 海外发运季节性回升 → <b style="color:#2a6">供给压力回升</b></div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">4</span>★ 螺纹消费 +59% 节后补库 → <b style="color:#c44">需求端验证</b>（短期支撑）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">5</span>★ I 盘面周环比 -0.7% 累计 -8.9% · 升水 +23.5 现货抗跌 → <b style="color:#c44">★盘面补跌到位</b></div>';
+  html += '</div>';
+  html += '<div class="jc-stage s3"><div class="jc-sh">③ 推理链条（多空博弈）</div>';
+  html += '<div class="jc-chain">';
+  html += '<div class="jc-row c-bull"><span class="jc-arr">▲</span><b>多头逻辑</b>：钢厂盈利率反弹 8.23% + 螺纹消费 +59% + 盘面累计 -8.9% 已 price-in 减产 + 升水 +23.5 现货抗跌 → <b style="color:#c44">左侧修复</b>·下方 650 强支撑</div>';
+  html += '<div class="jc-row c-bear"><span class="jc-arr">▼</span><b>空头逻辑</b>：47 港 16534 累库 + 距 1.8 亿差 1465 + Q4 季节性发运回升 + 疏港 -18.56 提货弱 → <b style="color:#2a6">供给端偏松</b>·上方 700+ 承压</div>';
+  html += '<div class="jc-row c-key"><span class="jc-arr">◆</span><b>关键变量</b>：47 港能否突破 1.7 亿？钢厂盈利率站稳 8%+ 持续性？西芒杜 250 万吨 11 月发运节奏？</div>';
+  html += '</div></div>';
+  html += '<div class="jc-stage s4"><div class="jc-sh">④ 结论（短期 1-2 周）</div>';
+  html += '<div class="jc-row c-final"><b>主力 I2701 = 650-720 区间</b>（升水 +23.5 较深）；下方 650 强支撑（PB 粉成本+钢厂刚性）；上方 700+ 谨慎；<b style="color:#c44">★ 1.8 亿吨阈值突破则上方空间打开至 750-780★</b></div>';
+  html += '<div class="jc-row c-final">中期 Q4 中枢 650-720；长期中枢 650-750（西芒杜压制上方）</div>';
+  html += '</div>';
+  html += '</div>'; // jc-path
+  html += '</div>'; // section
+
+  // ===== 3-C. 螺纹决策卡片（10-19 扩展：4 阶段） =====
+  html += '<div class="ana-section">';
+  html += '<div class="ana-stitle">🔩 3-C. 螺纹决策卡片（10-19 扩展·RB2701 周环比 -0.2% · ★抗跌性最强★）</div>';
+  html += '<div class="jc-path">';
+  html += '<div class="jc-stage s1"><div class="jc-sh">① 输入信号（螺纹自身·10-18 数据）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-self">自身产量</span>螺纹周产 173.89 万吨（<b style="color:#c44">+3.62 节后复产</b>）· 五大材周度合计 457.41</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-self">消费</span><b>★螺纹消费 139→222 +59.2%★</b> <b style="color:#c44">★节后补库兑现</b>（单周最大增幅·验证需求修复）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-self">库存</span>螺纹总库存 548.46（<b style="color:#c44">★-48.38 节后大幅去库</b> -8.1%）· 厂库 178.33 · 社库 370.13</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">库销比</span><b>2.47 偏低</b>（vs 上周 4.28 急速下行）· 短期现货支撑强</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">利润</span>钢坯成本 2875 · 螺纹毛利 <b style="color:#c44">+27</b>（vs 上周 -173 <b style="color:#c44">修复 200+</b>）· 钢厂盈利率 6.93→8.23% 反弹</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">基差</span>RB2701=3074 vs 上海螺纹现货 3230 <b style="color:#c44">★升水 +156</b>（盘面贴水偏深）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">下游需求</span>★ 地产/基建/制造分项待补充（★优先级 P1）· 钢材现货成交待纳入（情绪面预警）</div>';
+  html += '</div>';
+  html += '<div class="jc-stage s2"><div class="jc-sh">② 关键判断（5 维）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">1</span>★ 螺纹消费 +59.2% + 库销比 2.47 急速下行 → <b style="color:#c44">★需求端验证</b>·基本面左侧修复</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">2</span>★ 螺纹毛利 -173 → +27 修复 200+ → <b style="color:#c44">★毛利修复</b>·钢厂话语权巩固</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">3</span>★ RB 周环比 -0.2% 远小于 JM -5.4% J -3.3% → <b style="color:#c44">★抗跌性最强</b>·左侧修复领先</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">4</span>★ 钢厂盈利率 6.93→8.23% 反弹 1.30pct → <b style="color:#c44">★左侧修复开启</b>·减产放缓</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">5</span>★ 螺纹周产 +3.62 节后复产 → <b style="color:#2a6">供给端偏松</b>（后期压制上方）</div>';
+  html += '</div>';
+  html += '<div class="jc-stage s3"><div class="jc-sh">③ 推理链条（多空博弈）</div>';
+  html += '<div class="jc-chain">';
+  html += '<div class="jc-row c-bull"><span class="jc-arr">▲</span><b>多头逻辑</b>：消费 +59% 单周最大 + 库销比 2.47 + 毛利修复 +200 + 升水 +156 贴水偏深 + 盈利率反弹 → <b style="color:#c44">★基本面左侧修复开启</b>·5 品种中最强</div>';
+  html += '<div class="jc-row c-bear"><span class="jc-arr">▼</span><b>空头逻辑</b>：周产 +3.62 节后复产 + 五大材合计 457 + 地产/基建/制造数据缺失（<b style="color:#2a6">上方空间有限</b>）·中长期需求待验证</div>';
+  html += '<div class="jc-row c-key"><span class="jc-arr">◆</span><b>关键变量</b>：节后补库是脉冲性还是趋势性？钢厂盈利率 8% 能否站稳？螺纹周产能否压制在 180 万吨以下？</div>';
+  html += '</div></div>';
+  html += '<div class="jc-stage s4"><div class="jc-sh">④ 结论（短期 1-2 周）</div>';
+  html += '<div class="jc-row c-final"><b>主力 RB2701 = 3050-3200 偏强</b>（升水 +156 较深）；下方 3050 强支撑（毛利 +27 + 库销比 2.47）；上方 3200+ 谨慎；<b style="color:#c44">★ 5 品种中★抗跌性最强★，若消费持续 + 盈利率站稳，RB 有率先反弹至 3200-3300 机会★</b></div>';
+  html += '<div class="jc-row c-final">形态匹配：与 JM 2023-06 不同（JM 增产压制 vs RB 消费驱动）；中期 Q4 中枢 3050-3200；长期中枢 3000-3300</div>';
+  html += '</div>';
+  html += '</div>'; // jc-path
+  html += '</div>'; // section
+
+  // ===== 3-D. 热卷决策卡片（10-19 扩展：4 阶段） =====
+  html += '<div class="ana-section">';
+  html += '<div class="ana-stitle">🔥 3-D. 热卷决策卡片（10-19 扩展·HC2701 周环比 -0.4% · 卷螺差扩大）</div>';
+  html += '<div class="jc-path">';
+  html += '<div class="jc-stage s1"><div class="jc-sh">① 输入信号（热卷自身·10-18 数据）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-self">自身产量</span>热卷周产 283.52 万吨（<b style="color:#2a6">-8.60</b>）· 同比 +5.2%</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-self">消费</span>热卷消费 266→301（<b style="color:#c44">+12.9%</b>）· 制造业（汽车/家电/机械）拉动</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-self">库存</span>热卷总库存 438.72（<b style="color:#c44">-17.73</b> -3.9%）· 厂库 76.43 · 社库 362.29</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">卷螺差</span>HC2701=3242 - RB2701=3074 = <b style="color:#c44">+168</b>（卷螺差扩大 12·制造业景气）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">利润</span>钢坯成本 2875 · 热卷毛利 <b style="color:#c44">-95</b>（vs 上周 -206 <b style="color:#c44">修复 111</b>）· 钢厂盈利率 6.93→8.23% 反弹</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">基差</span>HC2701=3242 vs 上海热卷现货 3260 <b style="color:#2a6">贴水 -18</b>（盘面平水·基差极小）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-base">下游需求</span><span style="color:var(--text3)">★ 制造业 PMI/汽车/家电分项★待纳入（★优先级 P1）★</span>· 卷螺差 168 vs 历史均值 80-100 偏高（制造业相对景气）</div>';
+  html += '</div>';
+  html += '<div class="jc-stage s2"><div class="jc-sh">② 关键判断（5 维）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">1</span>★ 卷螺差 +168 扩大 12 → <b style="color:#c44">制造业强于地产</b>·卷强螺弱延续</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">2</span>★ 热卷毛利 -206 → -95 修复 111 → <b style="color:#c44">★毛利修复 111</b>·钢厂话语权巩固</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">3</span>★ 热卷周产 -8.60 节后减产 → <b style="color:#c44">供给端偏紧</b>（vs 螺纹供给端偏松·分化明显）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">4</span>★ 卷螺差 168 vs 历史均值 80-100 偏高 → <b style="color:#c44">制造业相对地产景气</b>（★★★充分可信）</div>';
+  html += '<div class="jc-row"><span class="jc-dot dot-key">5</span>★ HC 周环比 -0.4% vs RB -0.2% → 略弱于螺纹（受基差贴水 -18 平水压制）</div>';
+  html += '</div>';
+  html += '<div class="jc-stage s3"><div class="jc-sh">③ 推理链条（多空博弈）</div>';
+  html += '<div class="jc-chain">';
+  html += '<div class="jc-row c-bull"><span class="jc-arr">▲</span><b>多头逻辑</b>：卷螺差 168 扩大（vs 均值 80-100）+ 热卷毛利修复 111 + 周产 -8.60 减产 → <b style="color:#c44">★供需双驱动</b>·基本面偏强</div>';
+  html += '<div class="jc-row c-bear"><span class="jc-arr">▼</span><b>空头逻辑</b>：贴水 -18 平水 + 下游 PMI/汽车/家电分项★待纳入（★优先级 P1）★ + 铁矿石累库传导 → <b style="color:#2a6">上方空间有限</b>·谨慎追多</div>';
+  html += '<div class="jc-row c-key"><span class="jc-arr">◆</span><b>关键变量</b>：卷螺差能否突破 200？制造业 PMI（待纳入）能否站稳 50 上方？热卷出口是否受贸易摩擦影响？</div>';
+  html += '</div></div>';
+  html += '<div class="jc-stage s4"><div class="jc-sh">④ 结论（短期 1-2 周）</div>';
+  html += '<div class="jc-row c-final"><b>主力 HC2701 = 3200-3320 偏强</b>（贴水 -18 平水）；下方 3200 强支撑（毛利 -95 + 周产减产）；上方 3300+ 谨慎；<b style="color:#c44">★ 卷螺差扩大趋势若延续，HC 有率先突破 3320 阻力机会★</b></div>';
+  html += '<div class="jc-row c-final">形态匹配：与 RB 2024-10 类似（消费驱动+毛利修复）但制造业 vs 地产驱动分化；中期 Q4 中枢 3200-3320；长期中枢 3150-3350</div>';
+  html += '</div>';
+  html += '</div>'; // jc-path
+  html += '</div>'; // section
+
   // ===== 4. 焦炭三合一卡片（决策路径 + 权重 + 行业数据） — 实装 =====
   html += '<div class="ana-section">';
   html += '<div class="ana-stitle">🎯 3. 焦炭三合一卡片（10-18 实装：决策路径 + 权重 + 行业数据）</div>';
